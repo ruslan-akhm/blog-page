@@ -37,20 +37,7 @@ const Navbar = () => {
               </a>
             </li>
           </ul>
-          
         </nav>
-        <div id="page">
-          <h1> Some sample text here</h1>
-          <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pretium massa eu lorem molestie auctor. Curabitur vitae nulla accumsan, pretium augue id, volutpat lorem. Quisque ac ipsum laoreet, mollis mi sit amet, ultricies orci. Proin a ante ligula. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Fusce volutpat eleifend sapien, eget vehicula nisl. Nullam feugiat ultrices neque ut ultricies. Phasellus velit leo, sodales nec malesuada nec, aliquam in ex. Maecenas id lectus sit amet nisi finibus condimentum. Maecenas non vulputate libero, a convallis purus. Aliquam vel nunc non lorem consectetur sagittis. Praesent eget pulvinar augue.
-
-Sed leo urna, scelerisque eget magna eget, mattis accumsan erat. Donec venenatis, erat at gravida feugiat, urna libero pretium eros, sit amet rhoncus odio massa condimentum augue. Vivamus luctus at ex eget maximus. Duis leo erat, posuere at ultricies quis, tincidunt sagittis ligula. Mauris ac sagittis diam. Vestibulum risus diam, euismod et feugiat vel, cursus eu mauris. Ut id posuere quam, eget faucibus nunc. Interdum et malesuada fames ac ante ipsum primis in faucibus. Morbi non erat ac ex pulvinar faucibus a vitae quam. Donec ac lacus facilisis, ultrices risus malesuada, dictum nisl. Suspendisse elementum, metus non lobortis placerat, ligula risus sodales ligula, at tempus sapien sem ac massa. Duis maximus gravida arcu sit amet dictum. Fusce faucibus, turpis non porta mattis, elit magna mattis quam, nec aliquam tellus tortor ut mauris. Etiam aliquam faucibus mauris vitae tempor. Donec magna eros, ullamcorper in eleifend vel, tincidunt nec velit.
-
-Nunc sed ultrices nisl. Curabitur id laoreet augue. Aenean dignissim tincidunt pretium. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Ut eu orci massa. Nunc mauris quam, mattis nec purus sit amet, faucibus rhoncus nulla. Pellentesque vel semper enim. Nam non varius ante, a bibendum enim. Aliquam ac lectus blandit, commodo odio eget, auctor lacus. Integer nec rhoncus mi, facilisis blandit justo. Nulla hendrerit ipsum nisi, quis posuere nunc varius ut.
-
-Maecenas placerat, lacus vel suscipit bibendum, quam leo posuere tortor, quis laoreet erat arcu ac arcu. Praesent porttitor arcu aliquet urna iaculis, eget placerat ante suscipit. Fusce ornare commodo nisl, ac vehicula magna interdum vitae. Aenean eu ipsum eros. Duis enim eros, tempus nec leo eget, feugiat fringilla est. In semper hendrerit varius. Aliquam erat volutpat. Nunc non turpis vitae lorem dapibus sollicitudin ac id erat. Sed eu quam id mauris euismod rhoncus in non tortor. Mauris molestie luctus commodo. Curabitur sem quam, consectetur quis interdum at, consequat ac ante. Fusce rhoncus nunc vitae accumsan venenatis. Fusce urna nulla, scelerisque et ornare non, varius sed ligula. Aenean tincidunt id sem non condimentum.
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae nisl nulla. Aliquam eu nisl vitae nunc congue luctus. Praesent tincidunt, quam sed consequat placerat, nunc turpis auctor lectus, vel hendrerit ante ligula in mauris. Nulla urna justo, egestas vitae ligula a, sagittis volutpat purus. Etiam iaculis eu lorem eget gravida. Proin a tempor ipsum. Duis non diam id ligula sodales accumsan. Nulla pulvinar lorem eget finibus euismod. Sed vehicula semper sem eget bibendum. Quisque non mollis augue.</p>
-        </div>
       </div>
   )
 }
