@@ -50,8 +50,11 @@ h1, p{
 .nav-item:hover{
   background-color:var(--bg-secondary);
 }
-.nav-item:hover .fa-primary{
-  color:#761ceb;
+.nav-item:hover .fa-primary {
+  color:red;
+}
+.nav-item:hover .link-text{
+  color:red;
 }
 .nav-link{
   display:flex;
@@ -73,7 +76,7 @@ h1, p{
 }
 
 .fa-primary{
-  color:#ceacfa;
+  color:var(--text-secondary);
   transition:0.2s;
 }
 
