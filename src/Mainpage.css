@@ -1,0 +1,14 @@
+#personal-page{
+  width:80%;
+  height:90%;
+  margin-top:5%;
+  background-color:red;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-start;
+}
+#header{
+  width:100%;
+  height:300px;
+  background-color:blue;
+}

@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import Navbar from './Navbar'
+import Mainpage from './Mainpage'
 
 class App extends React.Component{
   constructor(props){
@@ -14,6 +15,7 @@ class App extends React.Component{
       <div>
         <Navbar/>
         <div id="page-main">
+          <Mainpage/>
         </div>
       </div>
     )
