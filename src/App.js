@@ -13,7 +13,7 @@ class App extends React.Component{
     return(
       <div>
         <Navbar/>
-        <div id="page">
+        <div id="page-main">
         </div>
       </div>
     )
