@@ -24,11 +24,13 @@ class Mainpage extends React.Component{
   }
   
   addPost(){
+    
+    
     let output = '';
     this.state.posts.forEach(post=>{
-      output+=`<li>${post.title}</li>`
+      output+=`<li class="post"><div class="preview-img">${post.title}</div><div class="preview-text">${post.description}</div></li>`
     })  
-    document.getElementsByClassName('posts')
+    document.getElementById('list').innerHTML=output;
   }
   
   render(){
@@ -42,7 +44,7 @@ class Mainpage extends React.Component{
         <div id="bio"></div>
       </div>
       <div className="posts">
-        <ul>
+        <ul id="list">
           {post}
         </ul>
         <button id="new-post" className="add">+ Add</button>
