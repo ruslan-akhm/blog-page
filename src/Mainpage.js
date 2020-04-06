@@ -4,6 +4,9 @@ import './Mainpage.css';
 
 
 const Mainpage =()=>{
+  
+  const post = <li></li>
+  
   return(
     <div id="personal-page">
       <div id="header">
@@ -13,6 +16,10 @@ const Mainpage =()=>{
         <div id="bio"></div>
       </div>
       <div className="posts">
+        <ul>
+          {post}
+        </ul>
+        <button className="add">+ Add</button>
       </div>
     </div>
   )
