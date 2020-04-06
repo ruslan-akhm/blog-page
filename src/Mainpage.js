@@ -5,7 +5,14 @@ import './Mainpage.css';
 
 const Mainpage =()=>{
   
-  const post = <li></li>
+  
+  const test = document.getElementById('new-post')//.addEventListener('click',AddPost())
+  console.log(test)
+  function AddPost(){
+    console.log("triggered");
+  }
+  
+  const post = <a><li className="post"></li></a>
   
   return(
     <div id="personal-page">
@@ -19,7 +26,7 @@ const Mainpage =()=>{
         <ul>
           {post}
         </ul>
-        <button className="add">+ Add</button>
+        <button id="new-post" className="add">+ Add</button>
       </div>
     </div>
   )
