@@ -2,18 +2,24 @@ import React from 'react';
 import './Mainpage.css';
 
 
-
-const Mainpage =()=>{
-  
-  
-  const test = document.getElementById('new-post')//.addEventListener('click',AddPost())
-  console.log(test)
-  function AddPost(){
-    console.log("triggered");
+class Mainpage extends React.Component{
+  constructor(props){
+    super(props);
+    
+    this.addPost=this.addPost.bind(this)
   }
   
-  const post = <a><li className="post"></li></a>
+  componentDidMount(){
+  document.getElementById("new-post").addEventListener('click',this.addPost)
+  }
   
+  addPost(){
+    this.post += <li className="post"></li>;
+    console.log(this.post)
+  }
+  
+  render(){
+  this.post = <li className="post"></li>
   return(
     <div id="personal-page">
       <div id="header">
@@ -24,12 +30,12 @@ const Mainpage =()=>{
       </div>
       <div className="posts">
         <ul>
-          {post}
+          {this.post}
         </ul>
         <button id="new-post" className="add">+ Add</button>
       </div>
     </div>
-  )
+  )}
 }
 
 export default Mainpage
