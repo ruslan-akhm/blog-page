@@ -5,7 +5,17 @@ import './Mainpage.css';
 class Mainpage extends React.Component{
   constructor(props){
     super(props);
-    
+    this.state={
+      posts:[{title:'Post 1',
+              description:'Whatever happened in post 1'
+             },
+             {title:'Post2',
+              description:'Whatever happened in post 2'
+             },
+             {title:'Post 3',
+              description:'Whatever happened in post 3'
+             }]
+    }
     this.addPost=this.addPost.bind(this)
   }
   
@@ -14,12 +24,15 @@ class Mainpage extends React.Component{
   }
   
   addPost(){
-    this.post += <li className="post"></li>;
-    console.log(this.post)
+    let output = '';
+    this.state.posts.forEach(post=>{
+      output+=`<li>${post.title}</li>`
+    })  
+    document.getElementsByClassName('posts')
   }
   
   render(){
-  this.post = <li className="post"></li>
+  const post = '';
   return(
     <div id="personal-page">
       <div id="header">
@@ -30,7 +43,7 @@ class Mainpage extends React.Component{
       </div>
       <div className="posts">
         <ul>
-          {this.post}
+          {post}
         </ul>
         <button id="new-post" className="add">+ Add</button>
       </div>

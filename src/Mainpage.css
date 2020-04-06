@@ -44,7 +44,7 @@ body{
   list-style-type:none;
   list-style-position: outside;
   margin:10px auto;
-  width:100%;
+  width:20px;
   height:80px;
   display:flex;
   background-color:gray;
