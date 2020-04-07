@@ -18,13 +18,14 @@ class Mainpage extends React.Component{
              }]
     }
     this.addPost=this.addPost.bind(this);
-    this.closeModal=this.closeModal.bind(this)
+    this.closeModal=this.closeModal.bind(this);
+    this.updateHeader=this.updateHeader.bind(this);
   }
   
   componentDidMount(){
     document.getElementById("new-post").addEventListener('click',this.addPost);
     document.getElementById('modal-parent').addEventListener('click',this.closeModal);
-    document.getElementById('file').addEventListener('change',()=>{document.getElementById('header-img-form').submit()})
+    document.getElementById('file').addEventListener('change',this.updateHeader)
   }
   
   addPost(){
@@ -36,6 +37,12 @@ class Mainpage extends React.Component{
    // })  
    // document.getElementById('list').innerHTML=output;
   }
+  updateHeader(e){
+    e.preventDefault();
+    document.getElementById('header-img-form').submit()
+  }
+ 
+  
   closeModal(event){
     const click = event.target;
     const modal = document.getElementById('modal-parent')
