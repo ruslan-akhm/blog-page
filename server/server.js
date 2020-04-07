@@ -12,8 +12,8 @@ const GridFsStorage = require('multer-gridfs-storage');
 const Grid = require('gridfs-stream');
 
 const app = express();
-//let gfs;
-//app.set('view engine','ejs')
+let gfs;
+app.set('view engine','ejs')
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }))
@@ -40,7 +40,7 @@ if (process.env.NODE_ENV === "production") {
   );
 }
 
-/*conn.once('open',() => {
+conn.once('open',() => {
   gfs = Grid(conn.db, mongoose.mongo);
   gfs.collection('uploads');
 })
@@ -61,7 +61,10 @@ const storage = new GridFsStorage({
   }
 })
 const upload = multer({storage})
-*/
+
+app.post("/upload", upload.single('upfile'), (req,res)=>{
+  console.log(req.file);
+})
 
 // Start the listener!
 const listener = app.listen(port, () => {
