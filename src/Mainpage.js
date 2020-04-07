@@ -24,6 +24,7 @@ class Mainpage extends React.Component{
   componentDidMount(){
     document.getElementById("new-post").addEventListener('click',this.addPost);
     document.getElementById('modal-parent').addEventListener('click',this.closeModal);
+    document.getElementById('file').addEventListener('change',()=>{document.getElementById('header-img-form').submit()})
   }
   
   addPost(){
@@ -64,6 +65,11 @@ class Mainpage extends React.Component{
   return(
     <div id="personal-page">
       <div id="header">
+        <form id="header-img-form" action="/upload" method="POST" enctype="multipart/form-data">
+        UPLOAD FILE:
+          <input name="upfile" type="file" id="file"/>
+          <input type="submit" value="Submit" />
+        </form>
       </div>
       <div id="info">
         <div id="avatar"><img src="https://res.cloudinary.com/techsnips/image/fetch/w_2000,f_auto,q_auto,c_fit/https://adamtheautomator.com/content/images/size/w2000/2019/10/user-1633249_1280.png"/></div>
