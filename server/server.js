@@ -62,8 +62,12 @@ const storage = new GridFsStorage({
 })
 const upload = multer({storage})
 
-app.post("/upload", upload.single('upfile'), (req,res)=>{
-  console.log(req.file);
+app.post('/upload', upload.single('upfile'), (req,res)=>{
+  const fileObject = req.file;
+  const fName = fileObject.originalname;
+  const fType = fileObject.mimetype;
+  const fSize = fileObject.size
+  res.json({name: fName, type: fType, size: fSize})
 })
 
 // Start the listener!
