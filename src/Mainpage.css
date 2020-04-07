@@ -94,4 +94,14 @@ body{
   display:grid;
   grid-template-columns:max-content 1fr;
   grid-gap:10px;
+  background-color:green;
+}
+.add-post-form textarea{
+  resize: none;
+}
+
+.attachment{
+  background-color:red;
+  width:20px;
+  height:20px;
 }
