@@ -99,7 +99,15 @@ body{
 .add-post-form textarea{
   resize: none;
 }
-
+.attachment-parent{
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  width:50px;
+  height:200px;
+  float:right;
+  top:0;
+}
 .attachment{
   background-color:red;
   width:20px;

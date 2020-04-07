@@ -51,11 +51,13 @@ class Mainpage extends React.Component{
                       <form className="add-post-form">
                         <label>Title</label><input type="text" />
                         <label>Post</label><textarea rows="12"></textarea>
-                        <div className="attachment"></div>
-                        <div className="attachment"></div>
-                        <div className="attachment"></div>
                         <input type="submit" id="submit" value="Post"/>
                       </form>
+                      <div className="attachment-parent">
+                        <div className="attachment"></div>
+                        <div className="attachment"></div>
+                        <div className="attachment"></div>
+                      </div>
                     </div>
                   </div>;
         
