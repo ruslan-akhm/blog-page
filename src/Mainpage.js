@@ -1,6 +1,6 @@
 import React from 'react';
 import './Mainpage.css';
-import Modal from './Modal'
+//import Modal from './Modal'
 
 
 class Mainpage extends React.Component{
@@ -25,17 +25,20 @@ class Mainpage extends React.Component{
   }
   
   addPost(){
+    (document.getElementById('modal-parent').style.display="block";
     
-    
-    let output = '';
-    this.state.posts.forEach(post=>{
-      output+=`<li class="post"><div class="preview-img">${post.title}</div><div class="preview-text">${post.description}</div></li>`
-    })  
-    document.getElementById('list').innerHTML=output;
+   // let output = '';
+  //  this.state.posts.forEach(post=>{
+   //   output+=`<li class="post"><div class="preview-img">${post.title}</div><div class="preview-text">${post.description}</div></li>`
+   // })  
+   // document.getElementById('list').innerHTML=output;
   }
   
   render(){
   const post = '';
+    
+  const modal=<div id="modal-parent"></div>;
+        
   return(
     <div id="personal-page">
       <div id="header">
@@ -50,7 +53,7 @@ class Mainpage extends React.Component{
         </ul>
         <button id="new-post" className="add">+ Add</button>
       </div>
-      <Modal />
+      {modal}
     </div>
   )}
 }
