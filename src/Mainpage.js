@@ -17,15 +17,17 @@ class Mainpage extends React.Component{
               description:'Whatever happened in post 3'
              }]
     }
-    this.addPost=this.addPost.bind(this)
+    this.addPost=this.addPost.bind(this);
+    this.closeModal=this.closeModal.bind(this)
   }
   
   componentDidMount(){
-  document.getElementById("new-post").addEventListener('click',this.addPost)
+    document.getElementById("new-post").addEventListener('click',this.addPost);
+    document.getElementById('modal-parent').addEventListener('click',this.closeModal);
   }
   
   addPost(){
-    (document.getElementById('modal-parent').style.display="block";
+    document.getElementById('modal-parent').style.display="block";
     
    // let output = '';
   //  this.state.posts.forEach(post=>{
@@ -33,11 +35,18 @@ class Mainpage extends React.Component{
    // })  
    // document.getElementById('list').innerHTML=output;
   }
+  closeModal(){
+    const click = event.target;
+    const modal = document.getElementById('modal-parent')
+    if(click==modal){
+      modal.style.display="none";
+    }
+  }
   
   render(){
   const post = '';
     
-  const modal=<div id="modal-parent"></div>;
+    const modal = <div id="modal-parent"><div id="modal-content"></div></div>;
         
   return(
     <div id="personal-page">
