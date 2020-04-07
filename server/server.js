@@ -6,14 +6,14 @@ const shortid = require('shortid');
 var mongoURI = "mongodb+srv://ruslan-akhm:zuaGc0VJ@cluster0-y5h11.mongodb.net/test?retryWrites=true&w=majority"
 mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false });
 var conn = mongoose.connection;
-const crypto = require('crypto')
-const multer = require('multer');
-const GridFsStorage = require('multer-gridfs-storage');
-const Grid = require('gridfs-stream');
+//const crypto = require('crypto')
+//const multer = require('multer');
+//const GridFsStorage = require('multer-gridfs-storage');
+//const Grid = require('gridfs-stream');
 
 const app = express();
-let gfs;
-app.set('view engine','ejs')
+//let gfs;
+//app.set('view engine','ejs')
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }))
