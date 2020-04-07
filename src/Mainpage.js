@@ -66,7 +66,6 @@ class Mainpage extends React.Component{
     <div id="personal-page">
       <div id="header">
         <form id="header-img-form" action="/upload" method="POST" enctype="multipart/form-data">
-        UPLOAD FILE:
           <input name="upfile" type="file" id="file"/>
           <input type="submit" value="Submit" />
         </form>
