@@ -6,10 +6,10 @@ const shortid = require('shortid');
 var mongoURI = "mongodb+srv://ruslan-akhm:zuaGc0VJ@cluster0-y5h11.mongodb.net/test?retryWrites=true&w=majority"
 mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false });
 var conn = mongoose.connection;
-//const crypto = require('crypto')
-//const multer = require('multer');
-//const GridFsStorage = require('multer-gridfs-storage');
-//const Grid = require('gridfs-stream');
+const crypto = require('crypto')
+const multer = require('multer');
+const GridFsStorage = require('multer-gridfs-storage');
+const Grid = require('gridfs-stream');
 
 const app = express();
 //let gfs;
@@ -61,18 +61,9 @@ const storage = new GridFsStorage({
   }
 })
 const upload = multer({storage})
-app.post('/upload', upload.single('upfile'), (req,res)=>{
-  const fileObject = req.file;
-  const fName = fileObject.originalname;
-  const fType = fileObject.mimetype;
-  const fSize = fileObject.size
-  res.json({name: fName, type: fType, size: fSize})
-})
-
-
 */
-const PORT = process.env.PORT || 5000
 
-app.listen(PORT, () => {
-  console.log("Listening on port " + PORT);
+// Start the listener!
+const listener = app.listen(port, () => {
+  console.log("❇️ Express server is running on port", listener.address().port);
 });
