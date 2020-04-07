@@ -24,7 +24,7 @@ class Mainpage extends React.Component{
   componentDidMount(){
     document.getElementById("new-post").addEventListener('click',this.addPost);
     document.getElementById('modal-parent').addEventListener('click',this.closeModal);
-    document.getElementById('file').addEventListener('change',()=>{document.getElementById('header-img-form').submit()})
+    //document.getElementById('file').addEventListener('change',()=>{document.getElementById('header-img-form').submit()})
   }
   
   addPost(){

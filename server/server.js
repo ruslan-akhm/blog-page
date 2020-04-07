@@ -40,7 +40,7 @@ if (process.env.NODE_ENV === "production") {
   );
 }
 
-conn.once('open',() => {
+/*conn.once('open',() => {
   gfs = Grid(conn.db, mongoose.mongo);
   gfs.collection('uploads');
 })
@@ -70,7 +70,7 @@ app.post('/upload', upload.single('upfile'), (req,res)=>{
 })
 
 
-
+*/
 const PORT = process.env.PORT || 5000
 
 app.listen(PORT, () => {
