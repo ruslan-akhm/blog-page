@@ -35,7 +35,7 @@ class Mainpage extends React.Component{
    // })  
    // document.getElementById('list').innerHTML=output;
   }
-  closeModal(){
+  closeModal(event){
     const click = event.target;
     const modal = document.getElementById('modal-parent')
     if(click==modal){
@@ -46,7 +46,15 @@ class Mainpage extends React.Component{
   render(){
   const post = '';
     
-    const modal = <div id="modal-parent"><div id="modal-content"></div></div>;
+    const modal = <div id="modal-parent">
+                    <div id="modal-content">
+                      <form className="add-post-form">
+                        <label>Title</label><input type="text" />
+                        <label>Post</label><textarea></textarea>
+                        <input type="submit" value="Post"/>
+                      </form>
+                    </div>
+                  </div>;
         
   return(
     <div id="personal-page">

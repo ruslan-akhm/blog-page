@@ -86,4 +86,12 @@ body{
   background-color:white;
   width:85%;
   height:80%;
+  padding-top:30px;
+}
+.add-post-form{
+  margin:auto;
+  width:90%;
+  display:grid;
+  grid-template-columns:max-content 1fr;
+  grid-gap:10px;
 }
