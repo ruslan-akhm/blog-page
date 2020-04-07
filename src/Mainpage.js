@@ -1,5 +1,6 @@
 import React from 'react';
 import './Mainpage.css';
+import Modal from './Modal'
 
 
 class Mainpage extends React.Component{
@@ -49,6 +50,7 @@ class Mainpage extends React.Component{
         </ul>
         <button id="new-post" className="add">+ Add</button>
       </div>
+      <Modal />
     </div>
   )}
 }
