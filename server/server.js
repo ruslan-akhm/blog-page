@@ -45,7 +45,7 @@ conn.once('open',() => {
   gfs.collection('uploads');
 })
 const storage = new GridFsStorage({
-  url: "https://appnew-test-sample.glitch.me:3000",//mongoURI,
+  url: "https://appnew-test-sample.glitch.me:3001",//mongoURI,
   file: (req, file) => {
     return new Promise((resolve, reject)=>{
       crypto.randomBytes(16, (err,buf)=>{
