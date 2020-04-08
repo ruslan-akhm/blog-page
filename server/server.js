@@ -6,6 +6,7 @@ const shortid = require('shortid');
 var mongoURI = "mongodb+srv://ruslan-akhm:zuaGc0VJ@cluster0-y5h11.mongodb.net/test?retryWrites=true&w=majority"
 mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false });
 var conn = mongoose.connection;
+const ejs = require('ejs')
 const crypto = require('crypto')
 const multer = require('multer');
 const GridFsStorage = require('multer-gridfs-storage');
@@ -17,7 +18,7 @@ app.set('view engine','ejs')
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }))
-app.use(express.static("public"));
+app.use(express.static("./public"));
 app.get("/", (request, response) => {
   response.sendFile(__dirname + "/public/index.html");
 });

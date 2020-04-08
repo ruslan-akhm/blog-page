@@ -72,7 +72,7 @@ class Mainpage extends React.Component{
   return(
     <div id="personal-page">
       <div id="header">
-        <form id="header-img-form" action="appnew-test-sample.glitch.me:3000/upload" method="POST" enctype="multipart/form-data">
+        <form id="header-img-form" action="/upload" method="POST" enctype="multipart/form-data">
           <input name="upfile" type="file" id="file"/>
           {/*<input type="submit" value="Submit" />*/}
         </form> 
