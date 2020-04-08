@@ -67,10 +67,11 @@ class Mainpage extends React.Component{
   return(
     <div id="personal-page">
       <div id="header">
-        {/*<form id="header-img-form" action="/upload" method="POST" enctype="multipart/form-data">
-          <input name="myImage" type="file" id="file"/>
+        <form id="header-img-form" action="/upload" method="POST"> {/*enctype="multipart/form-data"*/}
+          {/*<input name="myImage" type="file" id="file"/>*/}
+          <input type="text" />
           <input type="submit" value="Submit" />
-        </form> */}
+        </form> 
       </div>
       <div id="info">
         <div id="avatar"><img src="https://res.cloudinary.com/techsnips/image/fetch/w_2000,f_auto,q_auto,c_fit/https://adamtheautomator.com/content/images/size/w2000/2019/10/user-1633249_1280.png"/></div>

@@ -32,7 +32,7 @@ app.use(express.urlencoded({ extended: false }))
 app.use(express.static("public"));
 app.get("/", (request, response) => {
   //response.sendFile(__dirname + "/public/index.html");
-  response.render(__dirname + "/public/index.ejs")
+  response.render(__dirname + "/public/index.html")
 });
 
 
