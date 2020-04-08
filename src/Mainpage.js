@@ -67,7 +67,10 @@ class Mainpage extends React.Component{
   return(
     <div id="personal-page">
       <div id="header">
-       
+       <form action="/api/upload" method="POST"> 
+          <input name="myImage" type="file" enctype="multipart/form-data"/>
+          <input type="submit" value="Submit"/>
+        </form> 
         
       </div>
       <div id="info">

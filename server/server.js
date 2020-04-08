@@ -3,29 +3,29 @@ const path = require("path");
 const mongoose = require('mongoose');
 const shortid = require('shortid');
 //const Seat = require("../src/database");
-//var mongoURI = "mongodb+srv://ruslan-akhm:zuaGc0VJ@cluster0-y5h11.mongodb.net/test?retryWrites=true&w=majority"
-//mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false });
-//var conn = mongoose.connection;
-//const ejs = require('ejs')
-//const multer = require('multer');
+var mongoURI = "mongodb+srv://ruslan-akhm:zuaGc0VJ@cluster0-y5h11.mongodb.net/test?retryWrites=true&w=majority"
+mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false });
+var conn = mongoose.connection;
+const ejs = require('ejs')
+const multer = require('multer');
 
 //Set storage engine
-//const storage = multer.diskStorage({
-//  destination:'./public/uploads/',
-//  filename: function filename(req, file, cb){
-//    cb(null, file.fieldName+'-'+Date.now()+path.extname(file.originalName));
-//  }
-//})
+const storage = multer.diskStorage({
+  destination:'./public/uploads/',
+  filename: function filename(req, file, cb){
+    cb(null, file.fieldName+'-'+Date.now()+path.extname(file.originalName));
+  }
+})
 
 //Init upload
-//const upload = multer({
-//  storage: storage
-//}).single('myImage');  //Can be array too
+const upload = multer({
+  storage: storage
+}).single('myImage');  //Can be array too
 
 const app = express();
 
 //EJS
-//app.set('view engine','ejs')
+app.set('view engine','ejs')
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }))
@@ -35,7 +35,7 @@ app.get("/", (request, response) => {
   //response.render(__dirname + "/public/index.html")
 });
 
-app.get('/upload',(req,res)=>{
+app.post('/api/upload',(req,res)=>{
   res.json('test');
 })
 
