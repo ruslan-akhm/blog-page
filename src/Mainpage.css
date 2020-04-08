@@ -105,7 +105,9 @@ body{
   resize: none;
 }
 #submit{
-  
+  grid-column: 1 / span 2; 
+  width:150px;
+  margin:20px auto;
 }
 .attachment-parent{
   display:flex;
