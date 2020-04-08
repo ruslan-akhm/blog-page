@@ -36,7 +36,11 @@ app.get("/", (request, response) => {
 });
 
 app.post('/api/upload',(req,res)=>{
-  res.json('test');
+  upload(req,res,(err)=>{
+    if (err) res.send("Error")
+    else console.log(req.file)
+    res.send('test');
+  })
 })
 
 // Express port-switching logic
