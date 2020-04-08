@@ -6,35 +6,38 @@ const shortid = require('shortid');
 var mongoURI = "mongodb+srv://ruslan-akhm:zuaGc0VJ@cluster0-y5h11.mongodb.net/test?retryWrites=true&w=majority"
 mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false });
 var conn = mongoose.connection;
-const ejs = require('ejs')
-const multer = require('multer');
+//const ejs = require('ejs')
+//const multer = require('multer');
 
 //Set storage engine
-const storage = multer.diskStorage({
-  destination:'./public/uploads/',
-  filename: function filename(req, file, cb){
-    cb(null, file.fieldName+'-'+Date.now()+path.extname(file.originalName));
-  }
-})
+//const storage = multer.diskStorage({
+//  destination:'./public/uploads/',
+//  filename: function filename(req, file, cb){
+//    cb(null, file.fieldName+'-'+Date.now()+path.extname(file.originalName));
+//  }
+//})
 
 //Init upload
-const upload = multer({
-  storage: storage
-}).single('myImage');  //Can be array too
+//const upload = multer({
+//  storage: storage
+//}).single('myImage');  //Can be array too
 
 const app = express();
 
 //EJS
-app.set('view engine','ejs')
+//app.set('view engine','ejs')
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }))
 app.use(express.static("public"));
 app.get("/", (request, response) => {
-  //response.sendFile(__dirname + "/public/index.html");
-  response.render(__dirname + "/public/index.html")
+  response.sendFile(__dirname + "/public/index.html");
+  //response.render(__dirname + "/public/index.html")
 });
 
+app.post('/upload',(req,res)=>{
+  res.send('test')
+})
 
 // Express port-switching logic
 let port;
@@ -52,10 +55,6 @@ if (process.env.NODE_ENV === "production") {
     "⚠️ Do you need to set 'start': 'npm run development' in package.json?"
   );
 }
-
-app.post('/upload',(req,res)=>{
-  res.send('test')
-})
 
 // Start the listener!
 const listener = app.listen(port, () => {
