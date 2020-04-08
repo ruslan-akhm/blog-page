@@ -88,10 +88,9 @@ body{
   height:80%;
   padding-top:30px;
 }
-#file{
-  opacity:1;
-  cursor:pointer;
+#header-img-form input{
   width:100%;
+  cursor:pointer;
   background-color:orange;
 }
 .add-post-form{
@@ -104,6 +103,9 @@ body{
 }
 .add-post-form textarea{
   resize: none;
+}
+#submit{
+  
 }
 .attachment-parent{
   display:flex;

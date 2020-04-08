@@ -54,20 +54,15 @@ class Mainpage extends React.Component{
   render(){
   const post = '';
     
-    const modal = <div id="modal-parent">
-                    <div id="modal-content">
-                      <form className="add-post-form">
-                        <label>Title</label><input type="text" />
-                        <label>Post</label><textarea rows="12"></textarea>
-                        <input type="submit" id="submit" value="Post"/>
-                      </form>
-                      <div className="attachment-parent">
-                        <div className="attachment"></div>
-                        <div className="attachment"></div>
-                        <div className="attachment"></div>
-                      </div>
-                    </div>
-                  </div>;
+  const modal = <div id="modal-parent">
+                   <div id="modal-content">
+                     <form className="add-post-form">
+                       <label>Title</label><input type="text" />
+                       <label>Post</label><textarea rows="12"></textarea>
+                       <input type="submit" id="submit" value="Post"/>
+                     </form>
+                   </div>
+                 </div>;
         
   return(
     <div id="personal-page">
