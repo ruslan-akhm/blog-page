@@ -3,9 +3,9 @@ const path = require("path");
 const mongoose = require('mongoose');
 const shortid = require('shortid');
 //const Seat = require("../src/database");
-var mongoURI = "mongodb+srv://ruslan-akhm:zuaGc0VJ@cluster0-y5h11.mongodb.net/test?retryWrites=true&w=majority"
-mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false });
-var conn = mongoose.connection;
+//var mongoURI = "mongodb+srv://ruslan-akhm:zuaGc0VJ@cluster0-y5h11.mongodb.net/test?retryWrites=true&w=majority"
+//mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false });
+//var conn = mongoose.connection;
 //const ejs = require('ejs')
 //const multer = require('multer');
 
@@ -35,8 +35,8 @@ app.get("/", (request, response) => {
   //response.render(__dirname + "/public/index.html")
 });
 
-app.post('/upload',(req,res)=>{
-  res.send('test')
+app.get('/upload',(req,res)=>{
+  res.send('test');
 })
 
 // Express port-switching logic

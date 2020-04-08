@@ -14,9 +14,15 @@ class App extends React.Component{
     return(
       <div>
         <Navbar/>
+        <form id="header-img-form" action="/upload" method="GET"> {/*enctype="multipart/form-data"*/}
+          {/*<input name="myImage" type="file" id="file"/>*/}
+          <input type="text" />
+          <input type="submit" value="Submit" />
+        </form> 
         <div id="page-main">
           <Mainpage/>
         </div>
+         
       </div>
     )
   }
