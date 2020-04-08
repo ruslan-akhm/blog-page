@@ -1,14 +1,12 @@
 dependencies:
   body-parser: 1.19.0
   concurrently: 5.1.0
-  crypto: 1.0.1
+  ejs: 3.0.2
   express: 4.17.1
-  gridfs-stream: 1.1.1
   http-proxy-middleware: 1.0.3
   mongodb: 3.5.5
   mongoose: 5.9.6
   multer: 1.4.2
-  multer-gridfs-storage: 4.0.3
   react: 16.13.1
   react-dom: 16.13.1
   react-scripts: 3.4.1
@@ -3301,11 +3299,6 @@ packages:
     dev: false
     resolution:
       integrity: sha512-fz4spIh+znjO2VjL+IdhEpRJ3YN6sMzITSBijk6FK2UvTqruSQW+/cCZTSNsMiZNvUeq0CqurF+dAbyiGOY6Wg==
-  /crypto/1.0.1:
-    deprecated: 'This package is no longer supported. It''s now a built-in Node module. If you''ve depended on crypto, you should switch to the one that''s built-in.'
-    dev: false
-    resolution:
-      integrity: sha512-VxBKmeNcqQdiUQUW2Tzq0t377b54N2bMtXO/qiLa+6eRRmmC4qT3D4OnTGoT/U6O9aklQ/jTwbOtRMTTY8G0Ig==
   /css-blank-pseudo/0.1.4:
     dependencies:
       postcss: 7.0.27
@@ -3907,6 +3900,13 @@ packages:
     dev: false
     resolution:
       integrity: sha1-WQxhFWsK4vTwJVcyoViyZrxWsh0=
+  /ejs/3.0.2:
+    dev: false
+    engines:
+      node: '>=0.10.0'
+    requiresBuild: true
+    resolution:
+      integrity: sha512-IncmUpn1yN84hy2shb0POJ80FWrfGNY0cxO9f4v+/sG7qcBvAtVWUA1IdzY/8EYUmOVhoKJVdJjNd3AZcnxOjA==
   /electron-to-chromium/1.3.390:
     dev: false
     resolution:
@@ -4748,10 +4748,6 @@ packages:
     dev: false
     resolution:
       integrity: sha512-3Z4XhFZ3992uIq0XOqb9AreonueSYphE6oYbpt5+3u06JWklbsPkNv3ZKkP9Bz/r+1MWCaMoSQ28P85+1Yc77w==
-  /flushwritable/1.0.0:
-    dev: false
-    resolution:
-      integrity: sha1-PjKNj95BKtR+c44751C00pAENJg=
   /follow-redirects/1.11.0:
     dependencies:
       debug: 3.2.6
@@ -5050,14 +5046,6 @@ packages:
     dev: false
     resolution:
       integrity: sha512-a30VEBm4PEdx1dRB7MFK7BejejvCvBronbLjht+sHuGYj8PHs7M/5Z+rt5lw551vZ7yfTCj4Vuyy3mSJytDWRQ==
-  /gridfs-stream/1.1.1:
-    dependencies:
-      flushwritable: 1.0.0
-    dev: false
-    engines:
-      node: '>= 0.4.2'
-    resolution:
-      integrity: sha1-PdOhAOwgIaGBKC9utGcJY2B034k=
   /growly/1.3.0:
     dev: false
     resolution:
@@ -5114,12 +5102,6 @@ packages:
       node: '>=8'
     resolution:
       integrity: sha512-EykJT/Q1KjTWctppgIAgfSO0tKVuZUjhgMr17kqTumMl6Afv3EISleU7qZUzoXDFTAHTDC4NOoG/ZxU3EvlMPQ==
-  /has-own-prop/2.0.0:
-    dev: false
-    engines:
-      node: '>=8'
-    resolution:
-      integrity: sha512-Pq0h+hvsVm6dDEa8x82GnLSYHOzNDt7f0ddFa3FqcQlgzEiptPqL+XrOJNavjOzSYiYWIrgeVYYgGlLmnxwilQ==
   /has-symbols/1.0.1:
     dev: false
     engines:
@@ -5783,10 +5765,6 @@ packages:
       node: '>=6'
     resolution:
       integrity: sha512-cTIB4yPYL/Grw0EaSzASzg6bBy9gqCofvWN8okThAYIxKJZC+udlRAmGbM0XLeniEJSs8uEgHPGuHSe1XsOLSQ==
-  /is-generator/1.0.3:
-    dev: false
-    resolution:
-      integrity: sha1-wUwhBX7TbjKNuANHlmxpP4hjifM=
   /is-glob/3.1.0:
     dependencies:
       is-extglob: 2.1.1
@@ -6812,10 +6790,6 @@ packages:
     dev: false
     resolution:
       integrity: sha1-DM8tiRZq8Ds2Y8eWU4t1rG4RTZ0=
-  /lodash.isplainobject/4.0.6:
-    dev: false
-    resolution:
-      integrity: sha1-fFJqUtibRcRcxpC4gWO+BJf1UMs=
   /lodash.memoize/4.1.2:
     dev: false
     resolution:
@@ -7192,12 +7166,6 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-NKmAlESf6jMGym1++R0Ra7wvhV+wFW63FaSOFPwRahvea0gMUcGUhVeAg/0BC0wiv9ih5NYPB1Wn1UEI1/L+xQ==
-  /mongodb-uri/0.9.7:
-    dev: false
-    engines:
-      node: '>= 0.6.0'
-    resolution:
-      integrity: sha1-D3ca0W9IOuZfQoeWlCjp+8SqYYE=
   /mongodb/3.5.5:
     dependencies:
       bl: 2.2.0
@@ -7277,22 +7245,6 @@ packages:
     dev: false
     resolution:
       integrity: sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==
-  /multer-gridfs-storage/4.0.3:
-    dependencies:
-      has-own-prop: 2.0.0
-      is-generator: 1.0.3
-      is-promise: 2.1.0
-      lodash.isplainobject: 4.0.6
-      mongodb: 3.5.5
-      mongodb-uri: 0.9.7
-      pump: 3.0.0
-    dev: false
-    engines:
-      node: '>=8.3.0'
-    peerDependencies:
-      multer: '>=1 <2'
-    resolution:
-      integrity: sha512-YFCR9FmanCQ05SYO5ScG+9QmdQejG9jAr2WQSiMFhubsPGzBvplnL3bXnA5PSVRPsym4vMJGQIqyS68bVzyVSA==
   /multer/1.4.2:
     dependencies:
       append-field: 1.0.0
@@ -11562,14 +11514,12 @@ shrinkwrapVersion: 3
 specifiers:
   body-parser: ^1.19.0
   concurrently: ^5.0.2
-  crypto: ^1.0.1
+  ejs: ^3.0.2
   express: ^4.17.1
-  gridfs-stream: ^1.1.1
   http-proxy-middleware: ^1.0.0
   mongodb: ^3.5.4
   mongoose: ^5.9.2
   multer: ^1.4.2
-  multer-gridfs-storage: ^4.0.3
   react: ^16.12.0
   react-dom: ^16.12.0
   react-scripts: ^3.4.0

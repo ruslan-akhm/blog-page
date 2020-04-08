@@ -9,13 +9,19 @@ var conn = mongoose.connection;
 const ejs = require('ejs')
 const multer = require('multer');
 
+const storage = multer.diskStorage({
+  destination:'./public/uploads/',
+  filename: function filename(req, file, cb){
+    
+  }
+})
+
 const app = express();
-let gfs;
 app.set('view engine','ejs')
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }))
-app.use(express.static("./public"));
+app.use(express.static("public"));
 app.get("/", (request, response) => {
   response.sendFile(__dirname + "/public/index.html");
 });
