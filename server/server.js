@@ -36,7 +36,7 @@ app.get("/", (request, response) => {
 });
 
 app.get('/upload',(req,res)=>{
-  res.send('test');
+  res.json('test');
 })
 
 // Express port-switching logic
