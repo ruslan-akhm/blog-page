@@ -45,7 +45,7 @@ class Mainpage extends React.Component{
       method:"POST",
       body:formData
     })
-    
+    .then(res=>console.log(res))//document.getElementById("header").style.background=res)
     // fetch("/api/upload",{
     //   method:"POST",
     //   body:JSON.stringify({
