@@ -92,7 +92,12 @@ app.get('/api/image/:filename',(req,res)=>{
       })
     }
     //Check if img
-    if(file.ContentType==="image/jpeg"||file.ContentType==="img/png")
+    if(file.contentType==="image/jpeg"||file.contentType==="img/png"){
+      const readstream = gfs.createReadStream(file.filename);
+      readstream.pipe(res)
+    }else{
+      return res.status(404).json("Not an image")
+    }
   })
 })
 
