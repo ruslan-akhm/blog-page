@@ -59,8 +59,41 @@ app.post('/api/upload', upload.single('upfile'), (req,res)=>{
   res.json({name: fName, type: fType, size: fSize})
 })
 
+//Find all files in collection
 app.get('/api/files',(req,res)=>{
-  gfs.find().toArray(())
+  gfs.files.find().toArray((err, files)=>{
+    if(!files||files.length===0){
+      return res.status(404).json({
+        err: "no files exist"
+      })
+    }
+    return res.json(files)
+  })
+})
+
+//Find particluar file
+app.get('/api/files/:filename',(req,res)=>{
+  gfs.files.findOne({filename:req.params.filename},(err, file)=>{
+    if(!file||file.length===0){
+      return res.status(404).json({
+        err: "no file exists"
+      })
+    }
+    return res.json(file)
+  })
+})
+
+//Load image
+app.get('/api/image/:filename',(req,res)=>{
+  gfs.files.findOne({filename:req.params.filename},(err, file)=>{
+    if(!file||file.length===0){
+      return res.status(404).json({
+        err: "no file exists"
+      })
+    }
+    //Check if img
+    if(file.ContentType==="image/jpeg"||file.ContentType==="img/png")
+  })
 })
 
 // Express port-switching logic
