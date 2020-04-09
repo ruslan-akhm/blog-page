@@ -25,7 +25,7 @@ class Mainpage extends React.Component{
   componentDidMount(){
     document.getElementById("new-post").addEventListener('click',this.addPost);
     document.getElementById('modal-parent').addEventListener('click',this.closeModal);
-    document.getElementById('send-pic').addEventListener('click',this.updateHeader)
+    document.getElementById('send-pic').addEventListener('submit',e=>{this.updateHeader(e)})
   }
   
   addPost(){
@@ -35,6 +35,17 @@ class Mainpage extends React.Component{
   
   updateHeader(e){
     e.preventDefault();
+    const formData = new FormData();
+    const upfile = document.getElementById("upfile")
+   
+    
+    formData.append("upfile", upfile.files[0])
+    
+    fetch("/api/upload",{
+      method:"POST",
+      body:formData
+    })
+    
     // fetch("/api/upload",{
     //   method:"POST",
     //   body:JSON.stringify({
@@ -75,9 +86,9 @@ class Mainpage extends React.Component{
   return(
     <div id="personal-page">
       <div id="header">
-        <button id="send-pic">SEND NEW HEADER</button>
-       <form action="/api/upload" method="POST" enctype="multipart/form-data"> 
-          <input name="upfile" type="file" />
+        
+       <form action="/api/upload" method="POST" enctype="multipart/form-data" id="send-pic"> 
+          <input name="upfile" id="upfile" type="file" />
           <input type="submit" value="Submit"/>
        </form> 
         
