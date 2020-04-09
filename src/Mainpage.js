@@ -34,7 +34,7 @@ class Mainpage extends React.Component{
   }
   
   updateHeader(e){
-    e.preventDefault();
+    e.preventDefault(); //TRY THIS WITH XML HTTP
     const formData = new FormData();
     const upfile = document.getElementById("upfile")
    
@@ -43,9 +43,14 @@ class Mainpage extends React.Component{
     
     fetch("/api/upload",{
       method:"POST",
-      body:formData
+      body:formData,
+      
     })
-    .then(res=>console.log(res))//document.getElementById("header").style.background=res)
+    .then(res=>{
+      console.log(res);
+      return document.getElementById('header').style.background=res
+    })
+    
     // fetch("/api/upload",{
     //   method:"POST",
     //   body:JSON.stringify({

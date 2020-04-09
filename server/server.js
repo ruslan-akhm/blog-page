@@ -52,12 +52,13 @@ const upload = multer({storage})
 
 app.post('/api/upload', upload.single('upfile'), (req,res)=>{
    const fileObject = req.file;
-  // console.log(fileObject);
+   console.log("HERE WE ARE "+fileObject);
   // const fName = fileObject.originalname;
   // const fType = fileObject.mimetype;
   // const fSize = fileObject.size
   
     const readstream = gfs.createReadStream(fileObject.filename);
+  console.log("RESPONS IS"+res)
     readstream.pipe(res)
   
   
