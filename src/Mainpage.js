@@ -25,21 +25,28 @@ class Mainpage extends React.Component{
   componentDidMount(){
     document.getElementById("new-post").addEventListener('click',this.addPost);
     document.getElementById('modal-parent').addEventListener('click',this.closeModal);
-   // document.getElementById('file').addEventListener('change',this.updateHeader)
+    document.getElementById('send-pic').addEventListener('click',this.updateHeader)
   }
   
   addPost(){
     document.getElementById('modal-parent').style.display="block";
-    
-   // let output = '';
-  //  this.state.posts.forEach(post=>{
-   //   output+=`<li class="post"><div class="preview-img">${post.title}</div><div class="preview-text">${post.description}</div></li>`
-   // })  
-   // document.getElementById('list').innerHTML=output;
+  
   }
+  
   updateHeader(e){
     e.preventDefault();
-    document.getElementById('header-img-form').submit()
+    fetch("/api/upload",{
+      method:"POST",
+      body:JSON.stringify({
+        picId:123456
+      }),
+      headers:{
+        "Content-type": "multipart/form-data"
+      }
+    })
+    .then (response=>{response.json()})
+    .then(json => console.log(json));
+    //document.getElementById('header-img-form').submit()
   }
  
   
@@ -67,10 +74,11 @@ class Mainpage extends React.Component{
   return(
     <div id="personal-page">
       <div id="header">
-       <form action="/api/upload" method="POST" enctype="multipart/form-data"> 
+        <button id="send-pic">SEND NEW HEADER</button>
+      {/* <form action="/api/upload" method="POST" enctype="multipart/form-data"> 
           <input name="upfile" type="file" />
           <input type="submit" value="Submit"/>
-        </form> 
+       </form> */}
         
       </div>
       <div id="info">
