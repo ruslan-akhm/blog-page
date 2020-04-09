@@ -62,7 +62,7 @@ const storage = new GridFsStorage({
 })
 const upload = multer({storage})
 
-app.post('/upload', upload.single('upfile'), (req,res)=>{
+app.post('/api/upload', upload.single('upfile'), (req,res)=>{
   const fileObject = req.file;
   const fName = fileObject.originalname;
   const fType = fileObject.mimetype;
