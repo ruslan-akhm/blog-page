@@ -35,17 +35,18 @@ class Mainpage extends React.Component{
   
   updateHeader(e){
     e.preventDefault();
-    fetch("/api/upload",{
-      method:"POST",
-      body:JSON.stringify({
-        picId:123456
-      }),
-      headers:{
-        "Content-type": "multipart/form-data"
-      }
-    })
-    .then (response=>{response.json()})
-    .then(json => console.log(json));
+    // fetch("/api/upload",{
+    //   method:"POST",
+    //   body:JSON.stringify({
+    //     picId:123456
+    //   }),
+    //   headers:{
+    //     "Content-type": "multipart/form-data"
+    //   }
+    // })
+    // .then (response=>{response.json()})
+    // .then(json => console.log(json));
+    
     //document.getElementById('header-img-form').submit()
   }
  
@@ -75,10 +76,10 @@ class Mainpage extends React.Component{
     <div id="personal-page">
       <div id="header">
         <button id="send-pic">SEND NEW HEADER</button>
-      {/* <form action="/api/upload" method="POST" enctype="multipart/form-data"> 
+       <form action="/api/upload" method="POST" enctype="multipart/form-data"> 
           <input name="upfile" type="file" />
           <input type="submit" value="Submit"/>
-       </form> */}
+       </form> 
         
       </div>
       <div id="info">

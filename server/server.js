@@ -59,6 +59,9 @@ app.post('/api/upload', upload.single('upfile'), (req,res)=>{
   res.json({name: fName, type: fType, size: fSize})
 })
 
+app.get('/api/files',(req,res)=>{
+  gfs.find().toArray(())
+})
 
 // Express port-switching logic
 let port;
