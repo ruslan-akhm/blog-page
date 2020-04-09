@@ -51,12 +51,32 @@ const storage = new GridFsStorage({
 const upload = multer({storage})
 
 app.post('/api/upload', upload.single('upfile'), (req,res)=>{
-  const fileObject = req.file;
-  console.log(fileObject);
-  const fName = fileObject.originalname;
-  const fType = fileObject.mimetype;
-  const fSize = fileObject.size
-  res.json({name: fName, type: fType, size: fSize})
+   const fileObject = req.file;
+  // console.log(fileObject);
+  // const fName = fileObject.originalname;
+  // const fType = fileObject.mimetype;
+  // const fSize = fileObject.size
+  
+    const readstream = gfs.createReadStream(fileObject.filename);
+    readstream.pipe(res)
+  
+  
+  // gfs.files.findOne({filename:req.params.filename},(err, file)=>{
+  //   if(!file||file.length===0){
+  //     return res.status(404).json({
+  //       err: "no file exists"
+  //     })
+  //   }
+  //   //Check if img
+  //   if(file.contentType==="image/jpeg"||file.contentType==="img/png"){
+  //     const readstream = gfs.createReadStream(file.filename);
+  //     readstream.pipe(res)
+  //   }else{
+  //     return res.status(404).json("Not an image")
+  //   }
+  // })
+  
+  
 })
 
 //Find all files in collection
