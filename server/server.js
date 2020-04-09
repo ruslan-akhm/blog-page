@@ -12,18 +12,6 @@ const multer = require('multer');
 const GridFsStorage = require('multer-gridfs-storage');
 const Grid = require('gridfs-stream');
 
-// //Set storage engine
-// const storage = multer.diskStorage({
-//   destination:'./public/uploads/',
-//   filename: function filename(req, file, cb){
-//     cb(null, file.fieldName+'-'+Date.now()+path.extname(file.originalName));
-//   }
-// })
-
-// //Init upload
-// const upload = multer({
-//   storage: storage
-// }).single('myImage');  //Can be array too
 
 const app = express();
 let gfs;
@@ -50,7 +38,7 @@ const storage = new GridFsStorage({
     return new Promise((resolve, reject)=>{
       crypto.randomBytes(16, (err,buf)=>{
         if(err) return reject(err)
-        const filename = buf.toString('hex') + path.extname(file.originalname);
+        const filename = "image-" + buf.toString('hex') + path.extname(file.originalname);
         const fileinfo={
           filename: filename,
           bucketName: 'uploads'
@@ -64,18 +52,13 @@ const upload = multer({storage})
 
 app.post('/api/upload', upload.single('upfile'), (req,res)=>{
   const fileObject = req.file;
+  console.log(fileObject);
   const fName = fileObject.originalname;
   const fType = fileObject.mimetype;
   const fSize = fileObject.size
   res.json({name: fName, type: fType, size: fSize})
 })
-// app.post('/api/upload',(req,res)=>{
-//   upload(req,res,(err)=>{
-//     if (err) res.send("Error")
-//     else console.log(req.file)
-//     res.send('test');
-//   })
-// })
+
 
 // Express port-switching logic
 let port;
