@@ -25,7 +25,7 @@ class Mainpage extends React.Component{
   componentDidMount(){
     document.getElementById("new-post").addEventListener('click',this.addPost);
     document.getElementById('modal-parent').addEventListener('click',this.closeModal);
-    //document.getElementById('send-pic').addEventListener('submit',e=>{this.updateHeader(e)})
+    document.getElementById('send-pic').addEventListener('submit',e=>{this.updateHeader(e)})
   }
   
   addPost(){
@@ -34,21 +34,18 @@ class Mainpage extends React.Component{
   }
   
   updateHeader(e){
-    e.preventDefault(); //TRY THIS WITH XML HTTP
+    e.preventDefault(); 
     
-    // fetch("/api/upload",{
-    //   method:"POST",
-    //   body:JSON.stringify({
-    //     picId:123456
-    //   }),
-    //   headers:{
-    //     "Content-type": "multipart/form-data"
-    //   }
-    // })
-    // .then (response=>{response.json()})
-    // .then(json => console.log(json));
-    
-    //document.getElementById('header-img-form').submit()
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', '/api/upload', true);
+    //xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    xhr.onload = function(){
+      var resp = this.response//JSON.parse(this.response )//
+      console.log(resp, typeof resp)
+      document.getElementById('header').style.background = resp;
+      //document.getElementById('bottom-line').innerHTML = resp.seat
+    }
+    xhr.send();
   }
  
   
@@ -77,7 +74,7 @@ class Mainpage extends React.Component{
     <div id="personal-page">
       <div id="header">
         
-       <form action="/api/upload" method="POST" enctype="multipart/form-data" id="send-pic"> 
+       <form  enctype="multipart/form-data" id="send-pic"> {/* action="/api/upload" method="POST" */}
           <input name="upfile" id="upfile" type="file" />
           <input type="submit" value="Submit"/>
        </form> 
