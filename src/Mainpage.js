@@ -48,7 +48,7 @@ class Mainpage extends React.Component{
     })
     .then(res=>{
       console.log(res);
-      return document.getElementById('header').style.background=res
+      //return document.getElementById('header').style.background=res
     })
     
     // fetch("/api/upload",{
