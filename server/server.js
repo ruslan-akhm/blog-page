@@ -22,16 +22,25 @@ app.set('view engine','ejs')
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }))
 app.use(express.static("public"));
+
 app.get("/", (req, res) => {
- // response.sendFile(__dirname + "/public/index.html");
-  gfs.files.find().toArray((err, files)=>{
-    if(!files||files.length===0){
-      return res.status(404).json({
-        err: "no files exist"
-      })
-    }
+  res.sendFile(__dirname + "/public/index.html");
+//   gfs.files.find().toArray((err, files)=>{
+//     if(!files||files.length===0){
+//       res.render('index',{files:false})
+//     } else {
+//       files.map(file=>{
+//         if(file.contentType==="image/jpeg"||file.contentType==="image/png"){
+//           file.isImage=true;
+//         }
+//         else{
+//           file.isImage=false;
+//         }
+//       });
+//       res.render('index',{files:files})
+//     }
     
-  })  
+//   })  
 });
 
 conn.once('open',() => {
@@ -59,13 +68,13 @@ const upload = multer({storage})
 
 app.post('/api/upload', upload.single('upfile'), (req,res)=>{
    const fileObject = req.file;
-   console.log("HERE WE ARE "+fileObject);
+   console.log("HERE WE ARE "+req);
   // const fName = fileObject.originalname;
   // const fType = fileObject.mimetype;
   // const fSize = fileObject.size
   
     const readstream = gfs.createReadStream(fileObject.filename);
-  console.log("RESPONS IS"+res)
+    console.log("RESPONS IS"+res)
     readstream.pipe(res)
   
   
