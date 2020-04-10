@@ -25,7 +25,7 @@ class Mainpage extends React.Component{
   componentDidMount(){
     document.getElementById("new-post").addEventListener('click',this.addPost);
     document.getElementById('modal-parent').addEventListener('click',this.closeModal);
-    document.getElementById('send-pic').addEventListener('submit',e=>{this.updateHeader(e)})
+    //document.getElementById('send-pic').addEventListener('submit',e=>{this.updateHeader(e)})
   }
   
   addPost(){
@@ -35,21 +35,6 @@ class Mainpage extends React.Component{
   
   updateHeader(e){
     e.preventDefault(); //TRY THIS WITH XML HTTP
-    const formData = new FormData();
-    const upfile = document.getElementById("upfile")
-   
-    
-    formData.append("upfile", upfile.files[0])
-    
-    fetch("/api/upload",{
-      method:"POST",
-      body:formData,
-      
-    })
-    .then(res=>{
-      console.log(res);
-      //return document.getElementById('header').style.background=res
-    })
     
     // fetch("/api/upload",{
     //   method:"POST",

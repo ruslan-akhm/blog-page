@@ -22,9 +22,16 @@ app.set('view engine','ejs')
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }))
 app.use(express.static("public"));
-app.get("/", (request, response) => {
-  response.sendFile(__dirname + "/public/index.html");
-  //response.render(__dirname + "/public/index.html")
+app.get("/", (req, res) => {
+ // response.sendFile(__dirname + "/public/index.html");
+  gfs.files.find().toArray((err, files)=>{
+    if(!files||files.length===0){
+      return res.status(404).json({
+        err: "no files exist"
+      })
+    }
+    
+  })  
 });
 
 conn.once('open',() => {
@@ -60,22 +67,6 @@ app.post('/api/upload', upload.single('upfile'), (req,res)=>{
     const readstream = gfs.createReadStream(fileObject.filename);
   console.log("RESPONS IS"+res)
     readstream.pipe(res)
-  
-  
-  // gfs.files.findOne({filename:req.params.filename},(err, file)=>{
-  //   if(!file||file.length===0){
-  //     return res.status(404).json({
-  //       err: "no file exists"
-  //     })
-  //   }
-  //   //Check if img
-  //   if(file.contentType==="image/jpeg"||file.contentType==="img/png"){
-  //     const readstream = gfs.createReadStream(file.filename);
-  //     readstream.pipe(res)
-  //   }else{
-  //     return res.status(404).json("Not an image")
-  //   }
-  // })
   
   
 })
