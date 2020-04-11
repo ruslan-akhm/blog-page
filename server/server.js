@@ -70,7 +70,7 @@ app.post('/api/upload', upload.single('upfile'), (req,res)=>{
    const fileObject = req.file;
    console.log("HERE WE ARE "+req.length);
     const readstream = gfs.createReadStream(fileObject.filename);
-    res.send("white")//("https://appnew-test-sample.glitch.me/api/image/image-6f0835f6c78ca3840f27dff8699f83cf.jpg");
+    res.json({"color":"https://appnew-test-sample.glitch.me/api/image/image-6f0835f6c78ca3840f27dff8699f83cf.jpg"})//("https://appnew-test-sample.glitch.me/api/image/image-6f0835f6c78ca3840f27dff8699f83cf.jpg");
 })
 
 //Find all files in collection

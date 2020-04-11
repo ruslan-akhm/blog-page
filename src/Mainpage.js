@@ -55,12 +55,13 @@ class Mainpage extends React.Component{
       },
       body:fd
     })
-      let resp = await response//.json();
+      let resp = await response.json();
       
-      console.log("OUT of awaiting"+resp)
-      //this.setState({headerImage:resp});
+      //console.log("OUT of awaiting"+resp.length+resp.color)
+      //return this.setState({headerImage:resp.color});
       //console.log("stateee"+this.state.headerImage)
       //return resp
+      document.getElementById('header').style.background="url("+resp.color+")";
     }
     fff();
     // fetch('/api/upload',{
