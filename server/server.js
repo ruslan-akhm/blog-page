@@ -24,7 +24,7 @@ app.use(express.urlencoded({ extended: false }))
 app.use(express.static("public"));
 
 app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/public/index.ejs");
+  res.sendFile(__dirname + "/public/index.html");
 //   gfs.files.find().toArray((err, files)=>{
 //     if(!files||files.length===0){
 //       res.render('index',{files:false})
@@ -74,8 +74,9 @@ app.post('/api/upload', upload.single('upfile'), (req,res)=>{
   // const fSize = fileObject.size
   
   
-  //   const readstream = gfs.createReadStream(fileObject.filename);
-  //   readstream.pipe(res)
+    const readstream = gfs.createReadStream(fileObject.filename);
+    //res.sendFile(fileObject)  
+    readstream.pipe(res)
 })
 
 //Find all files in collection
