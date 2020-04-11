@@ -20,12 +20,13 @@ class Mainpage extends React.Component{
     this.addPost=this.addPost.bind(this);
     this.closeModal=this.closeModal.bind(this);
     this.updateHeader=this.updateHeader.bind(this);
+    this.onSelectFile=this.onSelectFile.bind(this);
   }
   
   componentDidMount(){
     document.getElementById("new-post").addEventListener('click',this.addPost);
     document.getElementById('modal-parent').addEventListener('click',this.closeModal);
-    //document.getElementById('send-pic').addEventListener('submit',e=>{this.updateHeader(e)})
+    document.getElementById('upfile').addEventListener('change',this.onSelectFile,false)
   }
   
   addPost(){
@@ -33,8 +34,18 @@ class Mainpage extends React.Component{
   
   }
   
-  updateHeader(e){
-    
+  onSelectFile(file){
+    this.updateHeader(document.getElementById('upfile').files[0]);
+    fetch('/api/upload',{
+      method:'POST',
+      headers:{},
+      body:file
+    }).then(response=>response.json)
+      .then(success=>document.getElementById('header').style.background=success)
+  }
+  
+  updateHeader(file){
+    console.log("HERE !")
   }
  
   
