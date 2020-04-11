@@ -24,6 +24,7 @@ class Mainpage extends React.Component{
   }
   
   componentDidMount(){
+    //window.onunload = function() { debugger; }
     document.getElementById("new-post").addEventListener('click',this.addPost);
     document.getElementById('modal-parent').addEventListener('click',this.closeModal);
     document.getElementById('upfile').addEventListener('change',this.onSelectFile,false)
@@ -34,18 +35,20 @@ class Mainpage extends React.Component{
   
   }
   
-  onSelectFile(file){
+  onSelectFile(){
     this.updateHeader(document.getElementById('upfile').files[0]);
-    fetch('/api/upload',{
-      method:'POST',
-      headers:{},
-      body:file
-    }).then(response=>response.json)
-      .then(success=>document.getElementById('header').style.background=success)
   }
   
   updateHeader(file){
-    console.log("HERE !")
+    console.log("HERE !"+file)
+    fetch('/api/upload',{
+      method:'POST',
+      headers:{
+        "Content-Type":"image/jpeg"
+      },
+      body:file
+    })//.then(response=>response.json)
+      .then(success=>console.log(success))//document.getElementById('header').style.background=success)
   }
  
   
