@@ -67,7 +67,7 @@ const storage = new GridFsStorage({
 const upload = multer({storage})
 
 app.post('/api/upload', upload.single('upfile'), (req,res)=>{
-   const fileObject = req.file;
+   const fileObject = req.files;
    console.log("HERE WE ARE "+req);
   // const fName = fileObject.originalname;
   // const fType = fileObject.mimetype;
@@ -75,6 +75,7 @@ app.post('/api/upload', upload.single('upfile'), (req,res)=>{
   
     const readstream = gfs.createReadStream(fileObject.filename);
     console.log("RESPONS IS"+res)
+    //res.sendFile(res);
     readstream.pipe(res)
 })
 
