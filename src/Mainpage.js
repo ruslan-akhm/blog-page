@@ -45,19 +45,30 @@ class Mainpage extends React.Component{
     let fd = new FormData();
     let headerImage = document.getElementById('upfile').files[0];
     fd.append("upfile",headerImage)
-    fetch('/api/upload',{
+    async function fff (){
+      let response = await fetch('/api/upload',{
       method:'POST',
       headers:{
         "Accept": "application/json"
       },
       body:fd
-    }).then(response=>{return response.json})
-      .then(succ=>{
-      this.setState({headerImage:succ})
-      return console.log(succ)
     })
-      .catch(error=>{return console.log(error)})
-    
+      let resp = await response.json();
+      this.setState({headerImage:succ})
+    // fetch('/api/upload',{
+    //   method:'POST',
+    //   headers:{
+    //     "Accept": "application/json"
+    //   },
+    //   body:fd
+    // }).then(response=>{return response.json})
+    //   .then(succ=>{
+    //   this.setState({headerImage:succ})
+    //   return console.log(succ)
+    // })
+    //   .catch(error=>{return console.log(error)})
+    }
+    console.log("stateee"+this.state.headerImage)
   }
  
   
@@ -84,7 +95,7 @@ class Mainpage extends React.Component{
         
   return(
     <div id="personal-page">
-      <div id="header" style={{"background":this.state.headerImage}}>
+      <div id="header" style={{"backgroundColor":'"'+this.state.headerImage+'"'}}>
         
        <form enctype="multipart/form-data" id="send-pic"> {/* action="/api/upload" method="POST" */}
           <input name="upfile" id="upfile" type="file" />
