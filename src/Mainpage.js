@@ -25,7 +25,7 @@ class Mainpage extends React.Component{
   componentDidMount(){
     document.getElementById("new-post").addEventListener('click',this.addPost);
     document.getElementById('modal-parent').addEventListener('click',this.closeModal);
-  //  document.getElementById('send-pic').addEventListener('submit',e=>{this.updateHeader(e)})
+    //document.getElementById('send-pic').addEventListener('submit',e=>{this.updateHeader(e)})
   }
   
   addPost(){
@@ -34,18 +34,7 @@ class Mainpage extends React.Component{
   }
   
   updateHeader(e){
-    e.preventDefault(); 
     
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', '/api/upload', true);
-    //xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    xhr.onload = function(){
-      var resp = this.response//JSON.parse(this.response )//
-      console.log(resp, typeof resp)
-      document.getElementById('header').style.background = resp;
-      //document.getElementById('bottom-line').innerHTML = resp.seat
-    }
-    xhr.send();
   }
  
   
