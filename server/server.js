@@ -75,8 +75,9 @@ app.post('/api/upload', upload.single('upfile'), (req,res)=>{
   
   
     const readstream = gfs.createReadStream(fileObject.filename);
-    //res.sendFile(fileObject)  
-    readstream.pipe(res)
+    //res.json(fileObject.size)  
+    res.send("UPLOADED");
+  //readstream.pipe(res)
 })
 
 //Find all files in collection

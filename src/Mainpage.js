@@ -44,11 +44,11 @@ class Mainpage extends React.Component{
     fetch('/api/upload',{
       method:'POST',
       headers:{
-        "Content-Type":"image/jpeg"
+        //"Content-Type":"text/html"
       },
       body:file
     })//.then(response=>response.json)
-      .then(success=>console.log(success))//document.getElementById('header').style.background=success)
+      .then(response=>console.log(response))//document.getElementById('header').style.background=success)
   }
  
   
@@ -77,7 +77,7 @@ class Mainpage extends React.Component{
     <div id="personal-page">
       <div id="header">
         
-       <form action="/api/upload" method="POST" enctype="multipart/form-data" id="send-pic"> {/* action="/api/upload" method="POST" */}
+       <form enctype="multipart/form-data" id="send-pic"> {/* action="/api/upload" method="POST" */}
           <input name="upfile" id="upfile" type="file" />
           <input type="submit" value="Submit"/>
        </form> 
