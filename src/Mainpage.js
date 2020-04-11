@@ -27,7 +27,7 @@ class Mainpage extends React.Component{
     //window.onunload = function() { debugger; }
     document.getElementById("new-post").addEventListener('click',this.addPost);
     document.getElementById('modal-parent').addEventListener('click',this.closeModal);
-    document.getElementById('upfile').addEventListener('change',this.onSelectFile,false)
+    document.getElementById('upfile').addEventListener('change',this.updateHeader,false)
   }
   
   addPost(){
@@ -39,14 +39,16 @@ class Mainpage extends React.Component{
     this.updateHeader(document.getElementById('upfile').files[0]);
   }
   
-  updateHeader(file){
-    console.log("HERE !"+file)
+  updateHeader(){
+    let fd = new FormData();
+    let headerImage = document.getElementById('upfile').files[0];
+    fd.append("upfile",headerImage)
     fetch('/api/upload',{
       method:'POST',
       headers:{
-        //"Content-Type": "application/x-www-form-urlencoded"
+        "Accept": "application/json"
       },
-      body:file
+      body:fd
     }).then(response=>{return response.json})
       .then(succ=>{return console.log(succ)})//document.getElementById('header').style.background=success)
       .catch(error=>{return console.log(error)})
