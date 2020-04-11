@@ -61,7 +61,8 @@ class Mainpage extends React.Component{
       //return this.setState({headerImage:resp.color});
       //console.log("stateee"+this.state.headerImage)
       //return resp
-      document.getElementById('header').style.background="url("+resp.color+")";
+      document.getElementById('header').style.background="url("+resp.color+") no-repeat 100% 100%";
+      
     }
     fff();
     // fetch('/api/upload',{
