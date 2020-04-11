@@ -42,10 +42,12 @@ class Mainpage extends React.Component{
   
   updateHeader(){
     //event.preventDefault();
-    let fd = new FormData();
-    let headerImage = document.getElementById('upfile').files[0];
-    fd.append("upfile",headerImage)
+    
     async function fff (){
+      let fd = new FormData();
+      let headerImage = document.getElementById('upfile').files[0];
+      fd.append("upfile",headerImage)
+      
       let response = await fetch('/api/upload',{
       method:'POST',
       headers:{
@@ -53,8 +55,14 @@ class Mainpage extends React.Component{
       },
       body:fd
     })
-      let resp = await response.json();
-      this.setState({headerImage:succ})
+      let resp = await response//.json();
+      
+      console.log("OUT of awaiting"+resp)
+      //this.setState({headerImage:resp});
+      //console.log("stateee"+this.state.headerImage)
+      //return resp
+    }
+    fff();
     // fetch('/api/upload',{
     //   method:'POST',
     //   headers:{
@@ -67,8 +75,6 @@ class Mainpage extends React.Component{
     //   return console.log(succ)
     // })
     //   .catch(error=>{return console.log(error)})
-    }
-    console.log("stateee"+this.state.headerImage)
   }
  
   
