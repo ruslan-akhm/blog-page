@@ -69,15 +69,8 @@ const upload = multer({storage})
 app.post('/api/upload', upload.single('upfile'), (req,res)=>{
    const fileObject = req.file;
    console.log("HERE WE ARE "+req.length);
-  // const fName = fileObject.originalname;
-  // const fType = fileObject.mimetype;
-  // const fSize = fileObject.size
-  
-  
     const readstream = gfs.createReadStream(fileObject.filename);
-    //res.json(fileObject.size)  
     res.send("UPLOADED");
-  //readstream.pipe(res)
 })
 
 //Find all files in collection

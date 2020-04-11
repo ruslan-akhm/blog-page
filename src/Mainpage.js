@@ -27,7 +27,7 @@ class Mainpage extends React.Component{
     //window.onunload = function() { debugger; }
     document.getElementById("new-post").addEventListener('click',this.addPost);
     document.getElementById('modal-parent').addEventListener('click',this.closeModal);
-    document.getElementById('upfile').addEventListener('change',this.updateHeader,false)
+    document.getElementById('upfile').addEventListener('change',this.updateHeader)
   }
   
   addPost(){
@@ -40,6 +40,7 @@ class Mainpage extends React.Component{
   }
   
   updateHeader(){
+    //event.preventDefault();
     let fd = new FormData();
     let headerImage = document.getElementById('upfile').files[0];
     fd.append("upfile",headerImage)
