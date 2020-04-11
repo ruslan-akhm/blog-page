@@ -44,11 +44,12 @@ class Mainpage extends React.Component{
     fetch('/api/upload',{
       method:'POST',
       headers:{
-        //"Content-Type":"text/html"
+        //"Content-Type": "application/x-www-form-urlencoded"
       },
       body:file
-    })//.then(response=>response.json)
-      .then(response=>console.log(response))//document.getElementById('header').style.background=success)
+    }).then(response=>{return response.json})
+      .then(succ=>{return console.log(succ)})//document.getElementById('header').style.background=success)
+      .catch(error=>{return console.log(error)})
   }
  
   
