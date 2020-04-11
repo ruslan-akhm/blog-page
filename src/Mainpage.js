@@ -15,7 +15,8 @@ class Mainpage extends React.Component{
              },
              {title:'Post 3',
               description:'Whatever happened in post 3'
-             }]
+             }],
+      headerImage:''
     }
     this.addPost=this.addPost.bind(this);
     this.closeModal=this.closeModal.bind(this);
@@ -51,8 +52,12 @@ class Mainpage extends React.Component{
       },
       body:fd
     }).then(response=>{return response.json})
-      .then(succ=>{return console.log(succ)})//document.getElementById('header').style.background=success)
+      .then(succ=>{
+      this.setState({headerImage:succ})
+      return console.log(succ)
+    })
       .catch(error=>{return console.log(error)})
+    
   }
  
   
@@ -79,7 +84,7 @@ class Mainpage extends React.Component{
         
   return(
     <div id="personal-page">
-      <div id="header">
+      <div id="header" style={{"background":this.state.headerImage}}>
         
        <form enctype="multipart/form-data" id="send-pic"> {/* action="/api/upload" method="POST" */}
           <input name="upfile" id="upfile" type="file" />
