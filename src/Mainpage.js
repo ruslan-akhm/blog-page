@@ -33,11 +33,11 @@ class Mainpage extends React.Component {
     document.getElementById("modal-parent").style.display = "block";
   }
   addPost=(e)=>{
-    //console.log(this.state.posts);
     let prevState = this.state.posts;
-    console.log(prevState.push({title:"Post 4", description: "Whatever happened in post 4"}))
-    //console.log(newState, typeof newState)
-    //this.setState({ posts: newState})
+    //works here but not inside add() 
+    let newState = prevState.concat({"title":"Post 4", "description": "Whatever happened in post 4"})
+    this.setState({ posts: newState})
+    
     e.preventDefault();
     async function add() {
       let title = document.getElementById("post-title").value;
