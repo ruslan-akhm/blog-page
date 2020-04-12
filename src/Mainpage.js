@@ -1,6 +1,6 @@
 import React from "react";
 import "./Mainpage.css";
-//import Modal from './Modal'
+
 
 class Mainpage extends React.Component {
   constructor(props) {
@@ -8,7 +8,7 @@ class Mainpage extends React.Component {
     this.state = {
       posts: [
         { title: "Post 1", description: "Whatever happened in post 1" },
-        { title: "Post2", description: "Whatever happened in post 2" },
+        { title: "Post 2", description: "Whatever happened in post 2" },
         { title: "Post 3", description: "Whatever happened in post 3" }
       ],
       headerImage: ""
@@ -21,21 +21,17 @@ class Mainpage extends React.Component {
 
   componentDidMount() {
     document.getElementById("add-post").addEventListener("click", this.newPost);
-    document
-      .getElementById("modal-parent")
-      .addEventListener("click", this.closeModal);
-    document.getElementById("upfile").addEventListener("change", e => {
-      this.updateHeader(e);
-    });
-    document.getElementById("new-post").addEventListener("submit", e => {
-      this.addPost(e);
-    });
+    document.getElementById("modal-parent").addEventListener("click", this.closeModal);
+    document.getElementById("upfile").addEventListener("change", e=>{this.updateHeader(e)});
+    document.getElementById("new-post").addEventListener("submit", (e)=>{this.addPost(e)});
   }
 
   newPost() {
     document.getElementById("modal-parent").style.display = "block";
   }
-  addPost(e) {
+  addPost=(e)=>{
+    //console.log(this.state.posts);
+    let prevState = this.state.posts;
     e.preventDefault();
     async function add() {
       let title = document.getElementById("post-title").value;
@@ -51,12 +47,11 @@ class Mainpage extends React.Component {
       });
       let resp = await response.json();
       console.log(resp, typeof resp);
-      //let self = this;
-      let prevState = this.state.posts;
-
-      //this.setState({posts:prevState+resp})
+      
     }
     add();
+    //this.setState({posts:prevState+resp})
+    console.log("NOPEEEEE")
   }
 
   updateHeader(e) {
