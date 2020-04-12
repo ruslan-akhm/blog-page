@@ -2,7 +2,7 @@ const express = require("express");
 const path = require("path");
 const mongoose = require('mongoose');
 const shortid = require('shortid');
-//const Seat = require("../src/database");
+const Post = require("../server/newPost");
 var mongoURI = "mongodb+srv://ruslan-akhm:zuaGc0VJ@cluster0-y5h11.mongodb.net/test?retryWrites=true&w=majority"
 mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false });
 var conn = mongoose.connection;
@@ -73,9 +73,15 @@ app.post('/api/upload', upload.single('upfile'), (req,res)=>{
     res.json({"image":"https://appnew-test-sample.glitch.me/api/image/"+fileObject.filename})
 })
 app.post('/api/post',(req,res)=>{
-  const post = req.body
-  console.log(req.body);
-  res.send("in progress")
+  const data = req.body
+  console.log(data);
+  let post = new Post({
+    title:data.title,
+    text:data.text,
+    postId:"post"+shortid.generate(),
+    datePosted:Date.now()
+  })
+  res.json({title:data.title,text:data.text,})
 })
 
 //Find all files in collection

@@ -50,10 +50,9 @@ class Mainpage extends React.Component{
       })
       let resp = await response.json();
       console.log(resp, typeof resp)
-      //let prevState = this.state.posts;
-      //this.setState({posts:prevState+resp})
+      let prevState = this.state.posts;
+      this.setState({posts:prevState+resp})
     }
-    
     add();
   }
   

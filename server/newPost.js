@@ -4,8 +4,9 @@ var Schema = mongoose.Schema
 
 var postSchema = new Schema({
   title:String,
-  text:Boolean,
-  postId:String
+  text:String,
+  postId:String,
+  datePosted:String
 })
 
 var Post = mongoose.model("Post", postSchema)
