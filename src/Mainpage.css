@@ -107,7 +107,7 @@ body{
   background-color:white;
   width:85%;
   height:80%;
-  padding-top:30px;
+  padding-top:40px;
 }
 #header-img-form input{
   width:100%;
@@ -130,6 +130,11 @@ body{
   width:150px;
   margin:20px auto;
 }
+#later-button{
+  
+}
+
+
 .attachment-parent{
   display:flex;
   flex-direction:column;

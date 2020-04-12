@@ -50,9 +50,11 @@ class Mainpage extends React.Component {
       });
       let resp = await response.json();
       let success = await prevState.concat(resp);
-      console.log("resp is = "+resp, typeof resp)
-      that.setState({posts: success})
-      document.getElementById("modal-parent")
+      console.log("resp is = "+resp, typeof resp);
+      that.setState({posts: success});
+      document.getElementById("post-title").value='';
+      document.getElementById("post-text").value='';
+      document.getElementById("modal-parent").style.display="none"
     }
     add();
   }
@@ -83,7 +85,8 @@ class Mainpage extends React.Component {
   closeModal(event) {
     const click = event.target;
     const modal = document.getElementById("modal-parent");
-    if (click == modal) {
+    const later = document.getElementById("later-button");
+    if (click === modal||click===later) {
       modal.style.display = "none";
     }
   }
@@ -110,6 +113,7 @@ class Mainpage extends React.Component {
             <textarea rows="18" id="post-text"></textarea>
             <input type="submit" id="submit" value="Post" />
           </form>
+          <button id="later-button">Maybe later</button>
         </div>
       </div>
     );
