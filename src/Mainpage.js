@@ -35,8 +35,8 @@ class Mainpage extends React.Component {
   addPost=(e)=>{
     let prevState = this.state.posts;
     //works here but not inside add() 
-    let newState = prevState.concat({"title":"Post 4", "description": "Whatever happened in post 4"})
-    this.setState({ posts: newState})
+    // let newState = prevState.concat({"title":"Post 4", "description": "Whatever happened in post 4"})
+    // this.setState({ posts: newState})
     
     e.preventDefault();
     async function add() {
@@ -52,7 +52,9 @@ class Mainpage extends React.Component {
         body: JSON.stringify({ title: title, text: text })
       });
       let resp = await response.json();
-      console.log(resp, typeof resp);
+      let success = await prevState.concat(resp)
+      await this.setState({ posts: success})
+      console.log(success);
     }
     add();
     
