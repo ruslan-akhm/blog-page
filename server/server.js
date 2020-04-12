@@ -78,7 +78,7 @@ app.post('/api/post',(req,res)=>{
   let post = new Post({
     title:data.title,
     text:data.text,
-    postId:"post"+shortid.generate(),
+    postId:"post-id-"+shortid.generate(),
     datePosted:Date.now()
   })
   post.save();

@@ -8,9 +8,9 @@ class Mainpage extends React.Component {
     super(props);
     this.state = {
       posts: [
-        { "title": "Post 1", "description": "Whatever happened in post 1" },
-        { "title": "Post 2", "description": "Whatever happened in post 2" },
-        { "title": "Post 3", "description": "Whatever happened in post 3" }
+        { "title": "Post 1", "text": "Whatever happened in post 1" },
+        { "title": "Post 2", "text": "Whatever happened in post 2" },
+        { "title": "Post 3", "text": "Whatever happened in post 3" }
       ],
       headerImage: "",
       test:''
@@ -32,17 +32,14 @@ class Mainpage extends React.Component {
   newPost() {
     document.getElementById("modal-parent").style.display = "block";
   }
+  
   addPost=(e)=>{
-    let prevState = this.state.posts;
-    //works here but not inside add() 
-    // let newState = prevState.concat({"title":"Post 4", "description": "Whatever happened in post 4"})
-    // this.setState({ posts: newState})
+    let prevState = this.state.posts; //our initial posts array
     e.preventDefault();
-    let that = this;
+    let that = this; //workaround for "this" keyword to access state inside fetch
     async function add() {
       let title = document.getElementById("post-title").value;
       let text = document.getElementById("post-text").value;
-      //console.log(title, text);
       let response = await fetch("/api/post", {
         method: "POST",
         headers: {
@@ -54,17 +51,9 @@ class Mainpage extends React.Component {
       let resp = await response.json();
       let success = await prevState.concat(resp);
       console.log("resp is = "+resp, typeof resp)
-      // let update = await(()=>{
-      //   //let updated = prevState.concat(resp)
-      //   console.log("We are here at state")
-      //   that.setState({ posts: success})
-      // }) 
       that.setState({posts: success})
-      //console.log(this.state.posts);
     }
     add();
-    
-    //console.log("NOPEEEEE")
   }
 
   updateHeader(e) {
@@ -101,7 +90,14 @@ class Mainpage extends React.Component {
   render() {
     const st = this.state.posts;
     console.log(this.state.posts, "st is "+st, typeof st)
-    const post = st.map(post => {return(<li>{post.title}+{post.description}</li>)});
+    const post = st.map(post => {
+      return(
+        <li>
+          <div className="list-item-parent">
+            <div className="list-item-title">{post.title}</div>
+            <div className="list-item-text">{post.text}</div>
+          </div>
+        </li>)});
 
     const modal = (
       <div id="modal-parent">
@@ -110,7 +106,7 @@ class Mainpage extends React.Component {
             <label>Title</label>
             <input type="text" id="post-title" />
             <label>Post</label>
-            <textarea rows="12" id="post-text"></textarea>
+            <textarea rows="18" id="post-text"></textarea>
             <input type="submit" id="submit" value="Post" />
           </form>
         </div>
