@@ -18,35 +18,44 @@ class Mainpage extends React.Component{
              }],
       headerImage:''
     }
-    this.addPost=this.addPost.bind(this);
+    this.newPost=this.newPost.bind(this);
     this.closeModal=this.closeModal.bind(this);
     this.updateHeader=this.updateHeader.bind(this);
-    this.onSelectFile=this.onSelectFile.bind(this);
+    this.addPost=this.addPost.bind(this);
   }
   
   componentDidMount(){
     //window.onunload = function() { debugger; }
-    document.getElementById("new-post").addEventListener('click',this.addPost);
+    document.getElementById("add-post").addEventListener('click',this.newPost);
     document.getElementById('modal-parent').addEventListener('click',this.closeModal);
     document.getElementById('upfile').addEventListener('change',(e)=>{this.updateHeader(e)})
+    document.getElementById('new-post').addEventListener('submit',(e)=>{this.addPost(e)});
   }
   
-  addPost(){
+  newPost(){
     document.getElementById('modal-parent').style.display="block";
-  
   }
-  
-  onSelectFile(){
-    this.updateHeader(document.getElementById('upfile').files[0]);
+  addPost(e){
+    e.preventDefault();
+    async function add(){
+      let response = await fetch('/api/post',{
+        method:'POST',
+        headers:{
+        "Accept": "application/json"
+      },
+        body:
+      })
+    }
+    
+    add();
   }
   
   updateHeader(e){
     e.preventDefault();
-    async function fff (){
+    async function upd (){
       let fd = new FormData();
       let headerImage = document.getElementById('upfile').files[0];
       fd.append("upfile",headerImage)
-      
       let response = await fetch('/api/upload',{
       method:'POST',
       headers:{
@@ -57,7 +66,7 @@ class Mainpage extends React.Component{
       let resp = await response.json();
       document.getElementById('header').style.background="url("+resp.image+")";
     }
-    fff();
+    upd();
   }
  
   
@@ -74,7 +83,7 @@ class Mainpage extends React.Component{
     
   const modal = <div id="modal-parent">
                    <div id="modal-content">
-                     <form className="add-post-form">
+                     <form id="new-post" className="add-post-form">
                        <label>Title</label><input type="text" />
                        <label>Post</label><textarea rows="12"></textarea>
                        <input type="submit" id="submit" value="Post"/>
@@ -84,20 +93,22 @@ class Mainpage extends React.Component{
         
   return(
     <div id="personal-page">
-      <div id="header" style={{"backgroundColor":'"'+this.state.headerImage+'"'}}>
-        <form enctype="multipart/form-data" id="send-pic"> {/* action="/api/upload" method="POST" */}
+      <div id="header">
+        <form enctype="multipart/form-data" id="send-pic"> 
           <input name="upfile" id="upfile" type="file" />
         </form> 
       </div>
       <div id="info">
-        <div id="avatar"><img src="https://res.cloudinary.com/techsnips/image/fetch/w_2000,f_auto,q_auto,c_fit/https://adamtheautomator.com/content/images/size/w2000/2019/10/user-1633249_1280.png"/></div>
+        <div id="avatar">
+          <img src="https://res.cloudinary.com/techsnips/image/fetch/w_2000,f_auto,q_auto,c_fit/https://adamtheautomator.com/content/images/size/w2000/2019/10/user-1633249_1280.png"/>
+        </div>
         <div id="bio"></div>
       </div>
       <div className="posts">
         <ul id="list">
           {post}
         </ul>
-        <button id="new-post" className="add">+ Add</button>
+        <button id="add-post" className="add">+ Add</button>
       </div>
       {modal}
     </div>
