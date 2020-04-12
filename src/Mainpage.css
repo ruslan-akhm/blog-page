@@ -5,7 +5,7 @@ body{
   width:80%;
   min-height:100vh;
   margin-top:5%;
-  background-color:red;
+  /*background-color:red;*/
   display:flex;
   flex-direction:column;
   justify-content:flex-start;
@@ -68,6 +68,18 @@ body{
   display:flex;
   flex-direction:column;
   height:150px;
+  margin-top:20px;
+  cursor:pointer;
+  background-color:white;
+}
+.list-item-title{
+  background-color:#23232e;
+  color:white;
+  font-family: 'Noto Sans', sans-serif;
+  font-size:18px;
+  padding-left:5px;
+  height:30px;
+  
 }
 .add{
   width:100%;
@@ -77,6 +89,8 @@ body{
   font-size:16px;
   cursor:pointer;
   outline:none;
+  margin:15px 0 15px 0;
+  height:25px;
 }
 #modal-parent{
   display:none;

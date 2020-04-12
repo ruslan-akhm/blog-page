@@ -52,6 +52,7 @@ class Mainpage extends React.Component {
       let success = await prevState.concat(resp);
       console.log("resp is = "+resp, typeof resp)
       that.setState({posts: success})
+      document.getElementById("modal-parent")
     }
     add();
   }
@@ -88,9 +89,9 @@ class Mainpage extends React.Component {
   }
 
   render() {
-    const st = this.state.posts;
-    console.log(this.state.posts, "st is "+st, typeof st)
-    const post = st.map(post => {
+    const state = this.state.posts;
+    //console.log(this.state.posts, "st is "+st, typeof st)
+    const post = state.map(post => {
       return(
         <li>
           <div className="list-item-parent">
