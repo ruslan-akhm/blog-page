@@ -1,15 +1,20 @@
 import React from "react";
 import "./Mainpage.css";
 
+var st = [
+        { "title": "Post 1", "description": "Whatever happened in post 1" },
+        { "title": "Post 2", "description": "Whatever happened in post 2" },
+        { "title": "Post 3", "description": "Whatever happened in post 3" }
+      ]
 
 class Mainpage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       posts: [
-        { title: "Post 1", description: "Whatever happened in post 1" },
-        { title: "Post 2", description: "Whatever happened in post 2" },
-        { title: "Post 3", description: "Whatever happened in post 3" }
+        { "title": "Post 1", "description": "Whatever happened in post 1" },
+        { "title": "Post 2", "description": "Whatever happened in post 2" },
+        { "title": "Post 3", "description": "Whatever happened in post 3" }
       ],
       headerImage: "",
       test:''
@@ -21,6 +26,7 @@ class Mainpage extends React.Component {
   }
 
   componentDidMount() {
+    
     document.getElementById("add-post").addEventListener("click", this.newPost);
     document.getElementById("modal-parent").addEventListener("click", this.closeModal);
     document.getElementById("upfile").addEventListener("change", e=>{this.updateHeader(e)});
@@ -32,8 +38,8 @@ class Mainpage extends React.Component {
   }
   addPost=(e)=>{
     //console.log(this.state.posts);
-    let prevState = this.state.posts;
-    this.setState({posts:prevState+{ title: "Post 4", description: "Whatever happened in post 4" }})
+    //let prevState = this.state.posts;
+    st.push({ title: "Post 4", description: "Whatever happened in post 4" })
     e.preventDefault();
     async function add() {
       let title = document.getElementById("post-title").value;
@@ -88,13 +94,9 @@ class Mainpage extends React.Component {
   }
 
   render() {
-    const post = this.state.posts.map(post => {
-      return (
-        <li>
-          {post.title}+{post.description}
-        </li>
-      );
-    });
+    //const st = JSON.parse(this.state.posts);
+    console.log(this.state.posts, typeof this.state.posts)
+    const post = st.map(post => {return(<li>{post.title}+{post.description}</li>)});
 
     const modal = (
       <div id="modal-parent">
