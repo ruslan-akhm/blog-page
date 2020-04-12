@@ -1,4 +1,5 @@
 dependencies:
+  babel: 6.23.0
   body-parser: 1.19.0
   concurrently: 5.1.0
   ejs: 3.0.2
@@ -2354,6 +2355,12 @@ packages:
     dev: false
     resolution:
       integrity: sha1-llxwWGaOgrVde/4E/yM3vItWR/4=
+  /babel/6.23.0:
+    deprecated: 'In 6.x, the babel package has been deprecated in favor of babel-cli. Check https://opencollective.com/babel to support the Babel maintainers'
+    dev: false
+    hasBin: true
+    resolution:
+      integrity: sha1-0NHn2APpdHZb7qMjLU4VPA77kPQ=
   /babylon/6.18.0:
     dev: false
     hasBin: true
@@ -11574,6 +11581,7 @@ registry: 'https://registry.npmjs.org/'
 shrinkwrapMinorVersion: 9
 shrinkwrapVersion: 3
 specifiers:
+  babel: ^6.23.0
   body-parser: ^1.19.0
   concurrently: ^5.0.2
   ejs: ^3.0.1
