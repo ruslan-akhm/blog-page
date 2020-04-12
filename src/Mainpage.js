@@ -28,7 +28,7 @@ class Mainpage extends React.Component{
     //window.onunload = function() { debugger; }
     document.getElementById("new-post").addEventListener('click',this.addPost);
     document.getElementById('modal-parent').addEventListener('click',this.closeModal);
-    document.getElementById('upfile').addEventListener('change',this.updateHeader)
+    document.getElementById('upfile').addEventListener('change',(e)=>{this.updateHeader(e)})
   }
   
   addPost(){
@@ -40,9 +40,8 @@ class Mainpage extends React.Component{
     this.updateHeader(document.getElementById('upfile').files[0]);
   }
   
-  updateHeader(){
-    //event.preventDefault();
-    
+  updateHeader(e){
+    e.preventDefault();
     async function fff (){
       let fd = new FormData();
       let headerImage = document.getElementById('upfile').files[0];
@@ -56,27 +55,9 @@ class Mainpage extends React.Component{
       body:fd
     })
       let resp = await response.json();
-      
-      //console.log("OUT of awaiting"+resp.length+resp.color)
-      //return this.setState({headerImage:resp.color});
-      //console.log("stateee"+this.state.headerImage)
-      //return resp
-      document.getElementById('header').style.background="url("+resp.color+")";
-      
+      document.getElementById('header').style.background="url("+resp.image+")";
     }
     fff();
-    // fetch('/api/upload',{
-    //   method:'POST',
-    //   headers:{
-    //     "Accept": "application/json"
-    //   },
-    //   body:fd
-    // }).then(response=>{return response.json})
-    //   .then(succ=>{
-    //   this.setState({headerImage:succ})
-    //   return console.log(succ)
-    // })
-    //   .catch(error=>{return console.log(error)})
   }
  
   
@@ -104,12 +85,9 @@ class Mainpage extends React.Component{
   return(
     <div id="personal-page">
       <div id="header" style={{"backgroundColor":'"'+this.state.headerImage+'"'}}>
-        
-       <form enctype="multipart/form-data" id="send-pic"> {/* action="/api/upload" method="POST" */}
+        <form enctype="multipart/form-data" id="send-pic"> {/* action="/api/upload" method="POST" */}
           <input name="upfile" id="upfile" type="file" />
-          <input type="submit" value="Submit"/>
-       </form> 
-        
+        </form> 
       </div>
       <div id="info">
         <div id="avatar"><img src="https://res.cloudinary.com/techsnips/image/fetch/w_2000,f_auto,q_auto,c_fit/https://adamtheautomator.com/content/images/size/w2000/2019/10/user-1633249_1280.png"/></div>

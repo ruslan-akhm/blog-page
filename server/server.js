@@ -70,7 +70,7 @@ app.post('/api/upload', upload.single('upfile'), (req,res)=>{
    const fileObject = req.file;
    console.log("HERE WE ARE "+req.length);
     const readstream = gfs.createReadStream(fileObject.filename);
-    res.json({"color":"https://appnew-test-sample.glitch.me/api/image/"+fileObject.filename})
+    res.json({"image":"https://appnew-test-sample.glitch.me/api/image/"+fileObject.filename})
 })
 
 //Find all files in collection
