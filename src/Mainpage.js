@@ -1,11 +1,7 @@
 import React from "react";
 import "./Mainpage.css";
 
-var st = [
-        { "title": "Post 1", "description": "Whatever happened in post 1" },
-        { "title": "Post 2", "description": "Whatever happened in post 2" },
-        { "title": "Post 3", "description": "Whatever happened in post 3" }
-      ]
+
 
 class Mainpage extends React.Component {
   constructor(props) {
@@ -38,8 +34,8 @@ class Mainpage extends React.Component {
   }
   addPost=(e)=>{
     //console.log(this.state.posts);
-    //let prevState = this.state.posts;
-    st.push({ title: "Post 4", description: "Whatever happened in post 4" })
+    let prevState = this.state.posts;
+    this.setState({ posts:prevState + {title:"Post 4", description: "Whatever happened in post 4"} })
     e.preventDefault();
     async function add() {
       let title = document.getElementById("post-title").value;
@@ -76,8 +72,7 @@ class Mainpage extends React.Component {
           body: fd
         });
         let resp = await response.json();
-        document.getElementById("header").style.background =
-          "url(" + resp.image + ")";
+        document.getElementById("header").style.background = "url(" + resp.image + ")";
       } catch (err) {
         console.log(err);
       }
@@ -94,8 +89,8 @@ class Mainpage extends React.Component {
   }
 
   render() {
-    //const st = JSON.parse(this.state.posts);
-    console.log(this.state.posts, typeof this.state.posts)
+    const st = this.state.posts;
+    console.log(st, typeof st, st[0], st[2])
     const post = st.map(post => {return(<li>{post.title}+{post.description}</li>)});
 
     const modal = (
