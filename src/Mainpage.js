@@ -25,7 +25,6 @@ class Mainpage extends React.Component{
   }
   
   componentDidMount(){
-    //window.onunload = function() { debugger; }
     document.getElementById("add-post").addEventListener('click',this.newPost);
     document.getElementById('modal-parent').addEventListener('click',this.closeModal);
     document.getElementById('upfile').addEventListener('change',(e)=>{this.updateHeader(e)})
@@ -38,13 +37,18 @@ class Mainpage extends React.Component{
   addPost(e){
     e.preventDefault();
     async function add(){
+      let title = document.getElementById("post-title").value;
+      let text = document.getElementById("post-text").value;
+      console.log(title, text)
       let response = await fetch('/api/post',{
         method:'POST',
         headers:{
         "Accept": "application/json"
       },
-        body:
+        body:JSON.stringify({"title":title,"text":text})
       })
+      let resp = await response.json();
+      this.post += {<li></li>}
     }
     
     add();
@@ -56,15 +60,18 @@ class Mainpage extends React.Component{
       let fd = new FormData();
       let headerImage = document.getElementById('upfile').files[0];
       fd.append("upfile",headerImage)
-      let response = await fetch('/api/upload',{
-      method:'POST',
-      headers:{
-        "Accept": "application/json"
-      },
-      body:fd
-    })
+      try {let response = await fetch('/api/upload',{
+        method:'POST',
+        headers:{
+          "Accept": "application/json"
+        },
+        body:fd
+      })
       let resp = await response.json();
       document.getElementById('header').style.background="url("+resp.image+")";
+      } catch(err) {
+       console.log(err)
+      }
     }
     upd();
   }
@@ -84,8 +91,8 @@ class Mainpage extends React.Component{
   const modal = <div id="modal-parent">
                    <div id="modal-content">
                      <form id="new-post" className="add-post-form">
-                       <label>Title</label><input type="text" />
-                       <label>Post</label><textarea rows="12"></textarea>
+                       <label>Title</label><input type="text" id="post-title"/>
+                       <label>Post</label><textarea rows="12" id="post-text"></textarea>
                        <input type="submit" id="submit" value="Post"/>
                      </form>
                    </div>
