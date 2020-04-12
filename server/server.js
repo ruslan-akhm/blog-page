@@ -72,6 +72,11 @@ app.post('/api/upload', upload.single('upfile'), (req,res)=>{
     const readstream = gfs.createReadStream(fileObject.filename);
     res.json({"image":"https://appnew-test-sample.glitch.me/api/image/"+fileObject.filename})
 })
+app.post('/api/post',(req,res)=>{
+  const post = req.body
+  console.log(req);
+  res.send("in progress")
+})
 
 //Find all files in collection
 app.get('/api/files',(req,res)=>{

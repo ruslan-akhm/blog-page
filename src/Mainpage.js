@@ -44,11 +44,13 @@ class Mainpage extends React.Component{
         method:'POST',
         headers:{
         "Accept": "application/json"
-      },
-        body:JSON.stringify({"title":title,"text":text})
+        },
+        body:({title:title,text:text,LOREM:"IPSUM"})
       })
       let resp = await response.json();
-      this.post += {<li></li>}
+      console.log(resp, typeof resp)
+      let prevState = this.state.posts;
+      this.setState({posts:prevState+resp})
     }
     
     add();
@@ -86,7 +88,7 @@ class Mainpage extends React.Component{
   }
   
   render(){
-  const post = '';
+  const post = this.state.posts.map(post=>{return <li>{post.title}+{post.description}</li>});
     
   const modal = <div id="modal-parent">
                    <div id="modal-content">
