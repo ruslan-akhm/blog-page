@@ -11,7 +11,8 @@ class Mainpage extends React.Component {
         { title: "Post 2", description: "Whatever happened in post 2" },
         { title: "Post 3", description: "Whatever happened in post 3" }
       ],
-      headerImage: ""
+      headerImage: "",
+      test:''
     };
     this.newPost = this.newPost.bind(this);
     this.closeModal = this.closeModal.bind(this);
@@ -32,6 +33,7 @@ class Mainpage extends React.Component {
   addPost=(e)=>{
     //console.log(this.state.posts);
     let prevState = this.state.posts;
+    this.setState({posts:prevState+{ title: "Post 4", description: "Whatever happened in post 4" }})
     e.preventDefault();
     async function add() {
       let title = document.getElementById("post-title").value;
@@ -47,11 +49,10 @@ class Mainpage extends React.Component {
       });
       let resp = await response.json();
       console.log(resp, typeof resp);
-      
     }
     add();
-    //this.setState({posts:prevState+resp})
-    console.log("NOPEEEEE")
+    
+    //console.log("NOPEEEEE")
   }
 
   updateHeader(e) {
