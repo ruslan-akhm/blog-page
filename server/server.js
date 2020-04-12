@@ -20,7 +20,7 @@ let gfs;
 app.set('view engine','ejs')
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }))
+app.use(express.urlencoded({ extended: true }))
 app.use(express.static("public"));
 
 app.get("/", (req, res) => {
@@ -73,8 +73,8 @@ app.post('/api/upload', upload.single('upfile'), (req,res)=>{
     res.json({"image":"https://appnew-test-sample.glitch.me/api/image/"+fileObject.filename})
 })
 app.post('/api/post',(req,res)=>{
-  const post = req.body
-  console.log(req);
+  //const post = req.body
+  console.log(JSON.parse(req.body));
   res.send("in progress")
 })
 

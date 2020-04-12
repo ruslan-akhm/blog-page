@@ -43,14 +43,15 @@ class Mainpage extends React.Component{
       let response = await fetch('/api/post',{
         method:'POST',
         headers:{
-        "Accept": "application/json"
+          "Accept": "application/json",
+          "Content-Type":"application/json"
         },
         body:({title:title,text:text,LOREM:"IPSUM"})
       })
       let resp = await response.json();
       console.log(resp, typeof resp)
-      let prevState = this.state.posts;
-      this.setState({posts:prevState+resp})
+      //let prevState = this.state.posts;
+      //this.setState({posts:prevState+resp})
     }
     
     add();
