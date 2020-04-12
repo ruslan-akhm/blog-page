@@ -46,7 +46,7 @@ class Mainpage extends React.Component{
           "Accept": "application/json",
           "Content-Type":"application/json"
         },
-        body:({title:title,text:text,LOREM:"IPSUM"})
+        body:JSON.stringify({title:title,text:text})
       })
       let resp = await response.json();
       console.log(resp, typeof resp)

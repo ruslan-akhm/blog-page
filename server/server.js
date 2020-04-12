@@ -73,8 +73,8 @@ app.post('/api/upload', upload.single('upfile'), (req,res)=>{
     res.json({"image":"https://appnew-test-sample.glitch.me/api/image/"+fileObject.filename})
 })
 app.post('/api/post',(req,res)=>{
-  //const post = req.body
-  console.log(JSON.parse(req.body));
+  const post = req.body
+  console.log(req.body);
   res.send("in progress")
 })
 
