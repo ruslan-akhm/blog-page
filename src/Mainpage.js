@@ -35,7 +35,9 @@ class Mainpage extends React.Component {
   addPost=(e)=>{
     //console.log(this.state.posts);
     let prevState = this.state.posts;
-    this.setState({ posts:prevState + {title:"Post 4", description: "Whatever happened in post 4"} })
+    console.log(prevState.push({title:"Post 4", description: "Whatever happened in post 4"}))
+    //console.log(newState, typeof newState)
+    //this.setState({ posts: newState})
     e.preventDefault();
     async function add() {
       let title = document.getElementById("post-title").value;
@@ -90,7 +92,7 @@ class Mainpage extends React.Component {
 
   render() {
     const st = this.state.posts;
-    console.log(st, typeof st, st[0], st[2])
+    console.log(this.state.posts, "st is "+st, typeof st)
     const post = st.map(post => {return(<li>{post.title}+{post.description}</li>)});
 
     const modal = (
