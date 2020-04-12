@@ -81,6 +81,7 @@ app.post('/api/post',(req,res)=>{
     postId:"post"+shortid.generate(),
     datePosted:Date.now()
   })
+  post.save();
   res.json({title:data.title,text:data.text,})
 })
 

@@ -37,12 +37,12 @@ class Mainpage extends React.Component {
     //works here but not inside add() 
     // let newState = prevState.concat({"title":"Post 4", "description": "Whatever happened in post 4"})
     // this.setState({ posts: newState})
-    
     e.preventDefault();
+    let that = this;
     async function add() {
       let title = document.getElementById("post-title").value;
       let text = document.getElementById("post-text").value;
-      console.log(title, text);
+      //console.log(title, text);
       let response = await fetch("/api/post", {
         method: "POST",
         headers: {
@@ -52,9 +52,15 @@ class Mainpage extends React.Component {
         body: JSON.stringify({ title: title, text: text })
       });
       let resp = await response.json();
-      let success = await prevState.concat(resp)
-      await this.setState({ posts: success})
-      console.log(success);
+      let success = await prevState.concat(resp);
+      console.log("resp is = "+resp, typeof resp)
+      // let update = await(()=>{
+      //   //let updated = prevState.concat(resp)
+      //   console.log("We are here at state")
+      //   that.setState({ posts: success})
+      // }) 
+      that.setState({posts: success})
+      //console.log(this.state.posts);
     }
     add();
     
