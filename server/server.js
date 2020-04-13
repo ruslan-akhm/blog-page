@@ -25,22 +25,6 @@ app.use(express.static("public"));
 
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/public/index.html");
-//   gfs.files.find().toArray((err, files)=>{
-//     if(!files||files.length===0){
-//       res.render('index',{files:false})
-//     } else {
-//       files.map(file=>{
-//         if(file.contentType==="image/jpeg"||file.contentType==="image/png"){
-//           file.isImage=true;
-//         }
-//         else{
-//           file.isImage=false;
-//         }
-//       });
-//       res.render('index',{files:files})
-//     }
-    
-//   })  
 });
 
 conn.once('open',() => {
@@ -57,7 +41,8 @@ const storage = new GridFsStorage({
         const filename = "image-" + buf.toString('hex') + path.extname(file.originalname);
         const fileinfo={
           filename: filename,
-          bucketName: 'uploads'
+          bucketName: 'uploads',
+          datePosted:Date.now()
         };
         resolve(fileinfo);
       })
@@ -66,11 +51,15 @@ const storage = new GridFsStorage({
 })
 const upload = multer({storage})
 
+app.get('/api',(req,res)=>{
+  Post.find({type:"post"})
+})
+
 app.post('/api/upload', upload.single('upfile'), (req,res)=>{
    const fileObject = req.file;
    console.log("HERE WE ARE "+req.length);
-    const readstream = gfs.createReadStream(fileObject.filename);
-    res.json({"image":"https://appnew-test-sample.glitch.me/api/image/"+fileObject.filename})
+   const readstream = gfs.createReadStream(fileObject.filename);
+   res.json({"image":"https://appnew-test-sample.glitch.me/api/image/"+fileObject.filename})
 })
 app.post('/api/post',(req,res)=>{
   const data = req.body
@@ -79,7 +68,8 @@ app.post('/api/post',(req,res)=>{
     title:data.title,
     text:data.text,
     postId:"post-id-"+shortid.generate(),
-    datePosted:Date.now()
+    datePosted:Date.now(),
+    type:"post"
   })
   post.save();
   res.json({title:data.title,text:data.text,})

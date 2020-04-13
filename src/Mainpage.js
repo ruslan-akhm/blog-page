@@ -15,10 +15,12 @@ class Mainpage extends React.Component {
     this.closeModal = this.closeModal.bind(this);
     this.updateHeader = this.updateHeader.bind(this);
     this.addPost = this.addPost.bind(this);
-    this.updateAvatar=this.updateAvatar(this);
+    this.updateAvatar=this.updateAvatar.bind(this);
+    this.getData=this.getData.bind(this);
   }
 
   componentDidMount() {
+    window.addEventListener('load',e=>{this.getData(e)});
     document.getElementById("upfile").addEventListener("change", e=>{this.updateHeader(e)});
     document.getElementById("avatarfile").addEventListener("change", e=>{this.updateAvatar(e)}); 
     document.getElementById("new-post").addEventListener("submit", (e)=>{this.addPost(e)});
@@ -26,6 +28,19 @@ class Mainpage extends React.Component {
     document.getElementById("modal-parent").addEventListener("click", this.closeModal);
   }
 
+  getData(e){
+    e.preventDefault();
+    async function dat(){
+      try {
+        let response = await fetch("/api");
+        let resp = await response.json();
+        console.log(resp, typeof resp)
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  }
+  
   updateHeader(e) {
     e.preventDefault();
     async function upd() {
@@ -99,7 +114,6 @@ class Mainpage extends React.Component {
 
   render() {
     const state = this.state.posts;
-    //console.log(this.state.posts, "st is "+st, typeof st)
     const post = state.map(post => {
       return(
         <li>
