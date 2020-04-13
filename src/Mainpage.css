@@ -163,6 +163,7 @@ body{
   width:100px;
 }
 #avatarfile{
+  position:relative;
   margin:0;
   float:none;
   width:120px;
