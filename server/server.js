@@ -52,7 +52,11 @@ const storage = new GridFsStorage({
 const upload = multer({storage})
 
 app.get('/api',(req,res)=>{
-  Post.find({type:"post"})
+  Post.find({type:"post"}).sort({datePosted:'asc'}).exec((err,data)=>{
+    if(err) return console.log(err);
+    console.log("Here is what we suppose to load on GET: "+data.title, data.text)
+    return res.json({title:data.title, text:data.text})
+  })
 })
 
 app.post('/api/upload', upload.single('upfile'), (req,res)=>{
@@ -63,7 +67,7 @@ app.post('/api/upload', upload.single('upfile'), (req,res)=>{
 })
 app.post('/api/post',(req,res)=>{
   const data = req.body
-  console.log(data);
+  console.log("We post here: "+data);
   let post = new Post({
     title:data.title,
     text:data.text,
@@ -72,7 +76,7 @@ app.post('/api/post',(req,res)=>{
     type:"post"
   })
   post.save();
-  res.json({title:data.title,text:data.text,})
+  res.json({title:data.title,text:data.text})
 })
 
 //Find all files in collection

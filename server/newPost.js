@@ -6,7 +6,8 @@ var postSchema = new Schema({
   title:String,
   text:String,
   postId:String,
-  datePosted:String
+  datePosted:String,
+  type:String
 })
 
 var Post = mongoose.model("Post", postSchema)

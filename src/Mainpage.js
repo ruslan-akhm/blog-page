@@ -29,6 +29,7 @@ class Mainpage extends React.Component {
   }
 
   getData(e){
+    console.log("we are here")
     e.preventDefault();
     async function dat(){
       try {
@@ -39,6 +40,7 @@ class Mainpage extends React.Component {
         console.log(err);
       }
     }
+    dat();
   }
   
   updateHeader(e) {
