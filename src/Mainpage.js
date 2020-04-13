@@ -22,7 +22,7 @@ class Mainpage extends React.Component {
   }
 
   componentDidMount() {
-    document.getElementsByClassName('custom-input')[0].setAttribute('title', ' ');
+    //document.getElementsByClassName('custom-input').attr('title', '');
     document.getElementById("add-post").addEventListener("click", this.newPost);
     document.getElementById("modal-parent").addEventListener("click", this.closeModal);
     document.getElementById("upfile").addEventListener("change", e=>{this.updateHeader(e)});
