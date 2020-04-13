@@ -136,20 +136,41 @@ body{
 .custom-input{
   color:transparent;
   width:40px;
+  height:40px;
+  float:right;
+  margin:15px;
 }
 .custom-input::-webkit-file-upload-button {
   visibility: hidden;
-  
-  outline:none;
 }
 .custom-input::before{
   content:"EDIT";
-  color:black;
+  text-align:center;
+  padding-top:12px;
+  color:white;
   display: inline-block;
-  background: linear-gradient(top, #f9f9f9, #e3e3e3);
+  background-color: rgba(0,0,0,0.3);
   border: 1px solid #999;
   border-radius: 3px;
-  outline:none;
+  width:40px;
+  height:40px;
+  cursor:pointer;
+}
+#upload{
+  width:100px;
+}
+#upload::before{
+  width:100px;
+}
+#avatarfile{
+  margin:0;
+  float:none;
+  width:120px;
+  height:80px;
+}
+#avatarfile::before{
+  width:120px;
+  height:80px;
 }
 
 .attachment-parent{

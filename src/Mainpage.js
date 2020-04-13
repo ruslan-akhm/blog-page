@@ -19,18 +19,42 @@ class Mainpage extends React.Component {
     this.closeModal = this.closeModal.bind(this);
     this.updateHeader = this.updateHeader.bind(this);
     this.addPost = this.addPost.bind(this);
+    this.updateAvatar=this.updateAvatar(this);
   }
 
   componentDidMount() {
-    //document.getElementsByClassName('custom-input').attr('title', '');
+    document.getElementById("upfile").addEventListener("change", e=>{this.updateHeader(e)});
+    document.getElementById("avatarfile").addEventListener("change", e=>{this.updateAvatar(e)}); 
+    document.getElementById("new-post").addEventListener("submit", (e)=>{this.addPost(e)});
     document.getElementById("add-post").addEventListener("click", this.newPost);
     document.getElementById("modal-parent").addEventListener("click", this.closeModal);
-    document.getElementById("upfile").addEventListener("change", e=>{this.updateHeader(e)});
-    document.getElementById("new-post").addEventListener("submit", (e)=>{this.addPost(e)});
   }
 
-  newPost() {
-    document.getElementById("modal-parent").style.display = "block";
+  updateHeader(e) {
+    e.preventDefault();
+    async function upd() {
+      let fd = new FormData();
+      let headerImage = document.getElementById("upfile").files[0];
+      fd.append("upfile", headerImage);
+      try {
+        let response = await fetch("/api/upload", {
+          method: "POST",
+          headers: {
+            Accept: "application/json"
+          },
+          body: fd
+        });
+        let resp = await response.json();
+        document.getElementById("header").style.background = "url(" + resp.image + ")";
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    upd();
+  }
+  
+  updateAvatar(e){
+    
   }
   
   addPost=(e)=>{
@@ -63,28 +87,10 @@ class Mainpage extends React.Component {
     add();
   }
 
-  updateHeader(e) {
-    e.preventDefault();
-    async function upd() {
-      let fd = new FormData();
-      let headerImage = document.getElementById("upfile").files[0];
-      fd.append("upfile", headerImage);
-      try {
-        let response = await fetch("/api/upload", {
-          method: "POST",
-          headers: {
-            Accept: "application/json"
-          },
-          body: fd
-        });
-        let resp = await response.json();
-        document.getElementById("header").style.background = "url(" + resp.image + ")";
-      } catch (err) {
-        console.log(err);
-      }
-    }
-    upd();
+  newPost() {
+    document.getElementById("modal-parent").style.display = "block";
   }
+  
 
   closeModal(event) {
     const click = event.target;
