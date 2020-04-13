@@ -29,15 +29,15 @@ class Mainpage extends React.Component {
   }
 
   getData(e){
-    let prevState = this.state.posts;
-    let that = this; //workaround for "this" keyword to access state inside fetch
+    //let prevState = this.state.posts; //our initial posts array  --  if use STATE
     e.preventDefault();
+    //let that = this;   //workaround for "this" keyword to access state inside fetch  --  if use STATE
     async function dat(){
       try {
         let response = await fetch("/api");
         let resp = await response.json();
         //console.log(resp.data, typeof resp)
-        let data = resp.data.map(post=>{document.getElementById('list').innerHTML+='<li><div className="list-item-parent"><div className="list-item-title">'+post.title+'</div><div className="list-item-text">'+post.text+'</div></div></li>'})
+        resp.data.map(post=>{return document.getElementById('list').innerHTML+='<li><div className="list-item-parent"><div className="list-item-title">'+post.title+'</div><div className="list-item-text">'+post.text+'</div></div></li>'})
 
             //resp.data.map(post=>{that.setState({posts:prevState.concat({title:post.title, text:post.text})})})
       } catch (err) {
@@ -75,9 +75,9 @@ class Mainpage extends React.Component {
   }
   
   addPost=(e)=>{
-    //let prevState = this.state.posts; //our initial posts array   if use STATE
+    //let prevState = this.state.posts; //our initial posts array  --  if use STATE
     e.preventDefault();
-    //let that = this;   //workaround for "this" keyword to access state inside fetch
+    //let that = this;   //workaround for "this" keyword to access state inside fetch  --  if use STATE
     async function add() {
       let title = document.getElementById("post-title").value;
       let text = document.getElementById("post-text").value;
@@ -90,11 +90,11 @@ class Mainpage extends React.Component {
         body: JSON.stringify({ title: title, text: text })
       });
       let resp = await response.json();
-      let success = await prevState.concat(resp);
+      //let success = await prevState.concat(resp);  // --  if use STATE
       console.log("resp is = "+resp, typeof resp);
       
       //WITHOUT STATE 
-      document.getElementById('list').innerHTML+='<li>'+'<div className="list-item-parent">'+'<div className="list-item-title">'+resp.title+'</div>'+'<div className="list-item-text">'+resp.text+'</div>'+'</div>'+'</li>'
+      document.getElementById('list').innerHTML +='<li>'+'<div className="list-item-parent">'+'<div className="list-item-title">'+resp.title+'</div>'+'<div className="list-item-text">'+resp.text+'</div>'+'</div>'+'</li>'
       
       //WITH STATE
       //that.setState({posts: success});
@@ -161,7 +161,7 @@ class Mainpage extends React.Component {
           <div id="bio"></div>
         </div>
         <div className="posts">
-          <ul id="list">{/*post*/}</ul>
+          <ul id="list"></ul>  {/*post*/}
           <button id="add-post" className="add">
             + Add
           </button>
