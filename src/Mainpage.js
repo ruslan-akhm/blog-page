@@ -7,11 +7,7 @@ class Mainpage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      posts: [
-        { "title": "Post 1", "text": "Whatever happened in post 1" },
-        { "title": "Post 2", "text": "Whatever happened in post 2" },
-        { "title": "Post 3", "text": "Whatever happened in post 3" }
-      ],
+      posts: [],
       headerImage: "",
       test:''
     };
