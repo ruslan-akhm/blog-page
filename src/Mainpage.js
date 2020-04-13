@@ -22,6 +22,7 @@ class Mainpage extends React.Component {
   }
 
   componentDidMount() {
+    document.getElementsByClassName('custom-input')[0].setAttribute('title', ' ');
     document.getElementById("add-post").addEventListener("click", this.newPost);
     document.getElementById("modal-parent").addEventListener("click", this.closeModal);
     document.getElementById("upfile").addEventListener("change", e=>{this.updateHeader(e)});
@@ -125,12 +126,13 @@ class Mainpage extends React.Component {
       <div id="personal-page">
         <div id="header">
           <form enctype="multipart/form-data" id="send-pic">
-            <input name="upfile" id="upfile" type="file" />
+            <input name="upfile" id="upfile" type="file" className="custom-input"/>
           </form>
         </div>
         <div id="info">
           <div id="avatar">
             <img src={this.state.avatar} />
+            <input name="avatarfile" id="avatarfile" type="file" className="custom-input"/>
           </div>
           <div id="bio"></div>
         </div>
