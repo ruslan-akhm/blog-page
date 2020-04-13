@@ -29,13 +29,15 @@ class Mainpage extends React.Component {
   }
 
   getData(e){
-    console.log("we are here")
+    //console.log("we are here")
+    let that = this; //workaround for "this" keyword to access state inside fetch
     e.preventDefault();
     async function dat(){
       try {
         let response = await fetch("/api");
         let resp = await response.json();
-        console.log(resp, typeof resp)
+        //console.log(resp.data, typeof resp)
+        let data = resp.data.map(post=>{that.setState({})})
       } catch (err) {
         console.log(err);
       }

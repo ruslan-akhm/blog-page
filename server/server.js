@@ -56,7 +56,7 @@ app.get('/api',(req,res)=>{
     if(err) return console.log(err);
     console.log(data)
     console.log("Here is what we suppose to load on GET: "+data.title, data.text)
-    return res.json({title:data.title, text:data.text})
+    return res.json({data:data})
   })
 })
 
