@@ -52,8 +52,9 @@ const storage = new GridFsStorage({
 const upload = multer({storage})
 
 app.get('/api',(req,res)=>{
-  Post.find({type:"post"}).sort({datePosted:'asc'}).exec((err,data)=>{
+  Post.find({type:"post"}).exec((err,data)=>{
     if(err) return console.log(err);
+    console.log(data)
     console.log("Here is what we suppose to load on GET: "+data.title, data.text)
     return res.json({title:data.title, text:data.text})
   })
