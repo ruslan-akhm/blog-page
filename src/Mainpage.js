@@ -29,7 +29,7 @@ class Mainpage extends React.Component {
   }
 
   getData(e){
-    //console.log("we are here")
+    let prevState = this.state.posts;
     let that = this; //workaround for "this" keyword to access state inside fetch
     e.preventDefault();
     async function dat(){
@@ -37,7 +37,9 @@ class Mainpage extends React.Component {
         let response = await fetch("/api");
         let resp = await response.json();
         //console.log(resp.data, typeof resp)
-        let data = resp.data.map(post=>{that.setState({})})
+        let data = resp.data.map(post=>{document.getElementById('list').innerHTML+='<li><div className="list-item-parent"><div className="list-item-title">'+post.title+'</div><div className="list-item-text">'+post.text+'</div></div></li>'})
+
+            //resp.data.map(post=>{that.setState({posts:prevState.concat({title:post.title, text:post.text})})})
       } catch (err) {
         console.log(err);
       }
@@ -73,9 +75,9 @@ class Mainpage extends React.Component {
   }
   
   addPost=(e)=>{
-    let prevState = this.state.posts; //our initial posts array
+    //let prevState = this.state.posts; //our initial posts array   if use STATE
     e.preventDefault();
-    let that = this; //workaround for "this" keyword to access state inside fetch
+    //let that = this;   //workaround for "this" keyword to access state inside fetch
     async function add() {
       let title = document.getElementById("post-title").value;
       let text = document.getElementById("post-text").value;
@@ -92,9 +94,11 @@ class Mainpage extends React.Component {
       console.log("resp is = "+resp, typeof resp);
       
       //WITHOUT STATE 
-      //document.getElementById('list').innerHTML+='<li><div className="list-item-parent"><div className="list-item-title">'+resp.title+'</div><div className="list-item-text">'+resp.text+'</div></div></li>'
+      document.getElementById('list').innerHTML+='<li>'+'<div className="list-item-parent">'+'<div className="list-item-title">'+resp.title+'</div>'+'<div className="list-item-text">'+resp.text+'</div>'+'</div>'+'</li>'
       
-      that.setState({posts: success});
+      //WITH STATE
+      //that.setState({posts: success});
+      
       document.getElementById("post-title").value='';
       document.getElementById("post-text").value='';
       document.getElementById("modal-parent").style.display="none"
@@ -117,7 +121,7 @@ class Mainpage extends React.Component {
   }
 
   render() {
-    const state = this.state.posts;
+    /*const state = this.state.posts;
     const post = state.map(post => {
       return(
         <li>
@@ -125,7 +129,7 @@ class Mainpage extends React.Component {
             <div className="list-item-title">{post.title}</div>
             <div className="list-item-text">{post.text}</div>
           </div>
-        </li>)});
+        </li>)});*/
 
     const modal = (
       <div id="modal-parent">
@@ -157,7 +161,7 @@ class Mainpage extends React.Component {
           <div id="bio"></div>
         </div>
         <div className="posts">
-          <ul id="list">{post}</ul>
+          <ul id="list">{/*post*/}</ul>
           <button id="add-post" className="add">
             + Add
           </button>

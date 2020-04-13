@@ -174,7 +174,7 @@ body{
   height:80px;
 }
 
-.attachment-parent{
+/*.attachment-parent{
   display:flex;
   flex-direction:column;
   justify-content:space-between;
@@ -187,4 +187,4 @@ body{
   background-color:red;
   width:20px;
   height:20px;
-}
+}*/
