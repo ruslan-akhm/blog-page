@@ -22,7 +22,6 @@ class Mainpage extends React.Component {
   }
 
   componentDidMount() {
-    
     document.getElementById("add-post").addEventListener("click", this.newPost);
     document.getElementById("modal-parent").addEventListener("click", this.closeModal);
     document.getElementById("upfile").addEventListener("change", e=>{this.updateHeader(e)});
@@ -51,6 +50,10 @@ class Mainpage extends React.Component {
       let resp = await response.json();
       let success = await prevState.concat(resp);
       console.log("resp is = "+resp, typeof resp);
+      
+      //WITHOUT STATE 
+      //document.getElementById('list').innerHTML+='<li><div className="list-item-parent"><div className="list-item-title">'+resp.title+'</div><div className="list-item-text">'+resp.text+'</div></div></li>'
+      
       that.setState({posts: success});
       document.getElementById("post-title").value='';
       document.getElementById("post-text").value='';
@@ -127,7 +130,7 @@ class Mainpage extends React.Component {
         </div>
         <div id="info">
           <div id="avatar">
-            <img src="https://res.cloudinary.com/techsnips/image/fetch/w_2000,f_auto,q_auto,c_fit/https://adamtheautomator.com/content/images/size/w2000/2019/10/user-1633249_1280.png" />
+            <img src={this.state.avatar} />
           </div>
           <div id="bio"></div>
         </div>
