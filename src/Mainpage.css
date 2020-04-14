@@ -71,8 +71,9 @@ body{
   margin-top:20px;
   cursor:pointer;
   background-color:white;
+  text-overflow: ellipsis;
 }
-.list-item-title{
+#list li .list-item-title{
   background-color:#23232e;
   color:white;
   font-family: 'Noto Sans', sans-serif;
