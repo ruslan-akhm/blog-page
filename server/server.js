@@ -42,7 +42,8 @@ const storage = new GridFsStorage({
         const fileinfo={
           filename: filename,
           bucketName: 'uploads',
-          datePosted:Date.now()
+          datePosted:Date.now(),
+          type:file.fieldname
         };
         resolve(fileinfo);
       })
@@ -68,11 +69,11 @@ app.post('/api/upload', upload.single('upfile'), (req,res)=>{
    return res.json({"image":"https://appnew-test-sample.glitch.me/api/image/"+fileObject.filename})
 })
 //Avatar
-app.post('/api/avatar', upload.single('upfile'), (req,res)=>{
+app.post('/api/avatar', upload.single('avatarfile'), (req,res)=>{
    const fileObject = req.file;
    console.log(fileObject);
    const readstream = gfs.createReadStream(fileObject.filename);
-   return res.json({"image":"https://appnew-test-sample.glitch.me/api/image/"+fileObject.filename})
+   return res.json({"src":"https://appnew-test-sample.glitch.me/api/image/"+fileObject.filename})
 })
 
 //Add new posts
