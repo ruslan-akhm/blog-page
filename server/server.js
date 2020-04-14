@@ -57,7 +57,25 @@ app.get('/api',(req,res)=>{
   Post.find({type:"post"}).exec((err,data)=>{
     if(err) return console.log(err);
     //console.log(data)
-    return res.json({data:data})
+    else{
+      gfs.files.find({type:'avatarfile'}).toArray().sort({datePosted:'des'}).limit(1).exec((err,ava)=>{
+        if(err) return console.log(err);
+        else{
+          gfs.files.find({type:'upfile'}).toArray().sort({datePosted:'des'}).limit(1).exec((err,hdr)=>{
+            if(err) return console.log(err);
+            else{
+              console.log({data:data,
+                               src:"https://appnew-test-sample.glitch.me/api/image/"+ava.filename,
+                               image:"https://appnew-test-sample.glitch.me/api/image/"+hdr.filename});
+              return res.json({data:data,
+                               src:"https://appnew-test-sample.glitch.me/api/image/"+ava.filename,
+                               image:"https://appnew-test-sample.glitch.me/api/image/"+hdr.filename})
+            }
+          })
+          
+        }
+      })
+    }
   })
 })
 
