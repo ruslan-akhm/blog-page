@@ -71,7 +71,26 @@ class Mainpage extends React.Component {
   }
   
   updateAvatar(e){
-    
+    e.preventDefault();
+    async function ava() {
+      let fd = new FormData();
+      let avatarImage = document.getElementById("avatarfile").files[0];
+      fd.append("avatarfile", avatarImage);
+      try {
+        let response = await fetch("/api/avatar", {
+          method: "POST",
+          headers: {
+            Accept: "application/json"
+          },
+          body: fd
+        });
+        let resp = await response.json();
+        document.getElementById("avatar-img").setAttribute("src",resp.src);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    ava();
   }
   
   addPost=(e)=>{
@@ -155,7 +174,7 @@ class Mainpage extends React.Component {
         </div>
         <div id="info">
           <div id="avatar">
-            <img src={this.state.avatar} />
+            <img id="avatar-img" src={this.state.avatar} />
             <input name="avatarfile" id="avatarfile" type="file" className="custom-input"/>
           </div>
           <div id="bio"></div>

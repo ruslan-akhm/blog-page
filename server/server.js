@@ -50,7 +50,7 @@ const storage = new GridFsStorage({
   }
 })
 const upload = multer({storage})
-
+//Send posts from database
 app.get('/api',(req,res)=>{
   Post.find({type:"post"}).exec((err,data)=>{
     if(err) return console.log(err);
@@ -58,16 +58,24 @@ app.get('/api',(req,res)=>{
     return res.json({data:data})
   })
 })
-
+//Header image
 app.post('/api/upload', upload.single('upfile'), (req,res)=>{
    const fileObject = req.file;
-   console.log("HERE WE ARE "+req.length);
+  
+   if(fileObject.contentType==="image/jpeg"||fileObject.contentType==="img/png"){
+      //const readstream = gfs.createReadStream(file.filename);
+      //readstream.pipe(res)
+     return res.json("image")
+    }else{
+      return res.status(404).json("Not an image")
+    }
+  
    const readstream = gfs.createReadStream(fileObject.filename);
    res.json({"image":"https://appnew-test-sample.glitch.me/api/image/"+fileObject.filename})
 })
+//Add new posts
 app.post('/api/post',(req,res)=>{
   const data = req.body
-  console.log("We post here: "+data);
   let post = new Post({
     title:data.title,
     text:data.text,
