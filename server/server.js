@@ -58,12 +58,14 @@ app.get('/api',(req,res)=>{
     if(err) return console.log(err);
     //console.log(data)
     else{
-      gfs.files.find({type:'avatarfile'}).toArray().sort({datePosted:'des'}).limit(1).exec((err,ava)=>{
+      gfs.files.find({type:'avatarfile'}).sort({datePosted:'des'}).limit(1).exec((err,ava)=>{
         if(err) return console.log(err);
         else{
-          gfs.files.find({type:'upfile'}).toArray().sort({datePosted:'des'}).limit(1).exec((err,hdr)=>{
+          const readstream = gfs.createReadStream(ava.filename);
+          gfs.files.find({type:'upfile'}).sort({datePosted:'des'}).limit(1).exec((err,hdr)=>{
             if(err) return console.log(err);
             else{
+              const readstream1 = gfs.createReadStream(hdr.filename);
               console.log({data:data,
                                src:"https://appnew-test-sample.glitch.me/api/image/"+ava.filename,
                                image:"https://appnew-test-sample.glitch.me/api/image/"+hdr.filename});
