@@ -50,29 +50,31 @@ const storage = new GridFsStorage({
   }
 })
 const upload = multer({storage})
+
 //Send posts from database
 app.get('/api',(req,res)=>{
   Post.find({type:"post"}).exec((err,data)=>{
     if(err) return console.log(err);
-    console.log(data)
+    //console.log(data)
     return res.json({data:data})
   })
 })
+
 //Header image
 app.post('/api/upload', upload.single('upfile'), (req,res)=>{
    const fileObject = req.file;
-  
-   if(fileObject.contentType==="image/jpeg"||fileObject.contentType==="img/png"){
-      //const readstream = gfs.createReadStream(file.filename);
-      //readstream.pipe(res)
-     return res.json("image")
-    }else{
-      return res.status(404).json("Not an image")
-    }
-  
+   console.log(fileObject);
    const readstream = gfs.createReadStream(fileObject.filename);
-   res.json({"image":"https://appnew-test-sample.glitch.me/api/image/"+fileObject.filename})
+   return res.json({"image":"https://appnew-test-sample.glitch.me/api/image/"+fileObject.filename})
 })
+//Avatar
+app.post('/api/avatar', upload.single('upfile'), (req,res)=>{
+   const fileObject = req.file;
+   console.log(fileObject);
+   const readstream = gfs.createReadStream(fileObject.filename);
+   return res.json({"image":"https://appnew-test-sample.glitch.me/api/image/"+fileObject.filename})
+})
+
 //Add new posts
 app.post('/api/post',(req,res)=>{
   const data = req.body
