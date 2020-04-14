@@ -37,7 +37,7 @@ class Mainpage extends React.Component {
         let response = await fetch("/api");
         let resp = await response.json();
         //console.log(resp.data, typeof resp)
-        resp.data.map(post=>{return document.getElementById('list').innerHTML+='<li><div className="list-item-parent"><div className="list-item-title"><h4>'+post.title+'</h4></div><div className="list-item-text"><p>'+post.text+'</p></div></div></li>'})
+        resp.data.map(post=>{return document.getElementById('list').innerHTML+='<li><div className="list-item-parent"><h4>'+post.title+'</h4><p>'+post.text+'</p></div></li>'})
 
             //resp.data.map(post=>{that.setState({posts:prevState.concat({title:post.title, text:post.text})})})
       } catch (err) {
@@ -94,7 +94,7 @@ class Mainpage extends React.Component {
       console.log("resp is = "+resp, typeof resp);
       
       //WITHOUT STATE 
-      document.getElementById('list').innerHTML +='<li>'+'<div className="list-item-parent">'+'<div className="list-item-title"><h4>'+resp.title+'</h4></div>'+'<div className="list-item-text"><p>'+resp.text+'</p></div>'+'</div>'+'</li>'
+      document.getElementById('list').innerHTML +='<li><div className="list-item-parent"><h4>'+resp.title+'</h4><p>'+resp.text+'</p></div></li>'
       
       //WITH STATE
       //that.setState({posts: success});
