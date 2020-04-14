@@ -39,12 +39,11 @@ const storage = new GridFsStorage({
       crypto.randomBytes(16, (err,buf)=>{
         if(err) return reject(err)
         const filename = "image-" + buf.toString('hex') + path.extname(file.originalname);
-        //const type = file.fieldname;
+        const type = file.fieldname;
         const fileinfo={
           filename: filename,
           bucketName: 'uploads',
-          datePosted:Date.now()
-          //type:type
+          metadata:type
         };
         resolve(fileinfo);
       })
@@ -53,34 +52,34 @@ const storage = new GridFsStorage({
 })
 const upload = multer({storage})
 
-//Send posts from database
-// app.get('/api',(req,res)=>{
-//   Post.find({type:"post"}).exec((err,data)=>{
-//     if(err) return console.log(err);
-//     //console.log(data)
-//     else{
-//       gfs.files.find({type:'avatarfile'}).sort({datePosted:'des'}).limit(1).exec((err,ava)=>{
-//         if(err) return console.log(err);
-//         else{
-//           const readstream = gfs.createReadStream(ava.filename);
-//           gfs.files.find({type:'upfile'}).sort({datePosted:'des'}).limit(1).exec((err,hdr)=>{
-//             if(err) return console.log(err);
-//             else{
-//               const readstream1 = gfs.createReadStream(hdr.filename);
-//               console.log({data:data,
-//                                src:"https://appnew-test-sample.glitch.me/api/image/"+ava.filename,
-//                                image:"https://appnew-test-sample.glitch.me/api/image/"+hdr.filename});
-//               return res.json({data:data,
-//                                src:"https://appnew-test-sample.glitch.me/api/image/"+ava.filename,
-//                                image:"https://appnew-test-sample.glitch.me/api/image/"+hdr.filename})
-//             }
-//           })
+//Send posts from database  //TRY TO ARRAY() ???
+app.get('/api',(req,res)=>{
+  Post.find({type:"post"}).exec((err,data)=>{
+    if(err) return console.log(err);
+    //console.log(data)
+    else{
+      gfs.files.find({metadata:'avatarfile'}).sort({uploadDate:'des'}).limit(1).exec((err,ava)=>{
+        if(err) return console.log(err);
+        else{
+          const readstream = gfs.createReadStream(ava.filename);
+          gfs.files.find({metadata:'upfile'}).sort({uploadDate:'des'}).limit(1).exec((err,hdr)=>{
+            if(err) return console.log(err);
+            else{
+              const readstream1 = gfs.createReadStream(hdr.filename);
+              console.log({data:data,
+                               src:"https://appnew-test-sample.glitch.me/api/image/"+ava.filename,
+                               image:"https://appnew-test-sample.glitch.me/api/image/"+hdr.filename});
+              return res.json({data:data,
+                               src:"https://appnew-test-sample.glitch.me/api/image/"+ava.filename,
+                               image:"https://appnew-test-sample.glitch.me/api/image/"+hdr.filename})
+            }
+          })
           
-//         }
-//       })
-//     }
-//   })
-// })
+        }
+      })
+    }
+  })
+})
 
 //Header image
 app.post('/api/upload', upload.single('upfile'), (req,res)=>{
