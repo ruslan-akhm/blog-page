@@ -20,7 +20,7 @@ class Mainpage extends React.Component {
   }
 
   componentDidMount() {
-    window.addEventListener('load',e=>{this.getData(e)});
+    //window.addEventListener('load',e=>{this.getData(e)});
     document.getElementById("upfile").addEventListener("change", e=>{this.updateHeader(e)});
     document.getElementById("avatarfile").addEventListener("change", e=>{this.updateAvatar(e)}); 
     document.getElementById("new-post").addEventListener("submit", (e)=>{this.addPost(e)});
