@@ -43,7 +43,7 @@ const storage = new GridFsStorage({
         const fileinfo={
           filename: filename,
           bucketName: 'uploads',
-          metadata:type
+          metadata:{type:type, date:Date.now()}
         };
         resolve(fileinfo);
       })
@@ -58,7 +58,7 @@ app.get('/api',(req,res)=>{
     if(err) return console.log(err);
     //console.log(data)
     else{
-      gfs.files.find({metadata:'upfile'}).sort({uploadDate:'desc'}).limit(1).toArray((err,ava)=>{
+      gfs.files.find({metadata:'avatarfile'}).sort({metadata.date:'desc'}).limit(1).toArray((err,ava)=>{
         if(err) return console.log(err);
         else{
           console.log("AVA HERE")
