@@ -36,7 +36,8 @@ class Mainpage extends React.Component {
         //console.log(resp.data, typeof resp)
         document.getElementById("header").style.background = "url(" + resp.image + ")";
         document.getElementById("avatar-img").setAttribute("src",resp.src);
-        resp.data.map(post=>{return document.getElementById('list').innerHTML+='<li><div className="list-item-parent"><h4>'+post.title+'</h4><p>'+post.text+'</p></div></li>'})
+        
+        resp.data.map(post=>{return document.getElementById('list').innerHTML+='<li><div className="list-item-parent"><h4>'+post.title+'</h4><p>'+{post.text.length>300 ? post.text.slice(0,200)+'<button id='+post.datePosted+'>expand</button>':post.text}+'</p></div></li>'})
         //resp.data.map(post=>{that.setState({posts:prevState.concat({title:post.title, text:post.text})})})
       } catch (err) {
         console.log(err);
