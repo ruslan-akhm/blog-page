@@ -1,15 +1,12 @@
 import React from "react";
 import "./Mainpage.css";
 
-
-
 class Mainpage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       posts: [],
       headerImage: "",
-      test:''
     };
     this.newPost = this.newPost.bind(this);
     this.closeModal = this.closeModal.bind(this);
@@ -30,8 +27,8 @@ class Mainpage extends React.Component {
 
   getData(e){
     //let prevState = this.state.posts; //our initial posts array  --  if use STATE
-    e.preventDefault();
     //let that = this;   //workaround for "this" keyword to access state inside fetch  --  if use STATE
+    e.preventDefault();
     async function dat(){
       try {
         let response = await fetch("/api");
@@ -96,8 +93,8 @@ class Mainpage extends React.Component {
   
   addPost=(e)=>{
     //let prevState = this.state.posts; //our initial posts array  --  if use STATE
-    e.preventDefault();
     //let that = this;   //workaround for "this" keyword to access state inside fetch  --  if use STATE
+    e.preventDefault();
     async function add() {
       let title = document.getElementById("post-title").value;
       let text = document.getElementById("post-text").value;

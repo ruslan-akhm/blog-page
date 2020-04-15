@@ -30,6 +30,7 @@ h1, p{
   position:fixed;
   background-color:var(--bg-primary);
   transition: 0.2s ease;
+  z-index:999;
 }
 
 .navbar-nav{
