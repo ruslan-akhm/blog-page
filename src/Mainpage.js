@@ -109,7 +109,11 @@ class Mainpage extends React.Component {
       let resp = await response.json();
       //let success = await prevState.concat(resp);  // --  if use STATE
       console.log("resp is = "+resp, typeof resp);
-      const short = 
+      
+      if(resp.text.length>300){
+        const short = resp.text.slice(0,200)+('...');
+        console.log(short, short.length, resp.text)
+      }
       //WITHOUT STATE 
       document.getElementById('list').innerHTML +='<li><div className="list-item-parent"><h4>'+resp.title+'</h4><p>'+resp.text+'</p></div></li>'
       
