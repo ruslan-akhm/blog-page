@@ -169,11 +169,15 @@ class Mainpage extends React.Component {
 
     return (
       <div id="personal-page">
+        
+       
         <div id="header">
           <form enctype="multipart/form-data" id="send-pic">
             <input name="upfile" id="upfile" type="file" className="custom-input" accept="image/*"/>
           </form>
         </div>
+        
+        
         <div id="info">
           <div id="avatar">
             <img id="avatar-img" src='' />
