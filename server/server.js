@@ -52,29 +52,22 @@ const storage = new GridFsStorage({
 })
 const upload = multer({storage})
 
-//Send posts from database  //TRY TO ARRAY() ???
+//Send posts from database  
 app.get('/api',(req,res)=>{
   Post.find({type:"post"}).exec((err,data)=>{
     if(err) return console.log(err);
-    //console.log(data)
     else{
       gfs.files.find({'metadata.type':'avatarfile'}).sort({_id: -1}).limit(1).toArray((err,ava)=>{
         if(err) return console.log(err);
         else{
-          //const readstream = gfs.createReadStream(ava.filename);
            gfs.files.find({'metadata.type':'upfile'}).sort({_id: -1}).limit(1).toArray((err,hdr)=>{
              if(err) return console.log(err);
              else{
-          //     const readstream1 = gfs.createReadStream(hdr.filename);
-              console.log({data:data,
-                           src:"https://appnew-test-sample.glitch.me/api/image/"+ava[0].filename,
-                           image:"https://appnew-test-sample.glitch.me/api/image/"+hdr[0].filename});
               return res.json({data:data,
                                src:"https://appnew-test-sample.glitch.me/api/image/"+ava[0].filename,
                                image:"https://appnew-test-sample.glitch.me/api/image/"+hdr[0].filename})
             }
           })
-          
         }
       })
     }
@@ -85,14 +78,14 @@ app.get('/api',(req,res)=>{
 app.post('/api/upload', upload.single('upfile'), (req,res)=>{
    const fileObject = req.file;
    console.log(fileObject);
-   const readstream = gfs.createReadStream(fileObject.filename);
+   //const readstream = gfs.createReadStream(fileObject.filename);
    return res.json({"image":"https://appnew-test-sample.glitch.me/api/image/"+fileObject.filename})
 })
 //Avatar
 app.post('/api/avatar', upload.single('avatarfile'), (req,res)=>{
    const fileObject = req.file;
    console.log(fileObject);
-   const readstream = gfs.createReadStream(fileObject.filename);
+   //const readstream = gfs.createReadStream(fileObject.filename);
    return res.json({"src":"https://appnew-test-sample.glitch.me/api/image/"+fileObject.filename})
 })
 

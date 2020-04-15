@@ -40,8 +40,7 @@ class Mainpage extends React.Component {
         document.getElementById("header").style.background = "url(" + resp.image + ")";
         document.getElementById("avatar-img").setAttribute("src",resp.src);
         resp.data.map(post=>{return document.getElementById('list').innerHTML+='<li><div className="list-item-parent"><h4>'+post.title+'</h4><p>'+post.text+'</p></div></li>'})
-
-            //resp.data.map(post=>{that.setState({posts:prevState.concat({title:post.title, text:post.text})})})
+        //resp.data.map(post=>{that.setState({posts:prevState.concat({title:post.title, text:post.text})})})
       } catch (err) {
         console.log(err);
       }
