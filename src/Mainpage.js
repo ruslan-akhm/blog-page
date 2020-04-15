@@ -111,12 +111,12 @@ class Mainpage extends React.Component {
       console.log("resp is = "+resp, typeof resp);
       
       if(resp.text.length>300){
-        document.getElementsByClassName('expand')
+        document.getElementsByClassName('expand').style.display="block";
         //const short = resp.text.slice(0,200)+('...');
-        //console.log(short, short.length, resp.text)
+        console.log("here")
       }
       //WITHOUT STATE 
-      document.getElementById('list').innerHTML +='<li><div className="list-item-parent"><h4>'+resp.title+'</h4><p>'+resp.text+'</p><button className="expand">Expand</button></div></li>'
+      document.getElementById('list').innerHTML +='<li><div className="list-item-parent"><h4>'+resp.title+'</h4><p>'+resp.text+'</p></div></li>'
       
       //WITH STATE
       //that.setState({posts: success});
