@@ -1,6 +1,7 @@
 body,html{
   padding:0;
   margin:0;
+  background-color:red;
 }
 #page-main{
   margin-left:5rem;
@@ -11,4 +12,11 @@ body,html{
   display:flex;
   justify-content:center;
   align-items:center;
+}
+@media only screen and (max-width:600px){
+  #page-main{
+    margin-left:0rem;
+    width:100%;
+    padding-bottom:5rem;
+  }
 }
