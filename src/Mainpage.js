@@ -37,7 +37,10 @@ class Mainpage extends React.Component {
         document.getElementById("header").style.background = "url(" + resp.image + ")";
         document.getElementById("avatar-img").setAttribute("src",resp.src);
         
-        resp.data.map(post=>{return document.getElementById('list').innerHTML+='<li><div className="list-item-parent"><h4>'+post.title+'</h4><p>'+{post.text.length>300 ? post.text.slice(0,200)+'<button id='+post.datePosted+'>expand</button>':post.text}+'</p></div></li>'})
+        resp.data.map(post=>{
+          const test = post.text.length>300 ? post.text.slice(0,200)+'<button id='+'"'+post.datePosted+'"'+'>expand</button>':post.text;
+          //set that.state to have button id (date.Posted)  --> map thru buttons'  ids and check if clicked (eventListener) - re-render with post.text 
+          return document.getElementById('list').innerHTML+='<li><div className="list-item-parent"><h4>'+post.title+'</h4><p>'+test+'</p></div></li>'})
         //resp.data.map(post=>{that.setState({posts:prevState.concat({title:post.title, text:post.text})})})
       } catch (err) {
         console.log(err);
@@ -111,11 +114,11 @@ class Mainpage extends React.Component {
       //let success = await prevState.concat(resp);  // --  if use STATE
       console.log("resp is = "+resp, typeof resp);
       
-      if(resp.text.length>300){
-        document.getElementsByClassName('expand').style.display="block";
+      //if(resp.text.length>300){
+        //document.getElementsByClassName('expand').style.display="block";
         //const short = resp.text.slice(0,200)+('...');
-        console.log("here")
-      }
+        //console.log("here")
+      //}
       //WITHOUT STATE 
       document.getElementById('list').innerHTML +='<li><div className="list-item-parent"><h4>'+resp.title+'</h4><p>'+resp.text+'</p></div></li>'
       
