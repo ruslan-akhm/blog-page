@@ -153,7 +153,7 @@ class Mainpage extends React.Component {
         <div id="modal-content">
           <form id="new-post" className="add-post-form">
             <label>Title</label>
-            <input type="text" id="post-title" />
+            <input type="text" id="post-title" maxlength="35"/>
             <label>Post</label>
             <textarea rows="18" id="post-text"></textarea>
             <input type="submit" id="submit" value="Post" />
