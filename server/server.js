@@ -58,21 +58,21 @@ app.get('/api',(req,res)=>{
     if(err) return console.log(err);
     //console.log(data)
     else{
-      gfs.files.find({metadata:'avatarfile'}).sort({metadata.date:'desc'}).limit(1).toArray((err,ava)=>{
+      gfs.files.find({'metadata.type':'avatarfile'}).sort({_id: -1}).limit(1).toArray((err,ava)=>{
         if(err) return console.log(err);
         else{
           console.log("AVA HERE")
           console.log(ava)
-          const readstream = gfs.createReadStream(ava.filename);
+          //const readstream = gfs.createReadStream(ava.filename);
           // gfs.files.find({metadata:'upfile'}).sort({uploadDate:'des'}).limit(1).exec((err,hdr)=>{
           //   if(err) return console.log(err);
           //   else{
           //     const readstream1 = gfs.createReadStream(hdr.filename);
               console.log({data:data,
-                           src:"https://appnew-test-sample.glitch.me/api/image/"+ava.filename,
+                           src:"https://appnew-test-sample.glitch.me/api/image/"+ava[0].filename,
                                /*image:"https://appnew-test-sample.glitch.me/api/image/"+hdr.filename*/});
               return res.json({data:data,
-                               src:"https://appnew-test-sample.glitch.me/api/image/"+ava.filename,
+                               src:"https://appnew-test-sample.glitch.me/api/image/"+ava[0].filename,
                                /*image:"https://appnew-test-sample.glitch.me/api/image/"+hdr.filename*/})
             //}
           //})
