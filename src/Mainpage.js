@@ -176,7 +176,7 @@ class Mainpage extends React.Component {
         </div>
         <div id="info">
           <div id="avatar">
-            <img id="avatar-img" src={this.state.avatar} />
+            <img id="avatar-img" src='' />
             <input name="avatarfile" id="avatarfile" type="file" className="custom-input" accept="image/*"/>
           </div>
           <div id="bio"></div>
