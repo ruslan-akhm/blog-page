@@ -195,7 +195,11 @@ class Mainpage extends React.Component {
             <img id="avatar-img" src='' />
             <input name="avatarfile" id="avatarfile" type="file" className="custom-input" accept="image/*"/>
           </div>
-          <div id="bio"></div>
+          <div id="bio">
+            <ul>
+            </ul>
+            <p>I like creating things.  </p>
+          </div>
         </div>
         <div className="posts">
           <ul id="list"></ul>  {/*post*/}
