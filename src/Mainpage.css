@@ -20,14 +20,14 @@ body{
 #info{
   margin-top:10px;
   width:100%;
-  height:110px;
+  min-height:110px;
   display:grid;
   grid-template-columns:120px minmax(260px, 1fr);
 }
 #avatar{
   align-self:center;
   width:auto;
-  height:100%;
+  height:110px;
   border-radius:60px;
 }
 #avatar img{
@@ -47,7 +47,23 @@ body{
 #bio{
 /*   height:100%; */
   min-height:110px;
-  background-color:green;
+/*   background-color:green; */
+}
+#bio-list li{
+  list-style-type:none;
+  margin: 0 15% 0 0;
+  padding: 0;
+  display:inline-block;
+/*   margin-right:15%; */
+  font-family: 'Noto Sans', sans-serif;
+  font-size:16px;
+  font-weight:bold;
+  background-color:red;
+}
+#bio p{
+  font-family: 'Noto Sans', sans-serif;
+  font-size:16px;
+  text-align:center;
 }
 .post{
   list-style-type:none;
