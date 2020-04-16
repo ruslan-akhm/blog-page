@@ -143,19 +143,22 @@ class Mainpage extends React.Component {
   
   expandText=(e)=>{
     const buttonId = e.target.id
+    console.log(document.getElementsByName(buttonId)[0].innerHTML)//="Hellow";
+    // console.log(list)
+    // list.innerHTML = "hello";
     // let listItem = '';
     // let listText = '';
     //console.log("clicked", e.target.id)
-    this.state.posts.map((post)=>{
-      if(buttonId==post.id){
-        console.log(post.text);
-        document.getElementsByName(post.id)//.innerHTML = post.text;
-       // listText = "changed"//post.text
-        //console.log(listItem, listText)
-        return
-      } 
-      else return
-    })
+//     this.state.posts.map((post)=>{
+//       if(buttonId==post.id){
+//         console.log(post.text);
+        
+//        // listText = "changed"//post.text
+//         //console.log(listItem, listText)
+//         return
+//       } 
+//       else return
+//     })
     //listItem.innerHTML=listText;
     //console.log(listItem)
     // document.getElementsByName(name).innerHTML=text;
