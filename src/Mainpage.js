@@ -24,6 +24,7 @@ class Mainpage extends React.Component {
     document.getElementById("new-post").addEventListener("submit", (e)=>{this.addPost(e)});
     document.getElementById("add-post").addEventListener("click", this.newPost);
     document.getElementById("modal-parent").addEventListener("click", this.closeModal);
+    document.getElementById("posts").addEventListener("click",e=>this.expandText(e))
     // document.getElementsByName("expand-btn").addEventListener("click", (e)=>this.expandText(e))
     //document.getElementById(this.state.posts.map(post=>{post.id})).addEventListener("click",this.expandText())
     // this.state.posts.map((post)=>{
@@ -45,7 +46,7 @@ class Mainpage extends React.Component {
         document.getElementById("header").style.background = "url(" + resp.image + ")";
         document.getElementById("avatar-img").setAttribute("src",resp.src);
         resp.data.map(post=>{
-          const isShort = post.text.length>600 ? post.text.slice(0,500)+'<button onClick='+(e)=>{this.expandText(e)}+' name="expand-btn" id='+'"'+post.datePosted+'"'+'>expand</button>':post.text;
+          const isShort = post.text.length>600 ? post.text.slice(0,500)+'<button id='+'"'+post.datePosted+'"'+'>expand</button>':post.text;
           let prevState = that.state.posts;
           that.setState({posts:prevState.concat({title:post.title, text:post.text, id:post.datePosted})});
           //console.log(that.state.posts)
@@ -122,7 +123,7 @@ class Mainpage extends React.Component {
       });
       let resp = await response.json();
       console.log("resp is = "+resp, typeof resp);
-      const isShort = resp.text.length>600 ? resp.text.slice(0,500)+'<button name="expand-btn" id='+'"'+resp.datePosted+'"'+'>expand</button>':resp.text;
+      const isShort = resp.text.length>600 ? resp.text.slice(0,500)+'<button id='+'"'+resp.datePosted+'"'+'>expand</button>':resp.text;
       //rendering list elements with new post
       document.getElementById('list').innerHTML +='<li name='+'"'+resp.datePosted+'"'+'><div className="list-item-parent"><h4>'+resp.title+'</h4><p>'+isShort+'</p></div></li>'
       //updating state for it to have added post info
@@ -141,7 +142,9 @@ class Mainpage extends React.Component {
   }
   
   expandText=(e)=>{
-    console.log("clicked", e.target)
+    const buttonId = e.target.id
+    //console.log("clicked", e.target.id)
+    this.state.posts.map((post)=>{buttonId===post.id?document.getElementsByName(post.id).innerHTML=post.text:return})
     // document.getElementsByName(name).innerHTML=text;
     // document.getElementById(name).style.display="none";
   }
@@ -206,7 +209,7 @@ class Mainpage extends React.Component {
             <p>I like creating things. Every app I do is more complex than previous one. I enjoy learning and applying technologies and seeing result of my work.</p>
           </div>
         </div>
-        <div className="posts">
+        <div className="posts" id="posts">
           <ul id="list"></ul>  {/*post*/}
           <button id="add-post" className="add">
             + Add
