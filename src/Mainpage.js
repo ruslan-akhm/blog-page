@@ -26,8 +26,8 @@ class Mainpage extends React.Component {
   }
 
   getData(e){
-    //let prevState = this.state.posts; //our initial posts array  --  if use STATE
-    //let that = this;   //workaround for "this" keyword to access state inside fetch  --  if use STATE
+    let prevState = this.state.posts; //our initial posts array  --  if use STATE
+    let that = this;   //workaround for "this" keyword to access state inside fetch  --  if use STATE
     e.preventDefault();
     async function dat(){
       try {
@@ -38,10 +38,11 @@ class Mainpage extends React.Component {
         document.getElementById("avatar-img").setAttribute("src",resp.src);
         
         resp.data.map(post=>{
-          const test = post.text.length>300 ? post.text.slice(0,200)+'<button id='+'"'+post.datePosted+'"'+'>expand</button>':post.text;
+          const isShort = post.text.length>600 ? post.text.slice(0,500)+'<button id='+'"'+post.datePosted+'"'+'>expand</button>':post.text;
+          that.setState({posts:prevState.concat({title:post.title, text:post.text, id:post.datePosted})})
           //set that.state to have button id (date.Posted)  --> map thru buttons'  ids and check if clicked (eventListener) - re-render with post.text 
-          return document.getElementById('list').innerHTML+='<li><div className="list-item-parent"><h4>'+post.title+'</h4><p>'+test+'</p></div></li>'})
-        //resp.data.map(post=>{that.setState({posts:prevState.concat({title:post.title, text:post.text})})})
+          return document.getElementById('list').innerHTML+='<li><div className="list-item-parent"><h4>'+post.title+'</h4><p>'+isShort+'</p></div></li>'})
+          
       } catch (err) {
         console.log(err);
       }
@@ -96,8 +97,8 @@ class Mainpage extends React.Component {
   }
   
   addPost=(e)=>{
-    //let prevState = this.state.posts; //our initial posts array  --  if use STATE
-    //let that = this;   //workaround for "this" keyword to access state inside fetch  --  if use STATE
+    let prevState = this.state.posts; //our initial posts array  --  if use STATE
+    let that = this;   //workaround for "this" keyword to access state inside fetch  --  if use STATE
     e.preventDefault();
     async function add() {
       let title = document.getElementById("post-title").value;
@@ -113,17 +114,13 @@ class Mainpage extends React.Component {
       let resp = await response.json();
       //let success = await prevState.concat(resp);  // --  if use STATE
       console.log("resp is = "+resp, typeof resp);
-      
-      //if(resp.text.length>300){
-        //document.getElementsByClassName('expand').style.display="block";
-        //const short = resp.text.slice(0,200)+('...');
-        //console.log("here")
-      //}
-      //WITHOUT STATE 
-      document.getElementById('list').innerHTML +='<li><div className="list-item-parent"><h4>'+resp.title+'</h4><p>'+resp.text+'</p></div></li>'
+      const isShort = resp.text.length>600 ? resp.text.slice(0,500)+'<button id='+'"'+resp.datePosted+'"'+'>expand</button>':resp.text;
+      //rendering list elements
+      document.getElementById('list').innerHTML +='<li><div className="list-item-parent"><h4>'+resp.title+'</h4><p>'+isShort+'</p></div></li>'
       
       //WITH STATE
       //that.setState({posts: success});
+      that.setState({posts:prevState.concat({title:resp.title, text:resp.text, id:resp.datePosted})})
       
       document.getElementById("post-title").value='';
       document.getElementById("post-text").value='';
@@ -133,6 +130,7 @@ class Mainpage extends React.Component {
   }
 
   newPost() {
+    console.log(this.state.posts);
     document.getElementById("modal-parent").style.display = "block";
   }
   
