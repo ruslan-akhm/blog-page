@@ -24,11 +24,12 @@ class Mainpage extends React.Component {
     document.getElementById("new-post").addEventListener("submit", (e)=>{this.addPost(e)});
     document.getElementById("add-post").addEventListener("click", this.newPost);
     document.getElementById("modal-parent").addEventListener("click", this.closeModal);
+    // document.getElementsByName("expand-btn").addEventListener("click", (e)=>this.expandText(e))
     //document.getElementById(this.state.posts.map(post=>{post.id})).addEventListener("click",this.expandText())
-    this.state.posts.map((post)=>{
-      console.log(this.state.posts + "Here are them buttons"+document.getElementById(post.id).addEventListener('click',()=>console.log("clicked")))
-      //console.log("Here are them buttons"+document.getElementById(post.id))
-    })
+    // this.state.posts.map((post)=>{
+    //   console.log(this.state.posts + "Here are them buttons"+document.getElementById(post.id).addEventListener('click',()=>console.log("clicked")))
+    //   //console.log("Here are them buttons"+document.getElementById(post.id))
+    // })
     //return document.getElementById(post.id).addEventListener("click",(text,name)=>this.expandText(post.text, post.id))})
       
   }
@@ -44,7 +45,7 @@ class Mainpage extends React.Component {
         document.getElementById("header").style.background = "url(" + resp.image + ")";
         document.getElementById("avatar-img").setAttribute("src",resp.src);
         resp.data.map(post=>{
-          const isShort = post.text.length>600 ? post.text.slice(0,500)+'<button id='+'"'+post.datePosted+'"'+'>expand</button>':post.text;
+          const isShort = post.text.length>600 ? post.text.slice(0,500)+'<button onClick='+(e)=>{this.expandText(e)}+' name="expand-btn" id='+'"'+post.datePosted+'"'+'>expand</button>':post.text;
           let prevState = that.state.posts;
           that.setState({posts:prevState.concat({title:post.title, text:post.text, id:post.datePosted})});
           //console.log(that.state.posts)
@@ -121,7 +122,7 @@ class Mainpage extends React.Component {
       });
       let resp = await response.json();
       console.log("resp is = "+resp, typeof resp);
-      const isShort = resp.text.length>600 ? resp.text.slice(0,500)+'<button id='+'"'+resp.datePosted+'"'+'>expand</button>':resp.text;
+      const isShort = resp.text.length>600 ? resp.text.slice(0,500)+'<button name="expand-btn" id='+'"'+resp.datePosted+'"'+'>expand</button>':resp.text;
       //rendering list elements with new post
       document.getElementById('list').innerHTML +='<li name='+'"'+resp.datePosted+'"'+'><div className="list-item-parent"><h4>'+resp.title+'</h4><p>'+isShort+'</p></div></li>'
       //updating state for it to have added post info
@@ -139,10 +140,10 @@ class Mainpage extends React.Component {
     console.log(this.state.posts);
   }
   
-  expandText=(text,name)=>{
-    console.log("clicked", name)
-    document.getElementsByName(name).innerHTML=text;
-    document.getElementById(name).style.display="none";
+  expandText=(e)=>{
+    console.log("clicked", e.target)
+    // document.getElementsByName(name).innerHTML=text;
+    // document.getElementById(name).style.display="none";
   }
 
   closeModal(event) {
