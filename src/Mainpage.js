@@ -50,7 +50,7 @@ class Mainpage extends React.Component {
           let prevState = that.state.posts;
           that.setState({posts:prevState.concat({title:post.title, text:post.text, id:post.datePosted})});
           //console.log(that.state.posts)
-          return document.getElementById('list').innerHTML+='<li name='+'"'+post.datePosted+'"'+'><div className="list-item-parent"><h4>'+post.title+'</h4><p>'+isShort+'</p></div></li>'})
+          return document.getElementById('list').innerHTML+='<li><div className="list-item-parent"><h4>'+post.title+'</h4><p name='+'"'+post.datePosted+'"'+'>'+isShort+'</p></div></li>'})
       } catch (err) {
         console.log(err);
       }
@@ -125,7 +125,7 @@ class Mainpage extends React.Component {
       console.log("resp is = "+resp, typeof resp);
       const isShort = resp.text.length>600 ? resp.text.slice(0,500)+'<button id='+'"'+resp.datePosted+'"'+'>expand</button>':resp.text;
       //rendering list elements with new post
-      document.getElementById('list').innerHTML +='<li name='+'"'+resp.datePosted+'"'+'><div className="list-item-parent"><h4>'+resp.title+'</h4><p>'+isShort+'</p></div></li>'
+      document.getElementById('list').innerHTML +='<li><div className="list-item-parent"><h4>'+resp.title+'</h4><p name='+'"'+resp.datePosted+'"'+'>'+isShort+'</p></div></li>'
       //updating state for it to have added post info
       that.setState({posts:prevState.concat({title:resp.title, text:resp.text, id:resp.datePosted})})
       //leave input fileds blank
@@ -143,7 +143,9 @@ class Mainpage extends React.Component {
   
   expandText=(e)=>{
     const buttonId = e.target.id
-    console.log(document.getElementsByName(buttonId)[0].innerHTML)//="Hellow";
+    //console.log(e, e.target)
+    document.getElementById(buttonId).style.display="none";
+    document.getElementsByName(buttonId).innerText="HELLOW"//
     // console.log(list)
     // list.innerHTML = "hello";
     // let listItem = '';
