@@ -23,26 +23,24 @@ class Mainpage extends React.Component {
     document.getElementById("new-post").addEventListener("submit", (e)=>{this.addPost(e)});
     document.getElementById("add-post").addEventListener("click", this.newPost);
     document.getElementById("modal-parent").addEventListener("click", this.closeModal);
+    this.state.posts.map(post=>{document.getElementById(post.id)})
   }
 
   getData(e){
-    let prevState = this.state.posts; //our initial posts array  --  if use STATE
-    let that = this;   //workaround for "this" keyword to access state inside fetch  --  if use STATE
+    let that = this;   //workaround for "this" keyword to access state inside fetch
     e.preventDefault();
     async function dat(){
       try {
         let response = await fetch("/api");
-        let resp = await response.json();
-        //console.log(resp.data, typeof resp)
+        let resp = await response.json(); //our response; from here update avatar, header and posts
         document.getElementById("header").style.background = "url(" + resp.image + ")";
         document.getElementById("avatar-img").setAttribute("src",resp.src);
-        
         resp.data.map(post=>{
           const isShort = post.text.length>600 ? post.text.slice(0,500)+'<button id='+'"'+post.datePosted+'"'+'>expand</button>':post.text;
-          that.setState({posts:prevState.concat({title:post.title, text:post.text, id:post.datePosted})})
-          //set that.state to have button id (date.Posted)  --> map thru buttons'  ids and check if clicked (eventListener) - re-render with post.text 
+          let prevState = that.state.posts;
+          that.setState({posts:prevState.concat({title:post.title, text:post.text, id:post.datePosted})});
+          console.log(that.state.posts)
           return document.getElementById('list').innerHTML+='<li><div className="list-item-parent"><h4>'+post.title+'</h4><p>'+isShort+'</p></div></li>'})
-          
       } catch (err) {
         console.log(err);
       }
@@ -97,8 +95,8 @@ class Mainpage extends React.Component {
   }
   
   addPost=(e)=>{
-    let prevState = this.state.posts; //our initial posts array  --  if use STATE
-    let that = this;   //workaround for "this" keyword to access state inside fetch  --  if use STATE
+    let prevState = this.state.posts; //our initial posts array 
+    let that = this;   //workaround for "this" keyword to access state inside fetch 
     e.preventDefault();
     async function add() {
       let title = document.getElementById("post-title").value;
@@ -112,16 +110,13 @@ class Mainpage extends React.Component {
         body: JSON.stringify({ title: title, text: text })
       });
       let resp = await response.json();
-      //let success = await prevState.concat(resp);  // --  if use STATE
       console.log("resp is = "+resp, typeof resp);
       const isShort = resp.text.length>600 ? resp.text.slice(0,500)+'<button id='+'"'+resp.datePosted+'"'+'>expand</button>':resp.text;
-      //rendering list elements
+      //rendering list elements with new post
       document.getElementById('list').innerHTML +='<li><div className="list-item-parent"><h4>'+resp.title+'</h4><p>'+isShort+'</p></div></li>'
-      
-      //WITH STATE
-      //that.setState({posts: success});
+      //updating state for it to have added post info
       that.setState({posts:prevState.concat({title:resp.title, text:resp.text, id:resp.datePosted})})
-      
+      //leave input fileds blank
       document.getElementById("post-title").value='';
       document.getElementById("post-text").value='';
       document.getElementById("modal-parent").style.display="none"
