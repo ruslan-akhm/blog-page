@@ -23,12 +23,14 @@ body{
   min-height:110px;
   display:grid;
   grid-template-columns:120px minmax(260px, 1fr);
+/*   background-color:#23232e; */
 }
 #avatar{
   align-self:center;
   width:auto;
   height:110px;
   border-radius:60px;
+  
 }
 #avatar img{
   box-sizing:border-box;
@@ -47,23 +49,29 @@ body{
 #bio{
 /*   height:100%; */
   min-height:110px;
-/*   background-color:green; */
+   background-color:white; 
+}
+#bio-list{
+  
+  padding:10px;
+  text-align:start;
 }
 #bio-list li{
   list-style-type:none;
   margin: 0 15% 0 0;
-  padding: 0;
+  
   display:inline-block;
 /*   margin-right:15%; */
   font-family: 'Noto Sans', sans-serif;
-  font-size:16px;
+  font-size:18px;
   font-weight:bold;
-  background-color:red;
+  color:#23232e;
 }
 #bio p{
   font-family: 'Noto Sans', sans-serif;
   font-size:16px;
-  text-align:center;
+  text-align:start;
+  padding:10px;
 }
 .post{
   list-style-type:none;
@@ -208,6 +216,7 @@ body{
   height:50px;
   border-bottom-left-radius:50px;
   border-bottom-right-radius:50px;
+  outline:none;
 }
 #avatarfile::before{
   width:120px;
