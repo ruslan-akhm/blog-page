@@ -24,8 +24,13 @@ class Mainpage extends React.Component {
     document.getElementById("new-post").addEventListener("submit", (e)=>{this.addPost(e)});
     document.getElementById("add-post").addEventListener("click", this.newPost);
     document.getElementById("modal-parent").addEventListener("click", this.closeModal);
-    this.state.posts.map(post=>{document.getElementById(post.id).addEventListener("click",(text,name)=>this.expandText(post.text, post.id))})
+    //document.getElementById(this.state.posts.map(post=>{post.id})).addEventListener("click",this.expandText())
+    this.state.posts.map(post=>{
+      console.log(this.state.posts)})
+    //return document.getElementById(post.id).addEventListener("click",(text,name)=>this.expandText(post.text, post.id))})
+      
   }
+                        
 
   getData(e){
     let that = this;   //workaround for "this" keyword to access state inside fetch
