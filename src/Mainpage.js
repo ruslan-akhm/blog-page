@@ -18,7 +18,7 @@ class Mainpage extends React.Component {
   }
 
   componentDidMount() {
-    window.addEventListener('load',e=>{this.getData(e)});
+    window.addEventListener('load', e=>{this.getData(e)});
     document.getElementById("upfile").addEventListener("change", e=>{this.updateHeader(e)});
     document.getElementById("avatarfile").addEventListener("change", e=>{this.updateAvatar(e)}); 
     document.getElementById("new-post").addEventListener("submit", (e)=>{this.addPost(e)});
@@ -26,7 +26,7 @@ class Mainpage extends React.Component {
     document.getElementById("modal-parent").addEventListener("click", this.closeModal);
     //document.getElementById(this.state.posts.map(post=>{post.id})).addEventListener("click",this.expandText())
     this.state.posts.map((post)=>{
-      console.log(this.state.posts + "Here are them buttons"+document.getElementById(post.id))
+      console.log(this.state.posts + "Here are them buttons"+document.getElementById(post.id).addEventListener('click',()=>console.log("clicked")))
       //console.log("Here are them buttons"+document.getElementById(post.id))
     })
     //return document.getElementById(post.id).addEventListener("click",(text,name)=>this.expandText(post.text, post.id))})
@@ -136,6 +136,7 @@ class Mainpage extends React.Component {
 
   newPost() {
     document.getElementById("modal-parent").style.display = "block";
+    console.log(this.state.posts);
   }
   
   expandText=(text,name)=>{
