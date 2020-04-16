@@ -25,8 +25,10 @@ class Mainpage extends React.Component {
     document.getElementById("add-post").addEventListener("click", this.newPost);
     document.getElementById("modal-parent").addEventListener("click", this.closeModal);
     //document.getElementById(this.state.posts.map(post=>{post.id})).addEventListener("click",this.expandText())
-    this.state.posts.map(post=>{
-      console.log(this.state.posts)})
+    this.state.posts.map((post)=>{
+      console.log(this.state.posts + "Here are them buttons"+document.getElementById(post.id))
+      //console.log("Here are them buttons"+document.getElementById(post.id))
+    })
     //return document.getElementById(post.id).addEventListener("click",(text,name)=>this.expandText(post.text, post.id))})
       
   }
@@ -45,13 +47,15 @@ class Mainpage extends React.Component {
           const isShort = post.text.length>600 ? post.text.slice(0,500)+'<button id='+'"'+post.datePosted+'"'+'>expand</button>':post.text;
           let prevState = that.state.posts;
           that.setState({posts:prevState.concat({title:post.title, text:post.text, id:post.datePosted})});
-          console.log(that.state.posts)
+          //console.log(that.state.posts)
           return document.getElementById('list').innerHTML+='<li name='+'"'+post.datePosted+'"'+'><div className="list-item-parent"><h4>'+post.title+'</h4><p>'+isShort+'</p></div></li>'})
       } catch (err) {
         console.log(err);
       }
     }
+    console.log("state "+this.state.posts)
     dat();
+    console.log("state "+this.state.posts)
   }
   
   updateHeader(e) {
@@ -131,7 +135,6 @@ class Mainpage extends React.Component {
   }
 
   newPost() {
-    console.log(this.state.posts);
     document.getElementById("modal-parent").style.display = "block";
   }
   
