@@ -14,6 +14,7 @@ class Mainpage extends React.Component {
     this.addPost = this.addPost.bind(this);
     this.updateAvatar=this.updateAvatar.bind(this);
     this.getData=this.getData.bind(this);
+    this.expandText=this.expandText.bind(this);
   }
 
   componentDidMount() {
@@ -23,7 +24,7 @@ class Mainpage extends React.Component {
     document.getElementById("new-post").addEventListener("submit", (e)=>{this.addPost(e)});
     document.getElementById("add-post").addEventListener("click", this.newPost);
     document.getElementById("modal-parent").addEventListener("click", this.closeModal);
-    this.state.posts.map(post=>{document.getElementById(post.id)})
+    this.state.posts.map(post=>{document.getElementById(post.id).addEventListener("click",(text,name)=>this.expandText(post.text, post.id))})
   }
 
   getData(e){
@@ -40,7 +41,7 @@ class Mainpage extends React.Component {
           let prevState = that.state.posts;
           that.setState({posts:prevState.concat({title:post.title, text:post.text, id:post.datePosted})});
           console.log(that.state.posts)
-          return document.getElementById('list').innerHTML+='<li><div className="list-item-parent"><h4>'+post.title+'</h4><p>'+isShort+'</p></div></li>'})
+          return document.getElementById('list').innerHTML+='<li name='+'"'+post.datePosted+'"'+'><div className="list-item-parent"><h4>'+post.title+'</h4><p>'+isShort+'</p></div></li>'})
       } catch (err) {
         console.log(err);
       }
@@ -113,7 +114,7 @@ class Mainpage extends React.Component {
       console.log("resp is = "+resp, typeof resp);
       const isShort = resp.text.length>600 ? resp.text.slice(0,500)+'<button id='+'"'+resp.datePosted+'"'+'>expand</button>':resp.text;
       //rendering list elements with new post
-      document.getElementById('list').innerHTML +='<li><div className="list-item-parent"><h4>'+resp.title+'</h4><p>'+isShort+'</p></div></li>'
+      document.getElementById('list').innerHTML +='<li name='+'"'+resp.datePosted+'"'+'><div className="list-item-parent"><h4>'+resp.title+'</h4><p>'+isShort+'</p></div></li>'
       //updating state for it to have added post info
       that.setState({posts:prevState.concat({title:resp.title, text:resp.text, id:resp.datePosted})})
       //leave input fileds blank
@@ -129,6 +130,11 @@ class Mainpage extends React.Component {
     document.getElementById("modal-parent").style.display = "block";
   }
   
+  expandText=(text,name)=>{
+    console.log("clicked", name)
+    document.getElementsByName(name).innerHTML=text;
+    document.getElementById(name).style.display="none";
+  }
 
   closeModal(event) {
     const click = event.target;
