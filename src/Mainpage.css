@@ -183,8 +183,10 @@ body{
   z-index:2;
   margin:-50px auto;
   float:none;
-  width:120px;
+  width:110px;
   height:40px;
+  border-bottom-left-radius:40px;
+  border-bottom-right-radius:40px;
 }
 #avatarfile::before{
   width:120px;
