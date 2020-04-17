@@ -39,11 +39,11 @@ class Mainpage extends React.Component {
         document.getElementById("header").style.background = "url(" + resp.image + ") no-repeat";
         document.getElementById("avatar-img").setAttribute("src",resp.src);
         resp.data.map(post=>{
-          const isShort = post.text.length>600 ? post.text.slice(0,510)+'<button id='+'"'+post.datePosted+'"'+'>...Expand text</button>':post.text;
+          const isShort = post.text.length>600 ? post.text.slice(0,510)+'<button className="expand-button" id='+'"'+post.datePosted+'"'+'>...Expand text</button>':post.text;
           let prevState = that.state.posts;
           that.setState({posts:prevState.concat({title:post.title, text:post.text, id:post.datePosted})});
           //console.log(that.state.posts)
-          return document.getElementById('list').innerHTML+='<li><div className="list-item-parent"><h4>'+post.title+'</h4><p name='+'"'+post.datePosted+'"'+'>'+isShort+'</p></div></li>'})
+          return document.getElementById('list').innerHTML+='<li><div className="list-item-parent"><h4>'+post.title+'</h4><p name='+'"'+post.datePosted+'"'+'>'+isShort+'</p></div><button>&times;</button></li>'})
       } catch (err) {
         console.log(err);
       }
