@@ -119,7 +119,7 @@ class Mainpage extends React.Component {
       //updating state for it to have added post info
       that.setState({posts:prevState.concat({title:resp.title, text:resp.text, id:resp.datePosted})});
       //rendering list elements with new post
-      document.getElementById('list').innerHTML +='<li><div className="list-item-parent"><h4>'+resp.title+'</h4><p name='+resp.datePosted+'>'+resp.text+'</p></div><button>BUTTOONNN</button></li>'
+      document.getElementById('list').innerHTML +='<li><div className="list-item-parent"><h4>'+resp.title+'</h4><p name='+resp.datePosted+'>'+resp.text+'</p></div><button>&times;</button></li>'
       //leave input fileds blank
       document.getElementById("post-title").value='';
       document.getElementById("post-text").value='';
@@ -172,7 +172,7 @@ class Mainpage extends React.Component {
         <div id="modal-content">
           <form id="new-post" className="add-post-form">
             <label>Title</label>
-            <input type="text" id="post-title" maxlength="35"/>
+            <input type="text" id="post-title" maxlength="35" required/>
             <label>Post</label>
             <textarea rows="18" id="post-text"></textarea>
             <input type="submit" id="submit" value="Post" />
