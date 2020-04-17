@@ -39,7 +39,7 @@ class Mainpage extends React.Component {
         document.getElementById("header").style.background = "url(" + resp.image + ") no-repeat";
         document.getElementById("avatar-img").setAttribute("src",resp.src);
         resp.data.map(post=>{
-          const isShort = post.text.length>600 ? post.text.slice(0,510)+'<button className="expand-button" id='+'"'+post.datePosted+'"'+'>...Expand text</button>':post.text;
+          const isShort = post.text.length>600 ? post.text.slice(0,510)+'<a className="expand-button" id='+'"'+post.datePosted+'"'+'>...Expand text</a>':post.text;
           let prevState = that.state.posts;
           that.setState({posts:prevState.concat({title:post.title, text:post.text, id:post.datePosted})});
           //console.log(that.state.posts)
@@ -114,11 +114,12 @@ class Mainpage extends React.Component {
       });
       let resp = await response.json();
       console.log("resp is = "+resp, typeof resp);
-      const isShort = resp.text.length>600 ? resp.text.slice(0,510)+'<button id='+'"'+resp.datePosted+'"'+'>...Expand text</button>':resp.text;
-      //rendering list elements with new post
-      document.getElementById('list').innerHTML +='<li><div className="list-item-parent"><h4>'+resp.title+'</h4><p name='+'"'+resp.datePosted+'"'+'>'+isShort+'</p></div></li>'
       //updating state for it to have added post info
-      that.setState({posts:prevState.concat({title:resp.title, text:resp.text, id:resp.datePosted})})
+      that.setState({posts:prevState.concat({title:resp.title, text:resp.text, id:resp.datePosted})});
+      //rendering list elements with new post
+      document.getElementById('list').innerHTML +='<li><div className="list-item-parent"><h4>'+resp.title+'</h4><p name='+'"'+resp.datePosted+'"'+'>'+resp.text+'</p></div><button>&times;</button></li>'
+      
+      
       //leave input fileds blank
       document.getElementById("post-title").value='';
       document.getElementById("post-text").value='';
