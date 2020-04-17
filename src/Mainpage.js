@@ -55,6 +55,7 @@ class Mainpage extends React.Component {
   updateHeader(e) {
     e.preventDefault();
     async function upd() {
+      
       let fd = new FormData();
       let headerImage = document.getElementById("upfile").files[0];
       fd.append("upfile", headerImage);
