@@ -38,13 +38,12 @@ class Mainpage extends React.Component {
         let resp = await response.json(); //our response; from here update avatar, header and posts
         document.getElementById("header").style.background = "url(" + resp.image + ") no-repeat";
         document.getElementById("avatar-img").setAttribute("src",resp.src);
-        console.log(resp);
         resp.data.map(post=>{
           const isShort = post.text.length>600 ? post.text.slice(0,510)+'<a id='+post.datePosted+'>...Expand text</a>':post.text;
           let prevState = that.state.posts;
-          that.setState({posts:prevState.concat({title:post.title, text:post.text, id:post.datePosted})});
+          that.setState({posts:prevState.concat({title:post.title, text:post.text, id:post.datePosted, closeId:resp.postId})});
           //console.log(that.state.posts)
-          return document.getElementById('list').innerHTML+='<li><div className="list-item-parent"><h4>'+post.title+'</h4><button>&times;</button><p name='+post.datePosted+'>'+isShort+'</p></div></li>'})
+          return document.getElementById('list').innerHTML+='<li><div className="list-item-parent"><h4>'+post.title+'</h4><button id='resp.postId'>&times;</button><p name='+post.datePosted+'>'+isShort+'</p></div></li>'})
       } catch (err) {
         console.log(err);
       }
@@ -117,9 +116,9 @@ class Mainpage extends React.Component {
       console.log("resp is = "+resp, typeof resp);
       console.log(resp);
       //updating state for it to have added post info
-      that.setState({posts:prevState.concat({title:resp.title, text:resp.text, id:resp.datePosted})});
+      that.setState({posts:prevState.concat({title:resp.title, text:resp.text, id:resp.datePosted, closeId:resp.postId})});
       //rendering list elements with new post
-      document.getElementById('list').innerHTML +='<li><div className="list-item-parent"><h4>'+resp.title+'</h4><p name='+resp.datePosted+'>'+resp.text+'</p></div><button>&times;</button></li>'
+      document.getElementById('list').innerHTML +='<li><div className="list-item-parent"><h4>'+resp.title+'</h4><button>&times;</button><p name='+resp.datePosted+'>'+resp.text+'</p></div></li>'
       //leave input fileds blank
       document.getElementById("post-title").value='';
       document.getElementById("post-text").value='';
