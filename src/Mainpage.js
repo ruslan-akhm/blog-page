@@ -25,14 +25,6 @@ class Mainpage extends React.Component {
     document.getElementById("add-post").addEventListener("click", this.newPost);
     document.getElementById("modal-parent").addEventListener("click", this.closeModal);
     document.getElementById("posts").addEventListener("click",e=>this.expandText(e))
-    // document.getElementsByName("expand-btn").addEventListener("click", (e)=>this.expandText(e))
-    //document.getElementById(this.state.posts.map(post=>{post.id})).addEventListener("click",this.expandText())
-    // this.state.posts.map((post)=>{
-    //   console.log(this.state.posts + "Here are them buttons"+document.getElementById(post.id).addEventListener('click',()=>console.log("clicked")))
-    //   //console.log("Here are them buttons"+document.getElementById(post.id))
-    // })
-    //return document.getElementById(post.id).addEventListener("click",(text,name)=>this.expandText(post.text, post.id))})
-      
   }
                         
 
@@ -142,29 +134,15 @@ class Mainpage extends React.Component {
   }
   
   expandText=(e)=>{
-    const buttonId = e.target.id
-    //console.log(e, e.target)
-    document.getElementById(buttonId).style.display="none";
-    document.getElementsByName(buttonId).innerText="HELLOW"//
-    // console.log(list)
-    // list.innerHTML = "hello";
-    // let listItem = '';
-    // let listText = '';
-    //console.log("clicked", e.target.id)
-//     this.state.posts.map((post)=>{
-//       if(buttonId==post.id){
-//         console.log(post.text);
-        
-//        // listText = "changed"//post.text
-//         //console.log(listItem, listText)
-//         return
-//       } 
-//       else return
-//     })
-    //listItem.innerHTML=listText;
-    //console.log(listItem)
-    // document.getElementsByName(name).innerHTML=text;
-    // document.getElementById(name).style.display="none";
+    //We check if button was pressed inside #posts div; We are not using 'click' listener on buttons
+    //because they are not rendered yet at the time of check
+    this.state.posts.map((post)=>{
+      if(e.target.id==post.id){
+        document.getElementById(e.target.id).style.display="none";
+        return document.getElementsByName(e.target.id)[0].innerText=post.text
+      } 
+      else return
+    })
   }
 
   closeModal(event) {
@@ -230,7 +208,7 @@ class Mainpage extends React.Component {
         <div className="posts" id="posts">
           <ul id="list"></ul>  {/*post*/}
           <button id="add-post" className="add">
-            + Add
+            + Add Post
           </button>
         </div>
         {modal}
