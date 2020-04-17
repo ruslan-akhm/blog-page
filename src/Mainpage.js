@@ -155,7 +155,7 @@ class Mainpage extends React.Component {
           });
           //NEEDS TO BE DONE WITHOUT REFRESHING
           let resp = await response.json();
-          //JUST UNSHIFT LI form UL WITH CORRESPONDING ID 
+          //JUST UNSHIFT LI form UL WITH CORRESPONDING ID THROUGH SETSTATE (but li never had an id)(i can give it id:_id)
           
           // console.log(resp, resp.posts)
           // that.setState({posts:[]})
