@@ -110,32 +110,34 @@ body{
   color:white;
   font-size:18px;
 }
-#list li p{
-  padding-top:-20px;
-}
 #list li h4, #list li p{
   font-family: 'Noto Sans', sans-serif;
   padding:5px;
-  margin:0
+  margin:0;
+}
+#list li p{
+  margin-top:-30px;
 }
 #list li button{
-  font-size:24px;
-  color:white;
+  font-size:26px;
+  color:rgba(255,255,255,0.4);
   position:relative;
   top:-35px;
   left:100%;
   margin-left:-25px;
-  
-  background-color:red;
+  background-color:transparent;
+  border:none;
   width:25px;
-  
+  cursor:pointer;
+  transition:0.1s;
+}
+#list li button:hover{
+  color:rgba(255,255,255,0.9);
 }
 #list li a{
   font-family: 'Noto Sans', sans-serif;
   font-size:16px;
   color:blue;
-  background-color:transparent;
-  border:none;
   font-weight:bold;
   cursor:pointer;
 }
