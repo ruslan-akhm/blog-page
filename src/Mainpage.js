@@ -116,6 +116,7 @@ class Mainpage extends React.Component {
       let resp = await response.json();
       //updating state for it to have added post info
       that.setState({posts:prevState.concat({title:resp.title, text:resp.text, id:resp.datePosted, closeId:resp.postId})});
+      console.log(resp.title)
       //rendering list elements with new post
       document.getElementById('list').innerHTML +='<li><div className="list-item-parent"><h4>'+resp.title+'</h4><button>&times;</button id='+resp.postId+'><p name='+resp.datePosted+'>'+resp.text+'</p></div></li>'
       //leave input fileds blank
@@ -133,14 +134,15 @@ class Mainpage extends React.Component {
   expandText=(e)=>{
     //We check if button was pressed inside #posts div; We are not using 'click' listener on buttons
     //because they are not rendered yet at the time of check
+    console.log(e.target.id)
     this.state.posts.map((post)=>{
       if(e.target.id==post.id){
         document.getElementById(e.target.id).style.display="none";
         return document.getElementsByName(e.target.id)[0].innerText=post.text
       } 
       else if(e.target.id==post.closeId){
-        console.log("clicked "+e.target.id)
-        console.log(post);
+        console.log("clicked ")
+        //console.log(post);
         async function deletePost(){
           let response = await fetch("/api/delete", {
             method: "DELETE",
@@ -150,7 +152,8 @@ class Mainpage extends React.Component {
             },
             body: JSON.stringify({id:post.closeId})
           });
-          
+          // let resp = await response.json();
+          // console.log(resp)
         }
         deletePost();
       }
