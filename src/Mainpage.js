@@ -36,10 +36,10 @@ class Mainpage extends React.Component {
       try {
         let response = await fetch("/api");
         let resp = await response.json(); //our response; from here update avatar, header and posts
-        document.getElementById("header").style.background = "url(" + resp.image + ")";
+        document.getElementById("header").style.background = "url(" + resp.image + ") no-repeat";
         document.getElementById("avatar-img").setAttribute("src",resp.src);
         resp.data.map(post=>{
-          const isShort = post.text.length>600 ? post.text.slice(0,500)+'<button id='+'"'+post.datePosted+'"'+'>expand</button>':post.text;
+          const isShort = post.text.length>600 ? post.text.slice(0,510)+'<button id='+'"'+post.datePosted+'"'+'>...Expand text</button>':post.text;
           let prevState = that.state.posts;
           that.setState({posts:prevState.concat({title:post.title, text:post.text, id:post.datePosted})});
           //console.log(that.state.posts)
@@ -114,7 +114,7 @@ class Mainpage extends React.Component {
       });
       let resp = await response.json();
       console.log("resp is = "+resp, typeof resp);
-      const isShort = resp.text.length>600 ? resp.text.slice(0,500)+'<button id='+'"'+resp.datePosted+'"'+'>Expand text</button>':resp.text;
+      const isShort = resp.text.length>600 ? resp.text.slice(0,510)+'<button id='+'"'+resp.datePosted+'"'+'>...Expand text</button>':resp.text;
       //rendering list elements with new post
       document.getElementById('list').innerHTML +='<li><div className="list-item-parent"><h4>'+resp.title+'</h4><p name='+'"'+resp.datePosted+'"'+'>'+isShort+'</p></div></li>'
       //updating state for it to have added post info
