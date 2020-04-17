@@ -100,7 +100,7 @@ app.post('/api/post',(req,res)=>{
     type:"post"
   })
   post.save();
-  res.json({title:data.title,text:data.text})
+  res.json(data);//({title:data.title,text:data.text})
 })
 
 //Find all files in collection
