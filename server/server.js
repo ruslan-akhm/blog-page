@@ -151,9 +151,10 @@ app.delete('/api/delete',(req,res)=>{
   Post.deleteOne({postId:postId},(err,data)=>{
     if(err) return console.log(err);
     console.log(data);
-    Post.find({type:"post"}).exec((err,data)=>{
+    Post.find({type:"post"}).exec((err,post)=>{
       if(err) return console.log(err);
-      return res.json({data:data})
+      console.log(post);
+      return res.json({posts:post})
     })
     // DONT USE - FIND WAY TO UPD W/OUT REFRESHING PAGE  res.sendFile(__dirname + "/public/index.html");
     //return res.send

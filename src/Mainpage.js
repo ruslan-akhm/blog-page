@@ -134,6 +134,7 @@ class Mainpage extends React.Component {
   expandText=(e)=>{
     //We check if button was pressed inside #posts div; We are not using 'click' listener on buttons
     //because they are not rendered yet at the time of check
+    const that = this;
     console.log(e.target)
     this.state.posts.map((post)=>{
       if(e.target.id==post.id){
@@ -153,8 +154,17 @@ class Mainpage extends React.Component {
             body: JSON.stringify({id:post.closeId})
           });
           //NEEDS TO BE DONE WITHOUT REFRESHING
-          // let resp = await response.json();
-          // console.log(resp)
+          let resp = await response.json();
+          //JUST UNSHIFT LI form UL WITH CORRESPONDING ID 
+          
+          // console.log(resp, resp.posts)
+          // that.setState({posts:[]})
+          // resp.posts.map(post=>{
+          // const isShort = post.text.length>600 ? post.text.slice(0,510)+'<a id='+post.datePosted+'>...Expand text</a>':post.text;
+          // let prevState = that.state.posts;
+          // that.setState({posts:prevState.concat({title:post.title, text:post.text, id:post.datePosted, closeId:post.postId})});
+          // //console.log(that.state.posts)
+          // return document.getElementById('list').innerHTML+='<li><div className="list-item-parent"><h4>'+post.title+'</h4><button id='+post.postId+'>&times;</button><p name='+post.datePosted+'>'+isShort+'</p></div></li>'})
         }
         deletePost();
       }
