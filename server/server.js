@@ -100,7 +100,9 @@ app.post('/api/post',(req,res)=>{
     type:"post"
   })
   post.save();
-  res.json(data);//({title:data.title,text:data.text})
+  const response = ({title:post.title, text:post.text, datePosted:post.datePosted, postId:post.postId})
+  //console.log(data)
+  res.json(response);//({title:data.title,text:data.text})
 })
 
 //Find all files in collection

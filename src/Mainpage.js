@@ -116,9 +116,9 @@ class Mainpage extends React.Component {
       let resp = await response.json();
       //updating state for it to have added post info
       that.setState({posts:prevState.concat({title:resp.title, text:resp.text, id:resp.datePosted, closeId:resp.postId})});
-      console.log(resp.title)
+      console.log(resp.postId)
       //rendering list elements with new post
-      document.getElementById('list').innerHTML +='<li><div className="list-item-parent"><h4>'+resp.title+'</h4><button>&times;</button id='+resp.postId+'><p name='+resp.datePosted+'>'+resp.text+'</p></div></li>'
+      document.getElementById('list').innerHTML +='<li><div className="list-item-parent"><h4>'+resp.title+'</h4><button id='+resp.postId+'>&times;</button><p name='+resp.datePosted+'>'+resp.text+'</p></div></li>'
       //leave input fileds blank
       document.getElementById("post-title").value='';
       document.getElementById("post-text").value='';
@@ -134,7 +134,7 @@ class Mainpage extends React.Component {
   expandText=(e)=>{
     //We check if button was pressed inside #posts div; We are not using 'click' listener on buttons
     //because they are not rendered yet at the time of check
-    console.log(e.target.id)
+    console.log(e.target)
     this.state.posts.map((post)=>{
       if(e.target.id==post.id){
         document.getElementById(e.target.id).style.display="none";
@@ -152,6 +152,7 @@ class Mainpage extends React.Component {
             },
             body: JSON.stringify({id:post.closeId})
           });
+          //NEEDS TO BE DONE WITHOUT REFRESHING
           // let resp = await response.json();
           // console.log(resp)
         }
