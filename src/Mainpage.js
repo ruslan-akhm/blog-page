@@ -43,7 +43,7 @@ class Mainpage extends React.Component {
           let prevState = that.state.posts;
           that.setState({posts:prevState.concat({title:post.title, text:post.text, id:post.datePosted})});
           //console.log(that.state.posts)
-          return document.getElementById('list').innerHTML+='<li><div className="list-item-parent"><h4>'+post.title+'</h4><p name='+'"'+post.datePosted+'"'+'>'+isShort+'</p></div><button>&times;</button></li>'})
+          return document.getElementById('list').innerHTML+='<li><div className="list-item-parent"><h4>'+post.title+'</h4><button>&times;</button><p name='+'"'+post.datePosted+'"'+'>'+isShort+'</p></div></li>'})
       } catch (err) {
         console.log(err);
       }
