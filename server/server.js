@@ -144,6 +144,14 @@ app.get('/api/image/:filename',(req,res)=>{
     }
   })
 })
+app.delete('/api/delete',(req,res)=>{
+  const postId = req.body.id
+  Post.deleteOne({postId:postId},(err,data)=>{
+    if(err) return console.log(err);
+    console.log(data);
+    //return res.send
+  })
+})
 
 // Express port-switching logic
 let port;

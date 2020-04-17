@@ -140,6 +140,19 @@ class Mainpage extends React.Component {
       } 
       else if(e.target.id==post.closeId){
         console.log("clicked "+e.target.id)
+        console.log(post);
+        async function deletePost(){
+          let response = await fetch("/api/delete", {
+            method: "DELETE",
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({id:post.closeId})
+          });
+          
+        }
+        deletePost();
       }
       else return
     })
