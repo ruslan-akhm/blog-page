@@ -108,13 +108,18 @@ body{
 #list li h4{
   background-color:#23232e;
   color:white;
-  font-family: 'Noto Sans', sans-serif;
   font-size:18px;
   
 }
 #list li h4, #list li p{
+  font-family: 'Noto Sans', sans-serif;
   padding:5px;
   margin:0
+}
+#list li button{
+  font-family: 'Noto Sans', sans-serif;
+  color:blue;
+  background-color:
 }
 
 .add{

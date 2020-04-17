@@ -7,6 +7,7 @@ class Mainpage extends React.Component {
     this.state = {
       posts: [],
       headerImage: "",
+      editable:false
     };
     this.newPost = this.newPost.bind(this);
     this.closeModal = this.closeModal.bind(this);
@@ -24,7 +25,7 @@ class Mainpage extends React.Component {
     document.getElementById("new-post").addEventListener("submit", (e)=>{this.addPost(e)});
     document.getElementById("add-post").addEventListener("click", this.newPost);
     document.getElementById("modal-parent").addEventListener("click", this.closeModal);
-    document.getElementById("posts").addEventListener("click",e=>this.expandText(e))
+    document.getElementById("posts").addEventListener("click",e=>this.expandText(e));
   }
                         
 
@@ -47,15 +48,12 @@ class Mainpage extends React.Component {
         console.log(err);
       }
     }
-    console.log("state "+this.state.posts)
     dat();
-    console.log("state "+this.state.posts)
   }
   
   updateHeader(e) {
     e.preventDefault();
     async function upd() {
-      
       let fd = new FormData();
       let headerImage = document.getElementById("upfile").files[0];
       fd.append("upfile", headerImage);
@@ -116,7 +114,7 @@ class Mainpage extends React.Component {
       });
       let resp = await response.json();
       console.log("resp is = "+resp, typeof resp);
-      const isShort = resp.text.length>600 ? resp.text.slice(0,500)+'<button id='+'"'+resp.datePosted+'"'+'>expand</button>':resp.text;
+      const isShort = resp.text.length>600 ? resp.text.slice(0,500)+'<button id='+'"'+resp.datePosted+'"'+'>Expand text</button>':resp.text;
       //rendering list elements with new post
       document.getElementById('list').innerHTML +='<li><div className="list-item-parent"><h4>'+resp.title+'</h4><p name='+'"'+resp.datePosted+'"'+'>'+isShort+'</p></div></li>'
       //updating state for it to have added post info
@@ -131,7 +129,6 @@ class Mainpage extends React.Component {
 
   newPost() {
     document.getElementById("modal-parent").style.display = "block";
-    console.log(this.state.posts);
   }
   
   expandText=(e)=>{
@@ -154,6 +151,8 @@ class Mainpage extends React.Component {
       modal.style.display = "none";
     }
   }
+
+  
 
   render() {
     /*const state = this.state.posts;
@@ -183,22 +182,18 @@ class Mainpage extends React.Component {
 
     return (
       <div id="personal-page">
-        
-       
         <div id="header">
           <form enctype="multipart/form-data" id="send-pic">
             <input name="upfile" id="upfile" type="file" className="custom-input" accept="image/*"/>
           </form>
         </div>
-        
-        
         <div id="info">
           <div id="avatar">
             <img id="avatar-img" src='' />
             <input name="avatarfile" id="avatarfile" type="file" className="custom-input" accept="image/*"/>
           </div>
           <div id="bio">
-            <ul id="bio-list">
+            <ul id="bio-list" >
               <li>Ruslan Akhmetshin</li>
               <li>Full-Stack Developer</li>
               <li>Toronto, ON</li>
