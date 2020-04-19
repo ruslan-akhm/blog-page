@@ -147,8 +147,7 @@ class Mainpage extends React.Component {
         return document.getElementsByName(e.target.id)[0].innerText=post.text
       } 
       else if(e.target.id==post.closeId){
-        console.log("clicked ")
-        //console.log(post);
+        console.log(post)
         async function deletePost(){
           let response = await fetch("/api/delete", {
             method: "DELETE",
@@ -158,24 +157,15 @@ class Mainpage extends React.Component {
             },
             body: JSON.stringify({id:post.closeId})
           });
-          //NEEDS TO BE DONE WITHOUT REFRESHING
           let resp = await response.json();
-          that.setState({posts:prevState.pop()});
+          const newState = prevState.filter(list=>{return list.listId!==post.listId})
+          that.setState({posts:newState});
           let list = document.getElementById("list");
           let li_nested = document.getElementById(post.listId);
-          let throwawayNode = list.removeChild(li_nested);
-          //return;
-          //JUST UNSHIFT LI form UL WITH CORRESPONDING ID THROUGH SETSTATE (but li never had an id)(i can give it id:_id)
-          
-          // console.log(resp, resp.posts)
-          // that.setState({posts:[]})
-          // resp.posts.map(post=>{
-          // const isShort = post.text.length>600 ? post.text.slice(0,510)+'<a id='+post.datePosted+'>...Expand text</a>':post.text;
-          // let prevState = that.state.posts;
-          // that.setState({posts:prevState.concat({title:post.title, text:post.text, id:post.datePosted, closeId:post.postId})});
-          // //console.log(that.state.posts)
-          // return document.getElementById('list').innerHTML+='<li><div className="list-item-parent"><h4>'+post.title+'</h4><button id='+post.postId+'>&times;</button><p name='+post.datePosted+'>'+isShort+'</p></div></li>'})
-        }
+          console.log(list);
+          console.log(li_nested)
+          return list.removeChild(li_nested);
+         }
         deletePost();
       }
       else return
