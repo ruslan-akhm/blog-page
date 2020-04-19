@@ -43,7 +43,7 @@ class Mainpage extends React.Component {
         resp.data.map(post=>{
           const isShort = post.text.length>600 ? post.text.slice(0,510)+'<a id='+post.datePosted+'>...Expand text</a>':post.text;
           let prevState = that.state.posts;
-          that.setState({posts:prevState.concat({listId:post.id, title:post.title, text:post.text, textId:post.datePosted, closeId:post.postId})});
+          that.setState({posts:prevState.concat({listId:post._id, title:post.title, text:post.text, textId:post.datePosted, closeId:post.postId})});
           //console.log(that.state.posts)
           return document.getElementById('list').innerHTML+='<li id='+post.id+'><div className="list-item-parent"><h4>'+post.title+'</h4><button id='+post.postId+'>&times;</button><p name='+post.datePosted+'>'+isShort+'</p></div></li>'})
       } catch (err) {
@@ -115,10 +115,10 @@ class Mainpage extends React.Component {
         body: JSON.stringify({ title: title, text: text })
       });
       let resp = await response.json();
-      //updating state for it to have added post info
-      that.setState({posts:prevState.concat({listId:resp.id, title:resp.title, text:resp.text, textId:resp.datePosted, closeId:resp.postId})});
       console.log("RESPONSE of ADD is ");
       console.log(resp)
+      //updating state for it to have added post info
+      that.setState({posts:prevState.concat({listId:resp.id, title:resp.title, text:resp.text, textId:resp.datePosted, closeId:resp.postId})});
       //rendering list elements with new post
       document.getElementById('list').innerHTML +='<li id='+resp.id+'><div className="list-item-parent"><h4>'+resp.title+'</h4><button id='+resp.postId+'>&times;</button><p name='+resp.datePosted+'>'+resp.text+'</p></div></li>'
       //leave input fileds blank
@@ -138,8 +138,10 @@ class Mainpage extends React.Component {
     //because they might not be rendered yet at the time of check
     let prevState = this.state.posts;
     const that = this;
+    console.log(e.target.id)
+    console.log("STATE is")
     console.log(prevState)
-    this.state.posts.map((post)=>{
+    that.state.posts.map((post)=>{
       if(e.target.id==post.id){
         document.getElementById(e.target.id).style.display="none";
         return document.getElementsByName(e.target.id)[0].innerText=post.text
@@ -162,6 +164,7 @@ class Mainpage extends React.Component {
           let list = document.getElementById("list");
           let li_nested = document.getElementById(post.listId);
           let throwawayNode = list.removeChild(li_nested);
+          //return;
           //JUST UNSHIFT LI form UL WITH CORRESPONDING ID THROUGH SETSTATE (but li never had an id)(i can give it id:_id)
           
           // console.log(resp, resp.posts)

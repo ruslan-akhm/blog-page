@@ -63,6 +63,7 @@ app.get('/api',(req,res)=>{
            gfs.files.find({'metadata.type':'upfile'}).sort({_id: -1}).limit(1).toArray((err,hdr)=>{
              if(err) return console.log(err);
              else{
+              console.log(data);
               return res.json({data:data,
                                src:"https://appnew-test-sample.glitch.me/api/image/"+ava[0].filename,
                                image:"https://appnew-test-sample.glitch.me/api/image/"+hdr[0].filename})
