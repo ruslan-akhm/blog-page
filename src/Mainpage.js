@@ -15,7 +15,8 @@ class Mainpage extends React.Component {
     this.addPost = this.addPost.bind(this);
     this.updateAvatar=this.updateAvatar.bind(this);
     this.getData=this.getData.bind(this);
-    this.expandText=this.expandText.bind(this);
+    this.modifyText=this.modifyText.bind(this);
+    this.toDefault=this.toDefault.bind(this);
   }
 
   componentDidMount() {
@@ -25,8 +26,8 @@ class Mainpage extends React.Component {
     document.getElementById("new-post").addEventListener("submit", (e)=>{this.addPost(e)});
     document.getElementById("add-post").addEventListener("click", this.newPost);
     document.getElementById("modal-parent").addEventListener("click", this.closeModal);
-    document.getElementById("posts").addEventListener("click",e=>this.expandText(e));
-    //document.getElementById("list").addEventListener("click",e=>this.expandText(e));
+    document.getElementById("posts").addEventListener("click",e=>this.modifyText(e));
+    document.getElementById("default").addEventListener("click",e=>this.toDefault(e));
   }
                         
 
@@ -37,7 +38,8 @@ class Mainpage extends React.Component {
       try {
         let response = await fetch("/api");
         let resp = await response.json(); //our response; from here update avatar, header and posts
-        document.getElementById("header").style.background = "url(" + resp.image + ") no-repeat";
+        document.getElementById("header").style.background = "url(" + resp.image + ")";
+        document.getElementById("header").style.backgroundSize = "cover";
         document.getElementById("avatar-img").setAttribute("src",resp.src);
         console.log(resp);
         resp.data.map(post=>{
@@ -69,6 +71,7 @@ class Mainpage extends React.Component {
         });
         let resp = await response.json();
         document.getElementById("header").style.background = "url(" + resp.image + ")";
+        document.getElementById("header").style.backgroundSize = "cover";
       } catch (err) {
         console.log(err);
       }
@@ -133,7 +136,7 @@ class Mainpage extends React.Component {
     document.getElementById("modal-parent").style.display = "block";
   }
   
-  expandText=(e)=>{
+  modifyText=(e)=>{
     //We check if button was pressed inside #posts div; We are not using 'click' listener on buttons
     //because they might not be rendered yet at the time of check
     let prevState = this.state.posts;
@@ -178,6 +181,29 @@ class Mainpage extends React.Component {
     if (click === modal||click===later) {
       modal.style.display = "none";
     }
+  }
+
+  toDefault(e){
+    e.preventDefault();
+    async function def(){
+      try {
+        let response = await fetch("/api");
+        let resp = await response.json(); //our response; from here update avatar, header and posts
+        document.getElementById("header").style.background = "url(" + resp.image + ")";
+        document.getElementById("header").style.backgroundSize = "cover";
+        document.getElementById("avatar-img").setAttribute("src",resp.src);
+        console.log(resp);
+        resp.data.map(post=>{
+          //Hide part of long text and add "Expand text" button
+          const isShort = post.text.length>600 ? post.text.slice(0,510)+'<a id='+post.datePosted+'>...Expand text</a>':post.text;
+          let prevState = that.state.posts;
+          that.setState({posts:prevState.concat({listId:post._id, title:post.title, text:post.text, textId:post.datePosted, closeId:post.postId})});
+          return document.getElementById('list').innerHTML+='<li id='+post._id+'><div className="list-item-parent"><h4>'+post.title+'</h4><button id='+post.postId+'>&times;</button><p name='+post.datePosted+'>'+isShort+'</p></div></li>'})
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    def();
   }
 
   render() {
@@ -232,6 +258,7 @@ class Mainpage extends React.Component {
           <button id="add-post" className="add">
             + Add Post
           </button>
+          <button id="default">To Default</button>
         </div>
         {modal}
       </div>
