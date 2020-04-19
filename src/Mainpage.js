@@ -41,11 +41,11 @@ class Mainpage extends React.Component {
         document.getElementById("avatar-img").setAttribute("src",resp.src);
         console.log(resp);
         resp.data.map(post=>{
+          //Hide part of long text and add "Expand text" button
           const isShort = post.text.length>600 ? post.text.slice(0,510)+'<a id='+post.datePosted+'>...Expand text</a>':post.text;
           let prevState = that.state.posts;
           that.setState({posts:prevState.concat({listId:post._id, title:post.title, text:post.text, textId:post.datePosted, closeId:post.postId})});
-          //console.log(that.state.posts)
-          return document.getElementById('list').innerHTML+='<li id='+post.id+'><div className="list-item-parent"><h4>'+post.title+'</h4><button id='+post.postId+'>&times;</button><p name='+post.datePosted+'>'+isShort+'</p></div></li>'})
+          return document.getElementById('list').innerHTML+='<li id='+post._id+'><div className="list-item-parent"><h4>'+post.title+'</h4><button id='+post.postId+'>&times;</button><p name='+post.datePosted+'>'+isShort+'</p></div></li>'})
       } catch (err) {
         console.log(err);
       }
@@ -138,15 +138,14 @@ class Mainpage extends React.Component {
     //because they might not be rendered yet at the time of check
     let prevState = this.state.posts;
     const that = this;
-    console.log(e.target.id)
-    console.log("STATE is")
-    console.log(prevState)
     that.state.posts.map((post)=>{
-      if(e.target.id==post.id){
+      if(e.target.id==post.textId){
+        //expand Text
         document.getElementById(e.target.id).style.display="none";
         return document.getElementsByName(e.target.id)[0].innerText=post.text
       } 
       else if(e.target.id==post.closeId){
+        //delete post
         console.log(post)
         async function deletePost(){
           let response = await fetch("/api/delete", {
@@ -158,13 +157,13 @@ class Mainpage extends React.Component {
             body: JSON.stringify({id:post.closeId})
           });
           let resp = await response.json();
-          const newState = prevState.filter(list=>{return list.listId!==post.listId})
-          that.setState({posts:newState});
           let list = document.getElementById("list");
           let li_nested = document.getElementById(post.listId);
           console.log(list);
           console.log(li_nested)
-          return list.removeChild(li_nested);
+          list.removeChild(li_nested);
+          const newState = prevState.filter(list=>{return list.listId!==post.listId})
+          that.setState({posts:newState});
          }
         deletePost();
       }
@@ -180,8 +179,6 @@ class Mainpage extends React.Component {
       modal.style.display = "none";
     }
   }
-
-  
 
   render() {
     /*const state = this.state.posts;
