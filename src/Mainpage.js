@@ -116,7 +116,8 @@ class Mainpage extends React.Component {
       let resp = await response.json();
       //updating state for it to have added post info
       that.setState({posts:prevState.concat({title:resp.title, text:resp.text, id:resp.datePosted, closeId:resp.postId})});
-      console.log(resp.postId)
+      console.log("RESPONSE of ADD is ");
+      console.log(resp)
       //rendering list elements with new post
       document.getElementById('list').innerHTML +='<li><div className="list-item-parent"><h4>'+resp.title+'</h4><button id='+resp.postId+'>&times;</button><p name='+resp.datePosted+'>'+resp.text+'</p></div></li>'
       //leave input fileds blank
