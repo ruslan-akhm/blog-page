@@ -39,12 +39,13 @@ class Mainpage extends React.Component {
         let resp = await response.json(); //our response; from here update avatar, header and posts
         document.getElementById("header").style.background = "url(" + resp.image + ") no-repeat";
         document.getElementById("avatar-img").setAttribute("src",resp.src);
+        console.log(resp);
         resp.data.map(post=>{
           const isShort = post.text.length>600 ? post.text.slice(0,510)+'<a id='+post.datePosted+'>...Expand text</a>':post.text;
           let prevState = that.state.posts;
-          that.setState({posts:prevState.concat({title:post.title, text:post.text, id:post.datePosted, closeId:post.postId})});
+          that.setState({posts:prevState.concat({listId:post.id, title:post.title, text:post.text, textId:post.datePosted, closeId:post.postId})});
           //console.log(that.state.posts)
-          return document.getElementById('list').innerHTML+='<li><div className="list-item-parent"><h4>'+post.title+'</h4><button id='+post.postId+'>&times;</button><p name='+post.datePosted+'>'+isShort+'</p></div></li>'})
+          return document.getElementById('list').innerHTML+='<li id='+post.id+'><div className="list-item-parent"><h4>'+post.title+'</h4><button id='+post.postId+'>&times;</button><p name='+post.datePosted+'>'+isShort+'</p></div></li>'})
       } catch (err) {
         console.log(err);
       }
@@ -115,11 +116,11 @@ class Mainpage extends React.Component {
       });
       let resp = await response.json();
       //updating state for it to have added post info
-      that.setState({posts:prevState.concat({title:resp.title, text:resp.text, id:resp.datePosted, closeId:resp.postId})});
+      that.setState({posts:prevState.concat({listId:resp.id, title:resp.title, text:resp.text, textId:resp.datePosted, closeId:resp.postId})});
       console.log("RESPONSE of ADD is ");
       console.log(resp)
       //rendering list elements with new post
-      document.getElementById('list').innerHTML +='<li><div className="list-item-parent"><h4>'+resp.title+'</h4><button id='+resp.postId+'>&times;</button><p name='+resp.datePosted+'>'+resp.text+'</p></div></li>'
+      document.getElementById('list').innerHTML +='<li id='+resp.id+'><div className="list-item-parent"><h4>'+resp.title+'</h4><button id='+resp.postId+'>&times;</button><p name='+resp.datePosted+'>'+resp.text+'</p></div></li>'
       //leave input fileds blank
       document.getElementById("post-title").value='';
       document.getElementById("post-text").value='';
@@ -134,9 +135,10 @@ class Mainpage extends React.Component {
   
   expandText=(e)=>{
     //We check if button was pressed inside #posts div; We are not using 'click' listener on buttons
-    //because they are not rendered yet at the time of check
+    //because they might not be rendered yet at the time of check
+    let prevState = this.state.posts;
     const that = this;
-    console.log(e.target)
+    console.log(prevState)
     this.state.posts.map((post)=>{
       if(e.target.id==post.id){
         document.getElementById(e.target.id).style.display="none";
@@ -156,6 +158,10 @@ class Mainpage extends React.Component {
           });
           //NEEDS TO BE DONE WITHOUT REFRESHING
           let resp = await response.json();
+          that.setState({posts:prevState.pop()});
+          let list = document.getElementById("list");
+          let li_nested = document.getElementById(post.listId);
+          let throwawayNode = list.removeChild(li_nested);
           //JUST UNSHIFT LI form UL WITH CORRESPONDING ID THROUGH SETSTATE (but li never had an id)(i can give it id:_id)
           
           // console.log(resp, resp.posts)

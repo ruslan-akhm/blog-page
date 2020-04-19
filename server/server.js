@@ -100,7 +100,7 @@ app.post('/api/post',(req,res)=>{
     type:"post"
   })
   post.save();
-  const response = ({title:post.title, text:post.text, datePosted:post.datePosted, postId:post.postId})
+  const response = ({id:post._id, title:post.title, text:post.text, datePosted:post.datePosted, postId:post.postId})
   //console.log(data)
   res.json(response);//({title:data.title,text:data.text})
 })
