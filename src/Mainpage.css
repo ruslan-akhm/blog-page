@@ -171,8 +171,11 @@ body{
   margin:6% auto;
   background-color:white;
   width:85%;
-  height:80%;
+  height:60%;
   padding-top:40px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
 }
 #header-img-form input{
   width:100%;
@@ -180,23 +183,48 @@ body{
   background-color:orange;
 }
 .add-post-form{
-  margin:auto;
+  margin:0 auto;
   width:90%;
   display:grid;
   grid-template-columns:max-content 1fr;
   grid-gap:10px;
-  background-color:green;
 }
 .add-post-form textarea{
   resize: none;
 }
+#new-post label{
+  font-family: 'Noto Sans', sans-serif;
+  font-size:16px;
+  font-weight:bold;
+}
 #submit{
   grid-column: 1 / span 2; 
-  width:150px;
+  width:180px;
+  height:30px;
+  font-size:16px;
+  font-family: 'Noto Sans', sans-serif;
   margin:20px auto;
+  color:#23232e;
+  background-color:white;
+  border:3px solid #23232e;
+  cursor:pointer;
+}
+#submit:hover{
+  color:white;
+  background-color:#23232e;
 }
 #later-button{
-  
+  font-size:16px;
+  font-family: 'Noto Sans', sans-serif;
+  color:#23232e;
+  background-color:white;
+  cursor:pointer;
+  border-top:3px solid #23232e;
+}
+#later-button:hover{
+  color:white;
+  background-color:#23232e;
+  border:3px solid #23232e;
 }
 .custom-input{
   color:transparent;
