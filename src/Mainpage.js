@@ -224,7 +224,7 @@ class Mainpage extends React.Component {
               <li>Full-Stack Developer</li>
               <li>Toronto, ON</li>
             </ul>
-            <p>I like creating things. Every app I do is more complex than previous one. I enjoy learning and applying technologies and seeing result of my work.</p>
+            <p>I like creating things. Every app I do is more complex than the previous one. I enjoy learning and applying technologies and seeing results of my work.</p>
           </div>
         </div>
         <div className="posts" id="posts">
