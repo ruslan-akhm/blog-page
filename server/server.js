@@ -98,7 +98,8 @@ app.post('/api/post',(req,res)=>{
     text:data.text,
     postId:"post-id-"+shortid.generate(),
     datePosted:Date.now(),
-    type:"post"
+    type:"post",
+    default:true
   })
   post.save();
   const response = ({id:post._id, title:post.title, text:post.text, datePosted:post.datePosted, postId:post.postId})
