@@ -198,7 +198,7 @@ class Mainpage extends React.Component {
             <label>Title:</label>
             <input type="text" id="post-title" maxlength="35" required/>
             <label>Post:</label>
-            <textarea rows="28" id="post-text"></textarea>
+            <textarea rows="18" id="post-text"></textarea>
             <input type="submit" id="submit" value="Post" />
           </form>
           <button id="later-button">Maybe later</button>

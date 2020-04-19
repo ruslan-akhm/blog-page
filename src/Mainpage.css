@@ -171,8 +171,8 @@ body{
   margin:6% auto;
   background-color:white;
   width:85%;
-  height:60%;
-  padding-top:40px;
+  height:80%;
+  padding-top:20px;
   display:flex;
   flex-direction:column;
   justify-content:space-between;
@@ -185,12 +185,14 @@ body{
 .add-post-form{
   margin:0 auto;
   width:90%;
+  max-height:75%;
   display:grid;
   grid-template-columns:max-content 1fr;
   grid-gap:10px;
 }
 .add-post-form textarea{
   resize: none;
+  max-height:400px;
 }
 #new-post label{
   font-family: 'Noto Sans', sans-serif;
@@ -280,6 +282,13 @@ body{
 @media only screen and (max-width:600px){
   #personal-page{
     width:95%;
+  }
+  #modal-content{
+    margin-top:4%;
+    height:75%;
+  }
+  #later-button{
+   margin-top:-40px; 
   }
 }
 /*.attachment-parent{
