@@ -191,6 +191,11 @@ app.delete('/api/delete',(req,res)=>{
     //return res.send
   })
 })
+app.get('/api/default',(req,res)=>{
+  return res.json({data:defaultData,
+                   src:defaultAvatar,
+                   image:defaultHeader})
+})
 
 // Express port-switching logic
 let port;

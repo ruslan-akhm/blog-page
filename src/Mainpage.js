@@ -185,18 +185,19 @@ class Mainpage extends React.Component {
 
   toDefault(e){
     e.preventDefault();
+    document.getElementById('list').innerHTML='';
+    let prevState = [];
+    const that = this;
     async function def(){
       try {
-        let response = await fetch("/api");
+        let response = await fetch("/api/default");
         let resp = await response.json(); //our response; from here update avatar, header and posts
         document.getElementById("header").style.background = "url(" + resp.image + ")";
         document.getElementById("header").style.backgroundSize = "cover";
         document.getElementById("avatar-img").setAttribute("src",resp.src);
         console.log(resp);
         resp.data.map(post=>{
-          //Hide part of long text and add "Expand text" button
           const isShort = post.text.length>600 ? post.text.slice(0,510)+'<a id='+post.datePosted+'>...Expand text</a>':post.text;
-          let prevState = that.state.posts;
           that.setState({posts:prevState.concat({listId:post._id, title:post.title, text:post.text, textId:post.datePosted, closeId:post.postId})});
           return document.getElementById('list').innerHTML+='<li id='+post._id+'><div className="list-item-parent"><h4>'+post.title+'</h4><button id='+post.postId+'>&times;</button><p name='+post.datePosted+'>'+isShort+'</p></div></li>'})
       } catch (err) {
