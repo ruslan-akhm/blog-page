@@ -195,11 +195,19 @@ app.get('/api/default',(req,res)=>{
   //Has to be DELETE
   Post.deleteMany({ default: false }, (err,dat)=>{
     if(err) return console.log(err);
-    gfs.files.deleteMany({})
-  });
-  return res.json({data:defaultData,
+    gfs.files.deleteMany({"metadata.type":"upfile","metadata.date":{$gt:1587339231260}},(err,hdr)=>{
+      if(err) return console.log(err);
+      gfs.files.deleteMany({"metadata.type":"avatarfile","metadata.date":{$gt:1587339222880}},(err,ava)=>{
+        if(err) return console.log(err);
+        return res.json({data:defaultData,
                    src:defaultAvatar,
                    image:defaultHeader})
+      })
+    })
+  });
+  // return res.json({data:defaultData,
+  //                  src:defaultAvatar,
+  //                  image:defaultHeader})
 })
 
 // Express port-switching logic
