@@ -15,6 +15,8 @@ const Grid = require('gridfs-stream');
 
 const app = express();
 let gfs;
+
+//Default posts, Header and Avatar to set when "To Default" button clicked
 const defaultData = [ { 
      _id:"5e9ce06d57953106f91bfe1d",
      title: 'Hello World!',
@@ -45,6 +47,7 @@ const defaultData = [ {
      __v: 0 } ];
 const defaultAvatar = "https://appnew-test-sample.glitch.me/api/image/image-760a96ccff179db51f63d83e1bafaca4.jpg"
 const defaultHeader = "https://appnew-test-sample.glitch.me/api/image/image-a881b5893feb93aab9e4b696f5d48590.jpg"
+
 //EJS
 app.set('view engine','ejs')
 
@@ -104,14 +107,15 @@ app.get('/api',(req,res)=>{
   })
 })
 
-//Header image
+//Set Header image
 app.post('/api/upload', upload.single('upfile'), (req,res)=>{
    const fileObject = req.file;
    console.log(fileObject);
    //const readstream = gfs.createReadStream(fileObject.filename);
    return res.json({"image":"https://appnew-test-sample.glitch.me/api/image/"+fileObject.filename})
 })
-//Avatar
+
+//Set Avatar
 app.post('/api/avatar', upload.single('avatarfile'), (req,res)=>{
    const fileObject = req.file;
    console.log(fileObject);
@@ -132,8 +136,7 @@ app.post('/api/post',(req,res)=>{
   })
   post.save();
   const response = ({id:post._id, title:post.title, text:post.text, datePosted:post.datePosted, postId:post.postId})
-  //console.log(data)
-  res.json(response);//({title:data.title,text:data.text})
+  res.json(response);
 })
 
 //Find all files in collection
@@ -177,6 +180,8 @@ app.get('/api/image/:filename',(req,res)=>{
     }
   })
 })
+
+//Delete Post
 app.delete('/api/delete',(req,res)=>{
   const postId = req.body.id
   Post.deleteOne({postId:postId},(err,data)=>{
@@ -187,30 +192,38 @@ app.delete('/api/delete',(req,res)=>{
       console.log(post);
       return res.json({posts:post})
     })
-    // DONT USE - FIND WAY TO UPD W/OUT REFRESHING PAGE  res.sendFile(__dirname + "/public/index.html");
-    //return res.send
   })
 })
+
+//Bring the default info back and make corrections on databases 
 app.get('/api/default',(req,res)=>{
-  //Has to be DELETE
   Post.deleteMany({ default: false }, (err,dat)=>{
     if(err) return console.log(err);
     gfs.files.deleteMany({"metadata.type":"upfile","metadata.date":{$gt:1587339231260}},(err,hdr)=>{
       if(err) return console.log(err);
       gfs.files.deleteMany({"metadata.type":"avatarfile","metadata.date":{$gt:1587339222880}},(err,ava)=>{
         if(err) return console.log(err);
+        defaultData.map(post=>{
+          let defpost = new Post({
+          _id:post._id,
+          title:post.title,
+          text:post.text,
+          postId:post.postId,
+          datePosted:post.datePosted,
+          type:"post",
+          default:true
+          })
+        defpost.save();
+        })
         return res.json({data:defaultData,
                    src:defaultAvatar,
                    image:defaultHeader})
       })
     })
   });
-  // return res.json({data:defaultData,
-  //                  src:defaultAvatar,
-  //                  image:defaultHeader})
 })
 
-// Express port-switching logic
+// Express port-switching logic for Glitch.com
 let port;
 console.log("❇️ NODE_ENV is", process.env.NODE_ENV);
 if (process.env.NODE_ENV === "production") {
