@@ -6,8 +6,7 @@ class Mainpage extends React.Component {
     super(props);
     this.state = {
       posts: [],
-      headerImage: "",
-      editable:false
+      headerImage: ""
     };
     this.newPost = this.newPost.bind(this);
     this.closeModal = this.closeModal.bind(this);
@@ -20,22 +19,11 @@ class Mainpage extends React.Component {
   }
 
   componentDidMount() {
-    //window.addEventListener('load', e=>{this.getData(e)});
     this.getData();
-    
-    //document.getElementById("upfile").addEventListener("change", e=>{this.updateHeader(e)});
-    //document.getElementById("avatarfile").addEventListener("change", e=>{this.updateAvatar(e)}); 
-    //document.getElementById("new-post").addEventListener("submit", (e)=>{this.addPost(e)});
-    //document.getElementById("add-post").addEventListener("click", this.newPost);
-    //document.getElementById("modal-parent").addEventListener("click", this.closeModal);
-    //document.getElementById("posts").addEventListener("click",e=>this.modifyText(e));
-    //document.getElementById("default").addEventListener("click",e=>this.toDefault(e));
   }
                         
-
   getData(e){
     let that = this;   //workaround for "this" keyword to access state inside fetch
-    //e.preventDefault();
     async function dat(){
       try {
         let response = await fetch("/api");
