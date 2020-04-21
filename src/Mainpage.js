@@ -23,13 +23,13 @@ class Mainpage extends React.Component {
     //window.addEventListener('load', e=>{this.getData(e)});
     this.getData();
     
-    document.getElementById("upfile").addEventListener("change", e=>{this.updateHeader(e)});
-    document.getElementById("avatarfile").addEventListener("change", e=>{this.updateAvatar(e)}); 
-    document.getElementById("new-post").addEventListener("submit", (e)=>{this.addPost(e)});
-    document.getElementById("add-post").addEventListener("click", this.newPost);
-    document.getElementById("modal-parent").addEventListener("click", this.closeModal);
-    document.getElementById("posts").addEventListener("click",e=>this.modifyText(e));
-    document.getElementById("default").addEventListener("click",e=>this.toDefault(e));
+    //document.getElementById("upfile").addEventListener("change", e=>{this.updateHeader(e)});
+    //document.getElementById("avatarfile").addEventListener("change", e=>{this.updateAvatar(e)}); 
+    //document.getElementById("new-post").addEventListener("submit", (e)=>{this.addPost(e)});
+    //document.getElementById("add-post").addEventListener("click", this.newPost);
+    //document.getElementById("modal-parent").addEventListener("click", this.closeModal);
+    //document.getElementById("posts").addEventListener("click",e=>this.modifyText(e));
+    //document.getElementById("default").addEventListener("click",e=>this.toDefault(e));
   }
                         
 
@@ -211,9 +211,9 @@ class Mainpage extends React.Component {
 
   render() {
     const modal = (
-      <div id="modal-parent">
+      <div id="modal-parent" onClick={this.closeModal}>
         <div id="modal-content">
-          <form id="new-post" className="add-post-form">
+          <form id="new-post" className="add-post-form" onSubmit={e=>this.addPost(e)}>
             <label>Title:</label>
             <input type="text" id="post-title" maxlength="35" required/>
             <label>Post:</label>
@@ -229,13 +229,13 @@ class Mainpage extends React.Component {
       <div id="personal-page">
         <div id="header">
           <form enctype="multipart/form-data" id="send-pic">
-            <input name="upfile" id="upfile" type="file" className="custom-input" accept="image/*" onChange=e=>{this.updateHeader(e)}/>
+            <input name="upfile" id="upfile" type="file" className="custom-input" accept="image/*" onChange={e=>this.updateHeader(e)}/>
           </form>
         </div>
         <div id="info">
           <div id="avatar">
             <img id="avatar-img" src='' />
-            <input name="avatarfile" id="avatarfile" type="file" className="custom-input" accept="image/*"/>
+            <input name="avatarfile" id="avatarfile" type="file" className="custom-input" accept="image/*" onChange={e=>this.updateAvatar(e)}/>
           </div>
           <div id="bio">
             <ul id="bio-list" >
@@ -246,12 +246,12 @@ class Mainpage extends React.Component {
             <p>I like creating things. Every app I do is more complex than the previous one. I enjoy learning and applying technologies and seeing results of my work.</p>
           </div>
         </div>
-        <div className="posts" id="posts">
+        <div className="posts" id="posts" onClick={e=>this.modifyText(e)}>
           <ul id="list"></ul>  {/*post*/}
-          <button id="add-post" className="add">
+          <button id="add-post" className="add" onClick={this.newPost}>
             + Add Post
           </button>
-          <button id="default">To Default</button>
+          <button id="default" onClick={e=>this.toDefault(e)}>To Default</button>
         </div>
         {modal}
       </div>
