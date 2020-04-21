@@ -22,7 +22,7 @@ class Mainpage extends React.Component {
     this.getData();
   }
                         
-  getData(e){
+  getData(){
     let that = this;   //workaround for "this" keyword to access state inside fetch
     async function dat(){
       try {
