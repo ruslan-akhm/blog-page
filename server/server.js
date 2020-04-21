@@ -86,7 +86,7 @@ const upload = multer({storage})
 
 //Send posts from database  
 app.get('/api',(req,res)=>{
-  Post.find({type:"post"}).exec((err,data)=>{
+  Post.find({type:"post"}).sort({_id: -1}).exec((err,data)=>{
     if(err) return console.log(err);
     else{
       gfs.files.find({'metadata.type':'avatarfile'}).sort({_id: -1}).limit(1).toArray((err,ava)=>{

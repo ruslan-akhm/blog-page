@@ -20,7 +20,9 @@ class Mainpage extends React.Component {
   }
 
   componentDidMount() {
-    window.addEventListener('load', e=>{this.getData(e)});
+    //window.addEventListener('load', e=>{this.getData(e)});
+    this.getData();
+    
     document.getElementById("upfile").addEventListener("change", e=>{this.updateHeader(e)});
     document.getElementById("avatarfile").addEventListener("change", e=>{this.updateAvatar(e)}); 
     document.getElementById("new-post").addEventListener("submit", (e)=>{this.addPost(e)});
@@ -33,7 +35,7 @@ class Mainpage extends React.Component {
 
   getData(e){
     let that = this;   //workaround for "this" keyword to access state inside fetch
-    e.preventDefault();
+    //e.preventDefault();
     async function dat(){
       try {
         let response = await fetch("/api");
@@ -208,16 +210,6 @@ class Mainpage extends React.Component {
   }
 
   render() {
-    /*const state = this.state.posts;
-    const post = state.map(post => {
-      return(
-        <li>
-          <div className="list-item-parent">
-            <div className="list-item-title">{post.title}</div>
-            <div className="list-item-text">{post.text}</div>
-          </div>
-        </li>)});*/
-
     const modal = (
       <div id="modal-parent">
         <div id="modal-content">
@@ -237,7 +229,7 @@ class Mainpage extends React.Component {
       <div id="personal-page">
         <div id="header">
           <form enctype="multipart/form-data" id="send-pic">
-            <input name="upfile" id="upfile" type="file" className="custom-input" accept="image/*"/>
+            <input name="upfile" id="upfile" type="file" className="custom-input" accept="image/*" onChange=e=>{this.updateHeader(e)}/>
           </form>
         </div>
         <div id="info">
