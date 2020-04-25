@@ -20,6 +20,7 @@ class Mainpage extends React.Component {
 
   componentDidMount() {
     this.getData();
+    window.addEventListener('click',(e)=>{console.log(e.target)})
   }
                         
   getData(){
