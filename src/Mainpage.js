@@ -20,7 +20,7 @@ class Mainpage extends React.Component {
 
   componentDidMount() {
     this.getData();
-    window.addEventListener('click',(e)=>{console.log(e.target)})
+    window.addEventListener('click',(e)=>{console.log(this.state.posts)})
   }
                         
   getData(){
@@ -134,6 +134,7 @@ class Mainpage extends React.Component {
     const that = this;
     that.state.posts.map((post)=>{
       if(e.target.id==post.textId){
+        console.log("clicked!")
         //expand Text
         document.getElementById(e.target.id).style.display="none";
         return document.getElementsByName(e.target.id)[0].innerText=post.text
@@ -177,7 +178,7 @@ class Mainpage extends React.Component {
   toDefault(e){
     e.preventDefault();
     document.getElementById('list').innerHTML='';
-    let prevState = [];
+    this.setState({posts:[]})
     const that = this;
     async function def(){
       try {
@@ -189,6 +190,7 @@ class Mainpage extends React.Component {
         console.log(resp);
         resp.data.map(post=>{
           const isShort = post.text.length>600 ? post.text.slice(0,510)+'<a id='+post.datePosted+'>...Expand text</a>':post.text;
+          let prevState=that.state.posts;
           that.setState({posts:prevState.concat({listId:post._id, title:post.title, text:post.text, textId:post.datePosted, closeId:post.postId})});
           return document.getElementById('list').innerHTML+='<li id='+post._id+'><div className="list-item-parent"><h4>'+post.title+'</h4><button id='+post.postId+'>&times;</button><p name='+post.datePosted+'>'+isShort+'</p></div></li>'})
       } catch (err) {
