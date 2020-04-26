@@ -142,6 +142,13 @@ body{
   font-weight:bold;
   cursor:pointer;
 }
+#list li span{
+  margin-top:5px;
+  padding:5px;
+  text-align:end;
+  font-family: 'Noto Sans', sans-serif;
+  color:#9c9c9c;
+}
 
 .add{
   width:100%;

@@ -20,7 +20,6 @@ class Mainpage extends React.Component {
 
   componentDidMount() {
     this.getData();
-    window.addEventListener('click',(e)=>{console.log(this.state.posts)})
   }
                         
   getData(){
@@ -37,11 +36,12 @@ class Mainpage extends React.Component {
           //Hide part of long text and add "Expand text" button
           const isShort = post.text.length>600 ? post.text.slice(0,510)+'<a id='+post.datePosted+'>...Expand text</a>':post.text;
           let prevState = that.state.posts;
-          var date = new Date(milliseconds); // Create date from milliseconds
-console.log(date.toString());
-          console.log(Date(post.datePosted))
+          console.log(typeof post.datePosted)
+          var date = new Date(parseInt(post.datePosted));
+          date = date.toLocaleDateString();
+          //console.log(Date(post.datePosted))
           that.setState({posts:prevState.concat({listId:post._id, title:post.title, text:post.text, textId:post.datePosted, closeId:post.postId})});
-          return document.getElementById('list').innerHTML+='<li id='+post._id+'><div className="list-item-parent"><h4>'+post.title+'</h4><button id='+post.postId+'>&times;</button><p name='+post.datePosted+'>'+isShort+'</p></div><span>HELLO</span></li>'})
+          return document.getElementById('list').innerHTML+='<li id='+post._id+'><div className="list-item-parent"><h4>'+post.title+'</h4><button id='+post.postId+'>&times;</button><p name='+post.datePosted+'>'+isShort+'</p></div><span>posted '+date+'</span></li>'})
       } catch (err) {
         console.log(err);
       }
@@ -137,14 +137,12 @@ console.log(date.toString());
     const that = this;
     that.state.posts.map((post)=>{
       if(e.target.id==post.textId){
-        console.log("clicked!")
         //expand Text
         document.getElementById(e.target.id).style.display="none";
         return document.getElementsByName(e.target.id)[0].innerText=post.text
       } 
       else if(e.target.id==post.closeId){
         //delete post
-        console.log(post)
         async function deletePost(){
           let response = await fetch("/api/delete", {
             method: "DELETE",
@@ -157,8 +155,6 @@ console.log(date.toString());
           let resp = await response.json();
           let list = document.getElementById("list");
           let li_nested = document.getElementById(post.listId);
-          console.log(list);
-          console.log(li_nested)
           list.removeChild(li_nested);
           const newState = prevState.filter(list=>{return list.listId!==post.listId})
           that.setState({posts:newState});
