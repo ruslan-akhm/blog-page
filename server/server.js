@@ -127,7 +127,7 @@ app.post('/api/avatar', upload.single('avatarfile'), (req,res)=>{
 app.post('/api/post', upload.array("attachments",5), (req,res)=>{
   const files = req.files;
   const filenames = files.map(fileObject=>{return "https://appnew-test-sample.glitch.me/api/image/"+fileObject.filename})
-  console.log(filenames)
+  //console.log(filenames)
   const data = req.body.attachments
   let post = new Post({
     title:data[0],

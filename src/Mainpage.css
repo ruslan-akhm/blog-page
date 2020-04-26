@@ -150,19 +150,19 @@ body{
   color:#9c9c9c;
   pointer-events:none;
 }
-#list li div{
+#list li container{
   height:auto;
-  background-color:red;
   display:flex;
   justify-content:center;
   flex-direction:row;
+  flex-wrap:wrap;
 }
 #list li img{
-  background-color:yellow;
   max-width:150px;
   height:100px;
   align-self:center;
-  margin:0 10px 0 10px;
+  margin:10px;
+  cursor:pointer;
 }
 .add{
   width:100%;
