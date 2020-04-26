@@ -31,12 +31,10 @@ class Mainpage extends React.Component {
         document.getElementById("header").style.background = "url(" + resp.image + ")";
         document.getElementById("header").style.backgroundSize = "cover";
         document.getElementById("avatar-img").setAttribute("src",resp.src);
-        console.log(resp);
         resp.data.map(post=>{
           //Hide part of long text and add "Expand text" button
           const isShort = post.text.length>600 ? post.text.slice(0,510)+'<a id='+post.datePosted+'>...Expand text</a>':post.text;
           let prevState = that.state.posts;
-          console.log(typeof post.datePosted)
           let date = new Date(parseInt(post.datePosted));
           date = date.toLocaleDateString();
           that.setState({posts:prevState.concat({listId:post._id, title:post.title, text:post.text, textId:post.datePosted, closeId:post.postId})});
@@ -99,8 +97,14 @@ class Mainpage extends React.Component {
     let prevState = this.state.posts; //our initial posts array 
     let that = this;   //workaround for "this" keyword to access state inside fetch 
     e.preventDefault();
-    const attachments = document.getElementById("attachments")
+    const attachments = document.getElementById("attachments");
+    console.log(attachments.files);
     async function add() {
+      const fd = new FormData();
+      for (const file of attachments.files){
+        fd.append('myFiles',file)
+      }
+      
       let title = document.getElementById("post-title").value;
       let text = document.getElementById("post-text").value;
       let response = await fetch("/api/post", {
@@ -109,7 +113,10 @@ class Mainpage extends React.Component {
           Accept: "application/json",
           "Content-Type": "application/json"
         },
-        body: JSON.stringify({ title: title, text: text })
+        body: {
+          "content":JSON.stringify({ title: title, text: text }),
+          "attachments":fd
+      }
       });
       let resp = await response.json();
       console.log("RESPONSE of ADD is ");
