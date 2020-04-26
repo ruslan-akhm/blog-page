@@ -104,7 +104,6 @@ class Mainpage extends React.Component {
       for (const file of attachments.files){
         fd.append('myFiles',file)
       }
-      
       let title = document.getElementById("post-title").value;
       let text = document.getElementById("post-text").value;
       let response = await fetch("/api/post", {
@@ -113,10 +112,8 @@ class Mainpage extends React.Component {
           Accept: "application/json",
           "Content-Type": "application/json"
         },
-        body: {
-          "content":JSON.stringify({ title: title, text: text }),
-          "attachments":fd
-      }
+        //JSON.stringify({ title: title, text: text }),
+        body: JSON.stringify({ title: title, text: text, , attachments:fd }),
       });
       let resp = await response.json();
       console.log("RESPONSE of ADD is ");
@@ -236,7 +233,7 @@ class Mainpage extends React.Component {
         </div>
         <div id="info">
           <div id="avatar">
-            <img id="avatar-img" src='' />
+            <img id="avatar-img" src='' alt="avatar"/>
             <input name="avatarfile" id="avatarfile" type="file" className="custom-input" accept="image/*" onChange={e=>this.updateAvatar(e)}/>
           </div>
           <div id="bio">
