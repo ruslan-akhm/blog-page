@@ -38,8 +38,8 @@ class Mainpage extends React.Component {
           let date = new Date(parseInt(post.datePosted));
           date = date.toLocaleDateString();
           that.setState({posts:prevState.concat({listId:post._id, title:post.title, text:post.text, textId:post.datePosted, closeId:post.postId, filenames:post.filenames})});
-          let images = ''
-          return document.getElementById('list').innerHTML+='<li id='+post._id+'><div className="list-item-parent"><h4>'+post.title+'</h4><button id='+post.postId+'>&times;</button><p name='+post.datePosted+'>'+isShort+'</p></div><div className="images-parent">'+images+'</div><span>posted '+date+'</span></li>'})
+          let images = '';
+          return document.getElementById('list').innerHTML+='<li id='+post._id+'><h4>'+post.title+'</h4><button id='+post.postId+'>&times;</button><p name='+post.datePosted+'>'+isShort+'</p><div>'+images+'</div><span>posted '+date+'</span></li>'})
       } catch (err) {
         console.log(err);
       }
@@ -123,7 +123,10 @@ class Mainpage extends React.Component {
       //rendering list elements with new post
       let date = new Date(parseInt(resp.datePosted));
       date = date.toLocaleDateString();
-      document.getElementById('list').innerHTML +='<li id='+resp.id+'><div className="list-item-parent"><h4>'+resp.title+'</h4><button id='+resp.postId+'>&times;</button><p name='+resp.datePosted+'>'+resp.text+'</p></div><div className="images-parent"></div><span>posted '+date+'</span></li>'
+      let images = '';
+      resp.filenames.map(file=>{return images+='<img src='+file+'/>'})
+      console.log(images)
+      document.getElementById('list').innerHTML +='<li id='+resp.id+'><h4>'+resp.title+'</h4><button id='+resp.postId+'>&times;</button><p name='+resp.datePosted+'>'+resp.text+'</p><div>'+images+'</div><span>posted '+date+'</span></li>'
       //leave input fileds blank
       document.getElementById("post-title").value='';
       document.getElementById("post-text").value='';

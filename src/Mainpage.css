@@ -150,11 +150,11 @@ body{
   color:#9c9c9c;
   pointer-events:none;
 }
-.images-parent{
-  height:20px;
+#list li div{
+  height:auto;
   background-color:red;
   display:grid;
-  grid-template-columns:repeat(auto) 1fr;
+/*   grid-template-columns:repeat(auto) 1fr; */
 }
 .add{
   width:100%;

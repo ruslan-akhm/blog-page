@@ -137,7 +137,7 @@ app.post('/api/post', upload.array("attachments",5), (req,res)=>{
     default:false
   })
   post.save();
-  const filenames = files.map(fileObject=>{return fileObject.filename})
+  const filenames = files.map(fileObject=>{return "https://appnew-test-sample.glitch.me/api/image/"+fileObject.filename})
   const response = ({id:post._id, title:post.title, text:post.text, datePosted:post.datePosted, postId:post.postId, filenames:filenames})
   res.json(response);
 })
