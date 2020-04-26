@@ -39,7 +39,6 @@ class Mainpage extends React.Component {
           console.log(typeof post.datePosted)
           var date = new Date(parseInt(post.datePosted));
           date = date.toLocaleDateString();
-          //console.log(Date(post.datePosted))
           that.setState({posts:prevState.concat({listId:post._id, title:post.title, text:post.text, textId:post.datePosted, closeId:post.postId})});
           return document.getElementById('list').innerHTML+='<li id='+post._id+'><div className="list-item-parent"><h4>'+post.title+'</h4><button id='+post.postId+'>&times;</button><p name='+post.datePosted+'>'+isShort+'</p></div><span>posted '+date+'</span></li>'})
       } catch (err) {
