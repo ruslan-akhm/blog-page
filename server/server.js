@@ -95,7 +95,7 @@ app.get('/api',(req,res)=>{
            gfs.files.find({'metadata.type':'upfile'}).sort({_id: -1}).limit(1).toArray((err,hdr)=>{
              if(err) return console.log(err);
              else{
-              console.log(data);
+              //console.log(data);
               return res.json({data:data,
                                src:"https://appnew-test-sample.glitch.me/api/image/"+ava[0].filename,
                                image:"https://appnew-test-sample.glitch.me/api/image/"+hdr[0].filename})
@@ -125,6 +125,8 @@ app.post('/api/avatar', upload.single('avatarfile'), (req,res)=>{
 
 //Add new posts
 app.post('/api/post', upload.any, (req,res)=>{
+  console.log("HERE WE GO")
+  console.log(req.files);
   const data = req.body
   let post = new Post({
     title:data.title,
@@ -227,7 +229,7 @@ app.get('/api/default',(req,res)=>{
 
 // Express port-switching logic for Glitch.com
 let port;
-console.log("❇️ NODE_ENV is", process.env.NODE_ENV);
+console.log("NODE_ENV is", process.env.NODE_ENV);
 if (process.env.NODE_ENV === "production") {
   port = process.env.PORT || 3000;
   app.use(express.static(path.join(__dirname, "../build")));
@@ -236,13 +238,9 @@ if (process.env.NODE_ENV === "production") {
   });
 } else {
   port = 3001;
-  console.log("⚠️ Not seeing your changes as you develop?");
-  console.log(
-    "⚠️ Do you need to set 'start': 'npm run development' in package.json?"
-  );
 }
 
 // Start the listener!
 const listener = app.listen(port, () => {
-  console.log("❇️ Express server is running on port", listener.address().port);
+  console.log("Running on port", listener.address().port);
 });
