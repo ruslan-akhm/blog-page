@@ -38,10 +38,10 @@ class Mainpage extends React.Component {
           let prevState = that.state.posts;
           let date = new Date(parseInt(post.datePosted));
           date = date.toLocaleDateString();
-          that.setState({posts:prevState.concat({listId:post._id, title:post.title, text:post.text, textId:post.datePosted, closeId:post.postId, filenames:post.filenames})});
+          that.setState({posts:prevState.concat({listId:post._id, title:post.title, text:post.text, textId:post.datePosted, closeId:post.postId, filenames:post.files})});
           let images = '';
-          if(post.filenames!==undefined){
-            post.filenames.map(file=>{return images+='<img src='+file+'/>'})
+          if(post.files!==undefined){
+            post.files.map(file=>{return images+='<img src='+file+'/>'})
           }
           //console.log(images)
           return document.getElementById('list').innerHTML+='<li id='+post._id+'><h4>'+post.title+'</h4><button id='+post.postId+'>&times;</button><p name='+post.datePosted+'>'+isShort+'</p><div>'+images+'</div><span>posted '+date+'</span></li>'})
@@ -125,12 +125,12 @@ class Mainpage extends React.Component {
       console.log("RESPONSE of ADD is ");
       console.log(resp)
       //updating state for it to have added post info
-      that.setState({posts:prevState.concat({listId:resp.id, title:resp.title, text:resp.text, textId:resp.datePosted, closeId:resp.postId, filenames:resp.filenames})});
+      that.setState({posts:prevState.concat({listId:resp.id, title:resp.title, text:resp.text, textId:resp.datePosted, closeId:resp.postId, filenames:resp.files})});
       //rendering list elements with new post
       let date = new Date(parseInt(resp.datePosted));
       date = date.toLocaleDateString();
       let images = '';
-      resp.filenames.map(file=>{return images+='<img src='+file+'/>'})
+      resp.files.map(file=>{return images+='<img src='+file+'/>'})
       console.log(images)
       document.getElementById('list').innerHTML +='<li id='+resp.id+'><h4>'+resp.title+'</h4><button id='+resp.postId+'>&times;</button><p name='+resp.datePosted+'>'+resp.text+'</p><div>'+images+'</div><span>posted '+date+'</span></li>'
       //leave input fileds blank

@@ -139,7 +139,7 @@ app.post('/api/post', upload.array("attachments",5), (req,res)=>{
     files:filenames
   })
   post.save();
-  const response = ({id:post._id, title:post.title, text:post.text, datePosted:post.datePosted, postId:post.postId, filenames:filenames})
+  const response = ({id:post._id, title:post.title, text:post.text, datePosted:post.datePosted, postId:post.postId, files:filenames})
   res.json(response);
 })
 
