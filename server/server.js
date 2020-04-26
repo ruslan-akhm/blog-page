@@ -124,24 +124,22 @@ app.post('/api/avatar', upload.single('avatarfile'), (req,res)=>{
 })
 
 //Add new posts
-app.post('/api/post', upload.array("attachments",2), (req,res)=>{
-  console.log("HERE WE GO")
-  console.log(req.body.attachments);
-  console.log(req.files);
-  const data = req.body
+app.post('/api/post', upload.array("attachments",5), (req,res)=>{
+  const files = req.files;
+  console.log(files)
+  const data = req.body.attachments
   let post = new Post({
-    title:data.title,
-    text:data.text,
+    title:data[0],
+    text:data[1],
     postId:"post-id-"+shortid.generate(),
     datePosted:Date.now(),
     type:"post",
     default:false
   })
   post.save();
-  //const response = ({id:post._id, title:post.title, text:post.text, datePosted:post.datePosted, postId:post.postId})
-  //res.json(response);
-  //console.log(req.files)
-  
+  const filenames = files.map(fileObject=>{return fileObject.filename})
+  const response = ({id:post._id, title:post.title, text:post.text, datePosted:post.datePosted, postId:post.postId, filenames:filenames})
+  res.json(response);
 })
 
 //Find all files in collection

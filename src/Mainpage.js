@@ -105,18 +105,12 @@ class Mainpage extends React.Component {
       }
       let title = document.getElementById("post-title").value;
       let text = document.getElementById("post-text").value;
-      let blobTitle = new Blob([JSON.stringify(title, null, 2)], {type : 'application/json'});
-      let blobText = new Blob([JSON.stringify(text, null, 2)], {type : 'application/json'});
       fd.append('attachments', title);
-      fd.append('attachments', title);
-       //JSON.stringify({ title: title, text: text }),
-        //JSON.stringify({ title: title, text: text, attachments:fd }),
-      console.log(fd);
+      fd.append('attachments', text);
       let response = await fetch("/api/post", {
         method: "POST",
         headers: {
           Accept: "application/json"
-          //"Content-Type": "application/json"
         },
         body:fd 
       });
