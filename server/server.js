@@ -207,21 +207,24 @@ app.get('/api/default',(req,res)=>{
       if(err) return console.log(err);
       gfs.files.deleteMany({"metadata.type":"avatarfile","metadata.date":{$gt:1587339222880}},(err,ava)=>{
         if(err) return console.log(err);
-        defaultData.map(post=>{
-          let defpost = new Post({
-          _id:post._id,
-          title:post.title,
-          text:post.text,
-          postId:post.postId,
-          datePosted:post.datePosted,
-          type:"post",
-          default:true
-          })
-        defpost.save();
-        })
+        gfs.files.deleteMany({"metadata.type":"attachments","metadata.date":{$gt:1587339222880}},(err,att)=>{
+          if(err) return console.log(err);
+            defaultData.map(post=>{
+              let defpost = new Post({
+              _id:post._id,
+              title:post.title,
+              text:post.text,
+              postId:post.postId,
+              datePosted:post.datePosted,
+              type:"post",
+              default:true
+              })
+            defpost.save();
+            })
         return res.json({data:defaultData,
                    src:defaultAvatar,
                    image:defaultHeader})
+        })
       })
     })
   });
