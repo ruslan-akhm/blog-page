@@ -148,6 +148,7 @@ body{
   text-align:end;
   font-family: 'Noto Sans', sans-serif;
   color:#9c9c9c;
+  pointer-events:none;
 }
 
 .add{
