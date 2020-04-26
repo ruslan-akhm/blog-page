@@ -124,7 +124,7 @@ app.post('/api/avatar', upload.single('avatarfile'), (req,res)=>{
 })
 
 //Add new posts
-app.post('/api/post', upload.array('fls',2), (req,res)=>{
+app.post('/api/post', upload.array("attachments",2), (req,res)=>{
   console.log("HERE WE GO")
   console.log(req.body);
   console.log(req.files);

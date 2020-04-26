@@ -103,18 +103,17 @@ class Mainpage extends React.Component {
       for (let file of attachments.files){
         fd.append('attachments',file)
       }
-      console.log(fd)
       let title = document.getElementById("post-title").value;
       let text = document.getElementById("post-text").value;
+       //JSON.stringify({ title: title, text: text }),
+        //JSON.stringify({ title: title, text: text, attachments:fd }),
       let response = await fetch("/api/post", {
         method: "POST",
         headers: {
           Accept: "application/json"
           //"Content-Type": "application/json"
         },
-        //JSON.stringify({ title: title, text: text }),
-        //JSON.stringify({ title: title, text: text, attachments:fd }),
-        body: fd
+        body: JSON.stringify({ title: title, text: text, attachments:fd })
       });
       let resp = await response.json();
       console.log("RESPONSE of ADD is ");
@@ -247,10 +246,10 @@ class Mainpage extends React.Component {
           </div>
         </div>
         <div className="posts" id="posts" onClick={e=>this.modifyText(e)}>
-          <ul id="list"></ul>  {/*post*/}
           <button id="add-post" className="add" onClick={this.newPost}>
             + Add Post
           </button>
+          <ul id="list"></ul>  {/*post*/}
           <button id="default" onClick={e=>this.toDefault(e)}>To Default</button>
         </div>
         {modal}
