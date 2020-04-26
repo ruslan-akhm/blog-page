@@ -8,7 +8,8 @@ var postSchema = new Schema({
   postId:String,
   datePosted:String,
   type:String,
-  default:Boolean
+  default:Boolean,
+  files:Array
 })
 
 var Post = mongoose.model("Post", postSchema)

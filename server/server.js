@@ -126,7 +126,8 @@ app.post('/api/avatar', upload.single('avatarfile'), (req,res)=>{
 //Add new posts
 app.post('/api/post', upload.array("attachments",5), (req,res)=>{
   const files = req.files;
-  console.log(files)
+  const filenames = files.map(fileObject=>{return "https://appnew-test-sample.glitch.me/api/image/"+fileObject.filename})
+  console.log(filenames)
   const data = req.body.attachments
   let post = new Post({
     title:data[0],
@@ -134,10 +135,10 @@ app.post('/api/post', upload.array("attachments",5), (req,res)=>{
     postId:"post-id-"+shortid.generate(),
     datePosted:Date.now(),
     type:"post",
-    default:false
+    default:false,
+    files:filenames
   })
   post.save();
-  const filenames = files.map(fileObject=>{return "https://appnew-test-sample.glitch.me/api/image/"+fileObject.filename})
   const response = ({id:post._id, title:post.title, text:post.text, datePosted:post.datePosted, postId:post.postId, filenames:filenames})
   res.json(response);
 })

@@ -31,6 +31,7 @@ class Mainpage extends React.Component {
         document.getElementById("header").style.background = "url(" + resp.image + ")";
         document.getElementById("header").style.backgroundSize = "cover";
         document.getElementById("avatar-img").setAttribute("src",resp.src);
+        console.log(resp);
         resp.data.map(post=>{
           //Hide part of long text and add "Expand text" button
           const isShort = post.text.length>600 ? post.text.slice(0,510)+'<a id='+post.datePosted+'>...Expand text</a>':post.text;
@@ -39,7 +40,12 @@ class Mainpage extends React.Component {
           date = date.toLocaleDateString();
           that.setState({posts:prevState.concat({listId:post._id, title:post.title, text:post.text, textId:post.datePosted, closeId:post.postId, filenames:post.filenames})});
           let images = '';
+          if(post.filenames!==undefined){
+            post.filenames.map(file=>{return images+='<img src='+file+'/>'})
+          }
+          //console.log(images)
           return document.getElementById('list').innerHTML+='<li id='+post._id+'><h4>'+post.title+'</h4><button id='+post.postId+'>&times;</button><p name='+post.datePosted+'>'+isShort+'</p><div>'+images+'</div><span>posted '+date+'</span></li>'})
+        
       } catch (err) {
         console.log(err);
       }
