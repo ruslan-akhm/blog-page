@@ -242,7 +242,6 @@ body{
   height:40px;
   float:right;
   margin:15px;
-  
 }
 .custom-input::-webkit-file-upload-button {
   visibility: hidden;
@@ -260,7 +259,14 @@ body{
 }
 .custom-input:hover{
   background-color: rgba(0,0,0,0.6);
-  
+}
+.attachment{
+  width:80px;
+}
+.attachment::before{
+  background-color: black;
+  width:80px;
+  content:"Add images";
 }
 #upload{
   width:100px;

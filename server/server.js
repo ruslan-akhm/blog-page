@@ -124,7 +124,7 @@ app.post('/api/avatar', upload.single('avatarfile'), (req,res)=>{
 })
 
 //Add new posts
-app.post('/api/post',(req,res)=>{
+app.post('/api/post', upload.any, (req,res)=>{
   const data = req.body
   let post = new Post({
     title:data.title,
@@ -135,8 +135,10 @@ app.post('/api/post',(req,res)=>{
     default:false
   })
   post.save();
-  const response = ({id:post._id, title:post.title, text:post.text, datePosted:post.datePosted, postId:post.postId})
-  res.json(response);
+  //const response = ({id:post._id, title:post.title, text:post.text, datePosted:post.datePosted, postId:post.postId})
+  //res.json(response);
+  console.log(req.files)
+  
 })
 
 //Find all files in collection

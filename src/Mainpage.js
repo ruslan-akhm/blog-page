@@ -211,6 +211,7 @@ class Mainpage extends React.Component {
             <input type="text" id="post-title" maxlength="35" required/>
             <label>Post:</label>
             <textarea rows="18" id="post-text"></textarea>
+            <input name="attachments" type="file" className="custom-input attachment" accept="image/*" multiple/>
             <input type="submit" id="submit" value="Post" />
           </form>
           <button id="later-button">Maybe later</button>
