@@ -260,10 +260,10 @@ body{
 .custom-input:hover{
   background-color: rgba(0,0,0,0.6);
 }
-.attachment{
+.attach-btn{
   width:80px;
 }
-.attachment::before{
+.attach-btn::before{
   background-color: black;
   width:80px;
   content:"Add images";

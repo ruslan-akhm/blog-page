@@ -99,6 +99,7 @@ class Mainpage extends React.Component {
     let prevState = this.state.posts; //our initial posts array 
     let that = this;   //workaround for "this" keyword to access state inside fetch 
     e.preventDefault();
+    const attachments = document.getElementById("attachments")
     async function add() {
       let title = document.getElementById("post-title").value;
       let text = document.getElementById("post-text").value;
@@ -211,7 +212,7 @@ class Mainpage extends React.Component {
             <input type="text" id="post-title" maxlength="35" required/>
             <label>Post:</label>
             <textarea rows="18" id="post-text"></textarea>
-            <input name="attachments" type="file" className="custom-input attachment" accept="image/*" multiple/>
+            <input name="attachments" id="attachments" type="file" className="custom-input attach-btn" accept="image/*" multiple/>
             <input type="submit" id="submit" value="Post" />
           </form>
           <button id="later-button">Maybe later</button>
