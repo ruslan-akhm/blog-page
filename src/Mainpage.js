@@ -97,13 +97,13 @@ class Mainpage extends React.Component {
     let prevState = this.state.posts; //our initial posts array 
     let that = this;   //workaround for "this" keyword to access state inside fetch 
     e.preventDefault();
-    const attachments = document.getElementById("attachments");
-    console.log(attachments.files);
     async function add() {
       const fd = new FormData();
-      for (const file of attachments.files){
-        fd.append('myFiles',file)
+      const attachments = document.getElementById("attachments");
+      for (let file of attachments.files){
+        fd.append('attachments',file)
       }
+      console.log(fd)
       let title = document.getElementById("post-title").value;
       let text = document.getElementById("post-text").value;
       let response = await fetch("/api/post", {
@@ -113,7 +113,8 @@ class Mainpage extends React.Component {
           //"Content-Type": "application/json"
         },
         //JSON.stringify({ title: title, text: text }),
-        body: fd//JSON.stringify({ title: title, text: text, attachments:fd }),
+        //JSON.stringify({ title: title, text: text, attachments:fd }),
+        body: fd
       });
       let resp = await response.json();
       console.log("RESPONSE of ADD is ");

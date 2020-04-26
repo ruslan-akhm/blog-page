@@ -127,8 +127,9 @@ app.post('/api/avatar', upload.single('avatarfile'), (req,res)=>{
 app.post('/api/post', upload.array('fls',2), (req,res)=>{
   console.log("HERE WE GO")
   console.log(req.body);
-  const filesss = req.body//.attachments;
-  console.log(filesss.length);
+  console.log(req.files);
+  //const filesss = req.body//.attachments;
+  //console.log(filesss.length);
   
   const data = req.body
   let post = new Post({
