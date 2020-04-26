@@ -37,8 +37,9 @@ class Mainpage extends React.Component {
           let prevState = that.state.posts;
           let date = new Date(parseInt(post.datePosted));
           date = date.toLocaleDateString();
-          that.setState({posts:prevState.concat({listId:post._id, title:post.title, text:post.text, textId:post.datePosted, closeId:post.postId})});
-          return document.getElementById('list').innerHTML+='<li id='+post._id+'><div className="list-item-parent"><h4>'+post.title+'</h4><button id='+post.postId+'>&times;</button><p name='+post.datePosted+'>'+isShort+'</p></div><span>posted '+date+'</span></li>'})
+          that.setState({posts:prevState.concat({listId:post._id, title:post.title, text:post.text, textId:post.datePosted, closeId:post.postId, filenames:post.filenames})});
+          let images = ''
+          return document.getElementById('list').innerHTML+='<li id='+post._id+'><div className="list-item-parent"><h4>'+post.title+'</h4><button id='+post.postId+'>&times;</button><p name='+post.datePosted+'>'+isShort+'</p></div><div className="images-parent">'+images+'</div><span>posted '+date+'</span></li>'})
       } catch (err) {
         console.log(err);
       }
@@ -118,11 +119,11 @@ class Mainpage extends React.Component {
       console.log("RESPONSE of ADD is ");
       console.log(resp)
       //updating state for it to have added post info
-      that.setState({posts:prevState.concat({listId:resp.id, title:resp.title, text:resp.text, textId:resp.datePosted, closeId:resp.postId})});
+      that.setState({posts:prevState.concat({listId:resp.id, title:resp.title, text:resp.text, textId:resp.datePosted, closeId:resp.postId, filenames:resp.filenames})});
       //rendering list elements with new post
       let date = new Date(parseInt(resp.datePosted));
       date = date.toLocaleDateString();
-      document.getElementById('list').innerHTML +='<li id='+resp.id+'><div className="list-item-parent"><h4>'+resp.title+'</h4><button id='+resp.postId+'>&times;</button><p name='+resp.datePosted+'>'+resp.text+'</p></div><span>posted '+date+'</span></li>'
+      document.getElementById('list').innerHTML +='<li id='+resp.id+'><div className="list-item-parent"><h4>'+resp.title+'</h4><button id='+resp.postId+'>&times;</button><p name='+resp.datePosted+'>'+resp.text+'</p></div><div className="images-parent"></div><span>posted '+date+'</span></li>'
       //leave input fileds blank
       document.getElementById("post-title").value='';
       document.getElementById("post-text").value='';
