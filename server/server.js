@@ -124,9 +124,12 @@ app.post('/api/avatar', upload.single('avatarfile'), (req,res)=>{
 })
 
 //Add new posts
-app.post('/api/post', upload.any, (req,res)=>{
+app.post('/api/post', upload.array('fls',2), (req,res)=>{
   console.log("HERE WE GO")
-  console.log(req.files);
+  console.log(req.body);
+  const filesss = req.body//.attachments;
+  console.log(filesss.length);
+  
   const data = req.body
   let post = new Post({
     title:data.title,
@@ -139,7 +142,7 @@ app.post('/api/post', upload.any, (req,res)=>{
   post.save();
   //const response = ({id:post._id, title:post.title, text:post.text, datePosted:post.datePosted, postId:post.postId})
   //res.json(response);
-  console.log(req.files)
+  //console.log(req.files)
   
 })
 

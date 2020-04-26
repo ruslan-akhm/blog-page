@@ -109,11 +109,11 @@ class Mainpage extends React.Component {
       let response = await fetch("/api/post", {
         method: "POST",
         headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json"
+          Accept: "application/json"
+          //"Content-Type": "application/json"
         },
         //JSON.stringify({ title: title, text: text }),
-        body: JSON.stringify({ title: title, text: text, , attachments:fd }),
+        body: fd//JSON.stringify({ title: title, text: text, attachments:fd }),
       });
       let resp = await response.json();
       console.log("RESPONSE of ADD is ");
