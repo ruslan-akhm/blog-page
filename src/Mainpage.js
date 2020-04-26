@@ -37,7 +37,9 @@ class Mainpage extends React.Component {
           //Hide part of long text and add "Expand text" button
           const isShort = post.text.length>600 ? post.text.slice(0,510)+'<a id='+post.datePosted+'>...Expand text</a>':post.text;
           let prevState = that.state.posts;
-          console.log(post.datePosted)
+          var date = new Date(milliseconds); // Create date from milliseconds
+console.log(date.toString());
+          console.log(Date(post.datePosted))
           that.setState({posts:prevState.concat({listId:post._id, title:post.title, text:post.text, textId:post.datePosted, closeId:post.postId})});
           return document.getElementById('list').innerHTML+='<li id='+post._id+'><div className="list-item-parent"><h4>'+post.title+'</h4><button id='+post.postId+'>&times;</button><p name='+post.datePosted+'>'+isShort+'</p></div><span>HELLO</span></li>'})
       } catch (err) {
