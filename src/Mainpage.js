@@ -43,7 +43,7 @@ class Mainpage extends React.Component {
           that.setState({posts:prevState.concat({listId:post._id, title:post.title, text:post.text, textId:post.datePosted, closeId:post.postId, filenames:post.files})});
           let images = '';
           if(post.files!==undefined){
-            post.files.map(file=>{return images+=`<img id=${file} src=${file} onClick="that.showAttachment" />`})
+            post.files.map(file=>{return images+=`<img id=${file} src=${file} onClick=${showAttachment} />`})
           }
           //console.log(images)
           return document.getElementById('list').innerHTML+='<li id='+post._id+'><h4>'+post.title+'</h4><button id='+post.postId+'>&times;</button><p name='+post.datePosted+'>'+isShort+'</p><container>'+images+'</container><span>posted '+date+'</span></li>'})
