@@ -16,6 +16,7 @@ class Mainpage extends React.Component {
     this.getData=this.getData.bind(this);
     this.modifyText=this.modifyText.bind(this);
     this.toDefault=this.toDefault.bind(this);
+    this.showAttachment=this.showAttachment.bind(this);
   }
 
   componentDidMount() {
@@ -36,12 +37,13 @@ class Mainpage extends React.Component {
           //Hide part of long text and add "Expand text" button
           const isShort = post.text.length>600 ? post.text.slice(0,510)+'<a id='+post.datePosted+'>...Expand text</a>':post.text;
           let prevState = that.state.posts;
+          //Display date Posted
           let date = new Date(parseInt(post.datePosted));
           date = date.toLocaleDateString();
           that.setState({posts:prevState.concat({listId:post._id, title:post.title, text:post.text, textId:post.datePosted, closeId:post.postId, filenames:post.files})});
           let images = '';
           if(post.files!==undefined){
-            post.files.map(file=>{return images+='<img src='+file+'/>'})
+            post.files.map(file=>{return images+='<img onClick='+that.showAttachment+' id='+file+' src='+file+'/>'})
           }
           //console.log(images)
           return document.getElementById('list').innerHTML+='<li id='+post._id+'><h4>'+post.title+'</h4><button id='+post.postId+'>&times;</button><p name='+post.datePosted+'>'+isShort+'</p><container>'+images+'</container><span>posted '+date+'</span></li>'})
@@ -215,6 +217,10 @@ class Mainpage extends React.Component {
     }
     def();
   }
+
+showAttachment(){
+  console.log("click")
+}
 
   render() {
     const modal = (
