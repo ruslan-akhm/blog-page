@@ -232,7 +232,7 @@ showAttachment(){
             <input type="text" id="post-title" maxlength="35" required/>
             <label>Post:</label>
             <textarea rows="18" id="post-text"></textarea>
-            <input name="attachments" id="attachments" type="file" className="custom-input attach-btn" accept="image/*" multiple/>
+         {/*   <input name="attachments" id="attachments" type="file" className="custom-input attach-btn" accept="image/*" multiple/> */}
             <input type="submit" id="submit" value="Post" />
           </form>
           <button id="later-button">Maybe later</button>
