@@ -21,10 +21,11 @@ class Mainpage extends React.Component {
 
   componentDidMount() {
     this.getData();
+    window.addEventListener('click',(e)=>{console.log(e.target.id)})
   }
                         
   getData(){
-    let that = this;   //workaround for "this" keyword to access state inside fetch
+    const that = this;   //workaround for "this" keyword to access state inside fetch
     async function dat(){
       try {
         let response = await fetch("/api");
@@ -43,7 +44,7 @@ class Mainpage extends React.Component {
           that.setState({posts:prevState.concat({listId:post._id, title:post.title, text:post.text, textId:post.datePosted, closeId:post.postId, filenames:post.files})});
           let images = '';
           if(post.files!==undefined){
-            post.files.map(file=>{return images+=`<img id=${file} src=${file} onClick=${showAttachment} />`})
+            post.files.map(file=>{return images+='<img id='+file+' src='+file+' onClick={that.showAttachment} />'})
           }
           //console.log(images)
           return document.getElementById('list').innerHTML+='<li id='+post._id+'><h4>'+post.title+'</h4><button id='+post.postId+'>&times;</button><p name='+post.datePosted+'>'+isShort+'</p><container>'+images+'</container><span>posted '+date+'</span></li>'})
