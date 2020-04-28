@@ -11,7 +11,7 @@ const crypto = require('crypto')
 const multer = require('multer');
 const GridFsStorage = require('multer-gridfs-storage');
 const Grid = require('gridfs-stream');
-const os = require('os');
+
 
 const app = express();
 let gfs;
@@ -49,25 +49,16 @@ const defaultAvatar = "https://appnew-test-sample.glitch.me/api/image/image-760a
 const defaultHeader = "https://appnew-test-sample.glitch.me/api/image/image-a881b5893feb93aab9e4b696f5d48590.jpg"
 
 //EJS
-//app.set('view engine','ejs')
-//for maintenance
-app.set('trust proxy', true)
+app.set('view engine','ejs')
 
-//app.use(express.json());
-//app.use(express.urlencoded({ extended: true }))
-//app.use(express.static("public"));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }))
+app.use(express.static("public"));
 
 app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/public/index2.html");
+  res.sendFile(__dirname + "/public/index.html");
 });
 
-// app.get('/',(req,res)=>{
-//   console.log(req.headers);
-//   var software = req.header('user-agent')
-//   var ipaddress = req.ip
-//   var language = req.header('accept-language')
-//   res.json({"ipaddress":ipaddress, "language":language, "software":software})
-// })
 
 conn.once('open',() => {
   gfs = Grid(conn.db, mongoose.mongo);
