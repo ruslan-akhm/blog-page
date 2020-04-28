@@ -189,6 +189,7 @@ app.get('/api/image/:filename',(req,res)=>{
 //Delete Post
 app.delete('/api/delete',(req,res)=>{
   const postId = req.body.id
+  console.log(postId)
   Post.deleteOne({postId:postId},(err,data)=>{
     if(err) return console.log(err);
     console.log(data);
