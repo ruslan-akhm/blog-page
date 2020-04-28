@@ -11,7 +11,7 @@ const crypto = require('crypto')
 const multer = require('multer');
 const GridFsStorage = require('multer-gridfs-storage');
 const Grid = require('gridfs-stream');
-
+const os = require('os');
 
 const app = express();
 let gfs;
@@ -56,6 +56,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.static("public"));
 
 app.get("/", (req, res) => {
+  
   res.sendFile(__dirname + "/public/index.html");
 });
 

@@ -10,6 +10,7 @@ dependencies:
   mongoose: 5.9.6
   multer: 1.4.2
   multer-gridfs-storage: 4.0.3
+  os: 0.1.1
   react: 16.13.1
   react-dom: 16.13.1
   react-scripts: 3.4.1
@@ -7742,6 +7743,10 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha1-u+Z0BseaqFxc/sdm/lc0VV36EnQ=
+  /os/0.1.1:
+    dev: false
+    resolution:
+      integrity: sha1-IIhF6J4ZOtTZcUdLk5R3NqVtE/M=
   /p-defer/1.0.0:
     dev: false
     engines:
@@ -11585,6 +11590,7 @@ specifiers:
   mongoose: ^5.9.2
   multer: ^1.4.2
   multer-gridfs-storage: ^4.0.2
+  os: ^0.1.1
   react: ^16.12.0
   react-dom: ^16.12.0
   react-scripts: ^3.4.0
