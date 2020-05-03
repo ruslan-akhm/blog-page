@@ -52,7 +52,6 @@ class Mainpage extends React.Component {
       } catch (err) {
         console.log(err);
       }
-      console.log(that.state.posts1)
     }
     dat();
   }
@@ -111,8 +110,10 @@ class Mainpage extends React.Component {
     async function add() {
       const fd = new FormData();
       const attachments = document.getElementById("attachments");
-      for (let file of attachments.files){
-        fd.append('attachments',file)
+      if(attachments!==null){
+        for (let file of attachments.files){
+          fd.append('attachments',file)
+        }
       }
       let title = document.getElementById("post-title").value;
       let text = document.getElementById("post-text").value;
@@ -129,14 +130,14 @@ class Mainpage extends React.Component {
       console.log("RESPONSE of ADD is ");
       console.log(resp)
       //updating state for it to have added post info
-      that.setState({posts:prevState.concat({listId:resp.id, title:resp.title, text:resp.text, textId:"textId-"+resp._id, closeId:"closeId-"+resp._id, filenames:resp.files})});
+      that.setState({posts:prevState.concat({listId:resp._id, title:resp.title, text:resp.text, textId:"textId-"+resp._id, closeId:"closeId-"+resp._id, filenames:resp.files})});
       //rendering list elements with new post
       let date = new Date(parseInt(resp.datePosted));
       date = date.toLocaleDateString();
       let images = '';
       resp.files.map(file=>{return images+='<img src='+file+'/>'})
       console.log(images)
-      document.getElementById('list').innerHTML +='<li id='+resp.id+'><h4>'+resp.title+'</h4><button id=closeId'+resp._id+'>&times;</button><p name=textId'+resp._id+'>'+resp.text+'</p><container>'+images+'</container><span>posted '+date+'</span></li>'
+      document.getElementById('list').innerHTML +='<li id='+resp._id+'><h4>'+resp.title+'</h4><button id=closeId'+resp._id+'>&times;</button><p name=textId'+resp._id+'>'+resp.text+'</p><container>'+images+'</container><span>posted '+date+'</span></li>'
       //leave input fileds blank
       document.getElementById("post-title").value='';
       document.getElementById("post-text").value='';
@@ -169,7 +170,7 @@ class Mainpage extends React.Component {
               Accept: "application/json",
               "Content-Type": "application/json"
             },
-            body: JSON.stringify({id:post.closeId})
+            body: JSON.stringify({id:post.listId})
           });
           let resp = await response.json();
           let list = document.getElementById("list");
