@@ -11,7 +11,7 @@ const crypto = require('crypto')
 const multer = require('multer');
 const GridFsStorage = require('multer-gridfs-storage');
 const Grid = require('gridfs-stream');
-
+const os = require('os');
 
 const app = express();
 let gfs;
@@ -47,6 +47,8 @@ const defaultData = [ {
      __v: 0 } ];
 const defaultAvatar = "https://appnew-test-sample.glitch.me/api/image/image-760a96ccff179db51f63d83e1bafaca4.jpg"
 const defaultHeader = "https://appnew-test-sample.glitch.me/api/image/image-a881b5893feb93aab9e4b696f5d48590.jpg"
+
+app.set('trust proxy', true)
 
 //EJS
 app.set('view engine','ejs')
@@ -87,6 +89,7 @@ const upload = multer({storage})
 
 //Send posts from database  
 app.get('/api',(req,res)=>{
+  return res.sendFile(__dirname + "/public/index2.html")
   Post.find({type:"post"}).sort({_id: 1}).exec((err,data)=>{
     if(err) return console.log(err);
     else{
