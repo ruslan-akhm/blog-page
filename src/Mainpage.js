@@ -37,18 +37,21 @@ class Mainpage extends React.Component {
         resp.data.map(post=>{
           //Hide part of long text and add "Expand text" button
           const isShort = post.text.length>600 ? post.text.slice(0,510)+'<a id='+post.datePosted+'>...Expand text</a>':post.text;
-          let prevState = that.state.posts;
+          //let prevState = that.state.posts;
+          let prevState = that.state.posts1;
           //Display date Posted
           let date = new Date(parseInt(post.datePosted));
           date = date.toLocaleDateString();
-          that.setState({posts:prevState.concat({listId:post._id, title:post.title, text:post.text, textId:post.datePosted, closeId:post.postId, filenames:post.files})});
+          //that.setState({posts:prevState.concat({listId:post._id, title:post.title, text:post.text, textId:post.datePosted, closeId:post.postId, filenames:post.files})});
           let images = '';
           if(post.files!==undefined){
             post.files.map(file=>{return images+='<img id='+file+' src='+file+' onClick={that.showAttachment} />'})
           }
+          that.setState({posts1:prevState.concat({post:<li id={post._id}><h4>{post.title}</h4><button id={"closeId-"+post._id}>&times;</button><p name={"textId-"+post._id}>{isShort}</p><container>{images}</container><span>posted {date}</span></li>, filenames:post.files})})
+          return
           //console.log(images)
-          return document.getElementById('list').innerHTML+='<li id='+post._id+'><h4>'+post.title+'</h4><button id='+post.postId+'>&times;</button><p name='+post.datePosted+'>'+isShort+'</p><container>'+images+'</container><span>posted '+date+'</span></li>'})
-        
+          //return document.getElementById('list').innerHTML+='<li id='+post._id+'><h4>'+post.title+'</h4><button id='+post.postId+'>&times;</button><p name='+post.datePosted+'>'+isShort+'</p><container>'+images+'</container><span>posted '+date+'</span></li>'
+        })
       } catch (err) {
         console.log(err);
       }
@@ -265,7 +268,9 @@ class Mainpage extends React.Component {
           <button id="add-post" className="add" onClick={this.newPost}>
             + Add Post
           </button>
-          <ul id="list"></ul>  {/*post*/}
+          <ul id="list">
+          
+          </ul>  {/*post*/}
           <button id="default" onClick={e=>this.toDefault(e)}>To Default</button>
         </div>
          {modal} 
