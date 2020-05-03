@@ -11,7 +11,6 @@ const crypto = require('crypto')
 const multer = require('multer');
 const GridFsStorage = require('multer-gridfs-storage');
 const Grid = require('gridfs-stream');
-const os = require('os');
 
 const app = express();
 let gfs;
@@ -89,7 +88,6 @@ const upload = multer({storage})
 
 //Send posts from database  
 app.get('/api',(req,res)=>{
-  return res.sendFile(__dirname + "/public/index2.html")
   Post.find({type:"post"}).sort({_id: 1}).exec((err,data)=>{
     if(err) return console.log(err);
     else{

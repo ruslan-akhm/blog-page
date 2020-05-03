@@ -16,7 +16,7 @@ class Mainpage extends React.Component {
     this.getData=this.getData.bind(this);
     this.modifyText=this.modifyText.bind(this);
     this.toDefault=this.toDefault.bind(this);
-    this.showAttachment=this.showAttachment.bind(this);
+    //this.showAttachment=this.showAttachment.bind(this);
   }
 
   componentDidMount() {
@@ -219,9 +219,9 @@ class Mainpage extends React.Component {
     def();
   }
 
-showAttachment(){
-  console.log("click")
-}
+// showAttachment(){
+//   console.log("click")
+// }
 
   render() {
     const modal = (
@@ -268,7 +268,7 @@ showAttachment(){
           <ul id="list"></ul>  {/*post*/}
           <button id="default" onClick={e=>this.toDefault(e)}>To Default</button>
         </div>
-        {modal}
+         {modal} 
       </div>
     );
   }
