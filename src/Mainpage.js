@@ -36,25 +36,23 @@ class Mainpage extends React.Component {
         console.log(resp);
         resp.data.map(post=>{
           //Hide part of long text and add "Expand text" button
-          const isShort = post.text.length>600 ? post.text.slice(0,510)+'<a id='+post.datePosted+'>...Expand text</a>':post.text;
-          //let prevState = that.state.posts;
-          let prevState = that.state.posts1;
+          const isShort = post.text.length>600 ? post.text.slice(0,510)+'<a id=textId-'+post._id+'>...Expand text</a>':post.text;
+          let prevState = that.state.posts;
           //Display date Posted
           let date = new Date(parseInt(post.datePosted));
           date = date.toLocaleDateString();
-          //that.setState({posts:prevState.concat({listId:post._id, title:post.title, text:post.text, textId:post.datePosted, closeId:post.postId, filenames:post.files})});
+          that.setState({posts:prevState.concat({listId:post._id, title:post.title, text:post.text, textId:"textId-"+post._id, closeId:"closeId-"+post._id, filenames:post.files})});
           let images = '';
           if(post.files!==undefined){
             post.files.map(file=>{return images+='<img id='+file+' src='+file+' onClick={that.showAttachment} />'})
           }
-          that.setState({posts1:prevState.concat({post:<li id={post._id}><h4>{post.title}</h4><button id={"closeId-"+post._id}>&times;</button><p name={"textId-"+post._id}>{isShort}</p><container>{images}</container><span>posted {date}</span></li>, filenames:post.files})})
-          return
           //console.log(images)
-          //return document.getElementById('list').innerHTML+='<li id='+post._id+'><h4>'+post.title+'</h4><button id='+post.postId+'>&times;</button><p name='+post.datePosted+'>'+isShort+'</p><container>'+images+'</container><span>posted '+date+'</span></li>'
+          return document.getElementById('list').innerHTML+='<li id='+post._id+'><h4>'+post.title+'</h4><button id=closeId-'+post._id+'>&times;</button><p name=textId-'+post._id+'>'+isShort+'</p><container>'+images+'</container><span>posted '+date+'</span></li>'
         })
       } catch (err) {
         console.log(err);
       }
+      console.log(that.state.posts1)
     }
     dat();
   }
@@ -131,14 +129,14 @@ class Mainpage extends React.Component {
       console.log("RESPONSE of ADD is ");
       console.log(resp)
       //updating state for it to have added post info
-      that.setState({posts:prevState.concat({listId:resp.id, title:resp.title, text:resp.text, textId:resp.datePosted, closeId:resp.postId, filenames:resp.files})});
+      that.setState({posts:prevState.concat({listId:resp.id, title:resp.title, text:resp.text, textId:"textId-"+resp._id, closeId:"closeId-"+resp._id, filenames:resp.files})});
       //rendering list elements with new post
       let date = new Date(parseInt(resp.datePosted));
       date = date.toLocaleDateString();
       let images = '';
       resp.files.map(file=>{return images+='<img src='+file+'/>'})
       console.log(images)
-      document.getElementById('list').innerHTML +='<li id='+resp.id+'><h4>'+resp.title+'</h4><button id='+resp.postId+'>&times;</button><p name='+resp.datePosted+'>'+resp.text+'</p><container>'+images+'</container><span>posted '+date+'</span></li>'
+      document.getElementById('list').innerHTML +='<li id='+resp.id+'><h4>'+resp.title+'</h4><button id=closeId'+resp._id+'>&times;</button><p name=textId'+resp._id+'>'+resp.text+'</p><container>'+images+'</container><span>posted '+date+'</span></li>'
       //leave input fileds blank
       document.getElementById("post-title").value='';
       document.getElementById("post-text").value='';
@@ -268,9 +266,7 @@ class Mainpage extends React.Component {
           <button id="add-post" className="add" onClick={this.newPost}>
             + Add Post
           </button>
-          <ul id="list">
-          
-          </ul>  {/*post*/}
+          <ul id="list"></ul>  {/*post*/}
           <button id="default" onClick={e=>this.toDefault(e)}>To Default</button>
         </div>
          {modal} 
