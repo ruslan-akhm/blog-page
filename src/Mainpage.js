@@ -128,7 +128,7 @@ class Mainpage extends React.Component {
       });
       let resp = await response.json();
       console.log("RESPONSE of ADD is ");
-      console.log(resp)
+      console.log(resp);
       //updating state for it to have added post info
       that.setState({posts:prevState.concat({listId:resp._id, title:resp.title, text:resp.text, textId:"textId-"+resp._id, closeId:"closeId-"+resp._id, filenames:resp.files})});
       //rendering list elements with new post
