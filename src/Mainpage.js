@@ -137,7 +137,7 @@ class Mainpage extends React.Component {
       let images = '';
       resp.files.map(file=>{return images+='<img src='+file+'/>'})
       console.log(images)
-      document.getElementById('list').innerHTML +='<li id='+resp._id+'><h4>'+resp.title+'</h4><button id=closeId'+resp._id+'>&times;</button><p name=textId'+resp._id+'>'+resp.text+'</p><container>'+images+'</container><span>posted '+date+'</span></li>'
+      document.getElementById('list').innerHTML +='<li id='+resp._id+'><h4>'+resp.title+'</h4><button id=closeId-'+resp._id+'>&times;</button><p name=textId'+resp._id+'>'+resp.text+'</p><container>'+images+'</container><span>posted '+date+'</span></li>'
       //leave input fileds blank
       document.getElementById("post-title").value='';
       document.getElementById("post-text").value='';
@@ -163,6 +163,7 @@ class Mainpage extends React.Component {
       } 
       else if(e.target.id==post.closeId){
         //delete post
+        console.log(post)
         async function deletePost(){
           let response = await fetch("/api/delete", {
             method: "DELETE",
