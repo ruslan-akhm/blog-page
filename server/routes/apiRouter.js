@@ -13,6 +13,7 @@ var mongoURI = "mongodb+srv://ruslan-akhm:zuaGc0VJ@cluster0-y5h11.mongodb.net/te
 mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false });
 var conn = mongoose.connection;
 
+//set GridFS 
 let gfs;
 
 conn.once('open',() => {
@@ -41,9 +42,6 @@ const storage = new GridFsStorage({
 const upload = multer({storage})
 
 
-
-
-
 apiRouter.get('/',(req,res)=>{
   Post.find({type:"post"}).sort({_id: 1}).exec((err,data)=>{
     if(err) return console.log(err);
@@ -54,10 +52,11 @@ apiRouter.get('/',(req,res)=>{
            gfs.files.find({'metadata.type':'upfile'}).sort({_id: -1}).limit(1).toArray((err,hdr)=>{
              if(err) return console.log(err);
              else{
-              //console.log(data);
-              return res.json({data:data,
-                               src:"https://appnew-test-sample.glitch.me/api/image/"+ava[0].filename,
-                               image:"https://appnew-test-sample.glitch.me/api/image/"+hdr[0].filename})
+              return res.json(
+                {data:data,
+                 src:"https://appnew-test-sample.glitch.me/api/image/"+ava[0].filename,
+                 image:"https://appnew-test-sample.glitch.me/api/image/"+hdr[0].filename}
+              )
             }
           })
         }
@@ -66,20 +65,15 @@ apiRouter.get('/',(req,res)=>{
   })
 })
 
-
 //Set Header image
 apiRouter.post('/upload', upload.single('upfile'), (req,res)=>{
    const fileObject = req.file;
-   console.log(fileObject);
-   //const readstream = gfs.createReadStream(fileObject.filename);
    return res.json({"image":"https://appnew-test-sample.glitch.me/api/image/"+fileObject.filename})
 })
 
 //Set Avatar
 apiRouter.post('/avatar', upload.single('avatarfile'), (req,res)=>{
    const fileObject = req.file;
-   console.log(fileObject);
-   //const readstream = gfs.createReadStream(fileObject.filename);
    return res.json({"src":"https://appnew-test-sample.glitch.me/api/image/"+fileObject.filename})
 })
 
@@ -87,7 +81,6 @@ apiRouter.post('/avatar', upload.single('avatarfile'), (req,res)=>{
 apiRouter.post('/post', upload.array("attachments",5), (req,res)=>{
   const files = req.files;
   const filenames = files.map(fileObject=>{return "https://appnew-test-sample.glitch.me/api/image/"+fileObject.filename})
-  //console.log(filenames)
   const data = req.body.attachments
   let post = new Post({
     title:data[0],
@@ -100,7 +93,7 @@ apiRouter.post('/post', upload.array("attachments",5), (req,res)=>{
   })
   post.save();
   const response = ({id:post._id, title:post.title, text:post.text, datePosted:post.datePosted, postId:post.postId, files:filenames})
-  res.json(response);
+  return res.json(response);
 })
 
 //Find all files in collection
@@ -148,13 +141,10 @@ apiRouter.get('/image/:filename',(req,res)=>{
 //Delete Post
 apiRouter.delete('/delete',(req,res)=>{
   const _id = req.body.id
-  console.log(_id)
   Post.deleteOne({_id:_id},(err,data)=>{
     if(err) return console.log(err);
-    console.log(data);
     Post.find({type:"post"}).exec((err,post)=>{
       if(err) return console.log(err);
-      console.log(post);
       return res.json({posts:post})
     })
   })
@@ -170,21 +160,23 @@ apiRouter.get('/default',(req,res)=>{
         if(err) return console.log(err);
         gfs.files.deleteMany({"metadata.type":"attachments","metadata.date":{$gt:1587339222880}},(err,att)=>{
           if(err) return console.log(err);
-            defaultData.data.map(post=>{
-              let defpost = new Post({
-              _id:post._id,
-              title:post.title,
-              text:post.text,
-              postId:post.postId,
-              datePosted:post.datePosted,
-              type:"post",
-              default:true
-              })
-            defpost.save();
+          defaultData.data.map(post=>{
+            let defpost = new Post({
+            _id:post._id,
+            title:post.title,
+            text:post.text,
+            postId:post.postId,
+            datePosted:post.datePosted,
+            type:"post",
+            default:true
             })
-        return res.json({data:defaultData.data,
-                   src:defaultData.avatar,
-                   image:defaultData.header})
+          defpost.save();
+          })
+          return res.json(
+            {data:defaultData.data,
+             src:defaultData.avatar,
+             image:defaultData.header}
+          )
         })
       })
     })
