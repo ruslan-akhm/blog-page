@@ -29,5 +29,4 @@ module.exports = {
      __v: 0 } ],
  avatar: "https://appnew-test-sample.glitch.me/api/image/image-760a96ccff179db51f63d83e1bafaca4.jpg",
  header: "https://appnew-test-sample.glitch.me/api/image/image-a881b5893feb93aab9e4b696f5d48590.jpg"
-
 }

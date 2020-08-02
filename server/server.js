@@ -1,20 +1,22 @@
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
-const shortid = require('shortid');
-const Post = require('../server/newPost');//
-const defaultData = require('./defaultData')
+//const shortid = require('shortid');//
+//const Post = require('../server/newPost');//
+//const defaultData = require('./defaultData');//
+const apiRouter = require('./routes/apiRouter')
 var mongoURI = "mongodb+srv://ruslan-akhm:zuaGc0VJ@cluster0-y5h11.mongodb.net/test?retryWrites=true&w=majority"
 mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false });
 var conn = mongoose.connection;
 const ejs = require('ejs')
-const crypto = require('crypto')
-const multer = require('multer');
-const GridFsStorage = require('multer-gridfs-storage');
-const Grid = require('gridfs-stream');
+// const crypto = require('crypto')//
+// const multer = require('multer');//
+// const GridFsStorage = require('multer-gridfs-storage');//
+// const Grid = require('gridfs-stream');//
 
 const app = express();
-let gfs;
+
+//let gfs;
 
 //Default posts, Header and Avatar to set when "To Default" button clicked
 // const defaultData = [ { 
@@ -62,178 +64,179 @@ app.get("/", (req, res) => {
 });
 
 
-conn.once('open',() => {
-  gfs = Grid(conn.db, mongoose.mongo);
-  gfs.collection('uploads');
-})
+// conn.once('open',() => {
+//   gfs = Grid(conn.db, mongoose.mongo);
+//   gfs.collection('uploads');
+// })
 
-const storage = new GridFsStorage({
-  url: mongoURI,
-  file: (req, file) => {
-    return new Promise((resolve, reject)=>{
-      crypto.randomBytes(16, (err,buf)=>{
-        if(err) return reject(err)
-        const filename = "image-" + buf.toString('hex') + path.extname(file.originalname);
-        const type = file.fieldname;
-        const fileinfo={
-          filename: filename,
-          bucketName: 'uploads',
-          metadata:{type:type, date:Date.now()}
-        };
-        resolve(fileinfo);
-      })
-    })
-  }
-})
-const upload = multer({storage})
+// const storage = new GridFsStorage({
+//   url: mongoURI,
+//   file: (req, file) => {
+//     return new Promise((resolve, reject)=>{
+//       crypto.randomBytes(16, (err,buf)=>{
+//         if(err) return reject(err)
+//         const filename = "image-" + buf.toString('hex') + path.extname(file.originalname);
+//         const type = file.fieldname;
+//         const fileinfo={
+//           filename: filename,
+//           bucketName: 'uploads',
+//           metadata:{type:type, date:Date.now()}
+//         };
+//         resolve(fileinfo);
+//       })
+//     })
+//   }
+// })
+// const upload = multer({storage})
 
+app.use('/api', apiRouter);
 //Send posts from database  
-app.get('/api',(req,res)=>{
-  Post.find({type:"post"}).sort({_id: 1}).exec((err,data)=>{
-    if(err) return console.log(err);
-    else{
-      gfs.files.find({'metadata.type':'avatarfile'}).sort({_id: -1}).limit(1).toArray((err,ava)=>{
-        if(err) return console.log(err);
-        else{
-           gfs.files.find({'metadata.type':'upfile'}).sort({_id: -1}).limit(1).toArray((err,hdr)=>{
-             if(err) return console.log(err);
-             else{
-              //console.log(data);
-              return res.json({data:data,
-                               src:"https://appnew-test-sample.glitch.me/api/image/"+ava[0].filename,
-                               image:"https://appnew-test-sample.glitch.me/api/image/"+hdr[0].filename})
-            }
-          })
-        }
-      })
-    }
-  })
-})
+// app.get('/api',(req,res)=>{
+//   Post.find({type:"post"}).sort({_id: 1}).exec((err,data)=>{
+//     if(err) return console.log(err);
+//     else{
+//       gfs.files.find({'metadata.type':'avatarfile'}).sort({_id: -1}).limit(1).toArray((err,ava)=>{
+//         if(err) return console.log(err);
+//         else{
+//            gfs.files.find({'metadata.type':'upfile'}).sort({_id: -1}).limit(1).toArray((err,hdr)=>{
+//              if(err) return console.log(err);
+//              else{
+//               //console.log(data);
+//               return res.json({data:data,
+//                                src:"https://appnew-test-sample.glitch.me/api/image/"+ava[0].filename,
+//                                image:"https://appnew-test-sample.glitch.me/api/image/"+hdr[0].filename})
+//             }
+//           })
+//         }
+//       })
+//     }
+//   })
+// })
 
-app.use('/api',apiRouter);
-//Set Header image
-app.post('/api/upload', upload.single('upfile'), (req,res)=>{
-   const fileObject = req.file;
-   console.log(fileObject);
-   //const readstream = gfs.createReadStream(fileObject.filename);
-   return res.json({"image":"https://appnew-test-sample.glitch.me/api/image/"+fileObject.filename})
-})
 
-//Set Avatar
-app.post('/api/avatar', upload.single('avatarfile'), (req,res)=>{
-   const fileObject = req.file;
-   console.log(fileObject);
-   //const readstream = gfs.createReadStream(fileObject.filename);
-   return res.json({"src":"https://appnew-test-sample.glitch.me/api/image/"+fileObject.filename})
-})
+// //Set Header image
+// app.post('/api/upload', upload.single('upfile'), (req,res)=>{
+//    const fileObject = req.file;
+//    console.log(fileObject);
+//    //const readstream = gfs.createReadStream(fileObject.filename);
+//    return res.json({"image":"https://appnew-test-sample.glitch.me/api/image/"+fileObject.filename})
+// })
 
-//Add new posts
-app.post('/api/post', upload.array("attachments",5), (req,res)=>{
-  const files = req.files;
-  const filenames = files.map(fileObject=>{return "https://appnew-test-sample.glitch.me/api/image/"+fileObject.filename})
-  //console.log(filenames)
-  const data = req.body.attachments
-  let post = new Post({
-    title:data[0],
-    text:data[1],
-    postId:"post-id-"+shortid.generate(),
-    datePosted:Date.now(),
-    type:"post",
-    default:false,
-    files:filenames
-  })
-  post.save();
-  const response = ({id:post._id, title:post.title, text:post.text, datePosted:post.datePosted, postId:post.postId, files:filenames})
-  res.json(response);
-})
+// //Set Avatar
+// app.post('/api/avatar', upload.single('avatarfile'), (req,res)=>{
+//    const fileObject = req.file;
+//    console.log(fileObject);
+//    //const readstream = gfs.createReadStream(fileObject.filename);
+//    return res.json({"src":"https://appnew-test-sample.glitch.me/api/image/"+fileObject.filename})
+// })
 
-//Find all files in collection
-app.get('/api/files',(req,res)=>{
-  gfs.files.find().toArray((err, files)=>{
-    if(!files||files.length===0){
-      return res.status(404).json({
-        err: "no files exist"
-      })
-    }
-    return res.json(files)
-  })
-})
+// //Add new posts
+// app.post('/api/post', upload.array("attachments",5), (req,res)=>{
+//   const files = req.files;
+//   const filenames = files.map(fileObject=>{return "https://appnew-test-sample.glitch.me/api/image/"+fileObject.filename})
+//   //console.log(filenames)
+//   const data = req.body.attachments
+//   let post = new Post({
+//     title:data[0],
+//     text:data[1],
+//     postId:"post-id-"+shortid.generate(),
+//     datePosted:Date.now(),
+//     type:"post",
+//     default:false,
+//     files:filenames
+//   })
+//   post.save();
+//   const response = ({id:post._id, title:post.title, text:post.text, datePosted:post.datePosted, postId:post.postId, files:filenames})
+//   res.json(response);
+// })
 
-//Find particluar file
-app.get('/api/files/:filename',(req,res)=>{
-  gfs.files.findOne({filename:req.params.filename},(err, file)=>{
-    if(!file||file.length===0){
-      return res.status(404).json({
-        err: "no file exists"
-      })
-    }
-    return res.json(file)
-  })
-})
+// //Find all files in collection
+// app.get('/api/files',(req,res)=>{
+//   gfs.files.find().toArray((err, files)=>{
+//     if(!files||files.length===0){
+//       return res.status(404).json({
+//         err: "no files exist"
+//       })
+//     }
+//     return res.json(files)
+//   })
+// })
 
-//Load image
-app.get('/api/image/:filename',(req,res)=>{
-  gfs.files.findOne({filename:req.params.filename},(err, file)=>{
-    if(!file||file.length===0){
-      return res.status(404).json({
-        err: "no file exists"
-      })
-    }
-    //Check if img
-    if(file.contentType==="image/jpeg"||file.contentType==="img/png"){
-      const readstream = gfs.createReadStream(file.filename);
-      readstream.pipe(res)
-    }else{
-      return res.status(404).json("Not an image")
-    }
-  })
-})
+// //Find particluar file
+// app.get('/api/files/:filename',(req,res)=>{
+//   gfs.files.findOne({filename:req.params.filename},(err, file)=>{
+//     if(!file||file.length===0){
+//       return res.status(404).json({
+//         err: "no file exists"
+//       })
+//     }
+//     return res.json(file)
+//   })
+// })
 
-//Delete Post
-app.delete('/api/delete',(req,res)=>{
-  const _id = req.body.id
-  console.log(_id)
-  Post.deleteOne({_id:_id},(err,data)=>{
-    if(err) return console.log(err);
-    console.log(data);
-    Post.find({type:"post"}).exec((err,post)=>{
-      if(err) return console.log(err);
-      console.log(post);
-      return res.json({posts:post})
-    })
-  })
-})
+// //Load image
+// app.get('/api/image/:filename',(req,res)=>{
+//   gfs.files.findOne({filename:req.params.filename},(err, file)=>{
+//     if(!file||file.length===0){
+//       return res.status(404).json({
+//         err: "no file exists"
+//       })
+//     }
+//     //Check if img
+//     if(file.contentType==="image/jpeg"||file.contentType==="img/png"){
+//       const readstream = gfs.createReadStream(file.filename);
+//       readstream.pipe(res)
+//     }else{
+//       return res.status(404).json("Not an image")
+//     }
+//   })
+// })
 
-//Bring the default info back and make corrections on databases 
-app.get('/api/default',(req,res)=>{
-  Post.deleteMany({ default: false }, (err,dat)=>{
-    if(err) return console.log(err);
-    gfs.files.deleteMany({"metadata.type":"upfile","metadata.date":{$gt:1587339231260}},(err,hdr)=>{
-      if(err) return console.log(err);
-      gfs.files.deleteMany({"metadata.type":"avatarfile","metadata.date":{$gt:1587339222880}},(err,ava)=>{
-        if(err) return console.log(err);
-        gfs.files.deleteMany({"metadata.type":"attachments","metadata.date":{$gt:1587339222880}},(err,att)=>{
-          if(err) return console.log(err);
-            defaultData.data.map(post=>{
-              let defpost = new Post({
-              _id:post._id,
-              title:post.title,
-              text:post.text,
-              postId:post.postId,
-              datePosted:post.datePosted,
-              type:"post",
-              default:true
-              })
-            defpost.save();
-            })
-        return res.json({data:defaultData.data,
-                   src:defaultData.avatar,
-                   image:defaultData.header})
-        })
-      })
-    })
-  });
-})
+// //Delete Post
+// app.delete('/api/delete',(req,res)=>{
+//   const _id = req.body.id
+//   console.log(_id)
+//   Post.deleteOne({_id:_id},(err,data)=>{
+//     if(err) return console.log(err);
+//     console.log(data);
+//     Post.find({type:"post"}).exec((err,post)=>{
+//       if(err) return console.log(err);
+//       console.log(post);
+//       return res.json({posts:post})
+//     })
+//   })
+// })
+
+// //Bring the default info back and make corrections on databases 
+// app.get('/api/default',(req,res)=>{
+//   Post.deleteMany({ default: false }, (err,dat)=>{
+//     if(err) return console.log(err);
+//     gfs.files.deleteMany({"metadata.type":"upfile","metadata.date":{$gt:1587339231260}},(err,hdr)=>{
+//       if(err) return console.log(err);
+//       gfs.files.deleteMany({"metadata.type":"avatarfile","metadata.date":{$gt:1587339222880}},(err,ava)=>{
+//         if(err) return console.log(err);
+//         gfs.files.deleteMany({"metadata.type":"attachments","metadata.date":{$gt:1587339222880}},(err,att)=>{
+//           if(err) return console.log(err);
+//             defaultData.data.map(post=>{
+//               let defpost = new Post({
+//               _id:post._id,
+//               title:post.title,
+//               text:post.text,
+//               postId:post.postId,
+//               datePosted:post.datePosted,
+//               type:"post",
+//               default:true
+//               })
+//             defpost.save();
+//             })
+//         return res.json({data:defaultData.data,
+//                    src:defaultData.avatar,
+//                    image:defaultData.header})
+//         })
+//       })
+//     })
+//   });
+// })
 
 // Express port-switching logic for Glitch.com
 let port;
