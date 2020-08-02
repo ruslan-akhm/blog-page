@@ -11,6 +11,7 @@ var conn = mongoose.connection;
 let gfs;
 
 conn.once('open',() => {
+  console.log("HHHEEEEERREEEEE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
   gfs = Grid(conn.db, mongoose.mongo);
   gfs.collection('uploads');
 })
@@ -34,5 +35,8 @@ const storage = new GridFsStorage({
   }
 })
 const upload = multer({storage})
+
+console.log('upload @ storage');
+console.log(upload);
 
 module.exports = {gfs, upload}
