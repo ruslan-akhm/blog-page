@@ -1,11 +1,44 @@
 const express = require('express');
 const shortid = require('shortid');
-//const ejs = require('ejs');
 const defaultData = require('../defaultData');
 const Post = require("../models/Post");
 const apiRouter = express.Router();
-const {storage} = require('../storage/storage.js');
-//const storage = require('../storage/storage.js');
+const crypto = require('crypto')
+const multer = require('multer');
+const GridFsStorage = require('multer-gridfs-storage');
+const Grid = require('gridfs-stream');
+const path = require('path');
+const mongoose = require('mongoose');
+var mongoURI = "mongodb+srv://ruslan-akhm:zuaGc0VJ@cluster0-y5h11.mongodb.net/test?retryWrites=true&w=majority"
+mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false });
+var conn = mongoose.connection;
+
+let gfs;
+
+conn.once('open',() => {
+  gfs = Grid(conn.db, mongoose.mongo);
+  gfs.collection('uploads');
+})
+
+const storage = new GridFsStorage({
+  url: mongoURI,
+  file: (req, file) => {
+    return new Promise((resolve, reject)=>{
+      crypto.randomBytes(16, (err,buf)=>{
+        if(err) return reject(err)
+        const filename = "image-" + buf.toString('hex') + path.extname(file.originalname);
+        const type = file.fieldname;
+        const fileinfo={
+          filename: filename,
+          bucketName: 'uploads',
+          metadata:{type:type, date:Date.now()}
+        };
+        resolve(fileinfo);
+      })
+    })
+  }
+})
+const upload = multer({storage})
 
 
 
@@ -15,10 +48,10 @@ apiRouter.get('/',(req,res)=>{
   Post.find({type:"post"}).sort({_id: 1}).exec((err,data)=>{
     if(err) return console.log(err);
     else{
-      storage.gfs.files.find({'metadata.type':'avatarfile'}).sort({_id: -1}).limit(1).toArray((err,ava)=>{
+      gfs.files.find({'metadata.type':'avatarfile'}).sort({_id: -1}).limit(1).toArray((err,ava)=>{
         if(err) return console.log(err);
         else{
-           storage.gfs.files.find({'metadata.type':'upfile'}).sort({_id: -1}).limit(1).toArray((err,hdr)=>{
+           gfs.files.find({'metadata.type':'upfile'}).sort({_id: -1}).limit(1).toArray((err,hdr)=>{
              if(err) return console.log(err);
              else{
               //console.log(data);
@@ -35,7 +68,7 @@ apiRouter.get('/',(req,res)=>{
 
 
 //Set Header image
-apiRouter.post('/upload', storage.upload.single('upfile'), (req,res)=>{
+apiRouter.post('/upload', upload.single('upfile'), (req,res)=>{
    const fileObject = req.file;
    console.log(fileObject);
    //const readstream = gfs.createReadStream(fileObject.filename);
@@ -43,7 +76,7 @@ apiRouter.post('/upload', storage.upload.single('upfile'), (req,res)=>{
 })
 
 //Set Avatar
-apiRouter.post('/avatar', storage.upload.single('avatarfile'), (req,res)=>{
+apiRouter.post('/avatar', upload.single('avatarfile'), (req,res)=>{
    const fileObject = req.file;
    console.log(fileObject);
    //const readstream = gfs.createReadStream(fileObject.filename);
@@ -51,7 +84,7 @@ apiRouter.post('/avatar', storage.upload.single('avatarfile'), (req,res)=>{
 })
 
 //Add new posts
-apiRouter.post('/post', storage.upload.array("attachments",5), (req,res)=>{
+apiRouter.post('/post', upload.array("attachments",5), (req,res)=>{
   const files = req.files;
   const filenames = files.map(fileObject=>{return "https://appnew-test-sample.glitch.me/api/image/"+fileObject.filename})
   //console.log(filenames)
@@ -72,7 +105,7 @@ apiRouter.post('/post', storage.upload.array("attachments",5), (req,res)=>{
 
 //Find all files in collection
 apiRouter.get('/files',(req,res)=>{
-  storage.gfs.files.find().toArray((err, files)=>{
+  gfs.files.find().toArray((err, files)=>{
     if(!files||files.length===0){
       return res.status(404).json({
         err: "no files exist"
@@ -84,7 +117,7 @@ apiRouter.get('/files',(req,res)=>{
 
 //Find particluar file
 apiRouter.get('/files/:filename',(req,res)=>{
-  storage.gfs.files.findOne({filename:req.params.filename},(err, file)=>{
+  gfs.files.findOne({filename:req.params.filename},(err, file)=>{
     if(!file||file.length===0){
       return res.status(404).json({
         err: "no file exists"
@@ -96,7 +129,7 @@ apiRouter.get('/files/:filename',(req,res)=>{
 
 //Load image
 apiRouter.get('/image/:filename',(req,res)=>{
-  storage.gfs.files.findOne({filename:req.params.filename},(err, file)=>{
+  gfs.files.findOne({filename:req.params.filename},(err, file)=>{
     if(!file||file.length===0){
       return res.status(404).json({
         err: "no file exists"
@@ -104,7 +137,7 @@ apiRouter.get('/image/:filename',(req,res)=>{
     }
     //Check if img
     if(file.contentType==="image/jpeg"||file.contentType==="img/png"){
-      const readstream = storage.gfs.createReadStream(file.filename);
+      const readstream = gfs.createReadStream(file.filename);
       readstream.pipe(res)
     }else{
       return res.status(404).json("Not an image")
@@ -131,11 +164,11 @@ apiRouter.delete('/delete',(req,res)=>{
 apiRouter.get('/default',(req,res)=>{
   Post.deleteMany({ default: false }, (err,dat)=>{
     if(err) return console.log(err);
-    storage.gfs.files.deleteMany({"metadata.type":"upfile","metadata.date":{$gt:1587339231260}},(err,hdr)=>{
+    gfs.files.deleteMany({"metadata.type":"upfile","metadata.date":{$gt:1587339231260}},(err,hdr)=>{
       if(err) return console.log(err);
-      storage.gfs.files.deleteMany({"metadata.type":"avatarfile","metadata.date":{$gt:1587339222880}},(err,ava)=>{
+      gfs.files.deleteMany({"metadata.type":"avatarfile","metadata.date":{$gt:1587339222880}},(err,ava)=>{
         if(err) return console.log(err);
-        storage.gfs.files.deleteMany({"metadata.type":"attachments","metadata.date":{$gt:1587339222880}},(err,att)=>{
+        gfs.files.deleteMany({"metadata.type":"attachments","metadata.date":{$gt:1587339222880}},(err,att)=>{
           if(err) return console.log(err);
             defaultData.data.map(post=>{
               let defpost = new Post({
