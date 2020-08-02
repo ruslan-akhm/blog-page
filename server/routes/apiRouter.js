@@ -4,20 +4,21 @@ const shortid = require('shortid');
 const defaultData = require('../defaultData');
 const Post = require("../models/Post");
 const apiRouter = express.Router();
-const {gfs,upload} = require('../storage/storage.js');
-const storage = require('../storage/storage.js');
+const {storage} = require('../storage/storage.js');
+//const storage = require('../storage/storage.js');
 
-console.log("upload @ apiROUTRE");
-console.log(upload);
+
+
+
 
 apiRouter.get('/',(req,res)=>{
   Post.find({type:"post"}).sort({_id: 1}).exec((err,data)=>{
     if(err) return console.log(err);
     else{
-      gfs.files.find({'metadata.type':'avatarfile'}).sort({_id: -1}).limit(1).toArray((err,ava)=>{
+      storage.gfs.files.find({'metadata.type':'avatarfile'}).sort({_id: -1}).limit(1).toArray((err,ava)=>{
         if(err) return console.log(err);
         else{
-           gfs.files.find({'metadata.type':'upfile'}).sort({_id: -1}).limit(1).toArray((err,hdr)=>{
+           storage.gfs.files.find({'metadata.type':'upfile'}).sort({_id: -1}).limit(1).toArray((err,hdr)=>{
              if(err) return console.log(err);
              else{
               //console.log(data);
