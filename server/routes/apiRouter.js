@@ -43,7 +43,7 @@ const upload = multer({storage})
 
 
 apiRouter.get('/',(req,res)=>{
-  Post.find({type:"post"}).sort({_id: 1}).exec((err,data)=>{
+  Post.find({type:"post"}).sort({_id: -1}).exec((err,data)=>{
     if(err) return console.log(err);
     else{
       gfs.files.find({'metadata.type':'avatarfile'}).sort({_id: -1}).limit(1).toArray((err,ava)=>{

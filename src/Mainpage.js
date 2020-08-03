@@ -12,7 +12,7 @@ class Mainpage extends React.Component {
     this.closeModal = this.closeModal.bind(this);
     this.updateHeader = this.updateHeader.bind(this);
     this.addPost = this.addPost.bind(this);
-    this.updateAvatar=this.updateAvatar.bind(this);
+    //this.updateAvatar=this.updateAvatar.bind(this);
     this.getData=this.getData.bind(this);
     this.modifyText=this.modifyText.bind(this);
     this.toDefault=this.toDefault.bind(this);
@@ -56,29 +56,29 @@ class Mainpage extends React.Component {
     dat();
   }
   
-  updateHeader(e) {
-    e.preventDefault();
-    async function upd() {
-      let fd = new FormData();
-      let headerImage = document.getElementById("upfile").files[0];
-      fd.append("upfile", headerImage);
-      try {
-        let response = await fetch("/api/upload", {
-          method: "POST",
-          headers: {
-            Accept: "application/json"
-          },
-          body: fd
-        });
-        let resp = await response.json();
-        document.getElementById("header").style.background = "url(" + resp.image + ")";
-        document.getElementById("header").style.backgroundSize = "cover";
-      } catch (err) {
-        console.log(err);
-      }
-    }
-    upd();
-  }
+  // updateHeader(e) {
+  //   e.preventDefault();
+  //   async function upd() {
+  //     let fd = new FormData();
+  //     let headerImage = document.getElementById("upfile").files[0];
+  //     fd.append("upfile", headerImage);
+  //     try {
+  //       let response = await fetch("/api/upload", {
+  //         method: "POST",
+  //         headers: {
+  //           Accept: "application/json"
+  //         },
+  //         body: fd
+  //       });
+  //       let resp = await response.json();
+  //       document.getElementById("header").style.background = "url(" + resp.image + ")";
+  //       document.getElementById("header").style.backgroundSize = "cover";
+  //     } catch (err) {
+  //       console.log(err);
+  //     }
+  //   }
+  //   upd();
+  // }
   
   updateAvatar(e){
     e.preventDefault();
@@ -245,11 +245,11 @@ class Mainpage extends React.Component {
 
     return (
       <div id="personal-page">
-        <div id="header">
+        {/* <!--         <div id="header">
           <form enctype="multipart/form-data" id="send-pic">
             <input name="upfile" id="upfile" type="file" className="custom-input" accept="image/*" onChange={e=>this.updateHeader(e)}/>
           </form>
-        </div>
+        </div> --> */}
         <div id="info">
           <div id="avatar">
             <img id="avatar-img" src='' alt="avatar"/>
