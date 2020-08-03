@@ -63,27 +63,25 @@ function Mainpage(){
       //document.getElementById("avatar-img").setAttribute("src",data.avatar);
       data.data.map(item=>{
           //Hide part of long text and add "Expand text" button
+        
           const text = item.text.length>600 ? item.text.slice(0,510) : item.text;
           const expand = item.text.length>600 ? <a id={'textId-'+item._id}>...Expand text</a> : '';
+        
           //let prevState = that.state.posts;
           //Display date Posted
+        
           let date = new Date(parseInt(item.datePosted)).toLocaleDateString();
+        
           //item.date = date;
           //date = date.toLocaleDateString();
           //that.setState({posts:prevState.concat({listId:post._id, title:post.title, text:post.text, textId:"textId-"+post._id, closeId:"closeId-"+post._id, filenames:post.files})});
-          let images = '';
+          
+        let images = '';
           if(item.files!==undefined){
             item.files.map(file=>{return images+='<img id='+file+' src='+file+' onClick={that.showAttachment} />'})
           }
-          let newPost ={
-            _id: item._id,
-            text: text,
-            title: item.title,
-            date: date,
-            images: images,
-            expand: expand
-          }
-          posts = posts.concat(newPost);
+        
+          posts = posts.concat(item);
           //console.log(posts);
         // setPost(()=>{
         //     //const newPost = post.concat(item);

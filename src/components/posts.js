@@ -1,9 +1,16 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { PostContext } from '../context/postContext'
 
 function Posts(){
   
   const {post,setPost} = useContext(PostContext);
+  const [list, setList] = useState();
+  
+  useEffect(()=>{
+    post.map(item=>{
+      
+    })
+  },[post])
   
    const newPost=()=>{
     console.log('NOT WORKING YET. TO BE FIXED')
