@@ -324,7 +324,7 @@ body{
 }
 @media only screen and (max-width:600px){
   #personal-page{
-    width:95%;
+    width:100%;
   }
   #modal-content{
     margin-top:4%;
