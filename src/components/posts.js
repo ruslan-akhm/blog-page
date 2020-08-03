@@ -86,8 +86,8 @@ function Posts(){
         console.log(post)
         postService.removePost(post._id).then(data=>{
           let posts = document.getElementById("list");
-          let li_nested = document.getElementById(post.listId);
-          list.removeChild(li_nested);
+          let li_nested = document.getElementById(post._id);
+          posts.removeChild(li_nested);
           newList = list.filter(item=>{return item._id!==post._id});
           //console.log(newList);
         })
