@@ -11,12 +11,14 @@ function Posts(){
   }
   
   const modifyText=(e)=>{
+    console.log(e.target.id)
     //We check if button was pressed inside #posts div; We are not using 'click' listener on buttons
     //because they might not be rendered yet at the time of check
     let prevState = this.state.posts;
     const that = this;
-    that.state.posts.map((post)=>{
-      if(e.target.id==post.textId){
+    post.map((post)=>{ //that.state.posts
+      if(e.target.id==('textId-'+post._id)){//post.textId){
+        console.log("HERERERERERE")
         //expand Text
         document.getElementById(e.target.id).style.display="none";
         return document.getElementsByName(e.target.id)[0].innerText=post.text
