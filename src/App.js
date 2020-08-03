@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
-import Navbar from './Navbar'
-import Mainpage from './Mainpage'
+import Navbar from './components/navbar'
+import Mainpage from './components/mainpage'
 
 class App extends React.Component{
   constructor(props){

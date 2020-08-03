@@ -1,11 +1,11 @@
-import React from 'react';
-import Header from './components/header'
-import Info from './components/info'
-import Posts from './components/posts'
-import Default from './components/default'
-import AddPost from './components/addPost'
-import postService from './services/postService'
-import './Mainpage.css';
+import React, { useState, useContext } from 'react';
+import Header from './header'
+import Info from './info'
+import Posts from './posts'
+import Default from './default'
+import AddPost from './addPost'
+import postService from '../services/postService'
+import '../Mainpage.css';
 
 //MAKE IT ADD POSTS FROM TOP TO BOTTOM
 //OBJECTS IN REACT HOOKS
