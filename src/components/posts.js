@@ -6,7 +6,8 @@ function Posts(){
   const {post,setPost} = useContext(PostContext);
   
    const newPost=()=>{
-    document.getElementById("modal-parent").style.display = "block";
+    console.log('NOT WORKING YET. TO BE FIXED')
+     //document.getElementById("modal-parent").style.display = "block";
   }
   
   const modifyText=(e)=>{
@@ -47,9 +48,9 @@ function Posts(){
   
   let posts = post.map(item=>{
     return <li id={item._id}>
-             <h4>item.title</h4>
+             <h4>{item.title}</h4>
              <button id={'closeId-'+item._id}>&times;</button>
-             <p name={'textId-'+item._id}>{item.isShort}</p>
+             <p name={'textId-'+item._id}>{item.text}{item.expand}</p>
              <container>{item.images}</container>
              <span>posted {item.date}</span>
            </li>
