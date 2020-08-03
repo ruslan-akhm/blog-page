@@ -1,5 +1,12 @@
-import React from "react";
-import "./Mainpage.css";
+import React from 'react';
+import Header from './components/header'
+import Info from './components/info'
+import Posts from './components/posts'
+import Default from './components/default'
+import './Mainpage.css';
+
+//MAKE IT ADD POSTS FROM TOP TO BOTTOM
+//OBJECTS IN REACT HOOKS
 
 class Mainpage extends React.Component {
   constructor(props) {
@@ -8,14 +15,14 @@ class Mainpage extends React.Component {
       posts: [],
       headerImage: ""
     };
-    this.newPost = this.newPost.bind(this);
+    //this.newPost = this.newPost.bind(this);
     this.closeModal = this.closeModal.bind(this);
-    this.updateHeader = this.updateHeader.bind(this);
+    //this.updateHeader = this.updateHeader.bind(this);
     this.addPost = this.addPost.bind(this);
     //this.updateAvatar=this.updateAvatar.bind(this);
     this.getData=this.getData.bind(this);
-    this.modifyText=this.modifyText.bind(this);
-    this.toDefault=this.toDefault.bind(this);
+    //this.modifyText=this.modifyText.bind(this);
+    //this.toDefault=this.toDefault.bind(this);
     //this.showAttachment=this.showAttachment.bind(this);
   }
 
@@ -80,28 +87,28 @@ class Mainpage extends React.Component {
   //   upd();
   // }
   
-  updateAvatar(e){
-    e.preventDefault();
-    async function ava() {
-      let fd = new FormData();
-      let avatarImage = document.getElementById("avatarfile").files[0];
-      fd.append("avatarfile", avatarImage);
-      try {
-        let response = await fetch("/api/avatar", {
-          method: "POST",
-          headers: {
-            Accept: "application/json"
-          },
-          body: fd
-        });
-        let resp = await response.json();
-        document.getElementById("avatar-img").setAttribute("src",resp.src);
-      } catch (err) {
-        console.log(err);
-      }
-    }
-    ava();
-  }
+//   updateAvatar(e){
+//     e.preventDefault();
+//     async function ava() {
+//       let fd = new FormData();
+//       let avatarImage = document.getElementById("avatarfile").files[0];
+//       fd.append("avatarfile", avatarImage);
+//       try {
+//         let response = await fetch("/api/avatar", {
+//           method: "POST",
+//           headers: {
+//             Accept: "application/json"
+//           },
+//           body: fd
+//         });
+//         let resp = await response.json();
+//         document.getElementById("avatar-img").setAttribute("src",resp.src);
+//       } catch (err) {
+//         console.log(err);
+//       }
+//     }
+//     ava();
+//   }
   
   addPost=(e)=>{
     let prevState = this.state.posts; //our initial posts array 
@@ -146,45 +153,45 @@ class Mainpage extends React.Component {
     add();
   }
 
-  newPost() {
-    document.getElementById("modal-parent").style.display = "block";
-  }
+//   newPost() {
+//     document.getElementById("modal-parent").style.display = "block";
+//   }
   
-  modifyText=(e)=>{
-    //We check if button was pressed inside #posts div; We are not using 'click' listener on buttons
-    //because they might not be rendered yet at the time of check
-    let prevState = this.state.posts;
-    const that = this;
-    that.state.posts.map((post)=>{
-      if(e.target.id==post.textId){
-        //expand Text
-        document.getElementById(e.target.id).style.display="none";
-        return document.getElementsByName(e.target.id)[0].innerText=post.text
-      } 
-      else if(e.target.id==post.closeId){
-        //delete post
-        console.log(post)
-        async function deletePost(){
-          let response = await fetch("/api/delete", {
-            method: "DELETE",
-            headers: {
-              Accept: "application/json",
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify({id:post.listId})
-          });
-          let resp = await response.json();
-          let list = document.getElementById("list");
-          let li_nested = document.getElementById(post.listId);
-          list.removeChild(li_nested);
-          const newState = prevState.filter(list=>{return list.listId!==post.listId})
-          that.setState({posts:newState});
-         }
-        deletePost();
-      }
-      else return
-    })
-  }
+//   modifyText=(e)=>{
+//     //We check if button was pressed inside #posts div; We are not using 'click' listener on buttons
+//     //because they might not be rendered yet at the time of check
+//     let prevState = this.state.posts;
+//     const that = this;
+//     that.state.posts.map((post)=>{
+//       if(e.target.id==post.textId){
+//         //expand Text
+//         document.getElementById(e.target.id).style.display="none";
+//         return document.getElementsByName(e.target.id)[0].innerText=post.text
+//       } 
+//       else if(e.target.id==post.closeId){
+//         //delete post
+//         console.log(post)
+//         async function deletePost(){
+//           let response = await fetch("/api/delete", {
+//             method: "DELETE",
+//             headers: {
+//               Accept: "application/json",
+//               "Content-Type": "application/json"
+//             },
+//             body: JSON.stringify({id:post.listId})
+//           });
+//           let resp = await response.json();
+//           let list = document.getElementById("list");
+//           let li_nested = document.getElementById(post.listId);
+//           list.removeChild(li_nested);
+//           const newState = prevState.filter(list=>{return list.listId!==post.listId})
+//           that.setState({posts:newState});
+//          }
+//         deletePost();
+//       }
+//       else return
+//     })
+//   }
 
   closeModal(event) {
     const click = event.target;
@@ -195,32 +202,32 @@ class Mainpage extends React.Component {
     }
   }
 
-  toDefault(e){
-    e.preventDefault();
-    document.getElementById('list').innerHTML='';
-    this.setState({posts:[]})
-    const that = this;
-    async function def(){
-      try {
-        let response = await fetch("/api/default");
-        let resp = await response.json(); //our response; from here update avatar, header and posts
-        document.getElementById("header").style.background = "url(" + resp.image + ")";
-        document.getElementById("header").style.backgroundSize = "cover";
-        document.getElementById("avatar-img").setAttribute("src",resp.src);
-        console.log(resp);
-        resp.data.map(post=>{
-          const isShort = post.text.length>600 ? post.text.slice(0,510)+'<a id='+post.datePosted+'>...Expand text</a>':post.text;
-          let prevState=that.state.posts;
-          that.setState({posts:prevState.concat({listId:post._id, title:post.title, text:post.text, textId:post.datePosted, closeId:post.postId})});
-          let date = new Date(parseInt(post.datePosted));
-          date = date.toLocaleDateString();
-          return document.getElementById('list').innerHTML+='<li id='+post._id+'><div className="list-item-parent"><h4>'+post.title+'</h4><button id='+post.postId+'>&times;</button><p name='+post.datePosted+'>'+isShort+'</p></div><span>posted '+date+'</span></li>'})
-      } catch (err) {
-        console.log(err);
-      }
-    }
-    def();
-  }
+  // toDefault(e){
+  //   e.preventDefault();
+  //   document.getElementById('list').innerHTML='';
+  //   this.setState({posts:[]})
+  //   const that = this;
+  //   async function def(){
+  //     try {
+  //       let response = await fetch("/api/default");
+  //       let resp = await response.json(); //our response; from here update avatar, header and posts
+  //       document.getElementById("header").style.background = "url(" + resp.image + ")";
+  //       document.getElementById("header").style.backgroundSize = "cover";
+  //       document.getElementById("avatar-img").setAttribute("src",resp.src);
+  //       console.log(resp);
+  //       resp.data.map(post=>{
+  //         const isShort = post.text.length>600 ? post.text.slice(0,510)+'<a id='+post.datePosted+'>...Expand text</a>':post.text;
+  //         let prevState=that.state.posts;
+  //         that.setState({posts:prevState.concat({listId:post._id, title:post.title, text:post.text, textId:post.datePosted, closeId:post.postId})});
+  //         let date = new Date(parseInt(post.datePosted));
+  //         date = date.toLocaleDateString();
+  //         return document.getElementById('list').innerHTML+='<li id='+post._id+'><div className="list-item-parent"><h4>'+post.title+'</h4><button id='+post.postId+'>&times;</button><p name='+post.datePosted+'>'+isShort+'</p></div><span>posted '+date+'</span></li>'})
+  //     } catch (err) {
+  //       console.log(err);
+  //     }
+  //   }
+  //   def();
+  // }
 
 // showAttachment(){
 //   console.log("click")
@@ -245,12 +252,13 @@ class Mainpage extends React.Component {
 
     return (
       <div id="personal-page">
+        <Header />
         {/* <!--         <div id="header">
           <form enctype="multipart/form-data" id="send-pic">
             <input name="upfile" id="upfile" type="file" className="custom-input" accept="image/*" onChange={e=>this.updateHeader(e)}/>
           </form>
-        </div> --> */}
-        <div id="info">
+        </div> --> 
+<!--         <div id="info">
           <div id="avatar">
             <img id="avatar-img" src='' alt="avatar"/>
             <input name="avatarfile" id="avatarfile" type="file" className="custom-input" accept="image/*" onChange={e=>this.updateAvatar(e)}/>
@@ -263,14 +271,16 @@ class Mainpage extends React.Component {
             </ul>
             <p>I like creating things. Every app I do is more complex than the previous one. I enjoy learning and applying technologies and seeing results of my work.</p>
           </div>
-        </div>
-        <div className="posts" id="posts" onClick={e=>this.modifyText(e)}>
+        </div> --> */}
+        <Info />
+        {/* <!--         <div className="posts" id="posts" onClick={e=>this.modifyText(e)}>
           <button id="add-post" className="add" onClick={this.newPost}>
             + Add Post
           </button>
-          <ul id="list"></ul>  {/*post*/}
+          <ul id="list"></ul>  
           <button id="default" onClick={e=>this.toDefault(e)}>To Default</button>
-        </div>
+        </div> --> */}
+        <Default />
          {modal} 
       </div>
     );
