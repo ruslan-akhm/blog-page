@@ -45,14 +45,22 @@ function Posts(){
     })
   }
   
-  let posts = post.map()
+  let posts = post.map(item=>{
+    return <li id={item._id}>
+             <h4>item.title</h4>
+             <button id={'closeId-'+item._id}>&times;</button>
+             <p name={'textId-'+item._id}>{item.isShort}</p>
+             <container>{item.images}</container>
+             <span>posted {item.date}</span>
+           </li>
+  })
   
   return(
     <div className="posts" id="posts" onClick={e=>modifyText(e)}>
       <button id="add-post" className="add" onClick={newPost}>
         + Add Post
       </button>
-      <ul id="list"></ul>  
+      <ul id="list">{posts}</ul>  
     </div>
   )
 }

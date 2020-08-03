@@ -68,13 +68,21 @@ function Mainpage(){
           //let prevState = that.state.posts;
           //Display date Posted
           let date = new Date(parseInt(item.datePosted)).toLocaleDateString();
+          //item.date = date;
           //date = date.toLocaleDateString();
           //that.setState({posts:prevState.concat({listId:post._id, title:post.title, text:post.text, textId:"textId-"+post._id, closeId:"closeId-"+post._id, filenames:post.files})});
           let images = '';
           if(item.files!==undefined){
             item.files.map(file=>{return images+='<img id='+file+' src='+file+' onClick={that.showAttachment} />'})
           }
-        
+          let newPost ={
+            _id:item._id,
+            text:isShort,
+            title:item.title,
+            date: date,
+            images: ima
+            
+          }
           posts = posts.concat(item);
           //console.log(posts);
         // setPost(()=>{
