@@ -37,22 +37,16 @@ class Mainpage extends React.Component {
     const that = this;   //workaround for "this" keyword to access state inside fetch
     postService.getData().then(data=>{
       console.log(data);
-    })
-    async function dat(){
-      try {
-        let response = await fetch("/api");
-        let resp = await response.json(); //our response; from here update avatar, header and posts
-        document.getElementById("header").style.background = "url(" + resp.header + ")";
-        document.getElementById("header").style.backgroundSize = "cover";
-        document.getElementById("avatar-img").setAttribute("src",resp.avatar);
-        console.log(resp);
-        resp.data.map(post=>{
+      document.getElementById("header").style.background = "url(" + data.header + ")";
+      document.getElementById("header").style.backgroundSize = "cover";
+      document.getElementById("avatar-img").setAttribute("src",data.avatar);
+      data.data.map(post=>{
           //Hide part of long text and add "Expand text" button
           const isShort = post.text.length>600 ? post.text.slice(0,510)+'<a id=textId-'+post._id+'>...Expand text</a>':post.text;
           let prevState = that.state.posts;
           //Display date Posted
-          let date = new Date(parseInt(post.datePosted));
-          date = date.toLocaleDateString();
+          let date = new Date(parseInt(post.datePosted)).toLocaleDateString();
+          //date = date.toLocaleDateString();
           that.setState({posts:prevState.concat({listId:post._id, title:post.title, text:post.text, textId:"textId-"+post._id, closeId:"closeId-"+post._id, filenames:post.files})});
           let images = '';
           if(post.files!==undefined){
@@ -61,11 +55,35 @@ class Mainpage extends React.Component {
           //console.log(images)
           return document.getElementById('list').innerHTML+='<li id='+post._id+'><h4>'+post.title+'</h4><button id=closeId-'+post._id+'>&times;</button><p name=textId-'+post._id+'>'+isShort+'</p><container>'+images+'</container><span>posted '+date+'</span></li>'
         })
-      } catch (err) {
-        console.log(err);
-      }
-    }
-    dat();
+    })
+    // async function dat(){
+    //   try {
+    //     let response = await fetch("/api");
+    //     let resp = await response.json(); //our response; from here update avatar, header and posts
+    //     // document.getElementById("header").style.background = "url(" + resp.header + ")";
+    //     // document.getElementById("header").style.backgroundSize = "cover";
+    //     // document.getElementById("avatar-img").setAttribute("src",resp.avatar);
+    //     console.log(resp);
+    //     resp.data.map(post=>{
+    //       //Hide part of long text and add "Expand text" button
+    //       const isShort = post.text.length>600 ? post.text.slice(0,510)+'<a id=textId-'+post._id+'>...Expand text</a>':post.text;
+    //       let prevState = that.state.posts;
+    //       //Display date Posted
+    //       let date = new Date(parseInt(post.datePosted));
+    //       date = date.toLocaleDateString();
+    //       that.setState({posts:prevState.concat({listId:post._id, title:post.title, text:post.text, textId:"textId-"+post._id, closeId:"closeId-"+post._id, filenames:post.files})});
+    //       let images = '';
+    //       if(post.files!==undefined){
+    //         post.files.map(file=>{return images+='<img id='+file+' src='+file+' onClick={that.showAttachment} />'})
+    //       }
+    //       //console.log(images)
+    //       return document.getElementById('list').innerHTML+='<li id='+post._id+'><h4>'+post.title+'</h4><button id=closeId-'+post._id+'>&times;</button><p name=textId-'+post._id+'>'+isShort+'</p><container>'+images+'</container><span>posted '+date+'</span></li>'
+    //     })
+    //   } catch (err) {
+    //     console.log(err);
+    //   }
+    // }
+    // dat();
     
   }
   
