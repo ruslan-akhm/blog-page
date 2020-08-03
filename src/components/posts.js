@@ -40,8 +40,8 @@ function Posts(){
         date: date,
         images: images,
         expand: expand,
-        textId:textId,
-        closeId:closeId
+        textId: textId,
+        closeId: closeId
       }
       posts = posts.concat(newPost);
     })
