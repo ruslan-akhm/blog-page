@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { PostContext } from '../context/postContext'
+import postService from '../services/postService'
 
 function Posts(){
   
@@ -45,6 +46,7 @@ function Posts(){
     //because they might not be rendered yet at the time of check
     //let prevState = this.state.posts;
     //const that = this;
+    let newList;
     list.map((post)=>{ //that.state.posts
       if(e.target.id==post.textId){//post.textId){
         console.log("HERERERERERE")
@@ -55,27 +57,32 @@ function Posts(){
       else if(e.target.id==post.closeId){
         //delete post
         console.log(post)
+        postService.removePost(post._id).then(data=>{
+          newList = list.filter(item=>{return item._id!==post._id});
+          console.log(newList);
+        })
         
-        async function deletePost(){
-          let response = await fetch("/api/delete", {
-            method: "DELETE",
-            headers: {
-              Accept: "application/json",
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify({id:post.listId})
-          });
-          let resp = await response.json();
-          let list = document.getElementById("list");
-          let li_nested = document.getElementById(post.listId);
-          list.removeChild(li_nested);
-          const newState = prevState.filter(list=>{return list.listId!==post.listId})
-          that.setState({posts:newState});
-         }
-        deletePost();
+//         async function deletePost(){
+//           let response = await fetch("/api/delete", {
+//             method: "DELETE",
+//             headers: {
+//               Accept: "application/json",
+//               "Content-Type": "application/json"
+//             },
+//             body: JSON.stringify({id:post.listId})
+//           });
+//           let resp = await response.json();
+          
+//           let list = document.getElementById("list");
+//           let li_nested = document.getElementById(post.listId);
+//           list.removeChild(li_nested);
+//           const newState = prevState.filter(list=>{return list.listId!==post.listId})
+//           that.setState({posts:newState});
+//          }
+//         deletePost();
         
       }
-      else return
+      newList && setList(newList);
     })
   }
   
