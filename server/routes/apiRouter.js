@@ -54,8 +54,8 @@ apiRouter.get('/',(req,res)=>{
              else{
               return res.json(
                 {data:data,
-                 src:"https://appnew-test-sample.glitch.me/api/image/"+ava[0].filename,
-                 image:"https://appnew-test-sample.glitch.me/api/image/"+hdr[0].filename}
+                 avatar:"https://appnew-test-sample.glitch.me/api/image/"+ava[0].filename,
+                 header:"https://appnew-test-sample.glitch.me/api/image/"+hdr[0].filename}
               )
             }
           })
