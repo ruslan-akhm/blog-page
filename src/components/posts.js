@@ -44,21 +44,23 @@ function Posts(){
         closeId: closeId
       }
       posts = posts.concat(newPost);
+      document.getElementById('list').innerHTML+='<li id='+item._id+'><h4>'+item.title+'</h4><button id='+closeId+'>&times;</button><p name='+textId+'>'+short+expand+'</p><container>'+images+'</container><span>posted '+date+'</span></li>'
     })
     setList(posts);
+    
   },[post])
   
-  useEffect(()=>{
-    posts = list.map(item=>{
-    return <li id={item._id}>
-             <h4>{item.title}</h4>
-             <button id={item.closeId}>&times;</button>
-             <p name={item.textId}>{item.short}{item.expand}</p>
-             <container>{item.images}</container>
-             <span>posted {item.date}</span>
-           </li>
-  })
-  },[list])
+  // useEffect(()=>{
+  //   posts = list.map(item=>{
+  //   return <li id={item._id}>
+  //            <h4>{item.title}</h4>
+  //            <button id={item.closeId}>&times;</button>
+  //            <p name={item.textId}>{item.short}{item.expand}</p>
+  //            <container>{item.images}</container>
+  //            <span>posted {item.date}</span>
+  //          </li>
+  // })
+  // },[list])
   
   
   const newPost=()=>{
@@ -126,7 +128,7 @@ function Posts(){
       <button id="add-post" className="add" onClick={newPost}>
         + Add Post
       </button>
-      <ul id="list">{posts}</ul>  
+      <ul id="list"></ul>  
     </div>
   )
 }

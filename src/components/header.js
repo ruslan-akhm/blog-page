@@ -5,6 +5,8 @@ function Header(){
   
   const {header,setHeader} = useContext(PostContext);
   
+  console.log(header);
+  
   const updateHeader=(e)=>{
     e.preventDefault();
     async function upd() {
@@ -31,7 +33,7 @@ function Header(){
   
   return(
     <div id="header">
-      <img src={header} />
+      <img src={header && header} />
       <form enctype="multipart/form-data" id="send-pic">
         <input name="upfile" id="upfile" type="file" className="custom-input" accept="image/*" onChange={e=>updateHeader(e)}/>
       </form>
