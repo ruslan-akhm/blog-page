@@ -13,7 +13,7 @@ import '../Mainpage.css';
 
 function Mainpage(){
   
-  const [post,setPost,header,setHeader,avatar,setAvatar] = useContext(PostContext);
+  const {post,setPost,header,setHeader,avatar,setAvatar} = useContext(PostContext);
   //console.log(avatar)
   // const [header, setHeader] = useContext();
   // const [avatar, setAvatar] = useContext();
@@ -46,12 +46,15 @@ function Mainpage(){
     //const that = this;   //workaround for "this" keyword to access state inside fetch
     postService.getData().then(data=>{
       console.log(data);
-      setHeader(()=>{
-        return data.header
-      });
+      // setHeader(()=>{
+      //   console.log(data.header)
+      //   return data.header
+      // });
+      setHeader(data.header);
+      setAvatar(data.avatar)
       //document.getElementById("header").style.background = "url(" + data.header + ")";
       //document.getElementById("header").style.backgroundSize = "cover";
-      document.getElementById("avatar-img").setAttribute("src",data.avatar);
+      //document.getElementById("avatar-img").setAttribute("src",data.avatar);
       data.data.map(item=>{
           //Hide part of long text and add "Expand text" button
           const isShort = item.text.length>600 ? item.text.slice(0,510)+'<a id=textId-'+item._id+'>...Expand text</a>':item.text;

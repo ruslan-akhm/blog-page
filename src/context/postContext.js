@@ -10,7 +10,7 @@ export const PostProvider=({ children })=>{
   
     return( 
       <div>
-          <PostContext.Provider value={[post,setPost,header,setHeader,avatar,setAvatar]}>
+          <PostContext.Provider value={{post,setPost,header,setHeader,avatar,setAvatar}}>
               { children }
           </PostContext.Provider>
       </div>
