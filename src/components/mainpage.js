@@ -38,11 +38,17 @@ function Mainpage(){
   //   this.getData();
   //   window.addEventListener('click',(e)=>{console.log(e.target.id)})
   // }
+  
+  // useEffect(()=>{
+  //   console.log(post);
+  // },[post])
+  
   useEffect(()=>{
     getData();
   },[])
                         
   const getData=()=>{
+    let posts = [];
     //const that = this;   //workaround for "this" keyword to access state inside fetch
     postService.getData().then(data=>{
       console.log(data);
@@ -68,14 +74,18 @@ function Mainpage(){
           if(item.files!==undefined){
             item.files.map(file=>{return images+='<img id='+file+' src='+file+' onClick={that.showAttachment} />'})
           }
-          const newPost = post.concat(item);
-          setPost(()=>{
-            //const newPost = post.concat(item);
-            return newPost;
-          })
+        
+          posts = posts.concat(item);
+          //console.log(posts);
+        // setPost(()=>{
+        //     //const newPost = post.concat(item);
+        //     return newPost;
+        //   })
           //console.log(images)
-          return document.getElementById('list').innerHTML+='<li id='+item._id+'><h4>'+item.title+'</h4><button id=closeId-'+item._id+'>&times;</button><p name=textId-'+item._id+'>'+isShort+'</p><container>'+images+'</container><span>posted '+date+'</span></li>'
+          //return document.getElementById('list').innerHTML+='<li id='+item._id+'><h4>'+item.title+'</h4><button id=closeId-'+item._id+'>&times;</button><p name=textId-'+item._id+'>'+isShort+'</p><container>'+images+'</container><span>posted '+date+'</span></li>'
         })
+        setPost(posts);
+      
     })
     // async function dat(){
     //   try {

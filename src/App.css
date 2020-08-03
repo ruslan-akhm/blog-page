@@ -6,7 +6,7 @@ body,html{
 #page-main{
   margin-left:5rem;
   padding:0rem;
-  width:auto;
+  width:calc (100% - 5rem);
   min-height:100vh;
   background-color:#f0f0f0;
   display:flex;

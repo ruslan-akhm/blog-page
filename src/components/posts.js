@@ -45,6 +45,8 @@ function Posts(){
     })
   }
   
+  let posts = post.map()
+  
   return(
     <div className="posts" id="posts" onClick={e=>modifyText(e)}>
       <button id="add-post" className="add" onClick={newPost}>
