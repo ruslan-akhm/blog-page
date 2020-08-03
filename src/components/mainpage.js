@@ -13,8 +13,8 @@ import '../Mainpage.css';
 
 function Mainpage(){
   
-  const {post,setPost,header,setHeader,avatar,setAvatar} = useContext(PostContext);
-  console.log(avatar)
+  const [post,setPost,header,setHeader,avatar,setAvatar] = useContext(PostContext);
+  //console.log(avatar)
   // const [header, setHeader] = useContext();
   // const [avatar, setAvatar] = useContext();
   // constructor(props) {
@@ -46,27 +46,32 @@ function Mainpage(){
     //const that = this;   //workaround for "this" keyword to access state inside fetch
     postService.getData().then(data=>{
       console.log(data);
-      document.getElementById("header").style.background = "url(" + data.header + ")";
-      document.getElementById("header").style.backgroundSize = "cover";
+      setHeader(()=>{
+        return data.header
+      });
+      //document.getElementById("header").style.background = "url(" + data.header + ")";
+      //document.getElementById("header").style.backgroundSize = "cover";
       document.getElementById("avatar-img").setAttribute("src",data.avatar);
-      data.data.map(post=>{
+      data.data.map(item=>{
           //Hide part of long text and add "Expand text" button
-          const isShort = post.text.length>600 ? post.text.slice(0,510)+'<a id=textId-'+post._id+'>...Expand text</a>':post.text;
+          const isShort = item.text.length>600 ? item.text.slice(0,510)+'<a id=textId-'+item._id+'>...Expand text</a>':item.text;
         
           //let prevState = that.state.posts;
           //Display date Posted
-          let date = new Date(parseInt(post.datePosted)).toLocaleDateString();
+          let date = new Date(parseInt(item.datePosted)).toLocaleDateString();
           //date = date.toLocaleDateString();
           //that.setState({posts:prevState.concat({listId:post._id, title:post.title, text:post.text, textId:"textId-"+post._id, closeId:"closeId-"+post._id, filenames:post.files})});
           let images = '';
-          if(post.files!==undefined){
-            post.files.map(file=>{return images+='<img id='+file+' src='+file+' onClick={that.showAttachment} />'})
+          if(item.files!==undefined){
+            item.files.map(file=>{return images+='<img id='+file+' src='+file+' onClick={that.showAttachment} />'})
           }
+          const newPost = post.concat(item);
           setPost(()=>{
-                  return {}  
+            //const newPost = post.concat(item);
+            return newPost;
           })
           //console.log(images)
-          return document.getElementById('list').innerHTML+='<li id='+post._id+'><h4>'+post.title+'</h4><button id=closeId-'+post._id+'>&times;</button><p name=textId-'+post._id+'>'+isShort+'</p><container>'+images+'</container><span>posted '+date+'</span></li>'
+          return document.getElementById('list').innerHTML+='<li id='+item._id+'><h4>'+item.title+'</h4><button id=closeId-'+item._id+'>&times;</button><p name=textId-'+item._id+'>'+isShort+'</p><container>'+images+'</container><span>posted '+date+'</span></li>'
         })
     })
     // async function dat(){
