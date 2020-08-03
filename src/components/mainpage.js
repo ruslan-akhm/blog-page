@@ -1,40 +1,49 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Header from './header'
 import Info from './info'
 import Posts from './posts'
 import Default from './default'
 import AddPost from './addPost'
 import postService from '../services/postService'
+import { PostContext } from '../context/postContext'
 import '../Mainpage.css';
 
 //MAKE IT ADD POSTS FROM TOP TO BOTTOM
 //OBJECTS IN REACT HOOKS
 
-class Mainpage extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      posts: [],
-      headerImage: ""
-    };
-    //this.newPost = this.newPost.bind(this);
-    //this.closeModal = this.closeModal.bind(this);
-    //this.updateHeader = this.updateHeader.bind(this);
-    //this.addPost = this.addPost.bind(this);
-    //this.updateAvatar=this.updateAvatar.bind(this);
-    this.getData=this.getData.bind(this);
-    //this.modifyText=this.modifyText.bind(this);
-    //this.toDefault=this.toDefault.bind(this);
-    //this.showAttachment=this.showAttachment.bind(this);
-  }
+function Mainpage(){
+  
+  const {post,setPost,header,setHeader,avatar,setAvatar} = useContext(PostContext);
+  console.log(avatar)
+  // const [header, setHeader] = useContext();
+  // const [avatar, setAvatar] = useContext();
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     posts: [],
+  //     headerImage: ""
+  //   };
+  //   //this.newPost = this.newPost.bind(this);
+  //   //this.closeModal = this.closeModal.bind(this);
+  //   //this.updateHeader = this.updateHeader.bind(this);
+  //   //this.addPost = this.addPost.bind(this);
+  //   //this.updateAvatar=this.updateAvatar.bind(this);
+  //   this.getData=this.getData.bind(this);
+  //   //this.modifyText=this.modifyText.bind(this);
+  //   //this.toDefault=this.toDefault.bind(this);
+  //   //this.showAttachment=this.showAttachment.bind(this);
+  // }
 
-  componentDidMount() {
-    this.getData();
-    window.addEventListener('click',(e)=>{console.log(e.target.id)})
-  }
+  // componentDidMount() {
+  //   this.getData();
+  //   window.addEventListener('click',(e)=>{console.log(e.target.id)})
+  // }
+  useEffect(()=>{
+    getData();
+  },[])
                         
-  getData(){
-    const that = this;   //workaround for "this" keyword to access state inside fetch
+  const getData=()=>{
+    //const that = this;   //workaround for "this" keyword to access state inside fetch
     postService.getData().then(data=>{
       console.log(data);
       document.getElementById("header").style.background = "url(" + data.header + ")";
@@ -43,15 +52,19 @@ class Mainpage extends React.Component {
       data.data.map(post=>{
           //Hide part of long text and add "Expand text" button
           const isShort = post.text.length>600 ? post.text.slice(0,510)+'<a id=textId-'+post._id+'>...Expand text</a>':post.text;
-          let prevState = that.state.posts;
+        
+          //let prevState = that.state.posts;
           //Display date Posted
           let date = new Date(parseInt(post.datePosted)).toLocaleDateString();
           //date = date.toLocaleDateString();
-          that.setState({posts:prevState.concat({listId:post._id, title:post.title, text:post.text, textId:"textId-"+post._id, closeId:"closeId-"+post._id, filenames:post.files})});
+          //that.setState({posts:prevState.concat({listId:post._id, title:post.title, text:post.text, textId:"textId-"+post._id, closeId:"closeId-"+post._id, filenames:post.files})});
           let images = '';
           if(post.files!==undefined){
             post.files.map(file=>{return images+='<img id='+file+' src='+file+' onClick={that.showAttachment} />'})
           }
+          setPost(()=>{
+                  return {}  
+          })
           //console.log(images)
           return document.getElementById('list').innerHTML+='<li id='+post._id+'><h4>'+post.title+'</h4><button id=closeId-'+post._id+'>&times;</button><p name=textId-'+post._id+'>'+isShort+'</p><container>'+images+'</container><span>posted '+date+'</span></li>'
         })
@@ -257,7 +270,7 @@ class Mainpage extends React.Component {
 //   console.log("click")
 // }
 
-  render() {
+
     // const modal = (
     //   <div id="modal-parent" onClick={this.closeModal}>
     //     <div id="modal-content">
@@ -310,7 +323,7 @@ class Mainpage extends React.Component {
          {/*modal */} 
       </div>
     );
-  }
+  
 }
 
 export default Mainpage;

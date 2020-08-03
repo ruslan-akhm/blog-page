@@ -1,6 +1,9 @@
-import React, {useState} from 'react'
+import React, { useState, useContext } from 'react'
+import { PostContext } from '../context/postContext'
 
 function Header(){
+  
+  const {header,setHeader} = useContext(PostContext);
   
   const updateHeader=(e)=>{
     e.preventDefault();

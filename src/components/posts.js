@@ -1,6 +1,9 @@
-import React, {useState} from 'react'
+import React, { useState, useContext } from 'react'
+import { PostContext } from '../context/postContext'
 
 function Posts(){
+  
+  const {post,setPost} = useContext(PostContext);
   
    const newPost=()=>{
     document.getElementById("modal-parent").style.display = "block";

@@ -1,6 +1,9 @@
-import React, {useState} from 'react'
+import React, { useState, useContext } from 'react'
+import { PostContext } from '../context/postContext'
 
 function AddPost(){
+  
+  const {post,setPost} = useContext(PostContext);
   
   const addPost=(e)=>{
     let prevState = this.state.posts; //our initial posts array 

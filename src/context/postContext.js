@@ -6,7 +6,7 @@ export const PostProvider=({ children })=>{
   
     const [post,setPost] = useState([]);
     const [header, setHeader] = useState("");
-    const [avatar, setAvatar] = useState("");
+    const [avatar, setAvatar] = useState("scsdcsdcsdcd");
   
     return( 
       <div>

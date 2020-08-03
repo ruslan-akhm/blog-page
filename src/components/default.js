@@ -1,6 +1,9 @@
-import React, {useState} from 'react'
+import React, { useState, useContext } from 'react'
+import { PostContext } from '../context/postContext'
 
 function Default(){
+  
+  const {post,setPost,header,setHeader,avatar,setAvatar} = useContext(PostContext);
   
   const toDefault=(e)=>{
     e.preventDefault();

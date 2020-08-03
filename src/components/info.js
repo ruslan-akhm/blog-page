@@ -1,6 +1,9 @@
 import React, { useState, useContext } from 'react'
+import { PostContext } from '../context/postContext'
 
 function Info(){
+  
+  const {avatar,setAvatar} = useContext(PostContext);
   
   const updateAvatar=(e)=>{
     e.preventDefault();
