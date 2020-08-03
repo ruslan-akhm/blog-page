@@ -6,6 +6,19 @@ function Posts(){
   
   const {post,setPost} = useContext(PostContext);
   const [list, setList] = useState();
+  let posts;
+  
+  // useEffect(()=>{
+  //   posts = list.map(item=>{
+  //   return <li id={item._id}>
+  //            <h4>{item.title}</h4>
+  //            <button id={item.closeId}>&times;</button>
+  //            <p name={item.textId}>{item.short}{item.expand}</p>
+  //            <container>{item.images}</container>
+  //            <span>posted {item.date}</span>
+  //          </li>
+  // })
+  // },[list])
   
   useEffect(()=>{
     let posts = [];
@@ -35,6 +48,19 @@ function Posts(){
     setList(posts);
   },[post])
   
+  useEffect(()=>{
+    posts = list.map(item=>{
+    return <li id={item._id}>
+             <h4>{item.title}</h4>
+             <button id={item.closeId}>&times;</button>
+             <p name={item.textId}>{item.short}{item.expand}</p>
+             <container>{item.images}</container>
+             <span>posted {item.date}</span>
+           </li>
+  })
+  },[list])
+  
+  
   const newPost=()=>{
     console.log('NOT WORKING YET. TO BE FIXED')
      //document.getElementById("modal-parent").style.display = "block";
@@ -49,7 +75,6 @@ function Posts(){
     let newList;
     list.map((post)=>{ //that.state.posts
       if(e.target.id==post.textId){//post.textId){
-        console.log("HERERERERERE")
         //expand Text
         document.getElementById(e.target.id).style.display="none";
         return document.getElementsByName(e.target.id)[0].innerText=post.text
@@ -86,15 +111,15 @@ function Posts(){
     })
   }
   
-  let posts = list && list.map(item=>{
-    return <li id={item._id}>
-             <h4>{item.title}</h4>
-             <button id={item.closeId}>&times;</button>
-             <p name={item.textId}>{item.short}{item.expand}</p>
-             <container>{item.images}</container>
-             <span>posted {item.date}</span>
-           </li>
-  })
+  // let posts = list && list.map(item=>{
+  //   return <li id={item._id}>
+  //            <h4>{item.title}</h4>
+  //            <button id={item.closeId}>&times;</button>
+  //            <p name={item.textId}>{item.short}{item.expand}</p>
+  //            <container>{item.images}</container>
+  //            <span>posted {item.date}</span>
+  //          </li>
+  // })
   
   return(
     <div className="posts" id="posts" onClick={e=>modifyText(e)}>
