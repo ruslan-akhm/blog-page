@@ -81,6 +81,14 @@ function Mainpage(){
             item.files.map(file=>{return images+='<img id='+file+' src='+file+' onClick={that.showAttachment} />'})
           }
         
+          // let newPost ={
+          //   _id: item._id,
+          //   text: text,
+          //   title: item.title,
+          //   date: date,
+          //   images: images,
+          //   expand: expand
+          // }
           posts = posts.concat(item);
           //console.log(posts);
         // setPost(()=>{
