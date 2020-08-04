@@ -54,9 +54,11 @@ function Posts(){
                 <container>{images}</container>
                 <span>posted {date}</span>
               </li>);
-      setPostings(postings.concat(x));
+      postings = postings.concat(x)
+      
     
     })
+    setPostings(postings);
     setList(posts);
     
   },[post])

@@ -11,6 +11,8 @@ import '../Mainpage.css';
 //MAKE IT ADD POSTS FROM TOP TO BOTTOM
 //OBJECTS IN REACT HOOKS
 
+//IMAGES ARE CALLED FROM APPNEW-TEST-SAMPLE  -  FIX!!!!!!!!!!!!!!!!!!!!!
+
 function Mainpage(){
   
   const {post,setPost,header,setHeader,avatar,setAvatar} = useContext(PostContext);

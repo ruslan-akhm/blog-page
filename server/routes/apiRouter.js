@@ -174,8 +174,8 @@ apiRouter.get('/default',(req,res)=>{
           })
           return res.json(
             {data:defaultData.data,
-             src:defaultData.avatar,
-             image:defaultData.header}
+             avatar:defaultData.avatar,
+             header:defaultData.header}
           )
         })
       })
