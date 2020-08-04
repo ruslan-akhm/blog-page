@@ -52,20 +52,16 @@ function Posts(){
       else if(e.target.id==p.closeId){
         //DELETE POST
         postService.removePost(p._id).then(data=>{
+          console.log(data);
           newList = list.filter(item=>{return item._id!==p._id});
-          
-          newPosts = post.filter(post=>{
-            console.log(post._id);
-            console.log(p._id);
-            return post._id!==p._id
-          });
-          console.log(newPosts);
+          setPost(data.posts);
         })
-        // let li_nested = document.getElementById(e.target.id).parentNode;
-        // let posts = document.getElementById("list");
-        // posts.removeChild(li_nested);
-        newPosts && setPost(newPosts);
+        let li_nested = document.getElementById(e.target.id).parentNode;
+        let posts = document.getElementById("list");
+        posts.removeChild(li_nested);
+        
       }
+      // newPosts && setPost(newPosts);
       //console.log(newPosts);
       //newPosts && setPost(newPosts);
       newList && setList(newList);

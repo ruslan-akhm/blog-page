@@ -143,7 +143,7 @@ apiRouter.delete('/delete',(req,res)=>{
   const _id = req.body.id
   Post.deleteOne({_id:_id},(err,data)=>{
     if(err) return console.log(err);
-    Post.find({type:"post"}).exec((err,post)=>{
+    Post.find({type:"post"}).sort({_id:-1}).exec((err,post)=>{
       if(err) return console.log(err);
       return res.json({posts:post})
     })
