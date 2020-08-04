@@ -33,7 +33,7 @@ function Header(){
   
   return(
     <div id="header">
-      <img src={header && header} />
+      <img src={header} />
       <form enctype="multipart/form-data" id="send-pic">
         <input name="upfile" id="upfile" type="file" className="custom-input" accept="image/*" onChange={e=>updateHeader(e)}/>
       </form>

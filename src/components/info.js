@@ -31,7 +31,7 @@ function Info(){
   return(
     <div id="info">
       <div id="avatar">
-        <img id="avatar-img" src={avatar && avatar} alt="avatar"/>
+        <img id="avatar-img" src={avatar} alt="avatar"/>
         <input name="avatarfile" id="avatarfile" type="file" className="custom-input" accept="image/*" onChange={e=>updateAvatar(e)}/>
       </div>
       <div id="bio">
