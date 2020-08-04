@@ -6,21 +6,7 @@ function Posts(){
   
   const {post,setPost} = useContext(PostContext);
   const [list, setList] = useState();
-  
   const [postings, setPostings] = useState();
-  //let posts;
-  
-  // useEffect(()=>{
-  //   posts = list.map(item=>{
-  //   return <li id={item._id}>
-  //            <h4>{item.title}</h4>
-  //            <button id={item.closeId}>&times;</button>
-  //            <p name={item.textId}>{item.short}{item.expand}</p>
-  //            <container>{item.images}</container>
-  //            <span>posted {item.date}</span>
-  //          </li>
-  // })
-  // },[list])
   
   useEffect(()=>{
     let z = [];
@@ -47,8 +33,6 @@ function Posts(){
         closeId: closeId
       }
       posts = posts.concat(newPost);
-      //document.getElementById('list').innerHTML+='<li id='+item._id+'><h4>'+item.title+'</h4><button id='+closeId+'>&times;</button><p name='+textId+'>'+short+expand+'</p><container>'+images+'</container><span>posted '+date+'</span></li>'
-      
       let x = (<li id={item._id}>
                 <h4>{item.title}</h4>
                 <button id={closeId}>&times;</button>
@@ -57,28 +41,10 @@ function Posts(){
                 <span>posted {date}</span>
               </li>);
       z = z.concat(x)
-      
-      document.getElementById('list').innerHTML+=x;
-      
-    
     })
-    //setPostings(z);
+    setPostings(z);
     setList(posts);
-    
   },[post])
-  
-  // useEffect(()=>{
-  //   posts = list.map(item=>{
-  //   return <li id={item._id}>
-  //            <h4>{item.title}</h4>
-  //            <button id={item.closeId}>&times;</button>
-  //            <p name={item.textId}>{item.short}{item.expand}</p>
-  //            <container>{item.images}</container>
-  //            <span>posted {item.date}</span>
-  //          </li>
-  // })
-  // },[list])
-  
   
   const newPost=()=>{
     console.log('NOT WORKING YET. TO BE FIXED')
