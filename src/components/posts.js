@@ -35,10 +35,10 @@ function Posts(){
     setList(posts);
   },[post])
   
-  const newPost=()=>{
-    console.log('NOT WORKING YET. TO BE FIXED')
-     //document.getElementById("modal-parent").style.display = "block";
-  }
+  // const newPost=()=>{
+  //   console.log('NOT WORKING YET. TO BE FIXED')
+  //    //document.getElementById("modal-parent").style.display = "block";
+  // }
   
   const modifyText=(e)=>{
     let newList;
@@ -64,9 +64,9 @@ function Posts(){
   
   return(
     <div className="posts" id="posts" onClick={e=>modifyText(e)}>
-      <button id="add-post" className="add" onClick={newPost}>
+      {/* <button id="add-post" className="add" onClick={newPost}>
         + Add Post
-      </button>
+      </button> */}
       <ul id="list"></ul>  
     </div>
   )

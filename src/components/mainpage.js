@@ -358,9 +358,10 @@ function Mainpage(){
           <ul id="list"></ul>  
           <button id="default" onClick={e=>this.toDefault(e)}>To Default</button>
         </div> --> */}
+        <AddPost />
         <Posts />
         <Default />
-        <AddPost />
+        
          {/*modal */} 
       </div>
     );

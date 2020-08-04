@@ -42,5 +42,14 @@ export default {
         })
         .then(res =>res.json())
         .then(data=>data)
+  },
+  addPost: ()=>{
+    return fetch("/api/post", {
+          method: "POST",
+          headers: {
+            Accept: "application/json"
+          },
+          body:fd 
+        })
   }
 }
