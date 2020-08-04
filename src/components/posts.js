@@ -23,6 +23,7 @@ function Posts(){
   // },[list])
   
   useEffect(()=>{
+    let z = [];
     let posts = [];
     post.map(item=>{
       const textId = 'textId-'+item._id;
@@ -54,11 +55,11 @@ function Posts(){
                 <container>{images}</container>
                 <span>posted {date}</span>
               </li>);
-      postings = postings.concat(x)
+      z = z.concat(x)
       
     
     })
-    setPostings(postings);
+    setPostings(z);
     setList(posts);
     
   },[post])
@@ -101,6 +102,7 @@ function Posts(){
           let posts = document.getElementById("list");
           let li_nested = document.getElementById(post._id);
           posts.removeChild(li_nested);
+          
           newList = list.filter(item=>{return item._id!==post._id});
           //console.log(newList);
         })

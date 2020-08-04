@@ -9,7 +9,8 @@ function Default(){
   
   const toDefault=(e)=>{
     e.preventDefault();
-    let posts;
+    setPost(null);
+    let posts = [];
     //document.getElementById('list').innerHTML='';
     //this.setState({posts:[]})
     //const that = this;
