@@ -6,7 +6,7 @@ function AddPost(){
   
   const {post,setPost} = useContext(PostContext);
   
-  const newPost=()=>{
+  const openModal=()=>{
     document.getElementById("modal-parent").style.display = "block";
   }
   
@@ -30,7 +30,7 @@ function AddPost(){
       prevState = [data,...post];
       setPost(prevState)
     })
-    //leave input fileds blank
+    //LEAVE INPUTS BLANK
     document.getElementById("post-title").value='';
     document.getElementById("post-text").value='';
     document.getElementById("modal-parent").style.display="none"
@@ -47,7 +47,7 @@ function AddPost(){
   
   return(
     <div>
-      <button id="add-post" className="add" onClick={newPost}>
+      <button id="add-post" className="add" onClick={openModal}>
         + Add Post
       </button>
       <div id="modal-parent" onClick={closeModal}>

@@ -8,6 +8,7 @@ function Posts(){
   const [list, setList] = useState();
   
   useEffect(()=>{
+    console.log(post);
     document.getElementById("list").innerHTML='';
     let posts = [];
     post.map(item=>{
@@ -19,6 +20,7 @@ function Posts(){
         if(item.files!==undefined){
           item.files.map(file=>{return images+='<img id='+file+' src='+file+' onClick={that.showAttachment} />'})
         }
+      //OBJECT FOR EVERY POST FOR FUTURE REFERENCE
       const newPost = {
         _id: item._id,
         text: item.text,
@@ -35,28 +37,26 @@ function Posts(){
     setList(posts);
   },[post])
   
-  // const newPost=()=>{
-  //   console.log('NOT WORKING YET. TO BE FIXED')
-  //    //document.getElementById("modal-parent").style.display = "block";
-  // }
-  
   const modifyText=(e)=>{
     let newList;
-    list.map((post)=>{ 
-      if(e.target.id==post.textId){
-        //expand Text
+    list.map((p)=>{ 
+      if(e.target.id==p.textId){
+        //EXPAND TEXT
         document.getElementById(e.target.id).style.display="none";
-        return document.getElementsByName(e.target.id)[0].innerText=post.text
+        return document.getElementsByName(e.target.id)[0].innerText=p.text
       } 
-      else if(e.target.id==post.closeId){
-        //delete post
-        postService.removePost(post._id).then(data=>{
-          newList = list.filter(item=>{return item._id!==post._id});
+      else if(e.target.id==p.closeId){
+        //DELETE POST
+        postService.removePost(p._id).then(data=>{
+          newList = list.filter(item=>{return item._id!==p._id});
         })
+        let newPosts = post.filter(post=>{return post._id})
         let li_nested = document.getElementById(e.target.id).parentNode;
         let posts = document.getElementById("list");
         posts.removeChild(li_nested);
+        
       }
+      console.log(post);
       newList && setList(newList);
     })
   
@@ -64,9 +64,6 @@ function Posts(){
   
   return(
     <div className="posts" id="posts" onClick={e=>modifyText(e)}>
-      {/* <button id="add-post" className="add" onClick={newPost}>
-        + Add Post
-      </button> */}
       <ul id="list"></ul>  
     </div>
   )

@@ -32,12 +32,12 @@ function Mainpage(){
   return (
     <div id="personal-page">
       <Header />
-       <Info />
-       <AddPost />
-       <Posts />
-       <Default />
-      </div>
-    );
+      <Info />
+      <AddPost />
+      <Posts />
+      <Default />
+    </div>
+  );
 }
 
 export default Mainpage;
