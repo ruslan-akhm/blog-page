@@ -8,7 +8,10 @@ function Posts(){
   const [list, setList] = useState();
   
   useEffect(()=>{
+    //console.log(post);
+    console.log("UPDATING");
     console.log(post);
+    
     document.getElementById("list").innerHTML='';
     let posts = [];
     post.map(item=>{
@@ -39,6 +42,7 @@ function Posts(){
   
   const modifyText=(e)=>{
     let newList;
+    let newPosts;
     list.map((p)=>{ 
       if(e.target.id==p.textId){
         //EXPAND TEXT
@@ -49,14 +53,21 @@ function Posts(){
         //DELETE POST
         postService.removePost(p._id).then(data=>{
           newList = list.filter(item=>{return item._id!==p._id});
+          
+          newPosts = post.filter(post=>{
+            console.log(post._id);
+            console.log(p._id);
+            return post._id!==p._id
+          });
+          console.log(newPosts);
         })
-        let newPosts = post.filter(post=>{return post._id})
-        let li_nested = document.getElementById(e.target.id).parentNode;
-        let posts = document.getElementById("list");
-        posts.removeChild(li_nested);
-        
+        // let li_nested = document.getElementById(e.target.id).parentNode;
+        // let posts = document.getElementById("list");
+        // posts.removeChild(li_nested);
+        newPosts && setPost(newPosts);
       }
-      console.log(post);
+      //console.log(newPosts);
+      //newPosts && setPost(newPosts);
       newList && setList(newList);
     })
   

@@ -25,7 +25,7 @@ function AddPost(){
     fd.append('attachments', title);
     fd.append('attachments', text);
     postService.addPost(fd).then(data=>{
-      console.log(data);
+      //console.log(data);
       let prevState = post;
       prevState = [data,...post];
       setPost(prevState)
