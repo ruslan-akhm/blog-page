@@ -10,7 +10,7 @@ function Default(){
   const toDefault=(e)=>{
     e.preventDefault();
     //setPost(null);
-    let posts = [];
+    let posts;
     //document.getElementById('list').innerHTML='';
     //this.setState({posts:[]})
     //const that = this;
@@ -18,13 +18,13 @@ function Default(){
       console.log(data);
       setHeader(data.header);
       setAvatar(data.avatar);
-      data.data.map(item=>{
-        posts = posts.concat(item);
+      posts = data.data.map(item=>{
+        return item;
       })
-      
-    })
-    console.log(posts);
+      console.log(posts);
     setPost(posts);
+    })
+    
     // async function def(){
     //   try {
     //     let response = await fetch("/api/default");

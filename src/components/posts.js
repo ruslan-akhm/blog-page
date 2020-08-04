@@ -9,6 +9,8 @@ function Posts(){
   const [postings, setPostings] = useState();
   
   useEffect(()=>{
+    console.log('UPDATING!')
+    console.log(post)
     let z = [];
     let posts = [];
     post.map(item=>{
@@ -42,6 +44,7 @@ function Posts(){
               </li>);
       z = z.concat(x)
     })
+    console.log(z);
     setPostings(z);
     setList(posts);
   },[post])
