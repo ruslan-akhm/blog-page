@@ -9,7 +9,7 @@ function Default(){
   
   const toDefault=(e)=>{
     e.preventDefault();
-    setPost(null);
+    //setPost(null);
     let posts = [];
     //document.getElementById('list').innerHTML='';
     //this.setState({posts:[]})

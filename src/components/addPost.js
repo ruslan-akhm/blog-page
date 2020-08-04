@@ -59,7 +59,7 @@ function AddPost(){
   
   return(
     
-    {/* <div id="modal-parent" onClick={closeModal}>
+    <div id="modal-parent" onClick={closeModal}>
       <div id="modal-content">
         <form id="new-post" className="add-post-form" onSubmit={e=>addPost(e)}>
           <label>Title:</label>
@@ -70,7 +70,7 @@ function AddPost(){
         </form>
         <button id="later-button">Maybe later</button>
       </div>
-    </div> */}
+    </div>
   )
 }
 
