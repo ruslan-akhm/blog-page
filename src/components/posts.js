@@ -48,6 +48,7 @@ function Posts(){
       }
       posts = posts.concat(newPost);
       //document.getElementById('list').innerHTML+='<li id='+item._id+'><h4>'+item.title+'</h4><button id='+closeId+'>&times;</button><p name='+textId+'>'+short+expand+'</p><container>'+images+'</container><span>posted '+date+'</span></li>'
+      
       let x = (<li id={item._id}>
                 <h4>{item.title}</h4>
                 <button id={closeId}>&times;</button>
@@ -57,9 +58,11 @@ function Posts(){
               </li>);
       z = z.concat(x)
       
+      document.getElementById('list').innerHTML+=x;
+      
     
     })
-    setPostings(z);
+    //setPostings(z);
     setList(posts);
     
   },[post])
@@ -97,15 +100,26 @@ function Posts(){
       } 
       else if(e.target.id==post.closeId){
         //delete post
-        console.log(post)
+        // let li_nested = document.getElementById(e.target.id).parentNode;
+        // let posts = document.getElementById("list");
+        // posts.removeChild(li_nested);
+        
         postService.removePost(post._id).then(data=>{
-          let posts = document.getElementById("list");
-          let li_nested = document.getElementById(post._id);
-          posts.removeChild(li_nested);
+//           let posts = document.getElementById("list");
+//           //let li_nested = document.getElementById(post._id);
+          
+//           //console.log(li_nested);
+//           posts.removeChild(li_test);
+          // let li_nested = document.getElementById(e.target.id).parentNode;
+          // let posts = document.getElementById("list");
+          // posts.removeChild(li_nested);
           
           newList = list.filter(item=>{return item._id!==post._id});
           //console.log(newList);
         })
+        let li_nested = document.getElementById(e.target.id).parentNode;
+          let posts = document.getElementById("list");
+          posts.removeChild(li_nested);
         
 //         async function deletePost(){
 //           let response = await fetch("/api/delete", {
