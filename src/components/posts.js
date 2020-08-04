@@ -89,9 +89,13 @@ function Posts(){
           newList = list.filter(item=>{return item._id!==post._id});
           //console.log(newList);
         })
-        let li_nested = document.getElementById(e.target.id).parentNode;
-          let posts = document.getElementById("list");
-          posts.removeChild(li_nested);
+        postings.map(p=>{console.log(p._id==(post._id))})
+//         setPostings(()=>{
+          
+//         })
+        // let li_nested = document.getElementById(e.target.id).parentNode;
+        //   let posts = document.getElementById("list");
+        //   posts.removeChild(li_nested);
         
 //         async function deletePost(){
 //           let response = await fetch("/api/delete", {
@@ -115,6 +119,8 @@ function Posts(){
       }
       newList && setList(newList);
     })
+    //setList(newList);
+    //SETPOSTINGS
   }
   
   // let posts = list && list.map(item=>{
