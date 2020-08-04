@@ -92,7 +92,7 @@ apiRouter.post('/post', upload.array("attachments",5), (req,res)=>{
     files:filenames
   })
   post.save();
-  const response = ({id:post._id, title:post.title, text:post.text, datePosted:post.datePosted, postId:post.postId, files:filenames})
+  const response = ({_id:post._id, title:post.title, text:post.text, datePosted:post.datePosted, postId:post.postId, files:filenames})
   return res.json(response);
 })
 

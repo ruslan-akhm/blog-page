@@ -43,7 +43,7 @@ export default {
         .then(res =>res.json())
         .then(data=>data)
   },
-  addPost: ()=>{
+  addPost: (fd)=>{
     return fetch("/api/post", {
           method: "POST",
           headers: {
@@ -51,5 +51,7 @@ export default {
           },
           body:fd 
         })
+        .then(res =>res.json())
+        .then(data=>data)
   }
 }
