@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react'
 import { PostContext } from '../context/postContext'
+import postService from '../services/postService'
 
 function Info(){
   
@@ -7,25 +8,32 @@ function Info(){
   
   const updateAvatar=(e)=>{
     e.preventDefault();
-    async function ava() {
-      let fd = new FormData();
-      let avatarImage = document.getElementById("avatarfile").files[0];
-      fd.append("avatarfile", avatarImage);
-      try {
-        let response = await fetch("/api/avatar", {
-          method: "POST",
-          headers: {
-            Accept: "application/json"
-          },
-          body: fd
-        });
-        let resp = await response.json();
-        document.getElementById("avatar-img").setAttribute("src",resp.src);
-      } catch (err) {
-        console.log(err);
-      }
-    }
-    ava();
+    let fd = new FormData();
+    let avatarImage = document.getElementById("avatarfile").files[0];
+    fd.append("avatarfile", avatarImage);
+    postService.updateAvatar(fd).then(data=>{
+      setAvatar(data.avatar)
+    })
+    // async function ava() {
+    //   let fd = new FormData();
+    //   let avatarImage = document.getElementById("avatarfile").files[0];
+    //   fd.append("avatarfile", avatarImage);
+    //   try {
+    //     let response = await fetch("/api/avatar", {
+    //       method: "POST",
+    //       headers: {
+    //         Accept: "application/json"
+    //       },
+    //       body: fd
+    //     });
+    //     let resp = await response.json();
+    //     document.getElementById("avatar-img").setAttribute("src",resp.avatar);
+    //   } catch (err) {
+    //     console.log(err);
+    //   }
+    // }
+    // ava();
+    
   }
   
   return(

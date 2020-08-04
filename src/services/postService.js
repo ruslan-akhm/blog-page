@@ -31,5 +31,16 @@ export default {
         })
         .then(res =>res.json())
         .then(data=>data)
+  },
+  updateAvatar: (fd)=>{
+    return fetch("/api/avatar", {
+          method: "POST",
+          headers: {
+            Accept: "application/json"
+          },
+          body: fd
+        })
+        .then(res =>res.json())
+        .then(data=>data)
   }
 }
