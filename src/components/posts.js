@@ -6,13 +6,11 @@ function Posts(){
   
   const {post,setPost} = useContext(PostContext);
   const [list, setList] = useState();
-  const [postings, setPostings] = useState();
+  //const [postings, setPostings] = useState();
   
   useEffect(()=>{
-    setPostings(null)
-    console.log('UPDATING!')
-    console.log(post)
-    let z = [];
+    document.getElementById("list").innerHTML='';
+    //let z = [];
     let posts = [];
     post.map(item=>{
       const textId = 'textId-'+item._id;
@@ -36,19 +34,21 @@ function Posts(){
         closeId: closeId
       }
       posts = posts.concat(newPost);
-      let x = (<li id={item._id}>
-                <h4>{item.title}</h4>
-                <button id={closeId}>&times;</button>
-                <p name={textId}>{short}{expand}</p>
-                <container>{images}</container>
-                <span>posted {date}</span>
-              </li>);
-      z = z.concat(x)
-      console.log('in between them')
+      document.getElementById('list').innerHTML+='<li id='+item._id+'><h4>'+item.title+'</h4><button id='+closeId+'>&times;</button><p name='+textId+'>'+short+expand+'</p><container>'+images+'</container><span>posted '+date+'</span></li>'
+    
+      // let x = (<li id={item._id}>
+      //           <h4>{item.title}</h4>
+      //           <button id={closeId}>&times;</button>
+      //           <p name={textId}>{short}{expand}</p>
+      //           <container>{images}</container>
+      //           <span>posted {date}</span>
+      //         </li>);
+      // z = z.concat(x)
+      // console.log('in between them')
     })
     console.log('here already')
-    console.log(z);
-    setPostings(z);
+    //console.log(z);
+    //setPostings(z);
     setList(posts);
   },[post])
   
@@ -89,13 +89,13 @@ function Posts(){
           newList = list.filter(item=>{return item._id!==post._id});
           //console.log(newList);
         })
-        postings.map(p=>{console.log(p._id==(post._id))})
+       
 //         setPostings(()=>{
           
 //         })
-        // let li_nested = document.getElementById(e.target.id).parentNode;
-        //   let posts = document.getElementById("list");
-        //   posts.removeChild(li_nested);
+        let li_nested = document.getElementById(e.target.id).parentNode;
+          let posts = document.getElementById("list");
+          posts.removeChild(li_nested);
         
 //         async function deletePost(){
 //           let response = await fetch("/api/delete", {
@@ -132,13 +132,13 @@ function Posts(){
   //            <span>posted {item.date}</span>
   //          </li>
   // })
-  console.log(postings);
+  //console.log(postings);
   return(
     <div className="posts" id="posts" onClick={e=>modifyText(e)}>
       <button id="add-post" className="add" onClick={newPost}>
         + Add Post
       </button>
-      <ul id="list">{postings}</ul>  
+      <ul id="list"></ul>  
     </div>
   )
 }
