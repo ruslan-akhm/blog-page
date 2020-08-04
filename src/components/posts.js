@@ -8,10 +8,6 @@ function Posts(){
   const [list, setList] = useState();
   
   useEffect(()=>{
-    //console.log(post);
-    console.log("UPDATING");
-    console.log(post);
-    
     document.getElementById("list").innerHTML='';
     let posts = [];
     post.map(item=>{
@@ -52,7 +48,6 @@ function Posts(){
       else if(e.target.id==p.closeId){
         //DELETE POST
         postService.removePost(p._id).then(data=>{
-          console.log(data);
           newList = list.filter(item=>{return item._id!==p._id});
           setPost(data.posts);
         })
@@ -61,9 +56,6 @@ function Posts(){
         posts.removeChild(li_nested);
         
       }
-      // newPosts && setPost(newPosts);
-      //console.log(newPosts);
-      //newPosts && setPost(newPosts);
       newList && setList(newList);
     })
   

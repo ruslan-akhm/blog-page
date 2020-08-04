@@ -8,7 +8,6 @@ function Default(){
   
   
   const toDefault=(e)=>{
-    //e.preventDefault();
     let posts = [];
     postService.default().then(data=>{
       setHeader(data.header);
