@@ -29,5 +29,7 @@ export default {
           },
           body: fd
         })
+        .then(res =>res.json())
+        .then(data=>data)
   }
 }
