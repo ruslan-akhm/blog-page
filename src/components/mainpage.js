@@ -59,7 +59,7 @@ function Mainpage(){
       //   return data.header
       // });
       setHeader(data.header);
-      setAvatar(data.avatar)
+      setAvatar(data.avatar);
       //document.getElementById("header").style.background = "url(" + data.header + ")";
       //document.getElementById("header").style.backgroundSize = "cover";
       //document.getElementById("avatar-img").setAttribute("src",data.avatar);

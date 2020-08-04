@@ -259,7 +259,7 @@ body{
   color:transparent;
   width:40px;
   height:40px;
-  float:right;
+/*   float:right; */
   margin:15px;
 }
 .custom-input::-webkit-file-upload-button {
@@ -278,6 +278,10 @@ body{
 }
 .custom-input:hover{
   background-color: rgba(0,0,0,0.6);
+}
+#upfile{
+  background-color:red;
+  cursor:pointer;
 }
 .attach-btn{
   width:80px;
@@ -334,17 +338,3 @@ body{
    margin-top:-40px; 
   }
 }
-/*.attachment-parent{
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
-  width:50px;
-  height:200px;
-  float:right;
-  top:0;
-}
-.attachment{
-  background-color:red;
-  width:20px;
-  height:20px;
-}*/

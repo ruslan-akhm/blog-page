@@ -20,5 +20,14 @@ export default {
     return fetch('/api/default')
         .then(res =>res.json())
         .then(data=>data)
+  },
+  updateHeader: (fd)=>{
+    return fetch("/api/upload", {
+          method: "POST",
+          headers: {
+            Accept: "application/json"
+          },
+          body: fd
+        })
   }
 }

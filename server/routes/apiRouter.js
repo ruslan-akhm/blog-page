@@ -68,7 +68,7 @@ apiRouter.get('/',(req,res)=>{
 //Set Header image
 apiRouter.post('/upload', upload.single('upfile'), (req,res)=>{
    const fileObject = req.file;
-   return res.json({"image":"https://appnew-test-sample.glitch.me/api/image/"+fileObject.filename})
+   return res.json({header:"https://appnew-test-sample.glitch.me/api/image/"+fileObject.filename})
 })
 
 //Set Avatar
