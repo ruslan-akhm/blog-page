@@ -9,6 +9,7 @@ function Posts(){
   const [postings, setPostings] = useState();
   
   useEffect(()=>{
+    setPostings(null)
     console.log('UPDATING!')
     console.log(post)
     let z = [];
@@ -43,7 +44,9 @@ function Posts(){
                 <span>posted {date}</span>
               </li>);
       z = z.concat(x)
+      console.log('in between them')
     })
+    console.log('here already')
     console.log(z);
     setPostings(z);
     setList(posts);
@@ -75,13 +78,13 @@ function Posts(){
         
         postService.removePost(post._id).then(data=>{
 //           let posts = document.getElementById("list");
-//           //let li_nested = document.getElementById(post._id);
+//           let li_nested = document.getElementById(post._id);
           
-//           //console.log(li_nested);
-//           posts.removeChild(li_test);
-          // let li_nested = document.getElementById(e.target.id).parentNode;
-          // let posts = document.getElementById("list");
-          // posts.removeChild(li_nested);
+// //           //console.log(li_nested);
+// //           posts.removeChild(li_test);
+//           // let li_nested = document.getElementById(e.target.id).parentNode;
+//           let posts = document.getElementById("list");
+//           posts.removeChild(li_nested);
           
           newList = list.filter(item=>{return item._id!==post._id});
           //console.log(newList);
@@ -123,7 +126,7 @@ function Posts(){
   //            <span>posted {item.date}</span>
   //          </li>
   // })
-  
+  console.log(postings);
   return(
     <div className="posts" id="posts" onClick={e=>modifyText(e)}>
       <button id="add-post" className="add" onClick={newPost}>
