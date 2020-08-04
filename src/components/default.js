@@ -10,7 +10,7 @@ function Default(){
   const toDefault=(e)=>{
     e.preventDefault();
     //setPost(null);
-    let posts;
+    let posts = [];
     //document.getElementById('list').innerHTML='';
     //this.setState({posts:[]})
     //const that = this;
@@ -18,9 +18,11 @@ function Default(){
       console.log(data);
       setHeader(data.header);
       setAvatar(data.avatar);
-      posts = data.data.map(item=>{
-        return item;
-      })
+      // data.data.map(item=>{
+      //   posts = posts.concat(item);
+      // })
+      posts = data.data.map(item=>item)
+      
       console.log(posts);
     setPost(posts);
     })
