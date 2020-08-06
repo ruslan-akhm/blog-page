@@ -4,6 +4,7 @@ import Info from './info'
 import Posts from './posts'
 import Default from './default'
 import AddPost from './addPost'
+import Footer from './footer'
 import postService from '../services/postService'
 import { PostContext } from '../context/postContext'
 import '../Mainpage.css';

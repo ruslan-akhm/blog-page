@@ -11,7 +11,12 @@ body::-webkit-scrollbar-track{
 body::-webkit-scrollbar-thumb{
   background:#6649b8;
 }
-h1, p{
+.navbar{
+  width:100%;
+  height:60px;
+  background-color:#23232e;
+}
+/* h1, p{
   font-family: 'Assistant', sans-serif;
 }
 :root{
@@ -97,9 +102,9 @@ h1, p{
     margin:0;
   }
   
-}
+} */
 @media only screen and (min-width:600px){
-  .navbar{
+/*   .navbar{
     top:0;
     width:5rem;
     height:100vh;
@@ -109,6 +114,6 @@ h1, p{
   }
   .navbar:hover .link-text{
   display:block;
-  }
+  } */
   
 }

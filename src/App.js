@@ -17,6 +17,7 @@ class App extends React.Component{
         <div id="page-main">
           <Mainpage />
         </div>
+        <Footer />
       </div>
     )
   }
