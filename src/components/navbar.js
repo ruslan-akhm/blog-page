@@ -4,6 +4,7 @@ import '../Navbar.css';
 const Navbar = () => {
   return(
   <div className="navbar">
+      <p>#SocialNetwork</p>
     {/*    <nav class="navbar">
           <ul class="navbar-nav">
             <li class="nav-item">
