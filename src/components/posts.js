@@ -4,7 +4,7 @@ import postService from '../services/postService'
 
 function Posts(){
   
-  const {post,setPost} = useContext(PostContext);
+  const {post,setPost,avatar,setAvatar} = useContext(PostContext);
   const [list, setList] = useState();
   
   useEffect(()=>{
@@ -31,7 +31,7 @@ function Posts(){
         closeId: closeId
       }
       posts = posts.concat(newPost);
-      document.getElementById('list').innerHTML+='<li id='+item._id+'><h4>'+item.title+'</h4><button id='+closeId+'>&times;</button><p name='+textId+'>'+short+'</p><container>'+images+'</container><span>posted '+date+'</span></li>'
+      document.getElementById('list').innerHTML+='<li id='+item._id+'><div id="post-img-parent"><img src='+avatar+' /></div><h4>'+item.title+'</h4><button id='+closeId+'>&times;</button><p name='+textId+'>'+short+'</p><container>'+images+'</container><span>posted '+date+'</span></li>'
     })
     setList(posts);
   },[post])

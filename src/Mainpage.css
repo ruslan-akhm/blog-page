@@ -105,14 +105,30 @@ body{
   list-style-type:none;
   border:1px solid black;
   display:flex;
-  flex-direction:column;
+/*   flex-direction:column; */
+  flex-direction:row;
+  flex-wrap:wrap;
   min-height:100px;
   margin-top:20px;
   padding:0px;
   background-color:white;
   box-sizing:border-box;
+  border-radius:25px;
+}
+#list #post-img-parent{
+  width:100;
+  height:100px;
+  margin:10px;
+}
+#list img{
+  dislay:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  border-radius:50%;
 }
 #list li h4{
+  width:70%;
   background-color:#23232e;
   color:white;
   font-size:18px;
@@ -123,7 +139,7 @@ body{
   margin:0;
 }
 #list li p{
-  margin-top:-30px;
+/*   margin-top:-30px; */
 }
 #list li button{
   font-size:26px;
@@ -156,7 +172,7 @@ body{
   color:#9c9c9c;
   pointer-events:none;
 }
-#list li container{
+/* #list li container{
   height:auto;
   display:flex;
   justify-content:center;
@@ -169,7 +185,7 @@ body{
   align-self:center;
   margin:10px;
   cursor:pointer;
-}
+} */
 .add{
   width:100%;
   border:none;
@@ -228,38 +244,37 @@ body{
   font-size:16px;
   font-weight:bold;
 }
-#submit{
-  grid-column: 1 / span 2; 
+
+.modal-btn{
   width:180px;
   height:30px;
   font-size:16px;
   font-family: 'Noto Sans', sans-serif;
-  margin:20px auto;
   color:#23232e;
   background-color:white;
   border:3px solid #23232e;
   cursor:pointer;
 }
-#submit:hover{
-  color:white;
-  background-color:#23232e;
+#submit{
+  grid-column: 1 / span 2; 
+  margin:20px auto;
 }
 #later-button{
   align-self:center;
-  width:180px;
   margin-bottom:25px;
-  font-size:16px;
-  font-family: 'Noto Sans', sans-serif;
-  color:#23232e;
-  background-color:white;
-  cursor:pointer;
-  border-top:3px solid #23232e;
 }
-#later-button:hover{
+#submit:hover, #later-button:hover{
+  color:white;
+  background-color:#23232e;
+}
+
+
+/* #later-button:hover{
   color:white;
   background-color:#23232e;
   border:3px solid #23232e;
-}
+} */
+
 .custom-input{
   color:transparent;
   width:40px;

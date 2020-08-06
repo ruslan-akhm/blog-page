@@ -57,9 +57,9 @@ function AddPost(){
             <input type="text" id="post-title" maxlength="35" required/>
             <label>Post:</label>
             <textarea rows="18" id="post-text"></textarea>
-            <input type="submit" id="submit" value="Post" />
+            <input type="submit" id="submit" className="modal-btn" value="Post" />
           </form>
-          <button id="later-button">Maybe later</button>
+          <button id="later-button" className="modal-btn">Maybe later</button>
         </div>
       </div>
     </div>
