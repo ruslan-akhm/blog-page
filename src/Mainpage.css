@@ -43,21 +43,12 @@ body{
 }
 #avatar img{
   box-sizing:border-box;
-/*   width: 100%;
-  height: 100%;
-  border-radius:50%;
-  border:5px solid white;
-  position:relative;
-  top:0;
-  left:0;
-  z-index:1; */
   display:block;
   width:100%;
   height:100%;
   object-fit:cover;
   border-radius:50%;
   border:5px solid white;
-/*   z-index:1; */
 }
 #avatar:hover #avatarfile{
   display:block;
@@ -87,15 +78,6 @@ body{
   display:grid;
   grid-template-columns:150px 1fr;
   background-color:gray;
-}
-.preview-img{
-  /*width:20%;*/
-  background-color:yellow;
-  /*small preview image will go here after*/
-}
-.preview-text{
-  /*width:80%;*/
-  background-color:white;
 }
 #list{
   margin:0 0 30px 0;
@@ -154,20 +136,6 @@ body{
   color:#9c9c9c;
   pointer-events:none;
 }
-/* #list li container{
-  height:auto;
-  display:flex;
-  justify-content:center;
-  flex-direction:row;
-  flex-wrap:wrap;
-}
-#list li img{
-  max-width:150px;
-  height:100px;
-  align-self:center;
-  margin:10px;
-  cursor:pointer;
-} */
 .add{
   width:100%;
   border:none;
@@ -226,7 +194,6 @@ body{
   font-size:16px;
   font-weight:bold;
 }
-
 .modal-btn{
   width:180px;
   height:30px;
@@ -249,14 +216,6 @@ body{
   color:white;
   background-color:#23232e;
 }
-
-
-/* #later-button:hover{
-  color:white;
-  background-color:#23232e;
-  border:3px solid #23232e;
-} */
-
 .custom-input{
   color:transparent;
   width:40px;
@@ -290,14 +249,6 @@ body{
   cursor:pointer;
   text-align:center;
 }
-/* .attach-btn{
-  width:80px;
-}
-.attach-btn::before{
-  background-color: black;
-  width:80px;
-  content:"Add images";
-} */
 #upload{
   width:100px;
 }
@@ -323,7 +274,6 @@ body{
   width:120px;
   height:80px;
 }
-
 #default{
   position:absolute;
   top:0;
