@@ -29,13 +29,17 @@ body{
   grid-template-rows:2;
   box-sizing:border-box;
 }
+#info p{
+  grid-area:2/1/3/3;
+  font-family: 'Noto Sans', sans-serif;
+  font-size:16px;
+  text-align:start;
+  padding:10px;
+}
 #avatar{
-  background-color:red;
   align-self:start;
-/*   justify-self:start; */
   width:auto;
   height:110px;
-/*   border-radius:50%; */
 }
 #avatar img{
   box-sizing:border-box;
@@ -53,15 +57,13 @@ body{
   object-fit:cover;
   border-radius:50%;
   border:5px solid white;
+/*   z-index:1; */
 }
 #avatar:hover #avatarfile{
   display:block;
 }
 #bio{
-/*   height:100%; */
   min-height:110px;
-  
-/*    background-color:white;  */
 }
 #bio-list{
   margin:0;
@@ -71,21 +73,11 @@ body{
 #bio-list li{
   list-style-type:none;
   margin: 0 15% 0 0;
-  
   display:inline-block;
-/*   margin-right:15%; */
   font-family: 'Noto Sans', sans-serif;
   font-size:18px;
   font-weight:bold;
   color:#23232e;
-}
-#info p{
-  grid-row-area:2/2;
-  grid-column-area:1/2;
-  font-family: 'Noto Sans', sans-serif;
-  font-size:16px;
-  text-align:start;
-  padding:10px;
 }
 .post{
   list-style-type:none;
@@ -188,6 +180,7 @@ body{
   outline:none;
   margin:15px 0 15px 0;
   height:25px;
+  border-radius:5px;
 }
 .add:hover{
   background-color:rgba(0,0,0, 0.9);
@@ -211,6 +204,7 @@ body{
   display:flex;
   flex-direction:column;
   justify-content:space-between;
+  border-radius:25px;
 }
 #header-img-form input{
   width:100%;
@@ -251,6 +245,9 @@ body{
   background-color:#23232e;
 }
 #later-button{
+  align-self:center;
+  width:180px;
+  margin-bottom:25px;
   font-size:16px;
   font-family: 'Noto Sans', sans-serif;
   color:#23232e;
@@ -266,8 +263,7 @@ body{
 .custom-input{
   color:transparent;
   width:40px;
-  height:40px;
-/*   float:right; */
+  height:60px;
   margin:15px;
 }
 .custom-input::-webkit-file-upload-button {
@@ -276,12 +272,12 @@ body{
 .custom-input::before{
   content:"EDIT";
   text-align:center;
-  padding-top:12px;
+  padding-top:14px;
   color:white;
   display: inline-block;
   background-color: rgba(0,0,0,0.3);
   width:40px;
-  height:40px;
+  height:60px;
   cursor:pointer;
 }
 .custom-input:hover{
@@ -295,6 +291,7 @@ body{
   width:40px;
   height:40px;
   cursor:pointer;
+  text-align:center;
 }
 /* .attach-btn{
   width:80px;
@@ -320,7 +317,7 @@ body{
   margin-left:5px;
   float:none;
   width:110px;
-  height:50px;
+  height:55px;
   border-bottom-left-radius:50px;
   border-bottom-right-radius:50px;
   outline:none;
