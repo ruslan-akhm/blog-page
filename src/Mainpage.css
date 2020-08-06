@@ -104,8 +104,8 @@ body{
 #list li{
   list-style-type:none;
   border:1px solid black;
+  border-bottom:3px solid black;
   display:flex;
-/*   flex-direction:column; */
   flex-direction:row;
   flex-wrap:wrap;
   min-height:100px;
@@ -115,55 +115,30 @@ body{
   box-sizing:border-box;
   border-radius:25px;
 }
-#list #post-img-parent{
-  width:100px;
-  height:100px;
-  margin:10px;
-}
-#list img{
-  dislay:block;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  border-radius:50%;
-}
 #list li h4{
-  width:calc(100% - 160px);
-/*    background-color:#23232e; */
- /* color:white; */
+  width:calc(100% - 65px);
   color:#23232e;
   font-size:18px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
 }
 #list li h4, #list li p{
   font-family: 'Noto Sans', sans-serif;
-  padding:5px;
+  padding:10px;
   margin:0;
-}
-#list li p{
-/*   margin-top:-30px; */
-  background-color:blue;
 }
 #list li button{
   font-size:26px;
-/*   color:rgba(255,255,255,0.4); */
   color:red;
-/*   background-color:blue; */
-/*   text-align:end; */
-/*   position:relative; */
-/*   top:-35px; */
-/*   left:10%; */
-/*   right:-50%; */
-/*   margin-left:-25px; */
   background-color:transparent;
+  margin-top:5px;
   border:none;
   width:25px;
   height:25px;
   cursor:pointer;
   transition:0.1s;
 }
-/* #list li button:hover{
-  color:rgba(255,255,255,0.9);
-} */
 #list li a{
   font-family: 'Noto Sans', sans-serif;
   font-size:16px;
@@ -172,11 +147,8 @@ body{
   cursor:pointer;
 }
 #list li span{
-  background-color:red;
-  justify-self:end;
-  align-self:end;
-  margin-top:5px;
-  padding:5px;
+  width:100%;
+  padding:5px 20px 5px 0;
   text-align:end;
   font-family: 'Noto Sans', sans-serif;
   color:#9c9c9c;
