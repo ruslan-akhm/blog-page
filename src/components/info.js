@@ -28,8 +28,9 @@ function Info(){
           <li>Full-Stack Developer</li>
           <li>Toronto, ON</li>
         </ul>
-        <p>I like creating things. Every app I do is more complex than the previous one. I enjoy learning and applying technologies and seeing results of my work.</p>
       </div>
+      <p>I like creating things. Every app I do is more complex than the previous one. I enjoy learning and applying technologies and seeing results of my work.</p>
+
     </div>
   )
 }
