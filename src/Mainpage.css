@@ -116,7 +116,7 @@ body{
   border-radius:25px;
 }
 #list #post-img-parent{
-  width:100;
+  width:100px;
   height:100px;
   margin:10px;
 }
@@ -128,9 +128,10 @@ body{
   border-radius:50%;
 }
 #list li h4{
-  width:70%;
-  background-color:#23232e;
-  color:white;
+  width:calc(100% - 160px);
+/*    background-color:#23232e; */
+ /* color:white; */
+  color:#23232e;
   font-size:18px;
 }
 #list li h4, #list li p{
@@ -140,23 +141,29 @@ body{
 }
 #list li p{
 /*   margin-top:-30px; */
+  background-color:blue;
 }
 #list li button{
   font-size:26px;
-  color:rgba(255,255,255,0.4);
-  position:relative;
-  top:-35px;
-  left:100%;
-  margin-left:-25px;
+/*   color:rgba(255,255,255,0.4); */
+  color:red;
+/*   background-color:blue; */
+/*   text-align:end; */
+/*   position:relative; */
+/*   top:-35px; */
+/*   left:10%; */
+/*   right:-50%; */
+/*   margin-left:-25px; */
   background-color:transparent;
   border:none;
   width:25px;
+  height:25px;
   cursor:pointer;
   transition:0.1s;
 }
-#list li button:hover{
+/* #list li button:hover{
   color:rgba(255,255,255,0.9);
-}
+} */
 #list li a{
   font-family: 'Noto Sans', sans-serif;
   font-size:16px;
@@ -165,6 +172,9 @@ body{
   cursor:pointer;
 }
 #list li span{
+  background-color:red;
+  justify-self:end;
+  align-self:end;
   margin-top:5px;
   padding:5px;
   text-align:end;
