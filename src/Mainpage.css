@@ -225,7 +225,7 @@ body{
 .custom-input::-webkit-file-upload-button {
   visibility: hidden;
 }
-.custom-input::before{
+.custom-input::before,{
   content:"EDIT";
   text-align:center;
   padding-top:14px;
