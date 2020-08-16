@@ -2,6 +2,7 @@ body,html{
   padding:0;
   margin:0;
   background-color:#23232e;
+  overflow-x:hidden;
 }
 #page-main{
   width:100%;
