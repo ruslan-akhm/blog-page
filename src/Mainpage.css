@@ -216,44 +216,54 @@ body{
   color:white;
   background-color:#23232e;
 }
+
 .custom-input{
   color:transparent;
   width:40px;
-  height:60px;
+  height:40px;
+  float:right;
   margin:15px;
 }
 .custom-input::-webkit-file-upload-button {
   visibility: hidden;
 }
-.custom-input::before,{
+.custom-input::before{
   content:"EDIT";
   text-align:center;
-  padding-top:14px;
-  color:red;
+  padding-top:12px;
+  color:white;
   display: inline-block;
   background-color: rgba(0,0,0,0.3);
   width:40px;
-  height:60px;
+  height:40px;
   cursor:pointer;
 }
 .custom-input:hover{
   background-color: rgba(0,0,0,0.6);
 }
-#upfile{
-  border:white 1px solid;
-  position:relative;
-  top:-300px;
-  left:1rem;
-  width:40px;
-  height:40px;
-  cursor:pointer;
-  text-align:center;
+.attach-btn{
+  width:80px;
+}
+.attach-btn::before{
+  background-color: black;
+  width:80px;
+  content:"Add images";
 }
 #upload{
   width:100px;
 }
 #upload::before{
   width:100px;
+}
+#upfile{
+  border:white 1px solid;
+  position:relative;
+  top:-300px;
+  left:0;
+  width:40px;
+  height:40px;
+  cursor:pointer;
+  text-align:center;
 }
 #avatarfile{
   display:none;
