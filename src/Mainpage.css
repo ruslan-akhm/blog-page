@@ -229,7 +229,7 @@ body{
   content:"EDIT";
   text-align:center;
   padding-top:14px;
-  color:white;
+  color:red;
   display: inline-block;
   background-color: rgba(0,0,0,0.3);
   width:40px;
