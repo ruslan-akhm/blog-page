@@ -11,40 +11,44 @@ function AddPost(){
     document.getElementById("post-input-box").style.display = "flex";
   }
   
-  const addPost=(e)=>{
-    e.preventDefault();
-    //for possibilty to attach images to post in future
-    const fd = new FormData();
-    const attachments = document.getElementById("attachments");
-    if(attachments!==null){
-      for (let file of attachments.files){
-        fd.append('attachments',file)
-      }
-    }
-    let title = document.getElementById("post-title").value;
-    let text = document.getElementById("post-text").value;
-    fd.append('attachments', title);
-    fd.append('attachments', text);
-    postService.addPost(fd).then(data=>{
-      //console.log(data);
-      let prevState = post;
-      prevState = [data,...post];
-      setPost(prevState)
-    })
-    //LEAVE INPUTS BLANK
-    document.getElementById("post-title").value='';
-    document.getElementById("post-text").value='';
-    document.getElementById("modal-parent").style.display="none"
+  const closeTextfield=()=>{
+    document.getElementById("post-input-box").style.display = "none";
   }
   
-  const closeModal=(event)=>{
-    const click = event.target;
-    const modal = document.getElementById("modal-parent");
-    const later = document.getElementById("later-button");
-    if (click === modal||click===later) {
-      modal.style.display = "none";
-    }
-  }
+  // const addPost=(e)=>{
+  //   e.preventDefault();
+  //   //for possibilty to attach images to post in future
+  //   const fd = new FormData();
+  //   const attachments = document.getElementById("attachments");
+  //   if(attachments!==null){
+  //     for (let file of attachments.files){
+  //       fd.append('attachments',file)
+  //     }
+  //   }
+  //   let title = document.getElementById("post-title").value;
+  //   let text = document.getElementById("post-text").value;
+  //   fd.append('attachments', title);
+  //   fd.append('attachments', text);
+  //   postService.addPost(fd).then(data=>{
+  //     //console.log(data);
+  //     let prevState = post;
+  //     prevState = [data,...post];
+  //     setPost(prevState)
+  //   })
+  //   //LEAVE INPUTS BLANK
+  //   document.getElementById("post-title").value='';
+  //   document.getElementById("post-text").value='';
+  //   document.getElementById("modal-parent").style.display="none"
+  // }
+  
+  // const closeModal=(event)=>{
+  //   const click = event.target;
+  //   const modal = document.getElementById("modal-parent");
+  //   const later = document.getElementById("later-button");
+  //   if (click === modal||click===later) {
+  //     modal.style.display = "none";
+  //   }
+  // }
   
   return(
     <div>
@@ -53,10 +57,10 @@ function AddPost(){
       </button>
       <div id="post-input-box">
         <textarea rows="8" id="post-text"></textarea>
-        <div>
+        <div className="action-btn-box">
           <button>Post</button>
           <button>Attach</button>
-          <button>Close</button>
+          <button onClick={closeTextfield}>Close</button>
         </div>
       </div>
       {/* <div id="modal-parent" onClick={closeModal}>
