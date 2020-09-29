@@ -19,7 +19,7 @@ function Default(){
   
   return(
     <div>
-      <button id="default" onClick={e=>toDefault(e)}>To Default</button>
+      {/* <button id="default" onClick={e=>toDefault(e)}>To Default</button> */}
     </div>
   )
 }

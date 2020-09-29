@@ -50,7 +50,10 @@ function AddPost(){
       <button id="add-post" className="add" onClick={openModal}>
         + Add Post
       </button>
-      <div id="modal-parent" onClick={closeModal}>
+      <div id="post-input-box">
+        <textarea rows="8" id="post-text"></textarea>
+      </div>
+      {/* <div id="modal-parent" onClick={closeModal}>
         <div id="modal-content">
           <form id="new-post" className="add-post-form" onSubmit={e=>addPost(e)}>
             <label>Title:</label>
@@ -61,7 +64,7 @@ function AddPost(){
           </form>
           <button id="later-button" className="modal-btn">Maybe later</button>
         </div>
-      </div>
+      </div> */}
     </div>
   )
 }
