@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import Navbar from './components/navbar/navbar'
-import Mainpage from './components/mainpage'
+import Mainpage from './components/mainpage/mainpage'
 import Footer from './components/footer/footer'
 
 class App extends React.Component{

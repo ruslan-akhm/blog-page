@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useContext } from 'react';
-import Header from './header/header'
-import Info from './info/info'
-import Posts from './posts'
-import Default from './default'
-import AddPost from './addPost/addPost'
-import postService from '../services/postService'
-import { PostContext } from '../context/postContext'
-import '../Mainpage.css';
+import Header from '../header/header'
+import Info from '../info/info'
+import Posts from '../posts/posts'
+import Default from '../default'
+import AddPost from '../addPost/addPost'
+import postService from '../../services/postService'
+import { PostContext } from '../../context/postContext'
+import './mainpage.css';
 
 //IMAGES ARE CALLED FROM APPNEW-TEST-SAMPLE  -  FIX!!!!!!!!!!!!!!!!!!!!!
 

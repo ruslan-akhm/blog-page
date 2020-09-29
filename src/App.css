@@ -3,6 +3,7 @@ body,html{
   margin:0;
   background-color:#23232e;
   overflow-x:hidden;
+  box-sizing:border-box;
 }
 body{
   margin:0;

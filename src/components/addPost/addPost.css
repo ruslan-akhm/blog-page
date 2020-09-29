@@ -13,3 +13,11 @@
 .add:hover{
   background-color:rgba(0,0,0, 0.9);
 }
+#post-input-box{
+  display:none;
+  width:100%;
+  margin:auto;
+  min-height:8vh;
+  border:2px solid red;
+  flex-direction:column;
+}

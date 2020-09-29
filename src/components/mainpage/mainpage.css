@@ -1,6 +1,4 @@
-body{
-  box-sizing:border-box;
-}
+
 #personal-page{
   width:85%;
   min-height:100vh;
@@ -113,11 +111,11 @@ body{
   #personal-page{
     width:90%;
   }
-  #modal-content{
+/*   #modal-content{
     margin-top:4%;
     height:75%;
   }
   #later-button{
    margin-top:-40px; 
-  }
+  } */
 }

@@ -7,8 +7,8 @@ function AddPost(){
   
   const {post,setPost} = useContext(PostContext);
   
-  const openModal=()=>{
-    document.getElementById("modal-parent").style.display = "block";
+  const openTextfield=()=>{
+    document.getElementById("post-input-box").style.display = "flex";
   }
   
   const addPost=(e)=>{
@@ -48,11 +48,16 @@ function AddPost(){
   
   return(
     <div>
-      <button id="add-post" className="add" onClick={openModal}>
-        + Add Post
+      <button id="add-post" className="add" onClick={openTextfield}>
+        + New Post
       </button>
       <div id="post-input-box">
         <textarea rows="8" id="post-text"></textarea>
+        <div>
+          <button>Post</button>
+          <button>Attach</button>
+          <button>Close</button>
+        </div>
       </div>
       {/* <div id="modal-parent" onClick={closeModal}>
         <div id="modal-content">
