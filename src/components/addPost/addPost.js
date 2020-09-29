@@ -50,13 +50,16 @@ function AddPost(){
   //   }
   // }
   
+  //Change +New Post button when textatea popped down
+  
   return(
     <div>
       <button id="add-post" className="add" onClick={openTextfield}>
         + New Post
       </button>
       <div id="post-input-box">
-        <textarea rows="8" id="post-text"></textarea>
+        <input type="text" id="post-title" maxlength="35" required placeholder="Title goes here..."/>
+        <textarea rows="8" id="post-text" placeholder="Once upon a time..."></textarea>
         <div className="action-btn-box">
           <button>Post</button>
           <button>Attach</button>

@@ -30,7 +30,7 @@ function Info(){
           <li>Toronto, ON</li>
         </ul>
       </div>
-      <p>I like creating things. Every app I do is more complex than the previous one. I enjoy learning and applying technologies and seeing results of my work.</p>
+      <p>THIS PAGE CURRENTLY UNDER EDITING, SOME FUNCTIONS MAY NOT WORK AND/OR EXIST. I like creating things. Every app I do is more complex than the previous one. I enjoy learning and applying technologies and seeing results of my work.</p>
 
     </div>
   )

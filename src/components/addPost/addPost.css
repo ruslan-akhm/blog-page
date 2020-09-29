@@ -24,6 +24,9 @@
 /*   border:2px solid red; */
   flex-direction:column;
 }
+#post-input-box input{
+  margin:20px 0 20px 0;
+}
 .action-btn-box{
   display:flex;
   flex-direction:row;
