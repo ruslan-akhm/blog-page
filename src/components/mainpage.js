@@ -3,7 +3,7 @@ import Header from './header/header'
 import Info from './info/info'
 import Posts from './posts'
 import Default from './default'
-import AddPost from './addPost'
+import AddPost from './addPost/addPost'
 import postService from '../services/postService'
 import { PostContext } from '../context/postContext'
 import '../Mainpage.css';

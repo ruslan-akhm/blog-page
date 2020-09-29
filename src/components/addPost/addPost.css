@@ -1,0 +1,15 @@
+.add{
+  width:100%;
+  border:none;
+  background-color:rgba(0,0,0, 0.8);
+  color:white;
+  font-size:16px;
+  cursor:pointer;
+  outline:none;
+  margin:15px 0 15px 0;
+  height:25px;
+  border-radius:5px;
+}
+.add:hover{
+  background-color:rgba(0,0,0, 0.9);
+}

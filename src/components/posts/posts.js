@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react'
-import { PostContext } from '../context/postContext'
-import postService from '../services/postService'
+import { PostContext } from '../../context/postContext'
+import postService from '../../services/postService'
 
 function Posts(){
   
