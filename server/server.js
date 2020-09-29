@@ -15,10 +15,11 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.static("public"));
 
 app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/public/index.ejs");
+  res.sendFile(__dirname + "/public/index.html");
 });
 
 app.use('/api', apiRouter);
+
 
 // Express port-switching logic for Glitch.com
 let port;
