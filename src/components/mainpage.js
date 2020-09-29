@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
-import Header from './header'
-import Info from './info'
+import Header from './header/header'
+import Info from './info/info'
 import Posts from './posts'
 import Default from './default'
 import AddPost from './addPost'

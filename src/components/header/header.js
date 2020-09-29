@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react'
-import { PostContext } from '../context/postContext'
-import postService from '../services/postService'
+import { PostContext } from '../../context/postContext'
+import postService from '../../services/postService'
+import './header.css'
 
 function Header(){
   

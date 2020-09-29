@@ -1,8 +1,8 @@
 import React from 'react';
 import './App.css';
-import Navbar from './components/navbar'
+import Navbar from './navbar/components/navbar'
 import Mainpage from './components/mainpage'
-import Footer from './components/footer'
+import Footer from './components/footer/footer'
 
 class App extends React.Component{
   constructor(props){
