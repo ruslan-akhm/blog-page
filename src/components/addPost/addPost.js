@@ -7,7 +7,7 @@ function AddPost(){
   
   const {post,setPost} = useContext(PostContext);
   const [isTextfield, setIsTextfield] = useState(false);
-  const [imagePreview, setImagePreview] = [];
+  const [imagePreview, setImagePreview] = useState();
   
   const handleTextfield=()=>{
     if(!isTextfield){
@@ -29,11 +29,16 @@ function AddPost(){
   const previewAttachment=(e)=>{
     document.getElementById("attachment-preview-box").style.display="flex"
     console.log('HERE')
-    //console.log(e.target.files)
-    let frame = document.getElementById("frame");
-    frame.src=URL.createObjectURL(e.target.files[0]);
+    console.log(e.target.files)
+    //let frame = document.getElementById("frame");
+    //frame.src=URL.createObjectURL(e.target.files[0]);
+    let array = [];
     setImagePreview(()=>{
-      return (e.target.files.map(item=>{return <img id="frame" src=""  />}))
+      for (let i=0; i<e.target.files.length; i++){
+        console.log()
+        array.push(e.target.files[i])
+      }
+      return array//.map(item=>{return <img id="frame" src=""  />}))
     })
 //     console.log(frame.src);
 //     for(let i=0; i<e.target.files.length; i++){
@@ -79,7 +84,9 @@ function AddPost(){
   //   }
   // }
   
-  //Change +New Post button when textatea popped down
+  //Change +New Post button when textatea popped down\
+  
+  let x = imagePreview && imagePreview.map(item=>{return <img src={URL.createObjectURL(item)} />})
   
   return(
     <div>
@@ -92,7 +99,7 @@ function AddPost(){
         <div id="attachment-preview-box">
           <div className="preview">
             {/* <img id="frame" src="" /> */}
-            {imagePreview}
+            {x}
           </div>
         </div>
         <div className="action-btn-box">
