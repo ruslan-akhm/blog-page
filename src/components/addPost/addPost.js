@@ -6,14 +6,25 @@ import './addPost.css'
 function AddPost(){
   
   const {post,setPost} = useContext(PostContext);
+  const [isTextfield, setIsTextfield] = useState(false);
   
-  const openTextfield=()=>{
-    document.getElementById("post-input-box").style.display = "flex";
+  const handleTextfield=()=>{
+    if(!isTextfield){
+      document.getElementById("post-input-box").style.display = "flex";
+      setIsTextfield(true)
+    }
+    else{
+      document.getElementById("post-title").value='';
+      document.getElementById("post-text").value='';
+      document.getElementById("post-input-box").style.display = "none";
+      setIsTextfield(false)
+    }
   }
   
-  const closeTextfield=()=>{
-    document.getElementById("post-input-box").style.display = "none";
-  }
+  // const closeTextfield=()=>{
+  //   document.getElementById("post-input-box").style.display = "none";
+  //   setIsTextfield(false)
+  // }
   
   // const addPost=(e)=>{
   //   e.preventDefault();
@@ -54,8 +65,8 @@ function AddPost(){
   
   return(
     <div>
-      <button id="add-post" className="add" onClick={openTextfield}>
-        + New Post
+      <button id="add-post" className="add" onClick={handleTextfield}>
+        {isTextfield? "Close" : "+ New Post" }
       </button>
       <div id="post-input-box">
         <input type="text" id="post-title" maxlength="35" required placeholder="Title goes here..."/>
@@ -63,7 +74,6 @@ function AddPost(){
         <div className="action-btn-box">
           <button>Post</button>
           <button>Attach</button>
-          <button onClick={closeTextfield}>Close</button>
         </div>
       </div>
       {/* <div id="modal-parent" onClick={closeModal}>
