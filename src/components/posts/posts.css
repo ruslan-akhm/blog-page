@@ -57,18 +57,26 @@
   font-weight:bold;
   cursor:pointer;
 }
-#list li container{
-  border:3px solid red;
-  display:flex;
+#list li #container{
+/*   border:3px solid red; */
+/*   display:flex;
+  justify-content:center;
   flex-direction:row;
-  flex-wrap:wrap;
-  width:400px;
+  flex-wrap:wrap; */
+  margin:20px auto;
+  width:80%;
+  min-height:1vh;
   
-  height:250px;
 }
-#list li container img:nth-child(n){
+/* #list li .container .image-box{
+  width:300px;
+  height:200px;
+} */
+#list li #container img:nth-child(n){
   width:100%;
   height:100%;
+  max-height:400px;
+  margin:20px 0 60px 0;
   display:block;
   object-cover:cover;
 }
