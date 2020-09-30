@@ -42,12 +42,29 @@
 .preview{
   width:100px;
   height:100px;
+  position:relative;
 }
 .preview img{
   display:block;
   object-fit:contain;
   width:100%;
   height:100%;
+}
+.preview button{
+  width:20px;
+  height:20px;
+  background-color:lightgray;
+  position:absolute;
+  top:5px;
+  right:-5px;
+  padding:0;
+  border:none;
+  border-radius:50%;
+  color:black;
+  font-size:16px;
+  font-weight:bold;
+  line-height: 16px; /* <- changed this */
+  box-sizing: border-box; 
 }
 .action-btn-box{
   display:flex;

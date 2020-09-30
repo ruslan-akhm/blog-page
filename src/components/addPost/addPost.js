@@ -28,17 +28,11 @@ function AddPost(){
   // }
   const previewAttachment=(e)=>{
     document.getElementById("attachment-preview-box").style.display="flex"
-    //console.log('HERE')
-    //console.log(e.target.files)
-    //console.log(imagePreview)
-    //let frame = document.getElementById("frame");
-    //frame.src=URL.createObjectURL(e.target.files[0]);
+    
     //MAKE IT ABLE TO PUSH PICS 1 BY 1
     //AD DELETE BTNS
     
-    let array = [];
-    console.log(array);
-    console.log(imagePreview);
+    let array = [...imagePreview];
     
     for (let i=0; i<e.target.files.length; i++){
         //console.log(e.target.files[i])
@@ -49,13 +43,6 @@ function AddPost(){
       return array
     })
     
-//     console.log(frame.src);
-//     for(let i=0; i<e.target.files.length; i++){
-//       frame.src=URL.createObjectURL(e.target.files[i]);
-      
-//     }
-    //let frame = document.getElementById("frame");
-    // frame.src=URL.createObjectURL(e.target.files[0]);
   }
   
   
@@ -99,7 +86,9 @@ function AddPost(){
   
   //Change +New Post button when textatea popped down\
   
-  let x = imagePreview && imagePreview.map(item=>{return <div className="preview"><img src={URL.createObjectURL(item)} /></div>})
+  let x = imagePreview && imagePreview.map(item=>{
+    console.log(item)
+    return <div className="preview"><img src={URL.createObjectURL(item)} /><button>&#10006;</button></div>})
   
   return(
     <div>
