@@ -7,6 +7,7 @@ function AddPost(){
   
   const {post,setPost} = useContext(PostContext);
   const [isTextfield, setIsTextfield] = useState(false);
+  const [imagePreview, setImagePreview] = [];
   
   const handleTextfield=()=>{
     if(!isTextfield){
@@ -28,11 +29,17 @@ function AddPost(){
   const previewAttachment=(e)=>{
     document.getElementById("attachment-preview-box").style.display="flex"
     console.log('HERE')
-    console.log(e.target.files)
+    //console.log(e.target.files)
     let frame = document.getElementById("frame");
-    for(let i=0; i<e.target.files.length; i++){
-      frame.src=URL.createObjectURL(e.target.files[i]);
-    }
+    frame.src=URL.createObjectURL(e.target.files[0]);
+    setImagePreview(()=>{
+      return (e.target.files.map(item=>{return <img id="frame" src=""  />}))
+    })
+//     console.log(frame.src);
+//     for(let i=0; i<e.target.files.length; i++){
+//       frame.src=URL.createObjectURL(e.target.files[i]);
+      
+//     }
     //let frame = document.getElementById("frame");
     // frame.src=URL.createObjectURL(e.target.files[0]);
   }
@@ -84,7 +91,8 @@ function AddPost(){
         <textarea rows="8" id="post-text" placeholder="Once upon a time..."></textarea>
         <div id="attachment-preview-box">
           <div className="preview">
-            <img id="frame" src="" />
+            {/* <img id="frame" src="" /> */}
+            {imagePreview}
           </div>
         </div>
         <div className="action-btn-box">
