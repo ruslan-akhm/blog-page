@@ -26,10 +26,15 @@ function AddPost(){
   //   setIsTextfield(false)
   // }
   const previewAttachment=(e)=>{
+    document.getElementById("attachment-preview-box").style.display="flex"
     console.log('HERE')
     console.log(e.target.files)
     let frame = document.getElementById("frame");
-    frame.src=URL.createObjectURL(e.target.files[0]);
+    for(let i=0; i<e.target.files.length; i++){
+      frame.src=URL.createObjectURL(e.target.files[i]);
+    }
+    //let frame = document.getElementById("frame");
+    // frame.src=URL.createObjectURL(e.target.files[0]);
   }
   
   const addPost=(e)=>{
@@ -77,13 +82,15 @@ function AddPost(){
       <div id="post-input-box">
         <input type="text" id="post-title" maxlength="35" required placeholder="Title goes here..."/>
         <textarea rows="8" id="post-text" placeholder="Once upon a time..."></textarea>
-        <div className="attachment-preview">
-          <img id="frame" src="" width="100px" height="100px"/>
+        <div id="attachment-preview-box">
+          <div className="preview">
+            <img id="frame" src="" />
+          </div>
         </div>
         <div className="action-btn-box">
           <button onClick={addPost}>Post</button>
-          <input type="file" onChange={(e)=>previewAttachment(e)}/>
-          <img id="frame" src=""/>
+          <input type="file" onChange={(e)=>previewAttachment(e)} multiple/>
+          
         </div>
       </div>
       {/* <div id="modal-parent" onClick={closeModal}>
