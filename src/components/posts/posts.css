@@ -57,6 +57,22 @@
   font-weight:bold;
   cursor:pointer;
 }
+#list li container{
+  border:3px solid red;
+  display:flex;
+  flex-direction:row;
+  flex-wrap:wrap;
+  width:400px;
+  
+  height:250px;
+}
+#list li container img:nth-child(n){
+  width:100%;
+  height:100%;
+  display:block;
+  object-cover:cover;
+}
+
 #list li span{
   width:100%;
   padding:5px 20px 5px 0;
