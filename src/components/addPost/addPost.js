@@ -7,7 +7,7 @@ function AddPost(){
   
   const {post,setPost} = useContext(PostContext);
   const [isTextfield, setIsTextfield] = useState(false);
-  const [imagePreview, setImagePreview] = useState();
+  const [imagePreview, setImagePreview] = useState([]);
   
   const handleTextfield=()=>{
     if(!isTextfield){
@@ -29,17 +29,22 @@ function AddPost(){
   const previewAttachment=(e)=>{
     document.getElementById("attachment-preview-box").style.display="flex"
     console.log('HERE')
-    console.log(e.target.files)
+    console.log(e.target.files[2])
     //let frame = document.getElementById("frame");
     //frame.src=URL.createObjectURL(e.target.files[0]);
+    //MAKE IT ABLE TO PUSH PICS 1 BY 1
+    //AD DELETE BTNS
+    
     let array = [];
-    setImagePreview(()=>{
-      for (let i=0; i<e.target.files.length; i++){
-        console.log()
+    for (let i=0; i<e.target.files.length; i++){
+        console.log(e.target.files[i])
         array.push(e.target.files[i])
       }
-      return array//.map(item=>{return <img id="frame" src=""  />}))
+    setImagePreview(()=>{
+      
+      return array
     })
+    
 //     console.log(frame.src);
 //     for(let i=0; i<e.target.files.length; i++){
 //       frame.src=URL.createObjectURL(e.target.files[i]);
@@ -48,6 +53,10 @@ function AddPost(){
     //let frame = document.getElementById("frame");
     // frame.src=URL.createObjectURL(e.target.files[0]);
   }
+  
+  
+  //imagePREVIEW NEEDS tO BE CLEANED AFTER SUBMISSION
+  
   
   const addPost=(e)=>{
     e.preventDefault();
@@ -86,7 +95,7 @@ function AddPost(){
   
   //Change +New Post button when textatea popped down\
   
-  let x = imagePreview && imagePreview.map(item=>{return <img src={URL.createObjectURL(item)} />})
+  let x = imagePreview && imagePreview.map(item=>{return <div className="preview"><img src={URL.createObjectURL(item)} /></div>})
   
   return(
     <div>
@@ -97,10 +106,10 @@ function AddPost(){
         <input type="text" id="post-title" maxlength="35" required placeholder="Title goes here..."/>
         <textarea rows="8" id="post-text" placeholder="Once upon a time..."></textarea>
         <div id="attachment-preview-box">
-          <div className="preview">
+          {/* <div className="preview"> */}
             {/* <img id="frame" src="" /> */}
             {x}
-          </div>
+          {/*</div> */}
         </div>
         <div className="action-btn-box">
           <button onClick={addPost}>Post</button>

@@ -33,11 +33,12 @@
   width:100%;
 /*   display:flex; */
   border:1px solid red;
+  flex-direction:row;
   justify-content:flex-start;
 }
-#attachment-preview-box img:nth-child(n){
+/* #attachment-preview-box img:nth-child(n){
   margin-right:10px;
-}
+} */
 .preview{
   width:100px;
   height:100px;
