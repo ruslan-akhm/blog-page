@@ -26,36 +26,37 @@ function AddPost(){
   //   document.getElementById("post-input-box").style.display = "none";
   //   setIsTextfield(false)
   // }
+  
   const previewAttachment=(e)=>{
     document.getElementById("attachment-preview-box").style.display="flex"
-    
-    //MAKE IT ABLE TO PUSH PICS 1 BY 1
-    //AD DELETE BTNS
-    
-    let array = [...imagePreview];
-    
+    let arrayOfAttachments = [...imagePreview];
     for (let i=0; i<e.target.files.length; i++){
-        //console.log(e.target.files[i])
-        array.push(e.target.files[i])
-      }
-    
+      arrayOfAttachments.push(e.target.files[i])
+    }
     setImagePreview(()=>{
-      return array
+      return arrayOfAttachments
     })
-    
   }
   
+  const removeAttachment = (e) =>{
+    console.log(e);
+    let attachments = [...imagePreview];
+    let filteredAttachments = attachments.filter(item=>{return item.name!==e})
+    setImagePreview(()=>{
+      return filteredAttachments
+    })
+  }
   
-  //imagePREVIEW NEEDS tO BE CLEANED AFTER SUBMISSION
+  //imagePREVIEW NEEDS tO BE CLEANED AFTER SUBMISSION!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   
   
   const addPost=(e)=>{
     e.preventDefault();
     //for possibilty to attach images to post in future
     const fd = new FormData();
-    const attachments = document.getElementById("attachments");
+    const attachments = imagePreview;//document.getElementById("attachments");
     if(attachments!==null){
-      for (let file of attachments.files){
+      for (let file of attachments){  //.files
         fd.append('attachments',file)
       }
     }
@@ -64,7 +65,7 @@ function AddPost(){
     fd.append('attachments', title);
     fd.append('attachments', text);
     postService.addPost(fd).then(data=>{
-      //console.log(data);
+      console.log(data);
       let prevState = post;
       prevState = [data,...post];
       setPost(prevState)
@@ -72,7 +73,9 @@ function AddPost(){
     //LEAVE INPUTS BLANK
     document.getElementById("post-title").value='';
     document.getElementById("post-text").value='';
-    document.getElementById("modal-parent").style.display="none"
+    setImagePreview([])
+    setIsTextfield(false)
+    //document.getElementById("modal-parent").style.display="none"
   }
   
   // const closeModal=(event)=>{
@@ -87,8 +90,8 @@ function AddPost(){
   //Change +New Post button when textatea popped down\
   
   let x = imagePreview && imagePreview.map(item=>{
-    console.log(item)
-    return <div className="preview"><img src={URL.createObjectURL(item)} /><button>&#10006;</button></div>})
+    //console.log(item)
+    return <div className="preview"><img src={URL.createObjectURL(item)} /><button onClick={e=>removeAttachment(item.name)}>&#10006;</button></div>})
   
   return(
     <div>
