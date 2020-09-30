@@ -25,8 +25,11 @@ function AddPost(){
   //   document.getElementById("post-input-box").style.display = "none";
   //   setIsTextfield(false)
   // }
-  const attachFile=(e)=>{
-    
+  const previewAttachment=(e)=>{
+    console.log('HERE')
+    console.log(e.target.files)
+    let frame = document.getElementById("frame");
+    frame.src=URL.createObjectURL(e.target.files[0]);
   }
   
   const addPost=(e)=>{
@@ -79,7 +82,8 @@ function AddPost(){
         </div>
         <div className="action-btn-box">
           <button onClick={addPost}>Post</button>
-          <button onClick={attachFile}>Attach</button>
+          <input type="file" onChange={(e)=>previewAttachment(e)}/>
+          <img id="frame" src=""/>
         </div>
       </div>
       {/* <div id="modal-parent" onClick={closeModal}>
