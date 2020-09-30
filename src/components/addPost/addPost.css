@@ -27,6 +27,15 @@
 #post-input-box input{
   margin:20px 0 20px 0;
 }
+.attachment-preview{
+  height:120px;
+  width:100%;
+  display:flex;
+  justify-content:flex-start;
+}
+.attachment-preview:nth-child(all){
+  margin-right:10px;
+}
 .action-btn-box{
   display:flex;
   flex-direction:row;

@@ -25,32 +25,35 @@ function AddPost(){
   //   document.getElementById("post-input-box").style.display = "none";
   //   setIsTextfield(false)
   // }
+  const attachFile=(e)=>{
+    
+  }
   
-  // const addPost=(e)=>{
-  //   e.preventDefault();
-  //   //for possibilty to attach images to post in future
-  //   const fd = new FormData();
-  //   const attachments = document.getElementById("attachments");
-  //   if(attachments!==null){
-  //     for (let file of attachments.files){
-  //       fd.append('attachments',file)
-  //     }
-  //   }
-  //   let title = document.getElementById("post-title").value;
-  //   let text = document.getElementById("post-text").value;
-  //   fd.append('attachments', title);
-  //   fd.append('attachments', text);
-  //   postService.addPost(fd).then(data=>{
-  //     //console.log(data);
-  //     let prevState = post;
-  //     prevState = [data,...post];
-  //     setPost(prevState)
-  //   })
-  //   //LEAVE INPUTS BLANK
-  //   document.getElementById("post-title").value='';
-  //   document.getElementById("post-text").value='';
-  //   document.getElementById("modal-parent").style.display="none"
-  // }
+  const addPost=(e)=>{
+    e.preventDefault();
+    //for possibilty to attach images to post in future
+    const fd = new FormData();
+    const attachments = document.getElementById("attachments");
+    if(attachments!==null){
+      for (let file of attachments.files){
+        fd.append('attachments',file)
+      }
+    }
+    let title = document.getElementById("post-title").value;
+    let text = document.getElementById("post-text").value;
+    fd.append('attachments', title);
+    fd.append('attachments', text);
+    postService.addPost(fd).then(data=>{
+      //console.log(data);
+      let prevState = post;
+      prevState = [data,...post];
+      setPost(prevState)
+    })
+    //LEAVE INPUTS BLANK
+    document.getElementById("post-title").value='';
+    document.getElementById("post-text").value='';
+    document.getElementById("modal-parent").style.display="none"
+  }
   
   // const closeModal=(event)=>{
   //   const click = event.target;
@@ -71,9 +74,12 @@ function AddPost(){
       <div id="post-input-box">
         <input type="text" id="post-title" maxlength="35" required placeholder="Title goes here..."/>
         <textarea rows="8" id="post-text" placeholder="Once upon a time..."></textarea>
+        <div className="attachment-preview">
+          <img id="frame" src="" width="100px" height="100px"/>
+        </div>
         <div className="action-btn-box">
-          <button>Post</button>
-          <button>Attach</button>
+          <button onClick={addPost}>Post</button>
+          <button onClick={attachFile}>Attach</button>
         </div>
       </div>
       {/* <div id="modal-parent" onClick={closeModal}>
