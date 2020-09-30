@@ -67,14 +67,15 @@
   flex-wrap:wrap;
 }
 #list li #container img:nth-child(n){
-  width:350px;
+  width:400px;
   max-width:100%;
+  max-height:100%;
   align-self:center;
 /*   height:100%; */
-  max-height:400px;
+/*   max-height:400px; */
   margin:20px auto 60px auto;
   display:block;
-  object-cover:contain;
+  object-fit:cover;
 }
 
 #list li span{
