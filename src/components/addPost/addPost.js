@@ -28,20 +28,24 @@ function AddPost(){
   // }
   const previewAttachment=(e)=>{
     document.getElementById("attachment-preview-box").style.display="flex"
-    console.log('HERE')
-    console.log(e.target.files[2])
+    //console.log('HERE')
+    //console.log(e.target.files)
+    //console.log(imagePreview)
     //let frame = document.getElementById("frame");
     //frame.src=URL.createObjectURL(e.target.files[0]);
     //MAKE IT ABLE TO PUSH PICS 1 BY 1
     //AD DELETE BTNS
     
     let array = [];
+    console.log(array);
+    console.log(imagePreview);
+    
     for (let i=0; i<e.target.files.length; i++){
-        console.log(e.target.files[i])
+        //console.log(e.target.files[i])
         array.push(e.target.files[i])
       }
+    
     setImagePreview(()=>{
-      
       return array
     })
     
@@ -103,7 +107,7 @@ function AddPost(){
         {isTextfield? "Close" : "+ New Post" }
       </button>
       <div id="post-input-box">
-        <input type="text" id="post-title" maxlength="35" required placeholder="Title goes here..."/>
+        <input type="text" id="post-title" maxLength="35" required placeholder="Title goes here..."/>
         <textarea rows="8" id="post-text" placeholder="Once upon a time..."></textarea>
         <div id="attachment-preview-box">
           {/* <div className="preview"> */}
