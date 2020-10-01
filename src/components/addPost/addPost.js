@@ -66,8 +66,10 @@ function AddPost(){
       let prevState = post;
       prevState = [data,...post];
       setPost(prevState)
+      console.log("HERERERERE")
     })
     handleTextfield();
+    console.log("NOPEEEE")
   }
  
   
@@ -94,6 +96,8 @@ function AddPost(){
           <input type="file" onChange={(e)=>previewAttachment(e)} multiple className="custom-input attach"/>
           
         </div>
+      </div>
+      <div className="spinner">
       </div>
     </div>
   )
