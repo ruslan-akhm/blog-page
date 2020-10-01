@@ -25,13 +25,13 @@ function Info(){
       </div>
       <div id="bio">
         <ul id="bio-list" >
-          <h2>Rob Otics</h2>
+          <h1>Rob Otics</h1>
           <li>Cyber Engineer</li>
           <li>R2D2 fan</li>
           <li>Toronto, ON</li>
         </ul>
       </div>
-      <p>THIS PAGE CURRENTLY UNDER EDITING, SOME FUNCTIONS MAY NOT WORK AND/OR EXIST. I like creating things. Every app I do is more complex than the previous one. I enjoy learning and applying technologies and seeing results of my work.</p>
+      <p>THIS PAGE CURRENTLY UNDER EDITING, SOME FUNCTIONS MAY NOT WORK AND/OR EXIST. Hi Humans! </p>
 
     </div>
   )
