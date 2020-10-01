@@ -3,8 +3,11 @@
   height:80vh;
   background-color:#f0f0f0;
   display:flex;
-  justify-content:center;
+  justify-content:flex-start;
   align-items:center;
   flex-direction:column;
   border-radius:25px;
+}
+.auth-main h1{
+  margin-top:40px;
 }

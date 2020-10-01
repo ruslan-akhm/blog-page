@@ -10,6 +10,9 @@ const Login = () => {
       <div className="auth-main">
         <h1>Login</h1>
       </div>
+      <form>
+        
+      </form>
       <Footer />
     </div>
   )

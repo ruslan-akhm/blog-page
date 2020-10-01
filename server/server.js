@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const apiRouter = require('./routes/apiRouter')
+//const authService = require('./services/authService')
 const ejs = require('ejs')
 
 const app = express();
@@ -19,8 +20,7 @@ app.get("/", (req, res) => {
 });
 
 app.use('/api', apiRouter);
-
-//app.get
+//app.use('/api/auth', authService);
 
 
 // Express port-switching logic for Glitch.com

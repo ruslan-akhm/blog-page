@@ -8,7 +8,7 @@ const Register = () => {
     <div>
       <Navbar />
       <div className="auth-main">
-        <h1>REGISTER</h1>
+        <h1>Register</h1>
       </div>
       <Footer />
     </div>
