@@ -72,7 +72,7 @@
 }
 .custom-input{
   color:transparent;
-  width:40px;
+/*   width:40px; */
   height:40px;
   float:right;
   margin:15px;
@@ -93,4 +93,19 @@
 }
 .custom-input:hover{
   background-color: rgba(0,0,0,0.6);
+}
+.attach::before{
+  content:"attach";
+  width:100px;
+  height:25px;
+  font-size:16px;
+  letter
+  cursor:pointer;
+  border:2px solid #23232e;
+  border-radius:10px;
+  background-color:white;
+  color:#23232e;
+}
+.attach:hover{
+  background-color: white;
 }

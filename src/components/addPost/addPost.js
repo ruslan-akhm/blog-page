@@ -91,7 +91,7 @@ function AddPost(){
         </div>
         <div className="action-btn-box">
           <button onClick={addPost}>Post</button>
-          <input type="file" onChange={(e)=>previewAttachment(e)} multiple/>
+          <input type="file" onChange={(e)=>previewAttachment(e)} multiple className="custom-input attach"/>
           
         </div>
       </div>
