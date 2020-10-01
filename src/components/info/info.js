@@ -25,8 +25,9 @@ function Info(){
       </div>
       <div id="bio">
         <ul id="bio-list" >
-          <h2>Ruslan Akhmetshin</h2>
-          <li>Software Engineer</li>
+          <h2>Rob Otics</h2>
+          <li>Cyber Engineer</li>
+          <li>R2D2 fan</li>
           <li>Toronto, ON</li>
         </ul>
       </div>
