@@ -1,27 +1,27 @@
-import React, { useState, useContext } from 'react'
-import { PostContext } from '../context/postContext'
-import postService from '../services/postService'
+// import React, { useState, useContext } from 'react'
+// import { PostContext } from '../context/postContext'
+// import postService from '../services/postService'
 
-function Default(){
+// function Default(){
   
-  const {post,setPost,header,setHeader,avatar,setAvatar} = useContext(PostContext);
+//   const {post,setPost,header,setHeader,avatar,setAvatar} = useContext(PostContext);
   
   
-  const toDefault=(e)=>{
-    let posts = [];
-    postService.default().then(data=>{
-      setHeader(data.header);
-      setAvatar(data.avatar);
-      posts = data.data.map(item=>item)
-    setPost(posts);
-    })
-  }
+//   const toDefault=(e)=>{
+//     let posts = [];
+//     postService.default().then(data=>{
+//       setHeader(data.header);
+//       setAvatar(data.avatar);
+//       posts = data.data.map(item=>item)
+//     setPost(posts);
+//     })
+//   }
   
-  return(
-    <div>
-      {/* <button id="default" onClick={e=>toDefault(e)}>To Default</button> */}
-    </div>
-  )
-}
+//   return(
+//     <div>
+//       {/* <button id="default" onClick={e=>toDefault(e)}>To Default</button> */}
+//     </div>
+//   )
+// }
 
-export default Default
+// export default Default

@@ -34,6 +34,8 @@ function Mainpage(){
       
     })
   }
+  
+  //<Default />
 
   return (
     <div>
@@ -44,7 +46,7 @@ function Mainpage(){
           <Info />
           <AddPost />
           <Posts />
-          <Default />
+          
         </div>
       </div>
       <Footer />
