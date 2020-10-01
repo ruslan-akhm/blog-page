@@ -38,6 +38,7 @@
   font-family: 'Noto Sans', sans-serif;
   padding:10px;
   margin:0;
+  word-break: break-word;
 }
 #list li button{
   font-size:26px;
