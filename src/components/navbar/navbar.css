@@ -9,22 +9,20 @@
   display:grid;
   grid-template-columns:repeat(8, minmax(80px, 1fr))
 }
-.navbar p{
-  grid-area:1/2;
-  font-size:16px;
-  color:white;
-}
+
 .nav-links{
   grid-area:1/6;
-  border:1px solid red;
   color:white;
   text-decoration:none;
   display:flex;
   justify-content:center;
   align-items:center;
-  width:50%;
+  width:fit-content;
   height:60%;
   margin-top:5%;
+}
+.nav-links:nth-child(1){ 
+  grid-area:1/2;
 }
 .nav-links:nth-child(2){
   grid-area:1/7;
