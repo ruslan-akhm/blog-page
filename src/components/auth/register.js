@@ -1,8 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react';
+import './auth.css'
 
 const Register = () => {
   return(
-  <h1>Rega</h1>
+    <div className="auth-main">
+      <h1>Reg</h1>
+    </div>
   )
 }
 
