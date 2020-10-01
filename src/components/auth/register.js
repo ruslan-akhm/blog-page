@@ -9,6 +9,15 @@ const Register = () => {
       <Navbar />
       <div className="auth-main">
         <h1>Register</h1>
+        <form>
+          <div>
+            <label for='username'>Username:</label>
+            <input type="text" id="username" name="username" required/>
+            <label for='password'>Password:</label>
+            <input type="text" id="password" name="password" required/>
+            <input type="submit" value="Register"/>
+          </div>
+        </form>
       </div>
       <Footer />
     </div>
