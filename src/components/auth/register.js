@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 
 const Register = () => {
   return(
-  <h1>Login</h1>
+  <h1>Rega</h1>
   )
 }
 
