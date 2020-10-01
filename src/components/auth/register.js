@@ -1,10 +1,16 @@
 import React, { useState, useEffect, useContext } from 'react';
+import Navbar from '../navbar/navbar'
+import Footer from '../footer/footer'
 import './auth.css'
 
 const Register = () => {
   return(
-    <div className="auth-main">
-      <h1>Reg</h1>
+    <div>
+      <Navbar />
+      <div className="auth-main">
+        <h1>REGISTER</h1>
+      </div>
+      <Footer />
     </div>
   )
 }

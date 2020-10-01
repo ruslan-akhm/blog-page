@@ -20,6 +20,8 @@ app.get("/", (req, res) => {
 
 app.use('/api', apiRouter);
 
+//app.get
+
 
 // Express port-switching logic for Glitch.com
 let port;
