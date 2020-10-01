@@ -50,6 +50,7 @@ function AddPost(){
   
   const addPost=(e)=>{
     e.preventDefault();
+    document.getElementById("loading-anim").style.display="block";
     const fd = new FormData();
     const attachments = imagePreview;//document.getElementById("attachments");
     if(attachments!==null){
@@ -66,10 +67,9 @@ function AddPost(){
       let prevState = post;
       prevState = [data,...post];
       setPost(prevState)
-      console.log("HERERERERE")
+      document.getElementById("loading-anim").style.display="none";
     })
     handleTextfield();
-    console.log("NOPEEEE")
   }
  
   
@@ -97,7 +97,9 @@ function AddPost(){
           
         </div>
       </div>
-      <div className="spinner">
+      <div id="loading-anim">
+        <div className="spinner-1">
+        </div>
       </div>
     </div>
   )
