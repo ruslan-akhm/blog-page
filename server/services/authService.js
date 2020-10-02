@@ -10,7 +10,13 @@ var conn = mongoose.connection;
 
 const initializePassport = require('../passport-config')
 
-initializePassport(passport)
+initializePassport(passport, username=>{
+  User.findOne({username: username},(err, user)=>{
+    if(err)
+      return err
+    return user;
+  })
+})
 
 authService.post("/login",(req,res)=>{
   console.log("login")

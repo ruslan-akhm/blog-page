@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const apiRouter = require('./routes/apiRouter')
 const authService = require('./services/authService')
+const session = require('express-session')
 //const ejs = require('ejs')
 
 const app = express();
@@ -14,6 +15,9 @@ app.set('trust proxy', true)
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static("public"));
+app.use(session({
+  secret: process.env.SESSION_SECRET
+}))
 
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/public/index.html");
