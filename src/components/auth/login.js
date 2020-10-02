@@ -10,7 +10,7 @@ const Login = () => {
       <div className="auth-main">
         <h1>Login</h1>
         <form>
-          <div>
+          <div className="form-box">
             <label for='username'>Username:</label>
             <input type="text" id="username" name="username" required/>
             <label for='password'>Password:</label>
