@@ -1,6 +1,7 @@
 
 *{
   font-family: 'Noto Sans', sans-serif;
+  box-sizing:border-box;
 }
 .navbar{
   width:100%;
@@ -31,7 +32,14 @@
   color:lightgray;
 }
 
-@media only screen and (min-width:600px){
-
+@media only screen and (max-width:600px){
+  .navbar{
+    grid-template-columns:repeat(3, 1fr);
+    border:2px solid red;
+    
+  }
+   .nav-links{
+    width:120px;
+  } 
   
 }

@@ -15,7 +15,7 @@ const Register = () => {
             <input type="text" id="username" name="username" required/>
             <label for='password'>Password:</label>
             <input type="text" id="password" name="password" required/>
-            <input type="submit" value="Register"/>
+            <input className="submit" type="submit" value="Register"/>
           </div>
         </form>
       </div>
