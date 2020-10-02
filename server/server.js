@@ -2,14 +2,14 @@ const express = require('express');
 const path = require('path');
 const apiRouter = require('./routes/apiRouter')
 const authService = require('./services/authService')
-const ejs = require('ejs')
+//const ejs = require('ejs')
 
 const app = express();
 
 app.set('trust proxy', true)
 
 //EJS
-app.set('view engine','ejs')
+//app.set('view engine','ejs')
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
