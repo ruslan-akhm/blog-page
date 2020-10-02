@@ -85,11 +85,31 @@
   width:100px;
   font-size:16px;
   cursor:pointer;
-  border:2px solid #23232e;
+  border:1px solid #23232e;
   border-radius:10px;
   background-color:white;
   color:#23232e;
 }
+.attach{
+  width:105px;
+}
+.attach::before{
+  content:"Attach";
+  width:100px;
+  height:25px;
+  font-size:16px;
+  line-height: 16px;
+  cursor:pointer;
+  border:1px solid #23232e;
+  border-radius:10px;
+  background-color:white;
+  color:#23232e;
+  
+}
+.attach:hover{
+  background-color: transparent;
+}
+
 #loading-anim{
   display:none;
   position:relative;

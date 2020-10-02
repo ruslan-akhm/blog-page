@@ -9,7 +9,7 @@ const Login = () => {
       <Navbar />
       <div className="auth-main">
         <h1>Login</h1>
-        <form>
+        <form action="/login" method="POST">
           <div className="form-box">
             <label for='username'>Username:</label>
             <input type="text" id="username" name="username" required/>

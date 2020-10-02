@@ -94,22 +94,3 @@
 .custom-input:hover{
   background-color: rgba(0,0,0,0.6);
 }
-.attach{
-  width:105px;
-}
-.attach::before{
-  content:"Attach";
-  width:100px;
-  height:25px;
-  font-size:16px;
-  line-height: 16px;
-  cursor:pointer;
-  border:2px solid #23232e;
-  border-radius:10px;
-  background-color:white;
-  color:#23232e;
-  
-}
-.attach:hover{
-  background-color: transparent;
-}
