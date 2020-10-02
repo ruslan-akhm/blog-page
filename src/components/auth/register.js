@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
+import { Redirect } from 'react-router-dom'
 import Navbar from '../navbar/navbar'
 import Footer from '../footer/footer'
 import authService from '../../services/authService'
@@ -7,6 +8,7 @@ import './auth.css'
 const Register = () => {
   
   const [user, setUser] = useState({username:"", password:""})
+  const [message, setMessage] = useState("");
   
   
   const handleInput = e => {
@@ -18,6 +20,13 @@ const Register = () => {
     console.log(user)
     authService.register(user).then(data=>{
       console.log(data);
+      setMessage(data.message)
+      if(!data.msgError){
+        setTimeout(()=>{
+          resetForm();
+          props.history.push('/login');
+        },2000)
+      }
     })
   }
   //action="/api/auth/register" method="POST"
@@ -35,6 +44,7 @@ const Register = () => {
             <input className="submit" type="submit" value="Register"/>
           </div>
         </form >
+        <div className="message">{message}</div>
       </div>
       <Footer />
     </div>
