@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const passport = require('passport');
 const apiRouter = require('./routes/apiRouter')
 const authService = require('./services/authService')
 const session = require('express-session')
@@ -16,8 +17,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static("public"));
 app.use(session({
-  secret: process.env.SESSION_SECRET
-}))
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/public/index.html");

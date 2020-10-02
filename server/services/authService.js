@@ -17,10 +17,11 @@ initializePassport(passport, username=>{
     return user;
   })
 })
-
-authService.post("/login",(req,res)=>{
-  console.log("login")
-})
+//successRedirect to `/${username}`
+authService.post("/login", passport.authenticate('local', {
+  successRedirect:'/',
+  failureRedirect:'/login'
+}))
 
 authService.post("/register", async (req,res)=>{
     //console.log("BODY HERE")
