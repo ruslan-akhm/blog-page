@@ -1,11 +1,11 @@
 export default {
-  register: ()=>{
+  register: (user)=>{
     return fetch("/api/auth/register", {
           method: "POST",
           headers: {
-            Accept: "application/json"
+            'Content-Type' : 'application/json'
           },
-          body:""
+          body:JSON.stringify(user),
         })
         .then(res =>res.json())
         .then(data=>data)

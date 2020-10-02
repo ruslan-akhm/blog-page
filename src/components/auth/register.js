@@ -9,13 +9,16 @@ const Register = () => {
   const [user, setUser] = useState({username:"", password:""})
   
   
-  const handleInput = (e) => {
+  const handleInput = e => {
     setUser({...user,[e.target.name] : e.target.value});
-    console.log(user);
   }
   
-  const register = (e) => {
-    console.log(e)
+  const register = e => {
+    e.preventDefault();
+    console.log(user)
+    authService.register(user).then(data=>{
+      console.log(data);
+    })
   }
   //action="/api/auth/register" method="POST"
   return(
@@ -23,7 +26,7 @@ const Register = () => {
       <Navbar />
       <div className="auth-main">
         <h1>Register</h1>
-        <form onSubmit={(e)=>register(e)}>  
+        <form onSubmit={register}>  
           <div className="form-box">
             <label for='username'>Username:</label>
             <input type="text" id="username" name="username" onChange={(e)=>handleInput(e)} required/>

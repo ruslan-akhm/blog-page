@@ -12,7 +12,9 @@ authService.post("/login",(req,res)=>{
 })
 
 authService.post("/register", async (req,res)=>{
-  
+    //console.log("BODY HERE")
+    //console.log(req.body)
+    
     const hashedPassword = await bcrypt.hash(req.body.password, 10)
     const username = req.body.username;
     User.findOne({username},(err,user)=>{
