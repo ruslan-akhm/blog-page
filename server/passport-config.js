@@ -6,17 +6,17 @@ const User = require('./models/User');////
 function initialize(passport, getUserByUsername){
   console.log("1) IN INITIALIZZE ")
   const authenticateUser = async (username, password, done) =>{
-    const user = User.findOne({username: username},(err, user)=>{
-    if(err)
-      return err
-    console.log("WE ARE LOOKIN FOR USEr ")
-    console.log(user);
-    return user;
-    })
-    //const user = await getUserByUsername(username);
+    // const user = await User.findOne({username: username},(err, user)=>{
+    // if(err)
+    //   return err
+    // console.log("WE ARE LOOKIN FOR USEr ")
+    // console.log(user);
+    // return user;
+    // })
+    const user = await getUserByUsername(username); ///why NOT WAITINg?????????  upthere works
     console.log("2) IN authenUSER ")
     console.log(username)
-    console.log(user.password);
+    console.log(user);
     if(user == null){
       //res.json({message: "No such username found"})
       console.log("USER NULL")

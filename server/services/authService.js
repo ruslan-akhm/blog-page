@@ -9,17 +9,17 @@ mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true, us
 var conn = mongoose.connection;
 const initializePassport = require('../passport-config')
 
-// const init = initializePassport(passport, username=>{
-//   User.findOne({username: username},(err, user)=>{
-//     if(err)
-//       return err
-//     console.log("WE ARE LOOKIN FOR USEr ")
-//     console.log(user);
-//     return user;
-//   })
-// })
+const init = initializePassport(passport, username=>{
+  User.findOne({username: username},(err, user)=>{
+    if(err)
+      return err
+    console.log("WE ARE LOOKIN FOR USEr ")
+    console.log(user);
+    return user;
+  })
+})
 
-const init = initializePassport(passport)
+//const init = initializePassport(passport)
 
 console.log("ININININT");
 console.log(init);
