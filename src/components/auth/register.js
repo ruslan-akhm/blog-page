@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Redirect } from 'react-router-dom'
 import Navbar from '../navbar/navbar'
 import Footer from '../footer/footer'
 import authService from '../../services/authService'
@@ -10,6 +9,9 @@ const Register = () => {
   const [user, setUser] = useState({username:"", password:""})
   const [message, setMessage] = useState("");
   
+  const resetForm = () => {
+    setUser({username:"", password:""})
+  }
   
   const handleInput = e => {
     setUser({...user,[e.target.name] : e.target.value});
@@ -24,10 +26,11 @@ const Register = () => {
       if(!data.msgError){
         setTimeout(()=>{
           resetForm();
-          props.history.push('/login');
         },2000)
       }
+      
     })
+  
   }
   //action="/api/auth/register" method="POST"
   return(
