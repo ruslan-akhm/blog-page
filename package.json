@@ -21,7 +21,9 @@
     "react-router-dom": "^5.2.0",
     "bcrypt": "^5.0.0",
     "passport": "^0.4.1",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "express-session": "^1.17.1",
+    "express-flash": "^0.0.2"
   },
   "scripts": {
     "start": "npm run development",

@@ -35,8 +35,6 @@
 @media only screen and (max-width:600px){
   .navbar{
     grid-template-columns:repeat(3, 1fr);
-    border:2px solid red;
-    
   }
    .nav-links{
     width:120px;

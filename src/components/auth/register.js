@@ -1,9 +1,15 @@
 import React, { useState, useEffect, useContext } from 'react';
 import Navbar from '../navbar/navbar'
 import Footer from '../footer/footer'
+import authService from '../../services/authService'
 import './auth.css'
 
 const Register = () => {
+  
+  const register = () => {
+    
+  }
+  
   return(
     <div>
       <Navbar />
