@@ -11,8 +11,8 @@ mongoose.connect(mongoURI, {
   useFindAndModify: false
 });
 var conn = mongoose.connection;
-const initializePassport = require('../passport')
-initializePassport(passport)
+//const initializePassport = require('../passport')
+//initializePassport(passport)
 // const init = initializePassport(passport, username=>{
 //   User.findOne({username: username},(err, user)=>{
 //     if(err)

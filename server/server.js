@@ -10,7 +10,7 @@ const app = express();
 
 app.set('trust proxy', true)
 //passport config
-//require('./passport')(passport);
+require('./passport')(passport);
 
 //EJS
 //app.set('view engine','ejs')
