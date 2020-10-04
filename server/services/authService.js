@@ -4,15 +4,15 @@ const passport = require("passport");
 const authService = express.Router();
 const User = require("../models/User");
 const mongoose = require("mongoose");
-var mongoURI = process.env.SECRET; //"mongodb+srv://ruslan-akhm:zuaGc0VJ@cluster0-y5h11.mongodb.net/test?retryWrites=true&w=majority"
+var mongoURI = process.env.SECRET;
 mongoose.connect(mongoURI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false
 });
 var conn = mongoose.connection;
-//const initializePassport = require('../passport-config')
-
+const initializePassport = require('../passport')
+initializePassport(passport)
 // const init = initializePassport(passport, username=>{
 //   User.findOne({username: username},(err, user)=>{
 //     if(err)
@@ -29,10 +29,11 @@ console.log("ININININT");
 //console.log(init);
 //successRedirect to `/${username}`
 authService.post("/login", (req,res,next)=>{
+  console.log("HERE AT LOGIN")
   passport.authenticate('local',{
     successRedirect:'/',
-    failureRedirec:'/login'
-  })(req,res,next)
+    failureRedirect:'/login'
+  })(req,res,next);
 });
 
 authService.post("/register", async (req, res) => {

@@ -7,11 +7,13 @@ module.exports = function(passport) {
   passport.use(
     new LocalStrategy({ usernameFiled: "email" }, (email, password, done) => {
       //check for user
+      console.log("LOOKING FOR USER EMAIL")
       User.findOne({ email }, (err, user) => {
         if (err) return console.log(err);
         if (!user) {
           return done(null, false, { message: "No such username found" });
         }
+        console.log("LOOKING FOR PASSWORD")
         //check if password is correct
         bcrypt.compare(password, user.passsword, (err, isMatch) => {
           if (err) throw err;

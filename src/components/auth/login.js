@@ -48,7 +48,7 @@ const Login = () => {
             />
             <label for="password">Password:</label>
             <input
-              type="text"
+              type="password"
               id="password"
               name="password"
               onChange={e => handleInput(e)}
