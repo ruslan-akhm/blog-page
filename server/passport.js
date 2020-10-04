@@ -4,8 +4,9 @@ const bcrypt = require("bcrypt");
 const User = require("./models/User");
 
 module.exports = function(passport) {
+  console.log("HEREREERERERERRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR")
   passport.use(
-    new LocalStrategy({ usernameFiled: "email" }, (email, password, done) => {
+    new LocalStrategy({ usernameField: "email" }, (email, password, done) => {
       //check for user
       console.log("LOOKING FOR USER EMAIL")
       User.findOne({ email }, (err, user) => {
@@ -15,7 +16,7 @@ module.exports = function(passport) {
         }
         console.log("LOOKING FOR PASSWORD")
         //check if password is correct
-        bcrypt.compare(password, user.passsword, (err, isMatch) => {
+        bcrypt.compare(password, user.password, (err, isMatch) => {
           if (err) throw err;
           if (isMatch) {
             return done(null, user);
