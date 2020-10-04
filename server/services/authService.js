@@ -61,16 +61,18 @@ authService.post("/register", async (req, res) => {
     if (user) 
       res.status(400).json({ message: "Email is already taken", error: true });
     else {
+      console.log("NO EMAIL")
       User.findOne({ username }, (err, user) => {
         if (err)
           res
             .status(500)
-            .json({ message: "internal server error", error: true });
+            .json({ message: "Internal server error", error: true });
         if (user)
-          res.status(400).json({ message: "username is taken", error: true });
+          res.status(400).json({ message: "Username is taken", error: true });
         else {
           const newUser = new User({
             username: username,
+            email: email,
             password: hashedPassword
           });
           newUser.save(err => {
