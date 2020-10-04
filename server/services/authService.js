@@ -44,6 +44,53 @@ authService.post(
 
 authService.post("/register", async (req, res) => {
   const { username, email, password, password2 } = req.body;
+  //check required fields
+  if (!username || !email || !password || !password2) {
+    res
+      .status(400)
+      .json({ message: "Please, fill in all fields", error: true });
+  }
+  //check passwords to match
+  if (password !== password2) {
+    res.status(400).json({ message: "Passwords do not match", error: true });
+  }
+  const hashedPassword = await bcrypt.hash(password, 10);
+  User.findOne({ email }, (err, user) => {
+    if (err)
+      res.status(500).json({ message: "Internal server error", error: true });
+    if (user) 
+      res.status(400).json({ message: "Email is already taken", error: true });
+    else {
+      User.findOne({ username }, (err, user) => {
+        if (err)
+          res
+            .status(500)
+            .json({ message: "internal server error", error: true });
+        if (user)
+          res.status(400).json({ message: "username is taken", error: true });
+        else {
+          const newUser = new User({
+            username: username,
+            password: hashedPassword
+          });
+          newUser.save(err => {
+            if (err)
+              res
+                .status(500)
+                .json({
+                  message: "Error occured while creating account",
+                  error: true
+                });
+            else {
+              res
+                .status(201)
+                .json({ message: "Account created!", error: false });
+            }
+          });
+        }
+      });
+    }
+  });
 
   // const hashedPassword = await bcrypt.hash(req.body.password, 10)
   // const username = req.body.username;
