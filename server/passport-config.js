@@ -13,7 +13,7 @@ function initialize(passport, getUserByUsername){
     // console.log(user);
     // return user;
     // })
-    const user = await getUserByUsername(username); ///why NOT WAITINg?????????  upthere works
+    const user =  await getUserByUsername(username); ///why NOT WAITINg?????????  upthere works
     console.log("2) IN authenUSER ")
     console.log(username)
     console.log(user);
