@@ -35,9 +35,6 @@ authService.post("/login", passport.authenticate('local', //{
 ))
 
 authService.post("/register", async (req,res)=>{
-    console.log("BODY HERE")
-    //console.log(req.body)
-    
     const hashedPassword = await bcrypt.hash(req.body.password, 10)
     const username = req.body.username;
     User.findOne({username},(err,user)=>{
@@ -46,7 +43,6 @@ authService.post("/register", async (req,res)=>{
       if(user)
         res.status(400).json({message: "username is taken", error: true})
       else{
-
         const newUser = new User({ username: username, password: hashedPassword})
         newUser.save(
           err=>{
