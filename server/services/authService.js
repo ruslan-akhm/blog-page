@@ -29,6 +29,7 @@ authService.post("/login", passport.authenticate('local', //{
   //failureRedirect:'/login'
 //}
   (req,res)=>{
+  console.log("USEER REQ")
     console.log(req.user);
   }
 ))
