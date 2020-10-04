@@ -4,7 +4,7 @@ const passport = require('passport');
 const apiRouter = require('./routes/apiRouter')
 const authService = require('./services/authService')
 const session = require('express-session')
-//const ejs = require('ejs')
+const flash = require('connect-flash')
 
 const app = express();
 
@@ -13,14 +13,22 @@ app.set('trust proxy', true)
 //EJS
 //app.set('view engine','ejs')
 
+//body-parser and static
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static("public"));
+
+//set session
 app.use(session({
   secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: false
 }));
+
+//use Flash
+app.use(flash())
+
+//use passport
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -28,6 +36,7 @@ app.get("/", (req, res) => {
   res.sendFile(__dirname + "/public/index.html");
 });
 
+//routes
 app.use('/api', apiRouter);
 app.use('/api/auth', authService);
 
