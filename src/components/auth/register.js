@@ -75,8 +75,7 @@ const Register = () => {
           </div>
         </form>
         <div className="message">{message}</div>
-        <p>Have an account? </p>
-        <Link className="nav-links" to="/login">Login</Link>
+        <p>Have an account? <Link to="/login">Login</Link></p>
       </div>
       <Footer />
     </div>
