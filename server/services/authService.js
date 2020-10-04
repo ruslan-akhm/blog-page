@@ -24,10 +24,14 @@ const init = initializePassport(passport)
 console.log("ININININT");
 console.log(init);
 //successRedirect to `/${username}`
-authService.post("/login", passport.authenticate('local', {
-  successRedirect:'/',
-  failureRedirect:'/login'
-}))
+authService.post("/login", passport.authenticate('local', //{
+  //successRedirect:'/',
+  //failureRedirect:'/login'
+//}
+  (req,res)=>{
+    console.log(req.user);
+  }
+))
 
 authService.post("/register", async (req,res)=>{
     console.log("BODY HERE")
