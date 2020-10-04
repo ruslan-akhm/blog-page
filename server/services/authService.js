@@ -28,19 +28,12 @@ var conn = mongoose.connection;
 console.log("ININININT");
 //console.log(init);
 //successRedirect to `/${username}`
-authService.post(
-  "/login",
-  passport.authenticate(
-    "local", //{
-    //successRedirect:'/',
-    //failureRedirect:'/login'
-    //}
-    (req, res) => {
-      console.log("USEER REQ");
-      console.log(req.user);
-    }
-  )
-);
+authService.post("/login", (req,res,next)=>{
+  passport.authenticate('local',{
+    successRedirect:'/',
+    failureRedirec:'/login'
+  })(req,res,next)
+});
 
 authService.post("/register", async (req, res) => {
   const { username, email, password, password2 } = req.body;

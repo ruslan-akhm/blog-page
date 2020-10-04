@@ -4,11 +4,13 @@ const passport = require('passport');
 const apiRouter = require('./routes/apiRouter')
 const authService = require('./services/authService')
 const session = require('express-session')
-const flash = require('connect-flash')
+//const flash = require('connect-flash')
 
 const app = express();
 
 app.set('trust proxy', true)
+//passport config
+require('./passport')(passport);
 
 //EJS
 //app.set('view engine','ejs')
@@ -26,7 +28,7 @@ app.use(session({
 }));
 
 //use Flash
-app.use(flash())
+//app.use(flash())
 
 //use passport
 app.use(passport.initialize());
