@@ -39,6 +39,7 @@ app.use(cookieParser(process.env.SESSION_SECRET))
 //use passport
 app.use(passport.initialize());
 app.use(passport.session());
+require('./passportConfig')(passport);
 
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/public/index.html");
