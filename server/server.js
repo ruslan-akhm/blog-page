@@ -4,31 +4,37 @@ const passport = require('passport');
 const apiRouter = require('./routes/apiRouter')
 const authService = require('./services/authService')
 const session = require('express-session')
+const cookieParser = require('cookie-parser') 
+const cors = require('cors');
+//add as a dependency
+
+
 //const flash = require('connect-flash')
 
 const app = express();
 
 app.set('trust proxy', true)
-//passport config
-require('./passport')(passport);
-
-//EJS
-//app.set('view engine','ejs')
 
 //body-parser and static
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static("public"));
 
+//set cors 
+app.use(cors({
+  origin:"https://appnew-test-sample.glitch.me/",
+  credentials:true
+}))
+
 //set session
 app.use(session({
   secret: process.env.SESSION_SECRET,
-  resave: false,
-  saveUninitialized: false
+  resave: true,
+  saveUninitialized: true
 }));
 
-//use Flash
-//app.use(flash())
+//cookieParser
+app.use(cookieParser(process.env.SESSION_SECRET))
 
 //use passport
 app.use(passport.initialize());

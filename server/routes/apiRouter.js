@@ -65,6 +65,10 @@ apiRouter.get('/',(req,res)=>{
   })
 })
 
+apiRouter.get('/user',(req,res)=>{
+  
+})
+
 //Set Header image
 apiRouter.post('/upload', upload.single('upfile'), (req,res)=>{
    const fileObject = req.file;
