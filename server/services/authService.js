@@ -37,15 +37,15 @@ authService.post("/login", (req,res,next)=>{
     console.log(user);
     if(err) throw err
     if(!user){
-      console.log(info.message)
-      res.json({err:"No user found"})
+      console.log(info.message)//look here for message from passport-config
+      res.json({err:"No user found"})//fix this according to info.message
     } 
     else{
       req.logIn(user,(err)=>{
         if(err) throw err
         res.json({"auth":"succesfully auth'd"})
         console.log(req.user)
-        console.log(info);
+        
       })
     }
   })(req,res,next);
