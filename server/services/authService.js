@@ -31,7 +31,10 @@ var conn = mongoose.connection;
 
 //successRedirect to `/${username}`
 authService.post("/login", (req,res,next)=>{
+  console.log(req.body);
   passport.authenticate('local',(err,user,info)=>{
+    console.log("logging in")
+    console.log(user);
     if(err) throw err
     if(!user) res.send("No user found")
     else{
