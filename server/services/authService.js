@@ -36,12 +36,16 @@ authService.post("/login", (req,res,next)=>{
     console.log("logging in")
     console.log(user);
     if(err) throw err
-    if(!user) res.send("No user found")
+    if(!user){
+      console.log(info.message)
+      res.json({err:"No user found"})
+    } 
     else{
-      req.logIn((user,err)=>{
+      req.logIn(user,(err)=>{
         if(err) throw err
-        res.send("succesfully auth'd")
+        res.json({"auth":"succesfully auth'd"})
         console.log(req.user)
+        console.log(info);
       })
     }
   })(req,res,next);
