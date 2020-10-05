@@ -23,16 +23,24 @@ var conn = mongoose.connection;
 //   })
 // })
 
-//const init = initializePassport(passport)
+// {
+//     successRedirect:'/',
+//     failureRedirect:'/login'
+//   }
 
-console.log("ININININT");
-//console.log(init);
+
 //successRedirect to `/${username}`
 authService.post("/login", (req,res,next)=>{
-  console.log("HERE AT LOGIN")
-  passport.authenticate('local',{
-    successRedirect:'/',
-    failureRedirect:'/login'
+  passport.authenticate('local',(err,user,info)=>{
+    if(err) throw err
+    if(!user) res.send("No user found")
+    else{
+      req.logIn((user,err)=>{
+        if(err) throw err
+        res.send("succesfully auth'd")
+        console.log(req.user)
+      })
+    }
   })(req,res,next);
 });
 
