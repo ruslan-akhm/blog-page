@@ -67,10 +67,11 @@ apiRouter.get('/',(req,res)=>{
 })
 
 apiRouter.get('/users/:user',(req,res)=>{
+  console.log(req.params);
   const user = req.params.user;
   User.findOne({username:user},(err, data)=>{
     if(err) throw err
-    if(!user) res.redirect("/");
+    if(!user) console.log("NO USER");
   })
 })
 
