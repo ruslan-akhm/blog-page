@@ -1,6 +1,6 @@
 const express = require('express');
 const shortid = require('shortid');
-const User = require('../models/defaultData');
+const User = require('../models/User');
 const Post = require("../models/Post");
 const apiRouter = express.Router();
 const crypto = require('crypto')
