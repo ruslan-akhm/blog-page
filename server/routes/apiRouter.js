@@ -5,7 +5,7 @@ const Post = require("../models/Post");
 const apiRouter = express.Router();
 const crypto = require('crypto')
 const multer = require('multer');
-const GridFsStorage = require('multer-gridfs-storage');
+const GridFSBucket = require('multer-gridfs-storage');
 const Grid = require('gridfs-stream');
 const path = require('path');
 const mongoose = require('mongoose');
@@ -17,11 +17,11 @@ var conn = mongoose.connection;
 let gfs;
 
 conn.once('open',() => {
-  gfs = Grid(conn.db, mongoose.mongo);
+  gfs = new mongoose.mongo.GridFSBucket(conn.db);//Grid(conn.db, mongoose.mongo);
   gfs.collection('uploads');
 })
 
-const storage = new GridFsStorage({
+const storage = new GridFSBucket({
   url: mongoURI,
   file: (req, file) => {
     return new Promise((resolve, reject)=>{
