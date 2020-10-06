@@ -43,31 +43,31 @@ const upload = multer({storage})
 
 
 apiRouter.get('/',(req,res)=>{
-  res.redirect("/login")
-  // Post.find({type:"post"}).sort({_id: -1}).exec((err,data)=>{
-  //   if(err) return console.log(err);
-  //   else{
-  //     gfs.files.find({'metadata.type':'avatarfile'}).sort({_id: -1}).limit(1).toArray((err,ava)=>{
-  //       if(err) return console.log(err);
-  //       else{
-  //          gfs.files.find({'metadata.type':'upfile'}).sort({_id: -1}).limit(1).toArray((err,hdr)=>{
-  //            if(err) return console.log(err);
-  //            else{
-  //             return res.json(
-  //               {data:data,
-  //                avatar:"https://appnew-test-sample.glitch.me/api/image/"+ava[0].filename,
-  //                header:"https://appnew-test-sample.glitch.me/api/image/"+hdr[0].filename}
-  //             )
-  //           }
-  //         })
-  //       }
-  //     })
-  //   }
-  // })
+  //res.redirect("https://appnew-test-sample.glitch.me/login")
+  Post.find({type:"post"}).sort({_id: -1}).exec((err,data)=>{
+    if(err) return console.log(err);
+    else{
+      gfs.files.find({'metadata.type':'avatarfile'}).sort({_id: -1}).limit(1).toArray((err,ava)=>{
+        if(err) return console.log(err);
+        else{
+           gfs.files.find({'metadata.type':'upfile'}).sort({_id: -1}).limit(1).toArray((err,hdr)=>{
+             if(err) return console.log(err);
+             else{
+              return res.json(
+                {data:data,
+                 avatar:"https://appnew-test-sample.glitch.me/api/image/"+ava[0].filename,
+                 header:"https://appnew-test-sample.glitch.me/api/image/"+hdr[0].filename}
+              )
+            }
+          })
+        }
+      })
+    }
+  })
 })
 
-apiRouter.get('/user',(req,res)=>{
-  
+apiRouter.get('/users/:user',(req,res)=>{
+  console.log(req.query);
 })
 
 //Set Header image
