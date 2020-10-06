@@ -71,7 +71,8 @@ apiRouter.get('/users/:user',(req,res)=>{
   const user = req.params.user;
   User.findOne({username:user},(err, data)=>{
     if(err) throw err
-    if(!user) console.log("NO USER");
+    if(!data) console.log("NO USER");
+    else console.log(data)
   })
 })
 
