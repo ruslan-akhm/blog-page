@@ -1,6 +1,6 @@
 const express = require('express');
 const shortid = require('shortid');
-//const defaultData = require('../defaultData');
+const User = require('../models/defaultData');
 const Post = require("../models/Post");
 const apiRouter = express.Router();
 const crypto = require('crypto')
@@ -67,7 +67,11 @@ apiRouter.get('/',(req,res)=>{
 })
 
 apiRouter.get('/users/:user',(req,res)=>{
-  console.log(req);
+  const user = req.params.user;
+  User.findOne({username:user},(err, data)=>{
+    if(err) throw err
+    if(!user) res.redirect("/");
+  })
 })
 
 //Set Header image
