@@ -23,11 +23,11 @@ const Login = () => {
     authService.login(user).then(data => {
       console.log(data);
       setMessage(data.message);
-      if (!data.msgError) {
-        setTimeout(() => {
-          resetForm();
-        }, 2000);
-      }
+      // if (!data.msgError) {
+      //   setTimeout(() => {
+      //     resetForm();
+      //   }, 2000);
+      // }
     });
   };
   //action="/login" method="POST"

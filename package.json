@@ -23,7 +23,8 @@
     "express-session": "^1.17.1",
     "connect-flash": "^0.1.1",
     "cors": "^2.8.5",
-    "cookie-parser": "^1.4.5"
+    "cookie-parser": "^1.4.5",
+    "shortid": "^2.2.15"
   },
   "scripts": {
     "start": "npm run development",
