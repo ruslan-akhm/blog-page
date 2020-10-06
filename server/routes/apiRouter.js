@@ -67,10 +67,6 @@ apiRouter.get('/',(req,res)=>{
 })
 
 apiRouter.get('/users/:user',(req,res)=>{
-  //console.log(req.params);
-  console.log(req.body.token); 
-  console.log(req.param('token')); 
-  console.log(req.headers['x-access-token']);
   const user = req.params.user;
   User.findOne({username:user},(err, data)=>{
     if(err) throw err
