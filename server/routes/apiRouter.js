@@ -67,7 +67,7 @@ apiRouter.get('/',(req,res)=>{
 })
 
 apiRouter.get('/users/:user',(req,res)=>{
-  console.log(req.query);
+  console.log(req);
 })
 
 //Set Header image
