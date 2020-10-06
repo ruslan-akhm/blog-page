@@ -17,7 +17,7 @@ var conn = mongoose.connection;
 let gfs;
 
 conn.once('open',() => {
-  gfs = new mongoose.mongo.GridFSBucket(conn.db);//Grid(conn.db, mongoose.mongo);
+  gfs = Grid(conn.db, mongoose.mongo);
   gfs.collection('uploads');
 })
 
