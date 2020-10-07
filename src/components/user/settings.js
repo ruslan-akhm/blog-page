@@ -7,7 +7,7 @@ import authService from "../../services/authService";
 import "./settings.css";
 
 const Settings = () => {
-  const { isLogged, setIsLogged, bio, SetBio } = useContext(PostContext);
+  const { isLogged, setIsLogged, bio, setBio } = useContext(PostContext);
   let history = useHistory();
   
   
@@ -19,6 +19,17 @@ const Settings = () => {
   // },[])
   
 
+  const inputChange = (e) =>{
+    if(e.target.name=="highlights1"){
+      setBio({...bio.highlights[0]})
+    }
+    setBio({...bio,[e.target.name] : e.target.value});
+    
+  }
+  
+  const onClick = () =>{
+    console.log(bio)
+  }
   //   let history = useHistory();
 
   //   const resetForm = () => {
@@ -60,32 +71,35 @@ const Settings = () => {
         <h1>Settings</h1>
         <form>
           <label>Name:</label>
-          <input type="text" id="name" name="name" value={bio.name} />
+          <input type="text" id="name" name="name" value={bio.name || null} onChange={inputChange}/>
           <label>Highlight:</label>
           <input
             type="text"
-            id="highlight1"
-            name="highlight1"
+            id="highlights1"
+            name="highlights1"
             value={highlights[0] || null}
+            onChange={inputChange}
           />
           <label>Highlight:</label>
           <input
             type="text"
-            id="highlight2"
-            name="highlight2"
+            id="highlights2"
+            name="highlights2"
             value={highlights[1] || null}
+            onChange={inputChange}
           />
           <label>Highlight:</label>
           <input
             type="text"
-            id="highlight3"
-            name="highlight3"
+            id="highlights3"
+            name="highlights3"
             value={highlights[2] || null}
+            onChange={inputChange}
           />
           <label>Information:</label>
-          <textarea></textarea>
+          <textarea name="info" onChange={inputChange}></textarea>
         </form>
-        <button>Logout</button>
+        <button onClick={onClick}>Logout</button>
       </div>
       <Footer />
     </div>
