@@ -87,6 +87,12 @@ apiRouter.post('/avatar', upload.single('avatarfile'), (req,res)=>{
    return res.json({avatar:"https://appnew-test-sample.glitch.me/api/image/"+fileObject.filename})
 })
 
+apiRouter.post('/updateBio', (req,res)=>{
+   console.log(req.body);
+  res.send("testing...")
+})
+
+
 //Add new posts
 apiRouter.post('/post', upload.array("attachments",5), (req,res)=>{
   const files = req.files;

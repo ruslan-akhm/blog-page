@@ -43,6 +43,17 @@ export default {
         .then(res =>res.json())
         .then(data=>data)
   },
+  updateBio: (bio)=>{
+    return fetch("/api/bio", {
+          method: "POST",
+          headers: {
+            Accept: "application/json"
+          },
+          body: bio
+        })
+        .then(res =>res.json())
+        .then(data=>data)
+  },
   addPost: (fd)=>{
     return fetch("/api/post", {
           method: "POST",

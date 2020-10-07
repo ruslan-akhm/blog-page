@@ -4,64 +4,55 @@ import { PostContext } from "../../context/postContext";
 import Navbar from "../navbar/navbar";
 import Footer from "../footer/footer";
 import authService from "../../services/authService";
+import postService from "../../services/postService";
 import "./settings.css";
 
 const Settings = () => {
   const { isLogged, setIsLogged, bio, setBio } = useContext(PostContext);
-  const [updatedBio, setUpdatedBio] = useState(bio);//({name:"", highlights:[], info:""});//bio
-  //let []
+  const [updatedBio, setUpdatedBio] = useState(bio); //show whatever is in our bio already
   let history = useHistory();
-  
-  
+
   //TURN THIS ON LATER
   // useEffect(()=>{
   //   if(!isLogged){
   //     history.replace("/");
   //   }
   // },[])
-  
 
-  const inputChange = (e) =>{
-    
-    console.log(updatedBio.highlights)
-    
-   
-    let x = updatedBio.highlights;
-    
-    console.log(x);
-    console.log(updatedBio.highlights)
-    if(e.target.name=="highlights1"){
-      x[0]=e.target.value;
-      setUpdatedBio({...updatedBio,highlights : x})
-      return
-      //setUpdatedBio({updatedBio.highlights[0] = e.target.value})
+  const inputChange = e => {
+    if (e.target.name == "name" || e.target.name == "info") {
+      setUpdatedBio({ ...updatedBio, [e.target.name]: e.target.value });
+      return;
     }
-    else if(e.target.name=="highlights2"){
-      x[1]=e.target.value;
-      setUpdatedBio({...updatedBio,highlights : x})
-      //setUpdatedBio({...updatedBio.highlights[1] = e.target.value})
+
+    let arrayOfHighlights = updatedBio.highlights;
+
+    if (e.target.name == "highlights1") {
+      arrayOfHighlights[0] = e.target.value;
+    } else if (e.target.name == "highlights2") {
+      arrayOfHighlights[1] = e.target.value;
+    } else if (e.target.name == "highlights3") {
+      arrayOfHighlights[2] = e.target.value;
     }
-    else if(e.target.name=="highlights3"){
-      x[2]=e.target.value;
-      setUpdatedBio({...updatedBio,highlights : x})
-      //setUpdatedBio({...updatedBio.highlights[2] = e.target.value})
-    }
+    setUpdatedBio({ ...updatedBio, highlights: arrayOfHighlights });
+  };
+
+  const update = (e) => {
+    e.preventDefault();
+    postService.updateBio(updatedBio).then(data=>{
+      console.log(data);
+      if(data.success){
+        setBio(updatedBio);
+      }
+    })
     
-    // else if(e.target.name=="name"){
-    //   setUpdatedBio({...updatedBio.name = e.target.value})
-    // }
-    else
-      setUpdatedBio({...updatedBio,[e.target.name] : e.target.value});
-  }
-  
-  const update = () => {
     setBio(updatedBio);
-    console.log(updatedBio)
-  }
-  
-  const onClick = () =>{
-    console.log(bio)
-  }
+    //console.log(updatedBio);
+  };
+
+  const onClick = () => {
+    console.log("LOGOUT HERE");
+  };
   //   let history = useHistory();
 
   //   const resetForm = () => {
@@ -103,7 +94,13 @@ const Settings = () => {
         <h1>Settings</h1>
         <form>
           <label>Name:</label>
-          <input type="text" id="name" name="name" value={updatedBio.name || ""} onChange={inputChange}/>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            value={updatedBio.name || ""}
+            onChange={inputChange}
+          />
           <label>Highlight:</label>
           <input
             type="text"
@@ -117,7 +114,7 @@ const Settings = () => {
             type="text"
             id="highlights2"
             name="highlights2"
-            value={updatedBio.highlights[0] || ""}
+            value={updatedBio.highlights[1] || ""}
             onChange={inputChange}
           />
           <label>Highlight:</label>
@@ -125,14 +122,22 @@ const Settings = () => {
             type="text"
             id="highlights3"
             name="highlights3"
-            value={updatedBio.highlights[0] || ""}
+            value={updatedBio.highlights[2] || ""}
             onChange={inputChange}
           />
           <label>Information:</label>
-          <textarea name="info" onChange={inputChange} value={updatedBio.info || ""}></textarea>
+          <textarea
+            name="info"
+            onChange={inputChange}
+            value={updatedBio.info || ""}
+          ></textarea>
         </form>
-        <button className="update" onClick={update}>Update</button>
-        <button className="logout" onClick={onClick}>Logout</button>
+        <button className="update" onClick={update}>
+          Update
+        </button>
+        <button className="logout" onClick={onClick}>
+          Logout
+        </button>
       </div>
       <Footer />
     </div>
