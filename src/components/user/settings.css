@@ -1,0 +1,40 @@
+.settings-main {
+  width: 100%;
+  min-height: 80vh;
+  background-color: #f0f0f0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 25px;
+}
+.settings-main h1 {
+  margin-top: 20px;
+}
+.settings-main form {
+  display: grid;
+  grid-template-columns: 150px 300px;
+  grid-template-rows: repeat(5, 25px);
+  grid-column-gap: 10px;
+  grid-row-gap: 20px;
+}
+.settings-main form label {
+  text-align: end;
+}
+
+.settings-main form textarea {
+  height: 100px;
+
+  resize: none;
+}
+.settings-main button {
+  background-color: transparent;
+  color: red;
+  border: 2px solid red;
+  margin: auto auto 20px auto;
+  cursor: pointer;
+}
+.settings-main button:hover {
+  background-color: red;
+  color: white;
+}

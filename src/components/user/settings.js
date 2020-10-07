@@ -8,6 +8,16 @@ import "./settings.css";
 
 const Settings = () => {
   const { isLogged, setIsLogged, bio, SetBio } = useContext(PostContext);
+  let history = useHistory();
+  
+  
+  //TURN THIS ON LATER
+  // useEffect(()=>{
+  //   if(!isLogged){
+  //     history.replace("/");
+  //   }
+  // },[])
+  
 
   //   let history = useHistory();
 
@@ -72,7 +82,10 @@ const Settings = () => {
             name="highlight3"
             value={highlights[2] || null}
           />
+          <label>Information:</label>
+          <textarea></textarea>
         </form>
+        <button>Logout</button>
       </div>
       <Footer />
     </div>
