@@ -5,7 +5,7 @@ import './info.css'
 
 function Info(){
   
-  const {avatar,setAvatar} = useContext(PostContext);
+  const {avatar,setAvatar, bio, setBio} = useContext(PostContext);
   
   const updateAvatar=(e)=>{
     e.preventDefault();
@@ -17,6 +17,8 @@ function Info(){
     })
   }
   
+  let highlights = bio.highlights.map(item=><li>{item}</li>) || null; 
+  
   return(
     <div id="info">
       <div id="avatar">
@@ -25,13 +27,14 @@ function Info(){
       </div>
       <div id="bio">
         <ul id="bio-list" >
-          <h1>Rob Otics</h1>
-          <li>Cyber Engineer</li>
+          <h1>{bio.name}</h1>
+          {highlights}
+          {/* <li>Cyber Engineer</li>
           <li>R2D2 fan</li>
-          <li>Toronto, ON</li>
+          <li>Toronto, ON</li> */}
         </ul>
       </div>
-      <p>THIS PAGE CURRENTLY UNDER EDITING, SOME FUNCTIONS MAY NOT WORK AND/OR EXIST. Hi Humans! </p>
+      <p>{bio.info}</p>
 
     </div>
   )
