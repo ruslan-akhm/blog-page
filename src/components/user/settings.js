@@ -8,7 +8,7 @@ import "./settings.css";
 
 const Settings = () => {
   const { isLogged, setIsLogged, bio, setBio } = useContext(PostContext);
-  const [updatedBio, setUpdatedBio] = useState({name:"", highlights:[], info:""});//bio
+  const [updatedBio, setUpdatedBio] = useState(bio);//({name:"", highlights:[], info:""});//bio
   let history = useHistory();
   
   
@@ -23,11 +23,12 @@ const Settings = () => {
   const inputChange = (e) =>{
     console.log(updatedBio.highlights)
     
-    let updatedHighlights = updatedBio.highlights.map(item=>{
-      
-    })
+    let updatedHighlights = [];
+    
     if(e.target.name=="highlights1"){
-      setUpdatedBio({...updatedBio.highlights[0] = e.target.value})
+      updatedHighlights[0]=e.target.value;
+      setUpdatedBio({...updatedBio.highlights = updatedHighlights})
+      //setUpdatedBio({updatedBio.highlights[0] = e.target.value})
     }
     else if(e.target.name=="highlights2"){
       setUpdatedBio({...updatedBio.highlights[1] = e.target.value})
@@ -98,7 +99,7 @@ const Settings = () => {
             type="text"
             id="highlights1"
             name="highlights1"
-            value={updatedBio.highlights[0] || ""}
+            value={bio.highlights[0] || ""}
             onChange={inputChange}
           />
           <label>Highlight:</label>
@@ -106,7 +107,7 @@ const Settings = () => {
             type="text"
             id="highlights2"
             name="highlights2"
-            value={updatedBio.highlights[0] || ""}
+            value={bio.highlights[0] || ""}
             onChange={inputChange}
           />
           <label>Highlight:</label>
@@ -114,7 +115,7 @@ const Settings = () => {
             type="text"
             id="highlights3"
             name="highlights3"
-            value={updatedBio.highlights[0] || ""}
+            value={bio.highlights[0] || ""}
             onChange={inputChange}
           />
           <label>Information:</label>
