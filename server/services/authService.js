@@ -26,7 +26,7 @@ authService.post("/login", (req,res,next)=>{
     else{
       req.logIn(user,(err)=>{
         if(err) throw err
-        res.json({"auth":"succesfully auth'd"})
+        res.json({message:"succesfully logged in", successLogin:true})
         //console.log(req.user)
       })
     }
