@@ -1,13 +1,17 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from "react-router-dom";
+import { PostContext } from "../../context/postContext";
 import Navbar from "../navbar/navbar";
 import Footer from "../footer/footer";
 import authService from "../../services/authService";
 import "./auth.css";
 
 const Login = () => {
+  const { isLogged, setIsLogged } = useContext(PostContext);
   const [user, setUser] = useState({ email: "", password: "" });
   const [message, setMessage] = useState("");
+
+  let history = useHistory();
 
   const resetForm = () => {
     setUser({ email: "", password: "" });
@@ -18,11 +22,16 @@ const Login = () => {
   };
 
   const login = e => {
+    let { from } = { from: { pathname: "/register" } };
     e.preventDefault();
     console.log(user);
     authService.login(user).then(data => {
       console.log(data);
       setMessage(data.message);
+      if (data.success) {
+        setIsLogged(true);
+        history.replace(from);
+      }
       // if (!data.msgError) {
       //   setTimeout(() => {
       //     resetForm();
@@ -54,11 +63,17 @@ const Login = () => {
               onChange={e => handleInput(e)}
               required
             />
-            <input className="submit login-submit" type="submit" value="Login" />
+            <input
+              className="submit login-submit"
+              type="submit"
+              value="Login"
+            />
           </div>
         </form>
         <div className="message">{message}</div>
-        <p>Don't have an account yet? <Link to="/register">Register</Link></p>
+        <p>
+          Don't have an account yet? <Link to="/register">Register</Link>
+        </p>
       </div>
       <Footer />
     </div>
