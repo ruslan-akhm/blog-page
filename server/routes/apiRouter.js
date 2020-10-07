@@ -87,8 +87,17 @@ apiRouter.post('/avatar', upload.single('avatarfile'), (req,res)=>{
    return res.json({avatar:"https://appnew-test-sample.glitch.me/api/image/"+fileObject.filename})
 })
 
-apiRouter.post('/updateBio', (req,res)=>{
+apiRouter.post('/bio', (req,res)=>{
    console.log(req.body);
+  User.findOne({username:"a"},(err,user)=>{
+    if (err) return console.log(err)
+    if (!user){
+      res.json({message:"Can not update bio. User does not exist"})
+    }
+    else{
+      user.bio=req.body.bio;
+    }
+  })
   res.send("testing...")
 })
 
