@@ -22,15 +22,16 @@ const Login = () => {
   };
 
   const login = e => {
-    let { from } = { from: { pathname: "/register" } };
+    //let { from } = { from: { pathname: "/register" } };
     e.preventDefault();
     console.log(user);
     authService.login(user).then(data => {
       console.log(data);
       setMessage(data.message);
-      if (data.success) {
+      if (data.successLogin) {
         setIsLogged(true);
-        history.replace(from);
+        //console.log(from)
+        history.replace("/");
       }
       // if (!data.msgError) {
       //   setTimeout(() => {

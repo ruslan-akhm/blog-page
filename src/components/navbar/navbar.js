@@ -1,15 +1,32 @@
-import React from 'react';
-import { Link } from 'react-router-dom'
-import './navbar.css';
+import React, { useState, useEffect, useContext } from "react";
+import { PostContext } from "../../context/postContext";
+import { Link } from "react-router-dom";
+import "./navbar.css";
 
 const Navbar = () => {
-  return(
-  <div className="navbar">
-      <Link className="nav-links" to="/">#SocialNetwork</Link>
-      <Link className="nav-links" to="/login">Login</Link>
-      <Link className="nav-links" to="/register">Register</Link>
-      </div>
-  )
-}
+  const { isLogged, setIsLogged } = useContext(PostContext);
+  return (
+    <div className="navbar">
+      <Link className="nav-links" to="/">
+        #SocialNetwork
+      </Link>
+      {isLogged ? (
+        <Link className="nav-links" to="/settings">
+          Settings
+        </Link>
+      ) : null}
+      {isLogged ? null : (
+        <Link className="nav-links" to="/login">
+          Login
+        </Link>
+      )}
+      {isLogged ? null : (
+        <Link className="nav-links" to="/register">
+          Register
+        </Link>
+      )}
+    </div>
+  );
+};
 
-export default Navbar
+export default Navbar;

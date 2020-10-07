@@ -5,7 +5,8 @@ export const PostContext = createContext();
 export const PostProvider = ({ children }) => {
   const [post, setPost] = useState([]);
   const [header, setHeader] = useState("");
-  const [avatar, setAvatar] = useState("scsdcsdcsdcd");
+  const [avatar, setAvatar] = useState("");
+  
   const [isLogged, setIsLogged] = useState(false);
 
   return (

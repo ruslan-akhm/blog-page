@@ -5,6 +5,7 @@ import './App.css';
 import Mainpage from './components/mainpage/mainpage'
 import Login from './components/auth/login'
 import Register from './components/auth/register'
+import Settings from './components/user/settings'
 //import Footer from './components/footer/footer'
 
 // class App extends React.Component{
@@ -44,6 +45,7 @@ const App = () => {
         <Route path="/" exact component={Mainpage} />
         <Route path="/login" exact component={Login} />
         <Route path="/register" exact component={Register} />
+        <Route path="/settings" exact component={Settings} />
       </Switch>
     </Router>
     
