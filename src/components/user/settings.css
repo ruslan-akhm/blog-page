@@ -14,7 +14,7 @@
 .settings-main form {
   display: grid;
   grid-template-columns: 150px 300px;
-  grid-template-rows: repeat(5, 25px);
+  grid-template-rows: repeat(5, auto-fit);
   grid-column-gap: 10px;
   grid-row-gap: 20px;
 }
@@ -26,14 +26,17 @@
   height: 100px;
   resize: none;
 }
-.settings-main button {
+.update{
+  margin-top:20px;
+}
+.logout {
   background-color: transparent;
   color: red;
   border: 2px solid red;
   margin: auto auto 20px auto;
   cursor: pointer;
 }
-.settings-main button:hover {
+.logout:hover {
   background-color: red;
   color: white;
 }

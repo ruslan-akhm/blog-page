@@ -8,6 +8,7 @@ import "./settings.css";
 
 const Settings = () => {
   const { isLogged, setIsLogged, bio, setBio } = useContext(PostContext);
+  const [updatedBio, setUpdatedBio] = useState(bio);
   let history = useHistory();
   
   
@@ -20,11 +21,23 @@ const Settings = () => {
   
 
   const inputChange = (e) =>{
+    console.log(updatedBio)
     if(e.target.name=="highlights1"){
-      setBio({...bio.highlights[0]})
+      setUpdatedBio({...bio.highlights[0] = e.target.value})
     }
-    setBio({...bio,[e.target.name] : e.target.value});
-    
+    else if(e.target.name=="highlights2"){
+      setUpdatedBio({...bio.highlights[1] = e.target.value})
+    }
+    else if(e.target.name=="highlights3"){
+      setUpdatedBio({...bio.highlights[2] = e.target.value})
+    }
+    else
+      setUpdatedBio({...bio,[e.target.name] : e.target.value});
+  }
+  
+  const update = () => {
+    setBio(updatedBio);
+    console.log(updatedBio)
   }
   
   const onClick = () =>{
@@ -71,13 +84,13 @@ const Settings = () => {
         <h1>Settings</h1>
         <form>
           <label>Name:</label>
-          <input type="text" id="name" name="name" value={bio.name || null} onChange={inputChange}/>
+          <input type="text" id="name" name="name" value={bio.name || ""} onChange={inputChange}/>
           <label>Highlight:</label>
           <input
             type="text"
             id="highlights1"
             name="highlights1"
-            value={highlights[0] || null}
+            value={bio.highlights[0] || ""}
             onChange={inputChange}
           />
           <label>Highlight:</label>
@@ -85,7 +98,7 @@ const Settings = () => {
             type="text"
             id="highlights2"
             name="highlights2"
-            value={highlights[1] || null}
+            value={bio.highlights[1] || ""}
             onChange={inputChange}
           />
           <label>Highlight:</label>
@@ -93,13 +106,14 @@ const Settings = () => {
             type="text"
             id="highlights3"
             name="highlights3"
-            value={highlights[2] || null}
+            value={bio.highlights[2] || ""}
             onChange={inputChange}
           />
           <label>Information:</label>
-          <textarea name="info" onChange={inputChange}></textarea>
+          <textarea name="info" onChange={inputChange} value={bio.info || ""}></textarea>
         </form>
-        <button onClick={onClick}>Logout</button>
+        <button className="update" onClick={update}>Update</button>
+        <button className="logout" onClick={onClick}>Logout</button>
       </div>
       <Footer />
     </div>
