@@ -8,7 +8,7 @@ import "./settings.css";
 
 const Settings = () => {
   const { isLogged, setIsLogged, bio, setBio } = useContext(PostContext);
-  const [updatedBio, setUpdatedBio] = useState(bio);
+  const [updatedBio, setUpdatedBio] = useState({name:"", highlights:[], info:""});//bio
   let history = useHistory();
   
   
@@ -23,16 +23,19 @@ const Settings = () => {
   const inputChange = (e) =>{
     console.log(updatedBio)
     if(e.target.name=="highlights1"){
-      setUpdatedBio({...bio.highlights[0] = e.target.value})
+      setUpdatedBio({...updatedBio.highlights[0] = e.target.value})
     }
     else if(e.target.name=="highlights2"){
-      setUpdatedBio({...bio.highlights[1] = e.target.value})
+      setUpdatedBio({...updatedBio.highlights[1] = e.target.value})
     }
     else if(e.target.name=="highlights3"){
-      setUpdatedBio({...bio.highlights[2] = e.target.value})
+      setUpdatedBio({...updatedBio.highlights[2] = e.target.value})
     }
+    // else if(e.target.name=="name"){
+    //   setUpdatedBio({...updatedBio.name = e.target.value})
+    // }
     else
-      setUpdatedBio({...bio,[e.target.name] : e.target.value});
+      setUpdatedBio({...updatedBio,[e.target.name] : e.target.value});
   }
   
   const update = () => {
@@ -84,13 +87,13 @@ const Settings = () => {
         <h1>Settings</h1>
         <form>
           <label>Name:</label>
-          <input type="text" id="name" name="name" value={bio.name || ""} onChange={inputChange}/>
+          <input type="text" id="name" name="name" value={updatedBio.name || ""} onChange={inputChange}/>
           <label>Highlight:</label>
           <input
             type="text"
             id="highlights1"
             name="highlights1"
-            value={bio.highlights[0] || ""}
+            value={updatedBio.highlights[0] || ""}
             onChange={inputChange}
           />
           <label>Highlight:</label>
@@ -98,7 +101,7 @@ const Settings = () => {
             type="text"
             id="highlights2"
             name="highlights2"
-            value={bio.highlights[1] || ""}
+            value={updatedBio.highlights[0] || ""}
             onChange={inputChange}
           />
           <label>Highlight:</label>
@@ -106,11 +109,11 @@ const Settings = () => {
             type="text"
             id="highlights3"
             name="highlights3"
-            value={bio.highlights[2] || ""}
+            value={updatedBio.highlights[0] || ""}
             onChange={inputChange}
           />
           <label>Information:</label>
-          <textarea name="info" onChange={inputChange} value={bio.info || ""}></textarea>
+          <textarea name="info" onChange={inputChange} value={updatedBio.info || ""}></textarea>
         </form>
         <button className="update" onClick={update}>Update</button>
         <button className="logout" onClick={onClick}>Logout</button>
