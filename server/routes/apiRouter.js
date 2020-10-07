@@ -41,7 +41,7 @@ const storage = new GridFSBucket({
 })
 const upload = multer({storage})
 
-
+///HERE HAVE TO LOAD USER (OR HOMEPAGE IN FACT) and not links to images and stuff
 apiRouter.get('/',(req,res)=>{
   //res.redirect("https://appnew-test-sample.glitch.me/login")
   Post.find({type:"post"}).sort({_id: -1}).exec((err,data)=>{
@@ -66,6 +66,7 @@ apiRouter.get('/',(req,res)=>{
   })
 })
 
+//LOAD USER INFO HERE
 apiRouter.get('/users/:user',(req,res)=>{
   const user = req.params.user;
   User.findOne({username:user},(err, data)=>{
@@ -89,13 +90,14 @@ apiRouter.post('/avatar', upload.single('avatarfile'), (req,res)=>{
 
 apiRouter.post('/bio', (req,res)=>{
    console.log(req.body);
-  User.findOne({username:"a"},(err,user)=>{
+  User.findOne({username:"test"},(err,user)=>{
     if (err) return console.log(err)
     if (!user){
       res.json({message:"Can not update bio. User does not exist"})
     }
     else{
       user.bio=req.body.bio;
+      user.save();
     }
   })
   res.send("testing...")

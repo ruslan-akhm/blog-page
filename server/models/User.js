@@ -11,6 +11,8 @@ const UserSchema = new mongoose.Schema({
     highlights: [],
     info: String
   },
+  avatar:String,
+  header:String,
   date: {
     type: Date,
     default: Date.now

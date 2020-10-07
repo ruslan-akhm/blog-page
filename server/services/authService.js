@@ -1,6 +1,7 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
 const passport = require("passport");
+const shortid = require('shortid');
 const authService = express.Router();
 const User = require("../models/User");
 const mongoose = require("mongoose");
@@ -64,7 +65,10 @@ authService.post("/register", async (req, res) => {
           const newUser = new User({
             username: username,
             email: email,
-            password: hashedPassword
+            password: hashedPassword,
+            userID:shortid.generate(),
+            header:"https://appnew-test-sample.glitch.me/api/image/image-235ce79f1ac7a1565602ebecca4d5291.jpg",
+            avatar:"https://appnew-test-sample.glitch.me/api/image/image-4ca2475e5c9633cd7cf8b505f1870e77.jpg"
           });
           newUser.save(err => {
             if (err)
