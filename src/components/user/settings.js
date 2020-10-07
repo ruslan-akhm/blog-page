@@ -9,6 +9,7 @@ import "./settings.css";
 const Settings = () => {
   const { isLogged, setIsLogged, bio, setBio } = useContext(PostContext);
   const [updatedBio, setUpdatedBio] = useState(bio);//({name:"", highlights:[], info:""});//bio
+  let []
   let history = useHistory();
   
   
@@ -21,12 +22,12 @@ const Settings = () => {
   
 
   const inputChange = (e) =>{
+    
     console.log(updatedBio.highlights)
     
-    let updatedHighlights = [];
+   
     
     if(e.target.name=="highlights1"){
-      updatedHighlights[0]=e.target.value;
       setUpdatedBio({...updatedBio.highlights = updatedHighlights})
       //setUpdatedBio({updatedBio.highlights[0] = e.target.value})
     }
@@ -93,7 +94,7 @@ const Settings = () => {
         <h1>Settings</h1>
         <form>
           <label>Name:</label>
-          <input type="text" id="name" name="name" value={updatedBio.name || ""} onChange={inputChange}/>
+          <input type="text" id="name" name="name" value={bio.name || ""} onChange={inputChange}/>
           <label>Highlight:</label>
           <input
             type="text"
@@ -119,7 +120,7 @@ const Settings = () => {
             onChange={inputChange}
           />
           <label>Information:</label>
-          <textarea name="info" onChange={inputChange} value={updatedBio.info || ""}></textarea>
+          <textarea name="info" onChange={inputChange} value={bio.info || ""}></textarea>
         </form>
         <button className="update" onClick={update}>Update</button>
         <button className="logout" onClick={onClick}>Logout</button>
