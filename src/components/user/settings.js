@@ -21,7 +21,7 @@ const Settings = () => {
   
 
   const inputChange = (e) =>{
-    console.log(updatedBio)
+    console.log(updatedBio.highlights)
     if(e.target.name=="highlights1"){
       setUpdatedBio({...updatedBio.highlights[0] = e.target.value})
     }
