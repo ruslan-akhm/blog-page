@@ -11,23 +11,6 @@ mongoose.connect(mongoURI, {
   useFindAndModify: false
 });
 var conn = mongoose.connection;
-//const initializePassport = require('../passport')
-//initializePassport(passport)
-// const init = initializePassport(passport, username=>{
-//   User.findOne({username: username},(err, user)=>{
-//     if(err)
-//       return err
-//     console.log("WE ARE LOOKIN FOR USEr ")
-//     console.log(user);
-//     return user;
-//   })
-// })
-
-// {
-//     successRedirect:'/',
-//     failureRedirect:'/login'
-//   }
-
 
 //successRedirect to `/${username}`
 authService.post("/login", (req,res,next)=>{
