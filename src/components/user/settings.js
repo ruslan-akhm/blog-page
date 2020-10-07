@@ -22,6 +22,10 @@ const Settings = () => {
 
   const inputChange = (e) =>{
     console.log(updatedBio.highlights)
+    
+    let updatedHighlights = updatedBio.highlights.map(item=>{
+      
+    })
     if(e.target.name=="highlights1"){
       setUpdatedBio({...updatedBio.highlights[0] = e.target.value})
     }
@@ -31,6 +35,7 @@ const Settings = () => {
     else if(e.target.name=="highlights3"){
       setUpdatedBio({...updatedBio.highlights[2] = e.target.value})
     }
+    
     // else if(e.target.name=="name"){
     //   setUpdatedBio({...updatedBio.name = e.target.value})
     // }
