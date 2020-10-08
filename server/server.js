@@ -45,11 +45,11 @@ app.use(passport.session());
 require('./passportConfig')(passport);
 
 //testing
-app.use((req,res,next)=>{
-  console.log(req.session);
-  console.log(req.user);
-  next();
-})
+// app.use((req,res,next)=>{
+//   console.log(req.session);
+//   console.log(req.user);
+//   next();
+// })
 
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/public/index.html");

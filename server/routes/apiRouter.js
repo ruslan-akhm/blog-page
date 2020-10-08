@@ -1,4 +1,5 @@
 const express = require("express");
+const passport = require("passport");
 const shortid = require("shortid");
 const User = require("../models/User");
 const Post = require("../models/Post");
@@ -93,10 +94,22 @@ apiRouter.get("/", (req, res) => {
 //LOAD USER INFO HERE
 apiRouter.get("/users/:user", (req, res) => {
   const user = req.params.user;
-  User.findOne({ username: user }, (err, data) => {
+  console.log(user)
+  //console.log(passport.session().passport.user)
+  User.findOne({ userID: user }, (err, data) => {
     if (err) throw err;
     if (!data) console.log("NO USER");
-    else console.log(data);
+    else{
+      console.log(passport.session())
+      console.log(user._id)
+      //if both ids uphere ==, then isAuthor=true, else false;
+      let isAuthor = false;
+      let header = user.header;
+      let avatar = user.avatar;
+      let bio = user.bio;
+      let posts = user.posts;
+      res.json({header: header, avatar:avatar, bio:bio, posts:posts, isAuthor:isAuthor})
+    } 
   });
 });
 

@@ -1,6 +1,6 @@
 export default {
-  getData: () => {
-    return fetch(`/api/users/user`)
+  getData: (user) => {
+    return fetch(`/api/users/${user}`)
       .then(res => res.json())
       .then(data => data);
   },
