@@ -30,7 +30,10 @@ app.use(cors({
 app.use(session({
   secret: process.env.SESSION_SECRET,
   resave: true,
-  saveUninitialized: true
+  saveUninitialized: true,
+  cookie:{
+    maxAge: 1000 * 60 * 60 //cookie for 1 hr
+  }
 }));
 
 //cookieParser
