@@ -9,20 +9,35 @@
   border-radius:25px;
 }
 .introduction{
-  width:80%;
+  width:85%;
   height:fit-content;
   background-color:white;
-  border:1px solid black;
-  border-bottom:2px solid black;
-  border-radius:25px;
-  
+  border-radius:15px;
+}
+.introduction p {
+  margin:10px;
+  text-align:center;
 }
 .users-box{
   width:80%;
   background-color:white;
   border:1px solid black;
-  border-radius:25px;
+  border-radius:15px;
+  display:flex;
+  flex-direction:column;
+  min-height:10vh;
+}
+.users-box p {
+  position:absolute;
+  top: 40px;
+  left:45%;
+  font-style:italic;
+  color:gray;
+  font-size:10px;
 }
 .users-filter{
   height:20px;
+  width:90%;
+  border:none;
+  margin-top:5px;
 }

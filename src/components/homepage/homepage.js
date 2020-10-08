@@ -1,22 +1,17 @@
 import React, { useState, useEffect, useContext } from "react";
 import Navbar from "../navbar/navbar";
-//import Header from "../header/header";
-//import Info from '../info/info'
-//import Posts from '../posts/posts'
-//import Default from '../default'
-//import AddPost from '../addPost/addPost'
-//import postService from '../../services/postService'
 import Footer from "../footer/footer";
 //import { PostContext } from '../../context/postContext'
 import "./homepage.css";
 
-//import Mainpage from './components/mainpage/mainpage'
+//need to store userID or _id on cookie; also /users/:user, where :user is = that id; 
+//then -> compare cookie.user.id and query param id, if the same - isAuthor(true);
 
 //IMAGES ARE CALLED FROM APPNEW-TEST-SAMPLE  -  FIX!!!!!!!!!!!!!!!!!!!!!
 
 function Homepage() {
   //const {post,setPost,header,setHeader,avatar,setAvatar} = useContext(PostContext);
-  const [filter, setFilter] = useState("")
+  const [filter, setFilter] = useState("");
 
   useEffect(() => {
     getData();
@@ -33,9 +28,11 @@ function Homepage() {
     //     })
   };
 
-  const inputChange = (e) => {
-    setFilter(()=> {return e.target.value})
-    console.log(filter)
+  const inputChange = e => {
+    setFilter(() => {
+      return e.target.value;
+    });
+    console.log(filter);
   };
 
   //<Default />
@@ -62,6 +59,7 @@ function Homepage() {
             <input type="text" onChange={inputChange} />
           </div>
           <div className="users-list"></div>
+          <p>No users found...</p>
         </div>
       </div>
       <Footer />

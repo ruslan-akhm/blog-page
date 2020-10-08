@@ -38,6 +38,7 @@ const Settings = () => {
   };
 
   const update = (e) => {
+    console.log(updatedBio)
     e.preventDefault();
     postService.updateBio(updatedBio).then(data=>{
       console.log(data);
