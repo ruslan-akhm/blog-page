@@ -42,9 +42,17 @@ function Homepage() {
   };
 
   //<Default />
-  let userList = list && list.map(user => {
-    return <div className="user-card"><p>{user.name}</p><p>posts: {user.posts} </p></div>;
-  });
+  let userList =
+    list &&
+    list.map(user => {
+      return (
+        <div className="user-card">
+          <div className="user-card-img"><img src={user.avatar} alt="user's avatar" /></div>
+          <h4>{user.name}</h4>
+          <p>posts: {user.posts} </p>
+        </div>
+      );
+    });
 
   return (
     <div>
@@ -67,7 +75,7 @@ function Homepage() {
           <div className="users-filter">
             <input type="text" onChange={inputChange} placeholder="find user" />
           </div>
-          <p>No users found...</p>
+          <span>{list ? null : "No users found..."}</span>
           <div className="users-list">
             <ul>{userList}</ul>
           </div>

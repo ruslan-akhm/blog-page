@@ -69,9 +69,9 @@ authService.post("/register", async (req, res) => {
             password: hashedPassword,
             userID: shortid.generate(),
             header:
-              "https://appnew-test-sample.glitch.me/api/image/image-235ce79f1ac7a1565602ebecca4d5291.jpg",
+              "https://appnew-test-sample.glitch.me/api/image/image-e233b5f59a3bdb20e8ccedf1719ee99f.jpg",
             avatar:
-              "https://appnew-test-sample.glitch.me/api/image/image-4ca2475e5c9633cd7cf8b505f1870e77.jpg",
+              "https://appnew-test-sample.glitch.me/api/image/image-9513c017d3a1ef643530736d721e9522.jpg",
             bio: {
               name: username
             }
