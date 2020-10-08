@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import Navbar from "../navbar/navbar";
 import Footer from "../footer/footer";
+import postService from '../../services/postService'
 //import { PostContext } from '../../context/postContext'
 import "./homepage.css";
 
@@ -21,13 +22,13 @@ function Homepage() {
 
   //get list of users (avatar, name)
   const getData = () => {
-    //     let posts = [];
-    //     postService.getData().then(data=>{
-    //       setHeader(data.header);
-    //       setAvatar(data.avatar);
-    //       posts = data.data.map(item=>item)
-    //       setPost(posts);
-    //     })
+         //let posts = [];
+         postService.getData().then(data=>{
+           setUsers(data.usersInfo);
+           //setAvatar(data.avatar);
+           //posts = data.data.map(item=>item)
+           //setPost(posts);
+         })
   };
 
   const inputChange = e => {
