@@ -20,6 +20,7 @@ function Mainpage(){
   
   const {post,setPost,header,setHeader,avatar,setAvatar} = useContext(PostContext);
   
+  
   useEffect(()=>{
     getData();
   },[])
@@ -28,12 +29,12 @@ function Mainpage(){
   //also id to set isAuthor (create it in context) if user visits their own page
   
   const getData=()=>{
-    let posts = [];
+    //let posts = [];
     postService.getData().then(data=>{
-      setHeader(data.header);
-      setAvatar(data.avatar);
-      posts = data.data.map(item=>item)
-      setPost(posts);
+      //setHeader(data.header);
+      //setAvatar(data.avatar);
+      //posts = data.data.map(item=>item)
+      //setPost(posts);
       
     })
   }
