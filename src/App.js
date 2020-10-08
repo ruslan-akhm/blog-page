@@ -1,41 +1,10 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Link, Route } from 'react-router-dom'
 import './App.css';
-//import Navbar from './components/navbar/navbar'
 import Mainpage from './components/mainpage/mainpage'
 import Login from './components/auth/login'
 import Register from './components/auth/register'
 import Settings from './components/user/settings'
-//import Footer from './components/footer/footer'
-
-// class App extends React.Component{
-//   constructor(props){
-//     super(props);
-//     this.state={
-//     }
-//   }
-  
-//   // <div>
-//   //       <Navbar />
-//   //       <div id="page-main">
-//   //         <Mainpage />
-//   //       </div>
-//   //       <Footer />
-//   //     </div>
-  
-//   render(){
-//     return(
-//       <div>
-//       <Mainpage />
-//         </div>
-      
-//     )
-//   }
-// }
-
-// <div>
-//       <Mainpage />
-//     </div>
 
 const App = () => {
   
