@@ -11,7 +11,9 @@ import "./homepage.css";
 
 function Homepage() {
   //const {post,setPost,header,setHeader,avatar,setAvatar} = useContext(PostContext);
-  const [filter, setFilter] = useState("");
+  const [filter, setFilter] = useState();
+  const [users, setUsers] = useState();
+  const [list, setList] = useState(users);
 
   useEffect(() => {
     getData();
@@ -29,10 +31,9 @@ function Homepage() {
   };
 
   const inputChange = e => {
-    setFilter(() => {
-      return e.target.value;
-    });
-    console.log(filter);
+    //console.log(e.target.value)
+    setFilter(e.target.value);
+    //console.log(filter);
   };
 
   //<Default />
@@ -56,7 +57,7 @@ function Homepage() {
         <p>Check out other users</p>
         <div className="users-box">
           <div className="users-filter">
-            <input type="text" onChange={inputChange} />
+            <input type="text" onChange={inputChange} placeholder="find user"/>
           </div>
           <p>No users found...</p>
           <div className="users-list"></div>

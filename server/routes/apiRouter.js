@@ -44,26 +44,31 @@ const upload = multer({storage})
 ///HERE HAVE TO LOAD USER (OR HOMEPAGE IN FACT) and not links to images and stuff
 apiRouter.get('/',(req,res)=>{
   //res.redirect("https://appnew-test-sample.glitch.me/login")
-  Post.find({type:"post"}).sort({_id: -1}).exec((err,data)=>{
-    if(err) return console.log(err);
-    else{
-      gfs.files.find({'metadata.type':'avatarfile'}).sort({_id: -1}).limit(1).toArray((err,ava)=>{
-        if(err) return console.log(err);
-        else{
-           gfs.files.find({'metadata.type':'upfile'}).sort({_id: -1}).limit(1).toArray((err,hdr)=>{
-             if(err) return console.log(err);
-             else{
-              return res.json(
-                {data:data,
-                 avatar:"https://appnew-test-sample.glitch.me/api/image/"+hdr[0].filename,
-                 header:"https://appnew-test-sample.glitch.me/api/image/"+hdr[0].filename}
-              )
-            }
-          })
-        }
-      })
-    }
-  })
+  
+  User.find()=>{
+    
+  }
+  
+  // Post.find({type:"post"}).sort({_id: -1}).exec((err,data)=>{
+  //   if(err) return console.log(err);
+  //   else{
+  //     gfs.files.find({'metadata.type':'avatarfile'}).sort({_id: -1}).limit(1).toArray((err,ava)=>{
+  //       if(err) return console.log(err);
+  //       else{
+  //          gfs.files.find({'metadata.type':'upfile'}).sort({_id: -1}).limit(1).toArray((err,hdr)=>{
+  //            if(err) return console.log(err);
+  //            else{
+  //             return res.json(
+  //               {data:data,
+  //                avatar:"https://appnew-test-sample.glitch.me/api/image/"+hdr[0].filename,
+  //                header:"https://appnew-test-sample.glitch.me/api/image/"+hdr[0].filename}
+  //             )
+  //           }
+  //         })
+  //       }
+  //     })
+  //   }
+  // })
 })
 
 //LOAD USER INFO HERE
