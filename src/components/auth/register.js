@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import Navbar from "../navbar/navbar";
 import Footer from "../footer/footer";
 import authService from "../../services/authService";
@@ -10,6 +10,7 @@ import "./auth.css";
 const Register = () => {
   const [user, setUser] = useState({ username: "", email:"", password: "", password2:"" });
   const [message, setMessage] = useState("");
+  let history = useHistory();
 
   const resetForm = () => {
     setUser({ username: "", email:"", password: "", password2:"" });
@@ -17,19 +18,20 @@ const Register = () => {
 
   const handleInput = e => {
     setUser({ ...user, [e.target.name]: e.target.value });
-    console.log(user);
+    //console.log(user);
   };
 
   const register = e => {
     e.preventDefault();
-    console.log(user);
+    //console.log(user);
     authService.register(user).then(data => {
-      console.log(data);
+      //console.log(data);
       setMessage(data.message);
       if (!data.error) {
         setTimeout(() => {
-          console.log('RESETTING')
+          //console.log('RESETTING')
           resetForm();
+          history.replace("/login");
         }, 2000);
       }
     });

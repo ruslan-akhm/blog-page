@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useContext } from "react";
 import Navbar from "../navbar/navbar";
 import Footer from "../footer/footer";
-import postService from '../../services/postService'
+import postService from "../../services/postService";
 //import { PostContext } from '../../context/postContext'
 import "./homepage.css";
 
-//need to store userID or _id on cookie; also /users/:user, where :user is = that id; 
+//need to store userID or _id on cookie; also /users/:user, where :user is = that id;
 //then -> compare cookie.user.id and query param id, if the same - isAuthor(true);
 
 //IMAGES ARE CALLED FROM APPNEW-TEST-SAMPLE  -  FIX!!!!!!!!!!!!!!!!!!!!!
@@ -22,13 +22,17 @@ function Homepage() {
 
   //get list of users (avatar, name)
   const getData = () => {
-         //let posts = [];
-         postService.getData().then(data=>{
-           setUsers(data.usersInfo);
-           //setAvatar(data.avatar);
-           //posts = data.data.map(item=>item)
-           //setPost(posts);
-         })
+    //let posts = [];
+    postService.getData().then(data => {
+      if (data.success == false) {
+        return;
+      }
+      console.log(data.usersInfo);
+      setUsers(data.usersInfo);
+      setList(data.usersInfo);
+      //posts = data.data.map(item=>item)
+      //setPost(posts);
+    });
   };
 
   const inputChange = e => {
@@ -38,6 +42,9 @@ function Homepage() {
   };
 
   //<Default />
+  let userList = list && list.map(user => {
+    return <div className="user-card"><p>{user.name}</p><p>posts: {user.posts} </p></div>;
+  });
 
   return (
     <div>
@@ -58,11 +65,12 @@ function Homepage() {
         <p>Check out other users</p>
         <div className="users-box">
           <div className="users-filter">
-            <input type="text" onChange={inputChange} placeholder="find user"/>
+            <input type="text" onChange={inputChange} placeholder="find user" />
           </div>
           <p>No users found...</p>
-          <div className="users-list"></div>
-          
+          <div className="users-list">
+            <ul>{userList}</ul>
+          </div>
         </div>
       </div>
       <Footer />

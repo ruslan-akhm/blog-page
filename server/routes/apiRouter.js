@@ -57,7 +57,7 @@ apiRouter.get("/", (req, res) => {
     else {
       let usersInfo = users.map(user => {
         return {
-          name: user.name,
+          name: user.bio.name,
           posts: user.posts.length,
           avatar: user.avatar
         };

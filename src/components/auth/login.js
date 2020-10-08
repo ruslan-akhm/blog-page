@@ -24,9 +24,9 @@ const Login = () => {
   const login = e => {
     //let { from } = { from: { pathname: "/register" } };
     e.preventDefault();
-    console.log(user);
+    //console.log(user);
     authService.login(user).then(data => {
-      console.log(data);
+      //console.log(data);
       setMessage(data.message);
       if (data.successLogin) {
         setIsLogged(true);
