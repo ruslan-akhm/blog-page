@@ -52,11 +52,15 @@ const Settings = () => {
     //console.log(updatedBio);
   };
 
-  const logout = () => {
-    
+  const logout = (e) => {
+    e.preventDefault();
     console.log("LOGOUT HERE");
     authService.logout().then(data=>{
-      console.log(data)
+      console.log(data);
+      setMessage(data.message);
+      setTimeout(() => {
+          history.replace("/");
+        }, 1000);
     })
     
   };

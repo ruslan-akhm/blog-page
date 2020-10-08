@@ -62,8 +62,8 @@ apiRouter.get("/", (req, res) => {
           avatar: user.avatar
         };
       });
-      console.log(usersInfo)
-      console.log("sending JSON")
+      //console.log(usersInfo)
+      //console.log("sending JSON")
       res.json({usersInfo})
     }
   });

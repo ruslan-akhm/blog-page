@@ -92,13 +92,12 @@ authService.post("/register", async (req, res) => {
       });
     }
   });
-  
-  authService.post("/logout", (req, res, next) => {
-    req.logout();
-    res.json({message:"You have logged out"})
-  });
+});
 
-  
+authService.get("/logout", (req, res, next) => {
+  console.log("LOGOUT");
+  req.logout();
+  res.json({ message: "You have logged out" });
 });
 
 module.exports = authService;
