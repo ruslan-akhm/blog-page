@@ -9,7 +9,7 @@
   border-radius:25px;
 }
 .introduction{
-  width:85%;
+  width:80%;
   height:fit-content;
   background-color:white;
   border-radius:15px;
@@ -30,7 +30,7 @@
 }
 .users-box p {
   position:absolute;
-  top: 40px;
+  top: 30px;
   left:45%;
   font-style:italic;
   color:gray;
@@ -41,4 +41,8 @@
   width:90%;
   border:none;
   margin-top:5px;
+}
+.users-list{
+  min-height:100px;
+  width:100%;
 }

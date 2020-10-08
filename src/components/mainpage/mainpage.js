@@ -23,7 +23,10 @@ function Mainpage(){
   useEffect(()=>{
     getData();
   },[])
-                        
+     
+  //fetch posts (data.posts), header, avatar, bio;
+  //also id to set isAuthor (create it in context) if user visits their own page
+  
   const getData=()=>{
     let posts = [];
     postService.getData().then(data=>{
