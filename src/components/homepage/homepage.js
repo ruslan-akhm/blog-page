@@ -42,15 +42,22 @@ function Homepage() {
   };
 
   //<Default />
+  
+  //add href to <a> (figure out the link (id/username) ) and ADD to res.json with usersInfo 
+  
   let userList =
     list &&
     list.map(user => {
       return (
-        <div className="user-card">
-          <div className="user-card-img"><img src={user.avatar} alt="user's avatar" /></div>
-          <h4>{user.name}</h4>
-          <p>posts: {user.posts} </p>
-        </div>
+        <a href="">
+          <div className="user-card">
+            <div className="user-card-img">
+              <img src={user.avatar} alt="user's avatar" />
+            </div>
+            <h4>{user.name}</h4>
+            <p>posts: {user.posts} </p>
+          </div>
+        </a>
       );
     });
 
