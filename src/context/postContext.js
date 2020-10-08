@@ -6,7 +6,7 @@ export const PostProvider = ({ children }) => {
   const [post, setPost] = useState([]);
   const [header, setHeader] = useState("");
   const [avatar, setAvatar] = useState("");
-  const [bio, setBio] = useState({ name:"", highlights: [], info: "" });
+  const [bio, setBio] = useState({ name:"", highlights: [], info: "" });//["","",""]
   const [isLogged, setIsLogged] = useState(false);
 
   return (

@@ -58,8 +58,9 @@ function Homepage() {
           <div className="users-filter">
             <input type="text" onChange={inputChange} />
           </div>
-          <div className="users-list"></div>
           <p>No users found...</p>
+          <div className="users-list"></div>
+          
         </div>
       </div>
       <Footer />
