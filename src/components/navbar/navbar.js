@@ -8,7 +8,7 @@ const Navbar = () => {
   return (
     <div className="navbar">
       <Link className="nav-links" to="/">
-        #SocialNetwork
+        #PersonalBlog
       </Link>
       {isLogged ? (
         <Link className="nav-links" to="/settings">

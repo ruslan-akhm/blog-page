@@ -1,10 +1,28 @@
 #homepage{
   width:100%;
-  height:80vh;
+  min-height:80vh;
   background-color:#f0f0f0;
   display:flex;
   justify-content:flex-start;
   align-items:center;
   flex-direction:column;
   border-radius:25px;
+}
+.introduction{
+  width:80%;
+  height:fit-content;
+  background-color:white;
+  border:1px solid black;
+  border-bottom:2px solid black;
+  border-radius:25px;
+  
+}
+.users-box{
+  width:80%;
+  background-color:white;
+  border:1px solid black;
+  border-radius:25px;
+}
+.users-filter{
+  height:20px;
 }

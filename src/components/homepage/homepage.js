@@ -16,6 +16,7 @@ import "./homepage.css";
 
 function Homepage() {
   //const {post,setPost,header,setHeader,avatar,setAvatar} = useContext(PostContext);
+  const [filter, setFilter] = useState("")
 
   useEffect(() => {
     getData();
@@ -32,20 +33,36 @@ function Homepage() {
     //     })
   };
 
+  const inputChange = (e) => {
+    setFilter(()=> {return e.target.value})
+    console.log(filter)
+  };
+
   //<Default />
 
   return (
     <div>
       <Navbar />
       <div id="homepage">
-        <h1>Welcome to blog post page</h1>
-        <p>Please login to create posts, modify your page and upload images</p>
-        <p>You can view other people pages and posts without logging in</p>
-        <p>
-          I encourage you to try to create posts yourself. To do that you need
-          to register or (if you don't want to) just use guest account with
-          email: guest@guest.com and password: guest
-        </p>
+        <h1>Welcome to Personal Blog page</h1>
+        <div className="introduction">
+          <p>
+            Please login to create posts, modify your page and upload images
+          </p>
+          <p>You can view other people pages and posts without logging in</p>
+          <p>
+            I encourage you to try to create posts yourself. To do that you need
+            to register or (if you don't want to) just use guest account with
+            email: guest@guest.com and password: guest
+          </p>
+        </div>
+        <p>Check out other users</p>
+        <div className="users-box">
+          <div className="users-filter">
+            <input type="text" onChange={inputChange} />
+          </div>
+          <div className="users-list"></div>
+        </div>
       </div>
       <Footer />
     </div>
