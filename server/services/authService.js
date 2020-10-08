@@ -1,7 +1,7 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
 const passport = require("passport");
-const shortid = require('shortid');
+const shortid = require("shortid");
 const authService = express.Router();
 const User = require("../models/User");
 const mongoose = require("mongoose");
@@ -14,24 +14,23 @@ mongoose.connect(mongoURI, {
 var conn = mongoose.connection;
 
 //successRedirect to `/${username}`
-authService.post("/login", (req,res,next)=>{
+authService.post("/login", (req, res, next) => {
   console.log(req.body);
-  passport.authenticate('local',(err,user,info)=>{
-    console.log("logging in")
+  passport.authenticate("local", (err, user, info) => {
+    console.log("logging in");
     console.log(user);
-    if(err) throw err
-    if(!user){
+    if (err) throw err;
+    if (!user) {
       //console.log(info.message)//look here for message from passport-config
-      res.json({err:info.message})//fix this according to info.message
-    } 
-    else{
-      req.logIn(user,(err)=>{
-        if(err) throw err
-        res.json({message:"succesfully logged in", successLogin:true})
+      res.json({ err: info.message }); //fix this according to info.message
+    } else {
+      req.logIn(user, err => {
+        if (err) throw err;
+        res.json({ message: "succesfully logged in", successLogin: true });
         //console.log(req.user)
-      })
+      });
     }
-  })(req,res,next);
+  })(req, res, next);
 });
 
 authService.post("/register", async (req, res) => {
@@ -50,10 +49,10 @@ authService.post("/register", async (req, res) => {
   User.findOne({ email }, (err, user) => {
     if (err)
       res.status(500).json({ message: "Internal server error", error: true });
-    if (user) 
+    if (user)
       res.status(400).json({ message: "Email is already taken", error: true });
     else {
-      console.log("NO EMAIL")
+      console.log("NO EMAIL");
       User.findOne({ username }, (err, user) => {
         if (err)
           res
@@ -66,18 +65,21 @@ authService.post("/register", async (req, res) => {
             username: username,
             email: email,
             password: hashedPassword,
-            userID:shortid.generate(),
-            header:"https://appnew-test-sample.glitch.me/api/image/image-235ce79f1ac7a1565602ebecca4d5291.jpg",
-            avatar:"https://appnew-test-sample.glitch.me/api/image/image-4ca2475e5c9633cd7cf8b505f1870e77.jpg"
+            userID: shortid.generate(),
+            header:
+              "https://appnew-test-sample.glitch.me/api/image/image-235ce79f1ac7a1565602ebecca4d5291.jpg",
+            avatar:
+              "https://appnew-test-sample.glitch.me/api/image/image-4ca2475e5c9633cd7cf8b505f1870e77.jpg",
+            bio: {
+              name: username
+            }
           });
           newUser.save(err => {
             if (err)
-              res
-                .status(500)
-                .json({
-                  message: "Error occured while creating account",
-                  error: true
-                });
+              res.status(500).json({
+                message: "Error occured while creating account",
+                error: true
+              });
             else {
               res
                 .status(201)
