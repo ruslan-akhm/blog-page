@@ -32,10 +32,11 @@ function Mainpage() {
   const getData = (user) => {
     let posts = [];
     postService.getData(user).then(data => {
-      setHeader(data.header);
-      setAvatar(data.avatar);
-      posts = data.posts.map(item=>item)
-      setPost(posts);
+      console.log(data);
+      // setHeader(data.header);
+      // setAvatar(data.avatar);
+      // posts = data.posts.map(item=>item)
+      // setPost(posts);
     });
   };
 
