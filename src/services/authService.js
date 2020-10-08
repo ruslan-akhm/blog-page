@@ -20,5 +20,10 @@ export default {
         })
         .then(res =>res.json())
         .then(data=>data)
+  },
+  logout: ()=>{
+    return fetch("/api/auth/logout")
+      .then(res => res.json())
+      .then(data => data);
   }
 }

@@ -10,6 +10,7 @@ import "./settings.css";
 const Settings = () => {
   const { isLogged, setIsLogged, bio, setBio } = useContext(PostContext);
   const [updatedBio, setUpdatedBio] = useState(bio); //show whatever is in our bio already
+  const [ message, setMessage ] = useState();
   let history = useHistory();
 
   //TURN THIS ON LATER
@@ -51,8 +52,13 @@ const Settings = () => {
     //console.log(updatedBio);
   };
 
-  const onClick = () => {
+  const logout = () => {
+    
     console.log("LOGOUT HERE");
+    authService.logout().then(data=>{
+      console.log(data)
+    })
+    
   };
   //   let history = useHistory();
 
@@ -136,7 +142,8 @@ const Settings = () => {
         <button className="update" onClick={update}>
           Update
         </button>
-        <button className="logout" onClick={onClick}>
+        <div>{message}</div>
+        <button className="logout" onClick={logout}>
           Logout
         </button>
       </div>

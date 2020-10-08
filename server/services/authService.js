@@ -92,27 +92,13 @@ authService.post("/register", async (req, res) => {
       });
     }
   });
+  
+  authService.post("/logout", (req, res, next) => {
+    req.logout();
+    res.json({message:"You have logged out"})
+  });
 
-  // const hashedPassword = await bcrypt.hash(req.body.password, 10)
-  // const username = req.body.username;
-  // User.findOne({username},(err,user)=>{
-  //   if(err)
-  //     res.status(500).json({message: "internal server error", error: true})
-  //   if(user)
-  //     res.status(400).json({message: "username is taken", error: true})
-  //   else{
-  //     const newUser = new User({ username: username, password: hashedPassword})
-  //     newUser.save(
-  //       err=>{
-  //         if(err)
-  //           res.status(500).json({message: "Error occured while creating account", error: true});
-  //         else{
-  //           res.status(201).json({message: "Account created!", error: false})
-  //         }
-  //       }
-  //     )
-  //   }
-  // })
+  
 });
 
 module.exports = authService;
