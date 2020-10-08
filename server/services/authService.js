@@ -22,7 +22,7 @@ authService.post("/login", (req, res, next) => {
     if (err) throw err;
     if (!user) {
       //console.log(info.message)//look here for message from passport-config
-      res.json({ err: info.message }); //fix this according to info.message
+      res.json({ message: info.message }); //fix this according to info.message
     } else {
       req.logIn(user, err => {
         if (err) throw err;
@@ -32,6 +32,8 @@ authService.post("/login", (req, res, next) => {
     }
   })(req, res, next);
 });
+
+//req.session.passport.user  =  id
 
 authService.post("/register", async (req, res) => {
   const { username, email, password, password2 } = req.body;
