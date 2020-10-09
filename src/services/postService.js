@@ -4,6 +4,11 @@ export default {
       .then(res => res.json())
       .then(data => data);
   },
+  getAllUsers: () =>{
+    return fetch("/api/users/")
+      .then(res => res.json())
+      .then(data => data);
+  },
   removePost: id => {
     return fetch("/api/delete", {
       method: "DELETE",

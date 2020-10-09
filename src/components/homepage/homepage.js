@@ -23,7 +23,7 @@ function Homepage() {
   //get list of users (avatar, name)
   const getData = () => {
     //let posts = [];
-    postService.getData().then(data => {
+    postService.getAllUsers().then(data => {
       if (data.success == false) {
         return;
       }

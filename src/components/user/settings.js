@@ -18,7 +18,7 @@ const Settings = () => {
   //   if(!isLogged){
   //     history.replace("/");
   //   }
-  // },[])
+  // },[isLogged])
 
   const inputChange = e => {
     if (e.target.name == "name" || e.target.name == "info") {
@@ -58,6 +58,7 @@ const Settings = () => {
     authService.logout().then(data=>{
       console.log(data);
       setMessage(data.message);
+      setIsLogged(false);
       setTimeout(() => {
           history.replace("/");
         }, 1000);

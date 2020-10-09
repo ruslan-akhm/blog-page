@@ -26,7 +26,7 @@ export default {
       .then(res => res.json())
       .then(data => data);
   },
-  authenticated: ()=>{
+  isAuthenticated: ()=>{
     return fetch("/api/auth/authenticated")
       .then(res => res.json())
       .then(data => data);

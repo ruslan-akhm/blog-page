@@ -9,7 +9,7 @@ const multer = require("multer");
 const GridFSBucket = require("multer-gridfs-storage");
 const Grid = require("gridfs-stream");
 const path = require("path");
-const isAuthenticated = require('./authMiddleware').isAuthenticated;
+//const isAuthenticated = require('./authMiddleware').isAuthenticated;
 const mongoose = require("mongoose");
 var mongoURI = process.env.SECRET; //"mongodb+srv://ruslan-akhm:zuaGc0VJ@cluster0-y5h11.mongodb.net/test?retryWrites=true&w=majority"
 mongoose.connect(mongoURI, {
@@ -93,7 +93,7 @@ apiRouter.get("/", (req, res) => {
 });
 
 //LOAD USER INFO HERE
-apiRouter.get("/users/:user", isAuthenticated, (req, res, next) => {
+apiRouter.get("/users/:user", (req, res, next) => {
   const id = req.params.user;
   
   //console.log(passport.session().passport.user)
