@@ -51,7 +51,7 @@ const upload = multer({ storage });
 ///HERE HAVE TO LOAD USER (OR HOMEPAGE IN FACT) and not links to images and stuff
 apiRouter.get("/", (req, res) => {
   //res.redirect("https://appnew-test-sample.glitch.me/login")
-
+console.log("HERE WE ARE FUCK")
   User.find().exec((err, users) => {
     if (err) return console.log(err);
     if (!users)
@@ -61,7 +61,8 @@ apiRouter.get("/", (req, res) => {
         return {
           name: user.bio.name,
           posts: user.posts.length,
-          avatar: user.avatar
+          avatar: user.avatar,
+          id: user.userID
         };
       });
       //console.log(usersInfo)

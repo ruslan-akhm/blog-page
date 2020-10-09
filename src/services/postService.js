@@ -5,7 +5,7 @@ export default {
       .then(data => data);
   },
   getAllUsers: () =>{
-    return fetch("/api/users/")
+    return fetch("/api")
       .then(res => res.json())
       .then(data => data);
   },

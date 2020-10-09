@@ -27,7 +27,7 @@ function Homepage() {
       if (data.success == false) {
         return;
       }
-      console.log(data.usersInfo);
+      //console.log(data.usersInfo);
       setUsers(data.usersInfo);
       setList(data.usersInfo);
       //posts = data.data.map(item=>item)
@@ -49,7 +49,7 @@ function Homepage() {
     list &&
     list.map(user => {
       return (
-        <a href="">
+        <a href={"/users/"+user.id}>
           <div className="user-card">
             <div className="user-card-img">
               <img src={user.avatar} alt="user's avatar" />
