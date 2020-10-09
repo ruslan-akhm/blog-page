@@ -41,8 +41,8 @@ function Mainpage() {
     });
   };
 
-  //<Default />
-
+  
+//ALSO ADD ID INTO PROPS? TO UPDATE THE RIGHT PAGE, OR CAN TAKE FROM USEPARAMS()
   return (
     <div>
       <Navbar />

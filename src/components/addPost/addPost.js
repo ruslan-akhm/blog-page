@@ -7,9 +7,11 @@ function AddPost(props) {
   const { post, setPost } = useContext(PostContext);
   const [isTextfield, setIsTextfield] = useState(false);
   const [imagePreview, setImagePreview] = useState([]);
-  const [isAuthor, setIsAuthor] = useState(props.isAuthor);
+  const [isAuthor, setIsAuthor] = useState();
 
-  useEffect(() => {}, [props]);
+  useEffect(() => {
+    setIsAuthor(props.isAuthor)
+  }, [props]);
 
   //open & close text field
   const handleTextfield = () => {
