@@ -33,10 +33,10 @@ function Mainpage() {
     let posts = [];
     postService.getData(user).then(data => {
       console.log(data);
-      // setHeader(data.header);
-      // setAvatar(data.avatar);
-      // posts = data.posts.map(item=>item)
-      // setPost(posts);
+      setHeader(data.header);
+      setAvatar(data.avatar);
+      posts = data.posts.map(item=>item)
+      setPost(posts);
     });
   };
 

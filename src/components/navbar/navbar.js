@@ -5,6 +5,7 @@ import "./navbar.css";
 
 const Navbar = () => {
   const { isLogged, setIsLogged } = useContext(PostContext);
+  
   return (
     <div className="navbar">
       <Link className="nav-links" to="/">

@@ -100,17 +100,12 @@ apiRouter.get("/users/:user", (req, res) => {
     if (err) throw err;
     if (!user) console.log("NO USER");
     else{
-      //console.log(user)
-      console.log(req.session)//.passport.user)
-      //console.log(user._id)
-      
+      console.log(req.session.hasOwnProperty("passport"))
       //checking if user is visiting their own page 
       let isAuthor=false;
-      //if(req.session.passport.user && user._id==req.session.passport.user){
-      //  isAuthor=true
-      //}
-      
-      //let isAuthor = false;
+      if(req.session.hasOwnProperty("passport") && user._id==req.session.passport.user){
+       isAuthor=true
+      }
       let header = user.header;
       let avatar = user.avatar;
       let bio = user.bio;
