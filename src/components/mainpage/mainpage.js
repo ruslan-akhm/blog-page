@@ -19,9 +19,9 @@ function Mainpage() {
   const { post, setPost, header, setHeader, avatar, setAvatar } = useContext(
     PostContext
   );
-
+  const [isAuthor, setIsAuthor] = useState(false);
   const { user } = useParams();
-  
+
   useEffect(() => {
     getData(user);
   }, []);
@@ -29,13 +29,14 @@ function Mainpage() {
   //fetch posts (data.posts), header, avatar, bio;
   //also id to set isAuthor (create it in context) if user visits their own page
 
-  const getData = (user) => {
+  const getData = user => {
     let posts = [];
     postService.getData(user).then(data => {
       console.log(data);
+      setIsAuthor(data.isAuthor);
       setHeader(data.header);
       setAvatar(data.avatar);
-      posts = data.posts.map(item=>item)
+      posts = data.posts.map(item => item);
       setPost(posts);
     });
   };
@@ -47,9 +48,9 @@ function Mainpage() {
       <Navbar />
       <div id="page-main">
         <div id="personal-page">
-          <Header />
-          <Info />
-          <AddPost />
+          <Header isAuthor={isAuthor} />
+          <Info isAuthor={isAuthor} />
+          <AddPost isAuthor={isAuthor} />
           <Posts />
         </div>
       </div>

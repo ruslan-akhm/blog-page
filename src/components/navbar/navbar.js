@@ -5,8 +5,6 @@ import "./navbar.css";
 
 const Navbar = () => {
   
-  
-  
   const { isLogged, setIsLogged } = useContext(PostContext);
 
   return (
