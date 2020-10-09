@@ -100,4 +100,11 @@ authService.get("/logout", (req, res, next) => {
   res.json({ message: "You have logged out" });
 });
 
+authService.get("/authenticated", (req, res, next) => {
+  console.log("AUTHENTICATED");
+  let isAuth = req.isAuthenticated();
+  res.json({ isAuth: isAuth });
+});
+
+
 module.exports = authService;

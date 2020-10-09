@@ -9,6 +9,7 @@ const multer = require("multer");
 const GridFSBucket = require("multer-gridfs-storage");
 const Grid = require("gridfs-stream");
 const path = require("path");
+const isAuthenticated = require('./authMiddleware').isAuthenticated;
 const mongoose = require("mongoose");
 var mongoURI = process.env.SECRET; //"mongodb+srv://ruslan-akhm:zuaGc0VJ@cluster0-y5h11.mongodb.net/test?retryWrites=true&w=majority"
 mongoose.connect(mongoURI, {
@@ -92,9 +93,9 @@ apiRouter.get("/", (req, res) => {
 });
 
 //LOAD USER INFO HERE
-apiRouter.get("/users/:user", (req, res) => {
+apiRouter.get("/users/:user", isAuthenticated, (req, res, next) => {
   const id = req.params.user;
-  //console.log(id)
+  
   //console.log(passport.session().passport.user)
   User.findOne({ userID: id }, (err, user) => {
     if (err) throw err;
@@ -110,10 +111,11 @@ apiRouter.get("/users/:user", (req, res) => {
       let avatar = user.avatar;
       let bio = user.bio;
       let posts = user.posts;
-      res.json({header: header, avatar:avatar, bio:bio, posts:posts, isAuthor:isAuthor})
+      res.json({header: header, avatar:avatar, bio:bio, posts:posts, isAuthor:isAuthor, id:id})
     } 
   });
 });
+
 
 //Set Header image
 apiRouter.post("/upload", upload.single("upfile"), (req, res) => {

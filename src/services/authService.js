@@ -25,5 +25,10 @@ export default {
     return fetch("/api/auth/logout")
       .then(res => res.json())
       .then(data => data);
+  },
+  authenticated: ()=>{
+    return fetch("/api/auth/authenticated")
+      .then(res => res.json())
+      .then(data => data);
   }
 }
