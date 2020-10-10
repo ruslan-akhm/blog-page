@@ -51,7 +51,7 @@ const upload = multer({ storage });
 ///HERE HAVE TO LOAD USER (OR HOMEPAGE IN FACT) and not links to images and stuff
 apiRouter.get("/", (req, res) => {
   //res.redirect("https://appnew-test-sample.glitch.me/login")
-console.log("HERE WE ARE FUCK")
+console.log("HERE WE ARE at homepage")
   User.find().exec((err, users) => {
     if (err) return console.log(err);
     if (!users)

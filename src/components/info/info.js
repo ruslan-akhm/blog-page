@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react'
+import { useParams } from "react-router-dom";
 import { PostContext } from '../../context/postContext'
 import postService from '../../services/postService'
 import './info.css'
@@ -6,12 +7,15 @@ import './info.css'
 function Info(){
   
   const {avatar,setAvatar, bio, setBio} = useContext(PostContext);
+  const { user } = useParams();
+  console.log(user);
   
-  const updateAvatar=(e)=>{
+  const updateAvatar=(e, user)=>{
     e.preventDefault();
     let fd = new FormData();
     let avatarImage = document.getElementById("avatarfile").files[0];
     fd.append("avatarfile", avatarImage);
+    fd.append("avatarfile", user);
     postService.updateAvatar(fd).then(data=>{
       setAvatar(data.avatar)
     })

@@ -54,7 +54,7 @@ function AddPost(props) {
 
   const addPost = e => {
     e.preventDefault();
-    document.getElementById("loading-anim").style.display = "block";
+    document.getElementById("loading-anim").style.display = "block";//turn on loading animation
     const fd = new FormData();
     const attachments = imagePreview; //document.getElementById("attachments");
     if (attachments !== null) {

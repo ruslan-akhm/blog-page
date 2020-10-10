@@ -16,7 +16,7 @@ import "./mainpage.css";
 //IMAGES ARE CALLED FROM APPNEW-TEST-SAMPLE  -  FIX!!!!!!!!!!!!!!!!!!!!!
 
 function Mainpage() {
-  const { post, setPost, header, setHeader, avatar, setAvatar } = useContext(
+  const { post, setPost, header, setHeader, avatar, setAvatar, bio, setBio } = useContext(
     PostContext
   );
   const [isAuthor, setIsAuthor] = useState(false);
@@ -36,6 +36,7 @@ function Mainpage() {
       setIsAuthor(data.isAuthor);
       setHeader(data.header);
       setAvatar(data.avatar);
+      setBio(data.bio);
       posts = data.posts.map(item => item);
       setPost(posts);
     });
