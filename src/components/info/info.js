@@ -7,6 +7,7 @@ import "./info.css";
 function Info(props) {
   const { avatar, setAvatar, bio, setBio } = useContext(PostContext);
   const { user } = useParams();
+  console.log(user);
   const [isAuthor, setIsAuthor] = useState();
 
   useEffect(() => {
@@ -18,7 +19,10 @@ function Info(props) {
     let fd = new FormData();
     let avatarImage = document.getElementById("avatarfile").files[0];
     fd.append("avatarfile", avatarImage);
+    console.log(fd);
+    console.log(user);
     fd.append("avatarfile", user);
+    
     postService.updateAvatar(fd).then(data => {
       console.log(data);
       setAvatar(data.avatar);

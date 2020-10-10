@@ -102,7 +102,7 @@ apiRouter.get("/users/:user", (req, res, next) => {
     if (err) throw err;
     if (!user) console.log("NO USER");
     else {
-      console.log(req.session.hasOwnProperty("passport"));
+      //console.log(req.session.hasOwnProperty("passport"));
       //checking if user is visiting their own page
       let isAuthor = false;
       if (
@@ -138,7 +138,10 @@ apiRouter.post("/upload", upload.single("upfile"), (req, res) => {
 
 //Set Avatar
 apiRouter.post("/avatar", upload.single("avatarfile"), (req, res) => {
-  console.log(req.body)
+  console.log("UPLOAD AVATAR")
+  console.log(req.file);
+  console.log(req.body.attachments);
+  console.log(req.body.avatarfile);
   const fileObject = req.file;
   const userID = req.body.user;
   User.findOne({ userID: userID }, (err, user) => {
