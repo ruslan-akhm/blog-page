@@ -51,7 +51,7 @@ const upload = multer({ storage });
 ///HERE HAVE TO LOAD USER (OR HOMEPAGE IN FACT) and not links to images and stuff
 apiRouter.get("/", (req, res) => {
   //res.redirect("https://appnew-test-sample.glitch.me/login")
-console.log("HERE WE ARE at homepage")
+  console.log("HERE WE ARE at homepage");
   User.find().exec((err, users) => {
     if (err) return console.log(err);
     if (!users)
@@ -67,7 +67,7 @@ console.log("HERE WE ARE at homepage")
       });
       //console.log(usersInfo)
       //console.log("sending JSON")
-      res.json({usersInfo})
+      res.json({ usersInfo });
     }
   });
 
@@ -96,27 +96,36 @@ console.log("HERE WE ARE at homepage")
 //LOAD USER INFO HERE
 apiRouter.get("/users/:user", (req, res, next) => {
   const id = req.params.user;
-  
+
   //console.log(passport.session().passport.user)
   User.findOne({ userID: id }, (err, user) => {
     if (err) throw err;
     if (!user) console.log("NO USER");
-    else{
-      console.log(req.session.hasOwnProperty("passport"))
-      //checking if user is visiting their own page 
-      let isAuthor=false;
-      if(req.session.hasOwnProperty("passport") && user._id==req.session.passport.user){
-       isAuthor=true
+    else {
+      console.log(req.session.hasOwnProperty("passport"));
+      //checking if user is visiting their own page
+      let isAuthor = false;
+      if (
+        req.session.hasOwnProperty("passport") &&
+        user._id == req.session.passport.user
+      ) {
+        isAuthor = true;
       }
       let header = user.header;
       let avatar = user.avatar;
       let bio = user.bio;
       let posts = user.posts;
-      res.json({header: header, avatar:avatar, bio:bio, posts:posts, isAuthor:isAuthor, id:id})
-    } 
+      res.json({
+        header: header,
+        avatar: avatar,
+        bio: bio,
+        posts: posts,
+        isAuthor: isAuthor,
+        id: id
+      });
+    }
   });
 });
-
 
 //Set Header image
 apiRouter.post("/upload", upload.single("upfile"), (req, res) => {
@@ -129,11 +138,31 @@ apiRouter.post("/upload", upload.single("upfile"), (req, res) => {
 
 //Set Avatar
 apiRouter.post("/avatar", upload.single("avatarfile"), (req, res) => {
+  console.log(req.body)
   const fileObject = req.file;
-  return res.json({
-    avatar:
-      "https://appnew-test-sample.glitch.me/api/image/" + fileObject.filename
+  const userID = req.body.user;
+  User.findOne({ userID: userID }, (err, user) => {
+    if (err) return console.log(err);
+    if (!user) res.json({ message: "Error! Unable to access user page" });
+    else {
+      if (!req.session.hasOwnProperty("passport") || user._id !== req.session.passport.user ){
+        res.json({message:"You are not authorized to edit this page"})
+        return
+      }
+      user.avatar =
+        "https://appnew-test-sample.glitch.me/api/image/" + fileObject.filename;
+      user.save();
+      res.json({
+        avatar:
+          "https://appnew-test-sample.glitch.me/api/image/" +
+          fileObject.filename
+      });
+    }
   });
+  // return res.json({
+  //   avatar:
+  //     "https://appnew-test-sample.glitch.me/api/image/" + fileObject.filename
+  // });
 });
 
 apiRouter.post("/bio", (req, res) => {
