@@ -31,7 +31,7 @@ const Login = () => {
       if (data.successLogin) {
         setIsLogged(true);
         //console.log(from)
-        history.replace("/");
+        history.replace("/"+data.userID);
       }
       // if (!data.msgError) {
       //   setTimeout(() => {

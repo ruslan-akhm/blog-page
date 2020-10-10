@@ -7,21 +7,25 @@ import "./info.css";
 function Info(props) {
   const { avatar, setAvatar, bio, setBio } = useContext(PostContext);
   const { user } = useParams();
-  console.log(user);
   const [isAuthor, setIsAuthor] = useState();
+  const [userID, setUserID] = useState();
+  
+  useEffect(()=>{
+    setUserID(user)
+  },[])
 
   useEffect(() => {
     setIsAuthor(props.isAuthor);
   }, [props]);
 
-  const updateAvatar = (e, user) => {
+  const updateAvatar = (e) => {
     e.preventDefault();
     let fd = new FormData();
     let avatarImage = document.getElementById("avatarfile").files[0];
     fd.append("avatarfile", avatarImage);
     console.log(fd);
-    console.log(user);
-    fd.append("avatarfile", user);
+    console.log(userID);
+    fd.append("avatarfile", userID);
     
     postService.updateAvatar(fd).then(data => {
       console.log(data);

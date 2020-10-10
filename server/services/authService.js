@@ -21,12 +21,11 @@ authService.post("/login", (req, res, next) => {
     console.log(user);
     if (err) throw err;
     if (!user) {
-      //console.log(info.message)//look here for message from passport-config
-      res.json({ message: info.message }); //fix this according to info.message
+      res.json({ message: info.message });
     } else {
       req.logIn(user, err => {
         if (err) throw err;
-        res.json({ message: "succesfully logged in", successLogin: true });
+        res.json({ message: "succesfully logged in", successLogin: true, userID:user.userID });
         //console.log(req.user)
       });
     }
