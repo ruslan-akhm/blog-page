@@ -139,21 +139,20 @@ apiRouter.post("/upload", upload.single("upfile"), (req, res) => {
 //Set Avatar
 apiRouter.post("/avatar", upload.single("avatarfile"), (req, res) => {
   console.log("UPLOAD AVATAR")
-  //console.log(req.file);
-  //console.log(req.body.avatarfile);
+  
+  const sessionID = req.session.passport.user; 
   const fileObject = req.file;
   const userID = req.body.avatarfile;
   User.findOne({ userID: userID }, (err, user) => {
     if (err) return console.log(err);
-    console.log(req.session.hasOwnProperty("passport"));
-    console.log(user._id);
-    console.log(req.session.passport.user);
-    console.log(user._id == req.session.passport.user)
-    console.log("IT WAS passport an _id");
-    
     if (!user) res.json({ message: "Error! Unable to access user page" });
     else {
-      if (req.session.hasOwnProperty("passport") || user._id !== req.session.passport.user){
+      console.log(req.session.hasOwnProperty("passport"));
+      console.log(typeof user._id);
+      console.log(typeof req.session.passport.user);
+      console.log(user._id.toString() === req.session.passport.user)
+      console.log("IT WAS passport an _id");
+      if (req.session.hasOwnProperty("passport") && !(user._id === req.session.passport.user)){
         console.log(user._id !== req.session.passport.user)
         res.json({message:"You are not authorized to edit this page"})
         return
