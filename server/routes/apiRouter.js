@@ -147,10 +147,14 @@ apiRouter.post("/avatar", upload.single("avatarfile"), (req, res) => {
     if (err) return console.log(err);
     console.log(req.session.hasOwnProperty("passport"));
     console.log(user._id);
-    console.log("IT WAS passport an _id")
+    console.log(req.session.passport.user);
+    console.log(user._id == req.session.passport.user)
+    console.log("IT WAS passport an _id");
+    
     if (!user) res.json({ message: "Error! Unable to access user page" });
     else {
-      if (!req.session.hasOwnProperty("passport") || user._id !== req.session.passport.user ){
+      if (req.session.hasOwnProperty("passport") || user._id !== req.session.passport.user){
+        console.log(user._id !== req.session.passport.user)
         res.json({message:"You are not authorized to edit this page"})
         return
       }
