@@ -127,7 +127,7 @@ apiRouter.get("/users/:user", (req, res, next) => {
   });
 });
 
-//Set Header image
+//upload Header image
 apiRouter.post("/upload", upload.single("upfile"), (req, res) => {
   const fileObject = req.file;
   const userID = req.body.upfile;
@@ -153,10 +153,6 @@ apiRouter.post("/upload", upload.single("upfile"), (req, res) => {
       });
     }
   })
-  // return res.json({
-  //   header:
-  //     "https://appnew-test-sample.glitch.me/api/image/" + fileObject.filename
-  // });
 });
 
 //Upload Avatar

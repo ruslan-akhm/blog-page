@@ -18,9 +18,7 @@ const Settings = () => {
     bio,
     setBio,
     isLogged,
-    setIsLogged,
-    userID,
-    setUserID
+    setIsLogged
   } = useContext(PostContext);
   const [updatedBio, setUpdatedBio] = useState({ name: "", highlights: [], info: "" }); //show whatever is in our bio already
   const [message, setMessage] = useState();
