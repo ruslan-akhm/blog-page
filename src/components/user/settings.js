@@ -22,9 +22,11 @@ const Settings = () => {
     userID,
     setUserID
   } = useContext(PostContext);
-  const [updatedBio, setUpdatedBio] = useState(bio); //show whatever is in our bio already
+  const [updatedBio, setUpdatedBio] = useState({ name: "", highlights: [], info: "" }); //show whatever is in our bio already
   const [message, setMessage] = useState();
   let history = useHistory();
+  
+  
 
   const inputChange = e => {
     if (e.target.name == "name" || e.target.name == "info") {
