@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import Navbar from "../navbar/navbar";
 import Footer from "../footer/footer";
 import postService from "../../services/postService";
-//import { PostContext } from '../../context/postContext'
+import { PostContext } from '../../context/postContext'
 import "./homepage.css";
 
 //need to store userID or _id on cookie; also /users/:user, where :user is = that id;
@@ -11,13 +11,14 @@ import "./homepage.css";
 //IMAGES ARE CALLED FROM APPNEW-TEST-SAMPLE  -  FIX!!!!!!!!!!!!!!!!!!!!!
 
 function Homepage() {
-  //const {post,setPost,header,setHeader,avatar,setAvatar} = useContext(PostContext);
+  const {userID, setUserID} = useContext(PostContext);
   const [filter, setFilter] = useState();
   const [users, setUsers] = useState();
   const [list, setList] = useState(users);
 
   useEffect(() => {
     getData();
+    console.log(userID)
   }, []);
 
   //get list of users (avatar, name)

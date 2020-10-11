@@ -7,7 +7,7 @@ import authService from "../../services/authService";
 import "./auth.css";
 
 const Login = () => {
-  const { isLogged, setIsLogged } = useContext(PostContext);
+  const { isLogged, setIsLogged, userID, setUserID } = useContext(PostContext);
   const [user, setUser] = useState({ email: "", password: "" });
   const [message, setMessage] = useState("");
 
@@ -30,6 +30,7 @@ const Login = () => {
       setMessage(data.message);
       if (data.successLogin) {
         setIsLogged(true);
+        setUserID(data.userID)
         //console.log(from)
         history.replace("/users/"+data.userID);
       }

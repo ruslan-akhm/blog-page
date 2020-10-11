@@ -8,28 +8,23 @@ import postService from "../../services/postService";
 import "./settings.css";
 
 const Settings = () => {
-  const { post,
-          setPost,
-          header,
-          setHeader,
-          avatar,
-          setAvatar,
-          bio,
-          setBio,
-          isLogged,
-          setIsLogged } = useContext(PostContext);
+  const {
+    post,
+    setPost,
+    header,
+    setHeader,
+    avatar,
+    setAvatar,
+    bio,
+    setBio,
+    isLogged,
+    setIsLogged,
+    userID,
+    setUserID
+  } = useContext(PostContext);
   const [updatedBio, setUpdatedBio] = useState(bio); //show whatever is in our bio already
-  const [ message, setMessage ] = useState();
+  const [message, setMessage] = useState();
   let history = useHistory();
-  
-  
-
-  //TURN THIS ON LATER
-  // useEffect(()=>{
-  //   if(!isLogged){
-  //     history.replace("/");
-  //   }
-  // },[isLogged])
 
   const inputChange = e => {
     if (e.target.name == "name" || e.target.name == "info") {
@@ -49,37 +44,37 @@ const Settings = () => {
     setUpdatedBio({ ...updatedBio, highlights: arrayOfHighlights });
   };
 
-  const update = (e) => {
-    console.log(updatedBio)
+  const update = e => {
+    console.log(updatedBio);
     e.preventDefault();
-    postService.updateBio(updatedBio).then(data=>{
+    postService.updateBio(updatedBio).then(data => {
       console.log(data);
-      if(data.success){
+      if (data.success) {
         setBio(updatedBio);
       }
-    })
-    
+    });
+
     setBio(updatedBio);
     //console.log(updatedBio);
   };
 
-  //hadle Logout and clear all page data 
-  const logout = (e) => {
+  //hadle Logout and clear all page data
+  const logout = e => {
     e.preventDefault();
     console.log("LOGOUT HERE");
-    authService.logout().then(data=>{
+    authService.logout().then(data => {
       console.log(data);
       setMessage(data.message);
       setIsLogged(false);
       setPost([]);
       setHeader("");
       setAvatar("");
-      setBio({ name:"", highlights: [], info: "" });
+      setBio({ name: "", highlights: [], info: "" });
+      setUserID("");
       setTimeout(() => {
-          history.replace("/");
-        }, 500);
-    })
-    
+        history.replace("/");
+      }, 500);
+    });
   };
   //   let history = useHistory();
 

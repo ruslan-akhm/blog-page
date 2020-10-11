@@ -5,13 +5,15 @@ import postService from "../../services/postService";
 import "./header.css";
 
 function Header(props) {
-  const { header, setHeader } = useContext(PostContext);
+  const { header, setHeader, userID, setUserID } = useContext(PostContext);
   const [isAuthor, setIsAuthor] = useState();
-  const [userID, setUserID] = useState();
+  //const [userID, setUserID] = useState();
   const { user } = useParams();
 
   useEffect(() => {
-    setUserID(user);
+    console.log("USER ID")
+    console.log(userID)
+    //setUserID(user);
   }, []);
 
   useEffect(() => {
