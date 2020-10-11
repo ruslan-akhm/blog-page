@@ -1,30 +1,49 @@
-import React, { useState, useContext } from 'react'
-import { PostContext } from '../../context/postContext'
-import postService from '../../services/postService'
-import './header.css'
+import React, { useState, useContext, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { PostContext } from "../../context/postContext";
+import postService from "../../services/postService";
+import "./header.css";
 
-function Header(){
-  
-  const {header,setHeader} = useContext(PostContext);
-  
-  console.log(header);
-  
-  const updateHeader=(e)=>{
+function Header(props) {
+  const { header, setHeader } = useContext(PostContext);
+  const [isAuthor, setIsAuthor] = useState();
+  const [userID, setUserID] = useState();
+  const { user } = useParams();
+
+  useEffect(() => {
+    setUserID(user);
+  }, []);
+
+  useEffect(() => {
+    setIsAuthor(props.isAuthor);
+  }, [props]);
+
+  const updateHeader = e => {
     e.preventDefault();
     let fd = new FormData();
     let headerImage = document.getElementById("upfile").files[0];
     fd.append("upfile", headerImage);
-    postService.updateHeader(fd).then(data=>{
-      setHeader(data.header)
-    })
-  }
-  
-  return(
+    fd.append("upfile", userID);
+    postService.updateHeader(fd).then(data => {
+      setHeader(data.header);
+    });
+  };
+
+  return (
     <div id="header">
       <img src={header} />
-        <input name="upfile" id="upfile" type="file" className="custom-input" accept="image/*" onChange={e=>updateHeader(e)} />
+      {isAuthor ? (
+        <input
+          name="upfile"
+          id="upfile"
+          type="file"
+          className="custom-input"
+          accept="image/*"
+          onChange={e => updateHeader(e)}
+        />
+      ) : null}
     </div>
-  )
+  );
 }
 
-export default Header
+export default Header;

@@ -130,10 +130,33 @@ apiRouter.get("/users/:user", (req, res, next) => {
 //Set Header image
 apiRouter.post("/upload", upload.single("upfile"), (req, res) => {
   const fileObject = req.file;
-  return res.json({
-    header:
-      "https://appnew-test-sample.glitch.me/api/image/" + fileObject.filename
-  });
+  const userID = req.body.upfile;
+  User.findOne({ userID: userID }, (err, user) => {
+    if (err) return console.log(err);
+    if (!user) res.json({ message: "Error! Unable to access user page" });
+    else {
+      //doublecheck if user is an Author
+      if (
+        req.session.hasOwnProperty("passport") &&
+        user._id.toString() !== req.session.passport.user
+      ) {
+        res.json({ message: "You are not authorized to edit this page" });
+        return;
+      }
+      user.header =
+        "https://appnew-test-sample.glitch.me/api/image/" + fileObject.filename;
+      user.save();
+      res.json({
+        header:
+          "https://appnew-test-sample.glitch.me/api/image/" +
+          fileObject.filename
+      });
+    }
+  })
+  // return res.json({
+  //   header:
+  //     "https://appnew-test-sample.glitch.me/api/image/" + fileObject.filename
+  // });
 });
 
 //Upload Avatar

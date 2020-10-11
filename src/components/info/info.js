@@ -23,10 +23,7 @@ function Info(props) {
     let fd = new FormData();
     let avatarImage = document.getElementById("avatarfile").files[0];
     fd.append("avatarfile", avatarImage);
-    console.log(fd);
-    console.log(userID);
     fd.append("avatarfile", userID);
-    
     postService.updateAvatar(fd).then(data => {
       console.log(data);
       setAvatar(data.avatar);
