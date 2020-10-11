@@ -8,10 +8,21 @@ import postService from "../../services/postService";
 import "./settings.css";
 
 const Settings = () => {
-  const { isLogged, setIsLogged, bio, setBio } = useContext(PostContext);
+  const { post,
+          setPost,
+          header,
+          setHeader,
+          avatar,
+          setAvatar,
+          bio,
+          setBio,
+          isLogged,
+          setIsLogged } = useContext(PostContext);
   const [updatedBio, setUpdatedBio] = useState(bio); //show whatever is in our bio already
   const [ message, setMessage ] = useState();
   let history = useHistory();
+  
+  
 
   //TURN THIS ON LATER
   // useEffect(()=>{
@@ -52,6 +63,7 @@ const Settings = () => {
     //console.log(updatedBio);
   };
 
+  //hadle Logout and clear all page data 
   const logout = (e) => {
     e.preventDefault();
     console.log("LOGOUT HERE");
@@ -59,9 +71,13 @@ const Settings = () => {
       console.log(data);
       setMessage(data.message);
       setIsLogged(false);
+      setPost([]);
+      setHeader("");
+      setAvatar("");
+      setBio({ name:"", highlights: [], info: "" });
       setTimeout(() => {
           history.replace("/");
-        }, 1000);
+        }, 500);
     })
     
   };

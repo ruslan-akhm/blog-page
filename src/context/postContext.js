@@ -9,6 +9,7 @@ export const PostProvider = ({ children }) => {
   const [avatar, setAvatar] = useState("");
   const [bio, setBio] = useState({ name:"", highlights: [], info: "" });//["","",""]
   const [isLogged, setIsLogged] = useState();
+  const [userID]
   
   useEffect(()=>{
         AuthService.isAuthenticated().then(data=>{
