@@ -61,6 +61,7 @@ export default {
   //     .then(data => data);
   // },
   addPost: fd => {
+    console.log(fd)
     return fetch("/api/post", {
       method: "POST",
       headers: {

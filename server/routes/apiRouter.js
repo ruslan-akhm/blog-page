@@ -198,7 +198,8 @@ apiRouter.post("/bio", (req, res) => {
 });
 
 //Add new posts
-apiRouter.post("/post", upload.array("attachments", 5), (req, res) => {
+apiRouter.post("/post", upload.array("attachments", 5), (req, res, next) => {
+  console.log("UPLOADING NEW POSSTS")
   console.log(req.session);
   const files = req.files;
   const filenames = files.map(fileObject => {
