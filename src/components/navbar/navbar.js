@@ -4,14 +4,14 @@ import { Link, useHistory } from "react-router-dom";
 //import { BrowserRouter as Router, Switch, Link, Route } from "react-router-dom";
 import "./navbar.css";
 
-const Navbar = (props) => {
+const Navbar = () => {
   const { isLogged, setIsLogged, authorID, setAuthorID } = useContext(
     PostContext
   );
   
   useEffect(()=>{
     console.log("NAVBAR AUTHOR ID ")
-      console.log(props)
+      
   },[])
   //const [myPage, setMyPage] = useState("");
   //let history = useHistory();
@@ -32,7 +32,7 @@ const Navbar = (props) => {
         #PersonalBlog
       </Link>
        {!isLogged ? null : (
-        <Link className="nav-links" to="/users/c0Jtld01M">
+        <Link className="nav-links" to={`/users/${authorID}`}>
           my page
         </Link>
       )} 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
-import { BrowserRouter as Router, Switch, Link, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Link, Route, withRouter } from "react-router-dom";
 //import AuthService from "./services/authService";
-import { PostContext } from "./context/postContext";
+//import { PostContext } from "./context/postContext";
 import "./App.css";
 import Homepage from "./components/homepage/homepage";
 import Mainpage from "./components/mainpage/mainpage";
@@ -10,17 +10,9 @@ import Register from "./components/auth/register";
 import Settings from "./components/user/settings";
 
 const App = () => {
-  //const { authorID, setAuthorID } = useContext(PostContext);
+  //const { isLogged, setIsLogged, authorID, setAuthorID } = useContext(PostContext);
 
-  useEffect(()=>{
-    AuthService.isAuthenticated().then(data => {
-      //setUser(data.user);
-      console.log(data.authorID)
-      setIsLogged(data.isAuth);
-      setAuthorID(data.authorID)
-      //setIsLoaded(true);
-    });
-  },[])
+//render={() => <Mainpage />}
 
   return (
     <Router>
@@ -29,7 +21,7 @@ const App = () => {
         <Route path="/login" exact component={Login} />
         <Route path="/register" exact component={Register} />
         <Route path="/settings" exact component={Settings} />
-        <Route path="/users/:user" exact render={() => <Mainpage />} />
+        <Route path="/users/:user" exact  component={withRouter(Mainpage)}/>
       </Switch>
     </Router>
   );
