@@ -10,8 +10,9 @@ export default {
       .then(data => data);
   },
   removePost: id => {
+    console.log(id)
     return fetch("/api/delete", {
-      method: "DELETE",
+      method: "POST",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json"

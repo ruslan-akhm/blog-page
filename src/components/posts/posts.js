@@ -13,6 +13,7 @@ function Posts(props) {
   }, [props]);
 
   useEffect(() => {
+    console.log(post);
     console.log(isAuthor)
     document.getElementById("list").innerHTML = "";
     let posts = [];
@@ -36,6 +37,7 @@ function Posts(props) {
         });
       }
       //OBJECT FOR EVERY POST FOR FUTURE REFERENCE
+      console.log(closeId);
       const newPost = {
         _id: item._id,
         text: item.text,
@@ -68,12 +70,14 @@ function Posts(props) {
   const modifyText = e => {
     let newList;
     let newPosts;
+    console.log(e.target.id, typeof e.target.id)
     list.map(p => {
       if (e.target.id == p.textId) {
         //EXPAND TEXT
         document.getElementById(e.target.id).style.display = "none";
         return (document.getElementsByName(e.target.id)[0].innerText = p.text);
       } else if (e.target.id == p.closeId) {
+        console.log(p.closeId, typeof p.closeId)
         //DELETE POST
         postService.removePost(p._id).then(data => {
           newList = list.filter(item => {

@@ -284,7 +284,7 @@ apiRouter.get("/image/:filename", (req, res) => {
 });
 
 //Delete Post WORK ON THIS TOO
-apiRouter.delete("/delete", (req, res) => {
+apiRouter.post("/delete", (req, res) => {
   console.log(req.body);
   // const _id = req.body.id;
   // Post.deleteOne({ _id: _id }, (err, data) => {
