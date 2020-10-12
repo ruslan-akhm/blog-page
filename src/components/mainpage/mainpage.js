@@ -49,7 +49,7 @@ function Mainpage() {
           <Header isAuthor={isAuthor} />
           <Info isAuthor={isAuthor} />
           <AddPost isAuthor={isAuthor} />
-          <Posts />
+          <Posts isAuthor={isAuthor} />
         </div>
       </div>
     </div>

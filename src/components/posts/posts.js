@@ -3,10 +3,11 @@ import { PostContext } from '../../context/postContext'
 import postService from '../../services/postService'
 import './posts.css'
 
-function Posts(){
+function Posts(props){
   
   const {post,setPost,avatar,setAvatar} = useContext(PostContext);
   const [list, setList] = useState();
+  const [isAuthor, setIsAuthor] = useState();
   
   useEffect(()=>{
     document.getElementById("list").innerHTML='';

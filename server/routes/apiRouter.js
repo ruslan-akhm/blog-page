@@ -239,17 +239,6 @@ apiRouter.post("/post", upload.array("attachments", 5), (req, res, next) => {
       return res.json(response);
     }
   })
-  
-  // post.save();
-  // const response = {
-  //   _id: post._id,
-  //   title: post.title,
-  //   text: post.text,
-  //   datePosted: post.datePosted,
-  //   postId: post.postId,
-  //   files: filenames
-  // };
-  // return res.json(response);
 });
 
 //Find all files in collection
