@@ -27,7 +27,8 @@ function Mainpage() {
 
   useEffect(() => {
     getData(user);
-    console.log("RE-RENDERING!!!")
+    console.log("RE-RENDERING!!!");
+    console.log(user)
   }, []);
 
   //get all the data of the user

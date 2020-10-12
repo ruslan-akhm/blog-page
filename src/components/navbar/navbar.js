@@ -8,17 +8,17 @@ const Navbar = () => {
   const { isLogged, setIsLogged, authorID, setAuthorID } = useContext(
     PostContext
   );
-  const [myPage, setMyPage] = useState("");
+  //const [myPage, setMyPage] = useState("");
   let history = useHistory();
   
-  useEffect(()=>{
-    setMyPage("/users/"+authorID);
-  },[authorID])
+  // useEffect(()=>{
+  //   setMyPage("/users/"+authorID);
+  // },[authorID])
   
-  const toPage = () =>{
-    console.log("PUSHING TO MY PAGE")
-    history.push("/users/c0Jtld01M")
-  }
+  // const toPage = () =>{
+  //   console.log("PUSHING TO MY PAGE")
+  //   history.push("/users/c0Jtld01M")
+  // }
 
   return (
    
@@ -27,7 +27,7 @@ const Navbar = () => {
         #PersonalBlog
       </Link>
        {!isLogged ? null : (
-        <Link className="nav-links" onClick={toPage}>
+        <Link className="nav-links" to="/users/c0Jtld01M">
           my page
         </Link>
       )} 

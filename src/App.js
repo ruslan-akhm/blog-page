@@ -11,7 +11,7 @@ import Settings from "./components/user/settings";
 
 const App = () => {
   //const { authorID, setAuthorID } = useContext(PostContext);
-  
+
   // useEffect(()=>{
   //   console.log("AUTHOR IS ")
   //   AuthService.getAuthor().then(data=>{
