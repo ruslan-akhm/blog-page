@@ -145,6 +145,23 @@ authService.get("/settings", (req, res) => {
     });
     //res.json({message:"Received updated bio"})
   });
+  authService.get("/author", (req, res) => {
+    console.log("getting AUTHOR")
+    if (req.session.hasOwnProperty("passport") == false) {
+      res.json({ message: "You are not logged in", success: false });
+      return;
+    } else {
+      const id = req.session.passport.user;
+      User.findOne({ _id: id }, (err, user) => {
+        if (err) return console.log(err);
+        if (!user)
+          return res.json({ message: "No user found with this credentials" });
+        else {
+          return res.json({authorID:user.userID})
+        }
+      });
+    }
+  });
 });
 
 module.exports = authService;
