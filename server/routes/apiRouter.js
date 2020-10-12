@@ -215,7 +215,7 @@ apiRouter.post("/post", upload.array("attachments", 5), (req, res, next) => {
     if (err) return console.log(err);
     if (!user) res.json({ message: "Error! Unable to access user page" });
     else{
-      let post = {
+      let newPost = {
         title: data[0],
         text: data[1],
         postId: "post-id-" + shortid.generate(),
@@ -224,19 +224,21 @@ apiRouter.post("/post", upload.array("attachments", 5), (req, res, next) => {
         default: false,
         files: filenames
       };
-      console.log("POST IS "+post)
-      console.log(typeof post)
-      user.posts.push(post);
+      user.posts.push(newPost);
       user.save();
-      const response = {
-        _id: post._id,
-        title: post.title,
-        text: post.text,
-        datePosted: post.datePosted,
-        postId: post.postId,
-        files: filenames
-      };
-      return res.json(response);
+      let latestPost = user.posts.filter(post=>{
+        return post.postId == newPost.postId;
+      })
+      // const response = {
+      //   _id: post._id,
+      //   title: post.title,
+      //   text: post.text,
+      //   datePosted: post.datePosted,
+      //   postId: post.postId,
+      //   files: filenames
+      // };
+      console.log(latestPost);
+      return res.json(latestPost && latestPost[0]);
     }
   })
 });
