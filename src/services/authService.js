@@ -37,7 +37,7 @@ export default {
       .then(data => data);
   },
   postSettings: newBio => {
-    return fetch("/api/auth/login", {
+    return fetch("/api/auth/settings", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

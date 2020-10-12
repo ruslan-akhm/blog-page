@@ -25,7 +25,11 @@ authService.post("/login", (req, res, next) => {
     } else {
       req.logIn(user, err => {
         if (err) throw err;
-        res.json({ message: "succesfully logged in", successLogin: true, userID:user.userID });
+        res.json({
+          message: "succesfully logged in",
+          successLogin: true,
+          userID: user.userID
+        });
         //console.log(req.user)
       });
     }
@@ -73,8 +77,8 @@ authService.post("/register", async (req, res) => {
               "https://appnew-test-sample.glitch.me/api/image/image-9513c017d3a1ef643530736d721e9522.jpg",
             bio: {
               name: username,
-              highlights:[],
-              info:""
+              highlights: [],
+              info: ""
             }
           });
           newUser.save(err => {
@@ -106,25 +110,41 @@ authService.get("/authenticated", (req, res, next) => {
   res.json({ isAuth: isAuth });
 });
 
-authService.get("/settings", (req,res)=>{
-  if(req.session.hasOwnProperty("passport")==false){
-    res.json({message:"You are not logged in", success:false})
-    return
+authService.get("/settings", (req, res) => {
+  if (req.session.hasOwnProperty("passport") == false) {
+    res.json({ message: "You are not logged in", success: false });
+    return;
   }
-  const id = req.session.passport.user
-  User.findOne({_id: id}, (err, user)=>{
-    if(err) return console.log(err);
-    if(!user) return res.json({message:"Can not access user's settings"})
-    else{
-      res.json({settings: user.bio})
+  const id = req.session.passport.user;
+  User.findOne({ _id: id }, (err, user) => {
+    if (err) return console.log(err);
+    if (!user) return res.json({ message: "Can not access user's settings" });
+    else {
+      res.json({ settings: user.bio });
     }
-  })
+  });
 
-authService.post("/settings", (req,res)=>{
-  console.log(req.body);
-  
-})  
-  
-})
+  authService.post("/settings", (req, res) => {
+    console.log(req.body);
+    if (req.session.hasOwnProperty("passport") == false) {
+      res.json({ message: "You are not logged in", success: false });
+      return;
+    }
+    const { highlights, name, info } = req.body;
+    const id = req.session.passport.user;
+    User.findOne({ _id: id }, (err, user) => {
+      if (err) return console.log(err);
+      if (!user) return res.json({ message: "Can not access user's settings" });
+      else {
+        user.bio.highlights = highlights;
+        user.bio.name = name;
+        user.bio.info = info;
+        user.save();
+        res.json({ settings: user.bio, userID:user. success:true });
+      }
+    });
+    //res.json({message:"Received updated bio"})
+  });
+});
 
 module.exports = authService;

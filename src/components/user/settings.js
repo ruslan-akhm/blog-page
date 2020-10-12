@@ -27,6 +27,9 @@ const Settings = () => {
   useEffect(()=>{
     authService.getSettings().then(data=>{
       console.log(data);
+      if(data.success==false){
+        history.replace("/");
+      }
       setUpdatedBio(data.settings)
     })
   },[])
@@ -56,9 +59,10 @@ const Settings = () => {
     e.preventDefault();
     authService.postSettings(updatedBio).then(data => {
       console.log(data);
-      //if (data.success) {
-        //setBio(updatedBio);
-      //}
+      if (data.success) {
+        setBio(updatedBio);
+        history.replace("/users/"+data.userID);
+      }
     });
 
     //etBio(updatedBio);
@@ -76,7 +80,7 @@ const Settings = () => {
       setPost([]);
       setHeader("");
       setAvatar("");
-      //setBio({ name: "", highlights: [], info: "" });
+      setBio({ name: "", highlights: [], info: "" });
       setUpdatedBio({ name: "", highlights: [], info: "" });
       
       //setUserID("");
