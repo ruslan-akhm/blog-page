@@ -12,12 +12,15 @@ import Settings from "./components/user/settings";
 const App = () => {
   //const { authorID, setAuthorID } = useContext(PostContext);
 
-  // useEffect(()=>{
-  //   console.log("AUTHOR IS ")
-  //   AuthService.getAuthor().then(data=>{
-  //     console.log(data);
-  //   })
-  // },[])
+  useEffect(()=>{
+    AuthService.isAuthenticated().then(data => {
+      //setUser(data.user);
+      console.log(data.authorID)
+      setIsLogged(data.isAuth);
+      setAuthorID(data.authorID)
+      //setIsLoaded(true);
+    });
+  },[])
 
   return (
     <Router>

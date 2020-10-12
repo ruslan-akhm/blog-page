@@ -20,7 +20,9 @@ function Mainpage() {
     avatar,
     setAvatar,
     bio,
-    setBio
+    setBio,
+    authorID,
+    setAuthorID
   } = useContext(PostContext);
   const [isAuthor, setIsAuthor] = useState(false);
   const { user } = useParams();
@@ -28,7 +30,7 @@ function Mainpage() {
   useEffect(() => {
     getData(user);
     console.log("RE-RENDERING!!!");
-    console.log(user)
+    console.log(authorID)
   }, []);
 
   //get all the data of the user
@@ -46,7 +48,7 @@ function Mainpage() {
 
   return (
     <div>
-      <Navbar />
+      <Navbar props={authorID}/>
       <div id="page-main">
         <div id="personal-page">
           <Header isAuthor={isAuthor} />
