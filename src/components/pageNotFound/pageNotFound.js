@@ -1,0 +1,9 @@
+import React from 'react'
+
+function PageNotFound(){
+  return(
+  <div>404 not found</div>
+  )
+}
+
+export default PageNotFound;

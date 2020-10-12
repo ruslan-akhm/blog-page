@@ -8,12 +8,10 @@ import Register from "./components/auth/register";
 import Settings from "./components/user/settings";
 import Navbar from "./components/navbar/navbar";
 import Footer from "./components/footer/footer";
+import PageNotFound from "./components/pageNotFound/pageNotFound";
 
 const App = () => {
- 
-  
-  
-  //NEED TO MAKE 404 ROUTE FOR ALL OTHERS 
+  //NEED TO MAKE 404 ROUTE FOR ALL OTHERS
 
   return (
     <Router>
@@ -23,7 +21,8 @@ const App = () => {
         <Route path="/login" exact component={Login} />
         <Route path="/register" exact component={Register} />
         <Route path="/settings" exact component={Settings} />
-        <Route path="/users/:user" exact  component={Mainpage}/>
+        <Route path="/users/:user" exact component={Mainpage} />
+        <Route path="*" exact component={PageNotFound} />
       </Switch>
       <Footer />
     </Router>
