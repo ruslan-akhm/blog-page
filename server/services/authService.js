@@ -72,7 +72,9 @@ authService.post("/register", async (req, res) => {
             avatar:
               "https://appnew-test-sample.glitch.me/api/image/image-9513c017d3a1ef643530736d721e9522.jpg",
             bio: {
-              name: username
+              name: username,
+              highlights:[],
+              info:""
             }
           });
           newUser.save(err => {
@@ -110,7 +112,15 @@ authService.get("/settings", (req,res,next)=>{
     res.json({message:"You are not logged in", success:false})
     return
   }
-  console.log(req.session.passport)
+  const id = req.session.passport.user
+  User.findOne({_id: id}, (err, user)=>{
+    if(err) return console.log(err);
+    if(!user) return res.json({message:"Can not access user's settings"})
+    else{
+      res.json({settings: user.bio})
+    }
+  })
+  
 })
 
 module.exports = authService;

@@ -27,6 +27,7 @@ const Settings = () => {
   useEffect(()=>{
     authService.getSettings().then(data=>{
       console.log(data);
+      //setUpdatedBio(data.settings)
     })
   },[])
   

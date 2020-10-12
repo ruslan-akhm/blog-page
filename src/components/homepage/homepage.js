@@ -83,7 +83,7 @@ function Homepage() {
           <div className="users-filter">
             <input type="text" onChange={inputChange} placeholder="find user" />
           </div>
-          <span>{list ? null : "No users found..."}</span>
+          <span>{list.length<1 ? "No users found..." : null}</span>
           <div className="users-list">
             <ul>{userList}</ul>
           </div>
