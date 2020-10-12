@@ -48,7 +48,7 @@ function Mainpage() {
 
   return (
     <div>
-      <Navbar/>
+     
       <div id="page-main">
         <div id="personal-page">
           <Header isAuthor={isAuthor} />

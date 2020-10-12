@@ -51,7 +51,7 @@ function Homepage() {
 
   return (
     <div>
-      <Navbar />
+      
       <div id="homepage">
         <h1>Welcome to Personal Blog page</h1>
         <div className="introduction">

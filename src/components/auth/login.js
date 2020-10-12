@@ -27,15 +27,15 @@ const Login = () => {
       setMessage(data.message);
       if (data.successLogin) {
         setIsLogged(true);
-        setUserID(data.userID)
-        history.replace("/users/"+data.userID);
+        setUserID(data.userID);
+        history.replace("/users/" + data.userID);
       }
     });
   };
- 
+
   return (
     <div>
-      <Navbar />
+      
       <div className="auth-main">
         <h1>Login</h1>
         <form onSubmit={login}>

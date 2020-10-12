@@ -1,17 +1,22 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Link, useHistory } from 'react-router-dom'
+import { Link, useHistory } from "react-router-dom";
 import Navbar from "../navbar/navbar";
 import Footer from "../footer/footer";
 import authService from "../../services/authService";
 import "./auth.css";
 
 const Register = () => {
-  const [user, setUser] = useState({ username: "", email:"", password: "", password2:"" });
+  const [user, setUser] = useState({
+    username: "",
+    email: "",
+    password: "",
+    password2: ""
+  });
   const [message, setMessage] = useState("");
   let history = useHistory();
 
   const resetForm = () => {
-    setUser({ username: "", email:"", password: "", password2:"" });
+    setUser({ username: "", email: "", password: "", password2: "" });
   };
 
   const handleInput = e => {
@@ -30,10 +35,10 @@ const Register = () => {
       }
     });
   };
-  
+
   return (
     <div>
-      <Navbar />
+      
       <div className="auth-main">
         <h1>Register</h1>
         <form onSubmit={register}>
@@ -74,7 +79,9 @@ const Register = () => {
           </div>
         </form>
         <div className="message">{message}</div>
-        <p>Have an account? <Link to="/login">Login</Link></p>
+        <p>
+          Have an account? <Link to="/login">Login</Link>
+        </p>
       </div>
       <Footer />
     </div>

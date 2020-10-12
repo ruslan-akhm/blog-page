@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext, useRef } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { PostContext } from "../../context/postContext";
 import { Link } from "react-router-dom";
 //import { BrowserRouter as Router, Switch, Link, Route } from "react-router-dom";
@@ -8,12 +8,7 @@ const Navbar = () => {
   const { isLogged, setIsLogged, authorID, setAuthorID } = useContext(
     PostContext
   );
- 
-  const suka = useRef();
-  
-  useEffect(()=>{
-    console.log(suka.current)
-  },[suka.current])
+
 
   return (
    
@@ -22,7 +17,7 @@ const Navbar = () => {
         #PersonalBlog
       </Link>
        {!isLogged ? null : (
-        <Link className="nav-links" to={`/users/${authorID}`} ref={suka}>
+        <Link className="nav-links" to={`/users/${authorID}`} >
           my page
         </Link>
       )} 
