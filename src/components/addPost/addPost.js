@@ -68,6 +68,7 @@ function AddPost(props) {
     fd.append("attachments", title);
     fd.append("attachments", text);
     postService.addPost(fd).then(data => {
+      console.log("ReSPONSE")
       console.log(data);
       let prevState = post;
       prevState = [data, ...post];

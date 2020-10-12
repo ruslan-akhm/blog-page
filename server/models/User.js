@@ -22,7 +22,7 @@ const UserSchema = new mongoose.Schema({
       title: String,
       text: String,
       postId: String,
-      datePosted: String,
+      datePosted: Date,
       type: String,
       default: Boolean,
       files: Array

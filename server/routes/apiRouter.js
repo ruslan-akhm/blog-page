@@ -199,8 +199,9 @@ apiRouter.post("/bio", (req, res) => {
 
 //Add new posts
 apiRouter.post("/post", upload.array("attachments", 5), (req, res, next) => {
-  console.log("UPLOADING NEW POSSTS")
-  console.log(req.session);
+  // console.log("UPLOADING NEW POSSTS")
+  // console.log(req.session);
+  const id = req.session.passport.user;
   const files = req.files;
   const filenames = files.map(fileObject => {
     return (
@@ -208,17 +209,35 @@ apiRouter.post("/post", upload.array("attachments", 5), (req, res, next) => {
     );
   });
   const data = req.body.attachments;
-  console.log(data);
-  console.log(filenames)
-  // let post = new Post({
-  //   title: data[0],
-  //   text: data[1],
-  //   postId: "post-id-" + shortid.generate(),
-  //   datePosted: Date.now(),
-  //   type: "post",
-  //   default: false,
-  //   files: filenames
-  // });
+  //console.log(data);
+  //console.log(filenames)
+  User.findOne({_id:id},(err,user)=>{
+    if (err) return console.log(err);
+    if (!user) res.json({ message: "Error! Unable to access user page" });
+    else{
+      let post = {
+        title: data[0],
+        text: data[1],
+        postId: "post-id-" + shortid.generate(),
+        datePosted: Date.now(),
+        type: "post",
+        default: false,
+        files: filenames
+      };
+      user.posts.push(post);
+      user.save();
+      const response = {
+        _id: post._id,
+        title: post.title,
+        text: post.text,
+        datePosted: post.datePosted,
+        postId: post.postId,
+        files: filenames
+      };
+      return res.json(response);
+    }
+  })
+  
   // post.save();
   // const response = {
   //   _id: post._id,
