@@ -5,11 +5,6 @@ import postService from "../../services/postService";
 import { PostContext } from '../../context/postContext'
 import "./homepage.css";
 
-//need to store userID or _id on cookie; also /users/:user, where :user is = that id;
-//then -> compare cookie.user.id and query param id, if the same - isAuthor(true);
-
-//IMAGES ARE CALLED FROM APPNEW-TEST-SAMPLE  -  FIX!!!!!!!!!!!!!!!!!!!!!
-
 function Homepage() {
   const {userID, setUserID} = useContext(PostContext);
   const [filter, setFilter] = useState();
@@ -18,34 +13,24 @@ function Homepage() {
 
   useEffect(() => {
     getData();
-    console.log(userID)
   }, []);
 
-  //get list of users (avatar, name)
+  //get list of users (avatar, name, number of posts)
   const getData = () => {
-    //let posts = [];
     postService.getAllUsers().then(data => {
       if (data.success == false) {
         return;
       }
-      //console.log(data.usersInfo);
       setUsers(data.usersInfo);
       setList(data.usersInfo);
-      //posts = data.data.map(item=>item)
-      //setPost(posts);
     });
   };
 
+  //handle filtering list of users!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   const inputChange = e => {
-    //console.log(e.target.value)
     setFilter(e.target.value);
-    //console.log(filter);
   };
 
-  //<Default />
-  
-  //add href to <a> (figure out the link (id/username) ) and ADD to res.json with usersInfo 
-  
   let userList =
     list &&
     list.map(user => {
@@ -81,7 +66,7 @@ function Homepage() {
         <p>Check out other users</p>
         <div className="users-box">
           <div className="users-filter">
-            <input type="text" onChange={inputChange} placeholder="find user" />
+            <input type="text" onChange={inputChange} placeholder="DOESNT WORK YET/find user" />
           </div>
           <span>{list.length<1 ? "No users found..." : null}</span>
           <div className="users-list">

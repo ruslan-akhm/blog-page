@@ -140,7 +140,7 @@ authService.get("/settings", (req, res) => {
         user.bio.name = name;
         user.bio.info = info;
         user.save();
-        res.json({ settings: user.bio, userID:user. success:true });
+        res.json({ settings: user.bio, userID: user.userID, success: true });
       }
     });
     //res.json({message:"Received updated bio"})

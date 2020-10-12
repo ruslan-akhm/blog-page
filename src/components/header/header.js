@@ -11,8 +11,6 @@ function Header(props) {
   const { user } = useParams();
 
   useEffect(() => {
-    //console.log("USER ID")
-    //console.log(userID)
     setUserID(user);
   }, []);
 

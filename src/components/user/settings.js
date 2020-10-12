@@ -20,30 +20,31 @@ const Settings = () => {
     isLogged,
     setIsLogged
   } = useContext(PostContext);
-  const [updatedBio, setUpdatedBio] = useState({ name: "", highlights: [], info: "" }); //show whatever is in our bio already
+  const [updatedBio, setUpdatedBio] = useState({
+    name: "",
+    highlights: [],
+    info: ""
+  });
   const [message, setMessage] = useState();
   let history = useHistory();
-  
-  useEffect(()=>{
-    authService.getSettings().then(data=>{
-      console.log(data);
-      if(data.success==false){
+
+  //get user's settings/bio
+  useEffect(() => {
+    authService.getSettings().then(data => {
+      if (data.success == false) {
         history.replace("/");
       }
-      setUpdatedBio(data.settings)
-    })
-  },[])
-  
-  
+      setUpdatedBio(data.settings);
+    });
+  }, []);
 
+  //handle change of iinput fields and saving them into state
   const inputChange = e => {
     if (e.target.name == "name" || e.target.name == "info") {
       setUpdatedBio({ ...updatedBio, [e.target.name]: e.target.value });
       return;
     }
-
     let arrayOfHighlights = updatedBio.highlights;
-
     if (e.target.name == "highlights1") {
       arrayOfHighlights[0] = e.target.value;
     } else if (e.target.name == "highlights2") {
@@ -54,27 +55,22 @@ const Settings = () => {
     setUpdatedBio({ ...updatedBio, highlights: arrayOfHighlights });
   };
 
+  //update users bio
   const update = e => {
-    console.log(updatedBio);
     e.preventDefault();
     authService.postSettings(updatedBio).then(data => {
       console.log(data);
       if (data.success) {
         setBio(updatedBio);
-        history.replace("/users/"+data.userID);
+        history.replace("/users/" + data.userID);
       }
     });
-
-    //etBio(updatedBio);
-    
   };
 
-  //hadle Logout and clear all page data
+  //handle Logout and clear all page data
   const logout = e => {
     e.preventDefault();
-    console.log("LOGOUT HERE");
     authService.logout().then(data => {
-      console.log(data);
       setMessage(data.message);
       setIsLogged(false);
       setPost([]);
@@ -82,46 +78,11 @@ const Settings = () => {
       setAvatar("");
       setBio({ name: "", highlights: [], info: "" });
       setUpdatedBio({ name: "", highlights: [], info: "" });
-      
-      //setUserID("");
       setTimeout(() => {
         history.replace("/");
       }, 500);
     });
   };
-  //   let history = useHistory();
-
-  //   const resetForm = () => {
-  //     setUser({ email: "", password: "" });
-  //   };
-
-  //   const handleInput = e => {
-  //     setUser({ ...user, [e.target.name]: e.target.value });
-  //   };
-
-  const updateSettings = e => {
-    //let { from } = { from: { pathname: "/register" } };
-    // e.preventDefault();
-    // console.log(user);
-    // authService.login(user).then(data => {
-    //   console.log(data);
-    //   setMessage(data.message);
-    //   if (data.successLogin) {
-    //     setIsLogged(true);
-    //     //console.log(from)
-    //     history.replace("/");
-    //   }
-    // if (!data.msgError) {
-    //   setTimeout(() => {
-    //     resetForm();
-    //   }, 2000);
-    // }
-    //});
-  };
-
-  // let highlights = bio.highlights.map(item => {
-  //   return item;
-  // });
 
   return (
     <div>

@@ -22,26 +22,17 @@ const Login = () => {
   };
 
   const login = e => {
-    //let { from } = { from: { pathname: "/register" } };
     e.preventDefault();
-    //console.log(user);
     authService.login(user).then(data => {
-      //console.log(data);
       setMessage(data.message);
       if (data.successLogin) {
         setIsLogged(true);
         setUserID(data.userID)
-        //console.log(from)
         history.replace("/users/"+data.userID);
       }
-      // if (!data.msgError) {
-      //   setTimeout(() => {
-      //     resetForm();
-      //   }, 2000);
-      // }
     });
   };
-  //action="/login" method="POST"
+ 
   return (
     <div>
       <Navbar />

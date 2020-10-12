@@ -11,14 +11,17 @@ import Footer from "../footer/footer";
 import { PostContext } from "../../context/postContext";
 import "./mainpage.css";
 
-//import Mainpage from './components/mainpage/mainpage'
-
-//IMAGES ARE CALLED FROM APPNEW-TEST-SAMPLE  -  FIX!!!!!!!!!!!!!!!!!!!!!
-
 function Mainpage() {
-  const { post, setPost, header, setHeader, avatar, setAvatar, bio, setBio } = useContext(
-    PostContext
-  );
+  const {
+    post,
+    setPost,
+    header,
+    setHeader,
+    avatar,
+    setAvatar,
+    bio,
+    setBio
+  } = useContext(PostContext);
   const [isAuthor, setIsAuthor] = useState(false);
   const { user } = useParams();
 
@@ -26,13 +29,10 @@ function Mainpage() {
     getData(user);
   }, []);
 
-  //fetch posts (data.posts), header, avatar, bio;
-  //also id to set isAuthor (create it in context) if user visits their own page
-
+  //get all the data of the user
   const getData = user => {
     let posts = [];
     postService.getData(user).then(data => {
-      console.log(data);
       setIsAuthor(data.isAuthor);
       setHeader(data.header);
       setAvatar(data.avatar);
@@ -42,8 +42,6 @@ function Mainpage() {
     });
   };
 
-  
-//ALSO ADD ID INTO PROPS? TO UPDATE THE RIGHT PAGE, OR CAN TAKE FROM USEPARAMS()
   return (
     <div>
       <Navbar />

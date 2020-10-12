@@ -41,8 +41,7 @@
 .users-filter {
   height: 20px;
   width: 98%;
-  margin:0 auto 10px auto;
-  
+  margin: 0 auto 10px auto;
 }
 .users-filter input {
   border: none;
@@ -63,8 +62,8 @@
   margin: 5px 0 0 0;
   padding: 0;
 }
-.users-list ul a{
-  text-decoration:none;
+.users-list ul a {
+  text-decoration: none;
   color: black;
 }
 
@@ -77,7 +76,7 @@
   box-sizing: border-box;
   padding: 5px;
   margin: 5px 0 5px 0;
-  cursor:pointer;
+  cursor: pointer;
 }
 
 .user-card-img {
@@ -89,7 +88,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-/*   border: 1px solid #23232e; */
+  /*   border: 1px solid #23232e; */
   border-radius: 50%;
 }
 .user-card h4,
@@ -99,6 +98,6 @@
 .user-card p {
   margin-left: auto;
 }
-.user-card:hover{
-  background-color:#f0f0f0;
+.user-card:hover {
+  background-color: #f0f0f0;
 }

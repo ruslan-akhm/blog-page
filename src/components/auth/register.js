@@ -5,8 +5,6 @@ import Footer from "../footer/footer";
 import authService from "../../services/authService";
 import "./auth.css";
 
-//NEEDS REDIRECT TO LOGIN PAGE VIA PROPS.HISTORY
-
 const Register = () => {
   const [user, setUser] = useState({ username: "", email:"", password: "", password2:"" });
   const [message, setMessage] = useState("");
@@ -18,18 +16,14 @@ const Register = () => {
 
   const handleInput = e => {
     setUser({ ...user, [e.target.name]: e.target.value });
-    //console.log(user);
   };
 
   const register = e => {
     e.preventDefault();
-    //console.log(user);
     authService.register(user).then(data => {
-      //console.log(data);
       setMessage(data.message);
       if (!data.error) {
         setTimeout(() => {
-          //console.log('RESETTING')
           resetForm();
           history.replace("/login");
         }, 2000);
@@ -37,7 +31,6 @@ const Register = () => {
     });
   };
   
-  //action="/api/auth/register" method="POST"
   return (
     <div>
       <Navbar />
