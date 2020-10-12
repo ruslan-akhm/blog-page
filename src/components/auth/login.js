@@ -1,13 +1,13 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { PostContext } from "../../context/postContext";
-import Navbar from "../navbar/navbar";
-import Footer from "../footer/footer";
+//import Navbar from "../navbar/navbar";
+//import Footer from "../footer/footer";
 import authService from "../../services/authService";
 import "./auth.css";
 
 const Login = () => {
-  const { isLogged, setIsLogged, userID, setUserID } = useContext(PostContext);
+  const { isLogged, setIsLogged, userID, setUserID, authorID, setAuthorID } = useContext(PostContext);
   const [user, setUser] = useState({ email: "", password: "" });
   const [message, setMessage] = useState("");
 
@@ -28,6 +28,7 @@ const Login = () => {
       if (data.successLogin) {
         setIsLogged(true);
         setUserID(data.userID);
+        setAuthorID(data.userID)
         history.replace("/users/" + data.userID);
       }
     });

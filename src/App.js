@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useContext } from "react";
-import { BrowserRouter as Router, Switch, Link, Route } from "react-router-dom";
+import React from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
 import Homepage from "./components/homepage/homepage";
 import Mainpage from "./components/mainpage/mainpage";

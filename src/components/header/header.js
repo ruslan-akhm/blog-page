@@ -7,12 +7,12 @@ import "./header.css";
 function Header(props) {
   const { header, setHeader } = useContext(PostContext);
   const [isAuthor, setIsAuthor] = useState();
-  const [userID, setUserID] = useState();
   const { user } = useParams();
+  const [userID, setUserID] = useState(user);
 
-  useEffect(() => {
-    setUserID(user);
-  }, []);
+  // useEffect(() => {
+  //   setUserID(user);
+  // }, []);
 
   useEffect(() => {
     setIsAuthor(props.isAuthor);
@@ -31,7 +31,7 @@ function Header(props) {
 
   return (
     <div id="header">
-      <img src={header} />
+      <img src={header} alt="user's header"/>
       {isAuthor ? (
         <input
           name="upfile"

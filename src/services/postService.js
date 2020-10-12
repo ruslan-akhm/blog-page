@@ -21,11 +21,11 @@ export default {
       .then(res => res.json())
       .then(data => data);
   },
-  default: () => {
-    return fetch("/api/default")
-      .then(res => res.json())
-      .then(data => data);
-  },
+  // default: () => {
+  //   return fetch("/api/default")
+  //     .then(res => res.json())
+  //     .then(data => data);
+  // },
   updateHeader: fd => {
     return fetch("/api/upload", {
       method: "POST",
