@@ -6,14 +6,15 @@ import { PostContext } from '../../context/postContext'
 import "./homepage.css";
 
 function Homepage() {
-  const {userID, setUserID} = useContext(PostContext);
+  const {userID, setUserID, authorID, setAuthorID} = useContext(PostContext);
   const [filter, setFilter] = useState();
   const [users, setUsers] = useState();
   const [list, setList] = useState([]);
 
   useEffect(() => {
     getData();
-    console.log(userID)
+    //console.log(userID);
+    console.log(authorID);
   }, []);
 
   //get list of users (avatar, name, number of posts)
