@@ -14,7 +14,7 @@ function Homepage() {
   const {userID, setUserID} = useContext(PostContext);
   const [filter, setFilter] = useState();
   const [users, setUsers] = useState();
-  const [list, setList] = useState(users);
+  const [list, setList] = useState([]);
 
   useEffect(() => {
     getData();

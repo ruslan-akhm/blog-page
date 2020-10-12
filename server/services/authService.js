@@ -102,12 +102,11 @@ authService.get("/logout", (req, res, next) => {
 });
 
 authService.get("/authenticated", (req, res, next) => {
-  console.log("AUTHENTICATED");
   let isAuth = req.isAuthenticated();
   res.json({ isAuth: isAuth });
 });
 
-authService.get("/settings", (req,res,next)=>{
+authService.get("/settings", (req,res)=>{
   if(req.session.hasOwnProperty("passport")==false){
     res.json({message:"You are not logged in", success:false})
     return
@@ -120,6 +119,11 @@ authService.get("/settings", (req,res,next)=>{
       res.json({settings: user.bio})
     }
   })
+
+authService.post("/settings", (req,res)=>{
+  console.log(req.body);
+  
+})  
   
 })
 

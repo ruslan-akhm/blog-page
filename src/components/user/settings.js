@@ -27,7 +27,7 @@ const Settings = () => {
   useEffect(()=>{
     authService.getSettings().then(data=>{
       console.log(data);
-      //setUpdatedBio(data.settings)
+      setUpdatedBio(data.settings)
     })
   },[])
   
@@ -54,15 +54,15 @@ const Settings = () => {
   const update = e => {
     console.log(updatedBio);
     e.preventDefault();
-    postService.updateBio(updatedBio).then(data => {
+    authService.postSettings(updatedBio).then(data => {
       console.log(data);
-      if (data.success) {
-        setBio(updatedBio);
-      }
+      //if (data.success) {
+        //setBio(updatedBio);
+      //}
     });
 
-    setBio(updatedBio);
-    //console.log(updatedBio);
+    //etBio(updatedBio);
+    
   };
 
   //hadle Logout and clear all page data
@@ -76,7 +76,9 @@ const Settings = () => {
       setPost([]);
       setHeader("");
       setAvatar("");
-      setBio({ name: "", highlights: [], info: "" });
+      //setBio({ name: "", highlights: [], info: "" });
+      setUpdatedBio({ name: "", highlights: [], info: "" });
+      
       //setUserID("");
       setTimeout(() => {
         history.replace("/");
@@ -113,9 +115,9 @@ const Settings = () => {
     //});
   };
 
-  let highlights = bio.highlights.map(item => {
-    return item;
-  });
+  // let highlights = bio.highlights.map(item => {
+  //   return item;
+  // });
 
   return (
     <div>
