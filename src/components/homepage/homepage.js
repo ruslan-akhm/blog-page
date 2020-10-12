@@ -13,6 +13,7 @@ function Homepage() {
 
   useEffect(() => {
     getData();
+    console.log(userID)
   }, []);
 
   //get list of users (avatar, name, number of posts)

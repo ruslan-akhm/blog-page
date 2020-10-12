@@ -12,21 +12,25 @@ const Navbar = () => {
       <Link className="nav-links" to="/">
         #PersonalBlog
       </Link>
-      {!isLogged ? null : (
+     {/*} {!isLogged ? null : (
         <Link className="nav-links" to="/settings">
           Settings
         </Link>
-      )}
+      )} */}
       {!isLogged ? (
         <Link className="nav-links" to="/login">
           Login
         </Link>
-      ) : null}
+      ) : <Link className="nav-links" to="/settings">
+          Settings
+        </Link>}
       {!isLogged ? (
         <Link className="nav-links" to="/register">
           Register
         </Link>
-      ) : null}
+      ) : <Link className="nav-links" to="/">
+          My Page
+        </Link>}
     </div>
   );
 };

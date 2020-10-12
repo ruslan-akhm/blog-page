@@ -46,5 +46,10 @@ export default {
     })
       .then(res => res.json())
       .then(data => data);
+  },
+  getAuthor: () => {
+    return fetch("/api/auth/author")
+      .then(res => res.json())
+      .then(data => data);
   }
 };
