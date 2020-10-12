@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
 import { PostContext } from "../../context/postContext";
-import { Link } from "react-router-dom";
-//import { BrowserRouter as Router, Switch, Link, Route } from "react-router-dom";
 import "./navbar.css";
 
 const Navbar = () => {
@@ -9,30 +7,30 @@ const Navbar = () => {
     PostContext
   );
 
-
   return (
-   
     <div className="navbar">
-      <Link className="nav-links" to="/">
+      <a className="nav-links" href="/">
         #PersonalBlog
-      </Link>
-       {!isLogged ? null : (
-        <Link className="nav-links" to={`/users/${authorID}`} >
-          my page
-        </Link>
-      )} 
+      </a>
       {!isLogged ? (
-        <Link className="nav-links" to="/login">
+        <a className="nav-links" href="/login">
           Login
-        </Link>
-      ) : null}
+        </a>
+      ) : (
+        <a className="nav-links" href={`/users/${authorID}`}>
+          my page
+        </a>
+      )}
       {!isLogged ? (
-        <Link className="nav-links" to="/register">
+        <a className="nav-links" href="/register">
           Register
-        </Link>
-      ) : null}
+        </a>
+      ) : (
+        <a className="nav-links" href="/settings">
+          settings
+        </a>
+      )}
     </div>
-     
   );
 };
 

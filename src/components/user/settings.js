@@ -86,7 +86,7 @@ const Settings = () => {
 
   return (
     <div>
-      <Navbar />
+     
       <div className="settings-main">
         <h1>Settings</h1>
         <form>
@@ -137,7 +137,7 @@ const Settings = () => {
           Logout
         </button>
       </div>
-      <Footer />
+      
     </div>
   );
 };

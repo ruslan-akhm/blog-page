@@ -29,8 +29,6 @@ function Mainpage() {
 
   useEffect(() => {
     getData(user);
-    console.log("RE-RENDERING!!!");
-    console.log(authorID)
   }, []);
 
   //get all the data of the user
@@ -48,7 +46,6 @@ function Mainpage() {
 
   return (
     <div>
-     
       <div id="page-main">
         <div id="personal-page">
           <Header isAuthor={isAuthor} />
@@ -57,7 +54,7 @@ function Mainpage() {
           <Posts />
         </div>
       </div>
-      <Footer />
+     
     </div>
   );
 }

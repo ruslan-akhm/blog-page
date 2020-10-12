@@ -83,7 +83,7 @@ const Register = () => {
           Have an account? <Link to="/login">Login</Link>
         </p>
       </div>
-      <Footer />
+     
     </div>
   );
 };

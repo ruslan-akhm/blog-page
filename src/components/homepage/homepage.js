@@ -2,19 +2,17 @@ import React, { useState, useEffect, useContext } from "react";
 import Navbar from "../navbar/navbar";
 import Footer from "../footer/footer";
 import postService from "../../services/postService";
-import { PostContext } from '../../context/postContext'
+import { PostContext } from "../../context/postContext";
 import "./homepage.css";
 
 function Homepage() {
-  const {userID, setUserID, authorID, setAuthorID} = useContext(PostContext);
+  const { userID, setUserID, authorID, setAuthorID } = useContext(PostContext);
   const [filter, setFilter] = useState();
   const [users, setUsers] = useState();
   const [list, setList] = useState([]);
 
   useEffect(() => {
     getData();
-    //console.log(userID);
-    console.log(authorID);
   }, []);
 
   //get list of users (avatar, name, number of posts)
@@ -37,7 +35,7 @@ function Homepage() {
     list &&
     list.map(user => {
       return (
-        <a href={"/users/"+user.id}>
+        <a href={"/users/" + user.id}>
           <div className="user-card">
             <div className="user-card-img">
               <img src={user.avatar} alt="user's avatar" />
@@ -51,7 +49,6 @@ function Homepage() {
 
   return (
     <div>
-      
       <div id="homepage">
         <h1>Welcome to Personal Blog page</h1>
         <div className="introduction">
@@ -68,15 +65,19 @@ function Homepage() {
         <p>Check out other users</p>
         <div className="users-box">
           <div className="users-filter">
-            <input type="text" onChange={inputChange} placeholder="DOESNT WORK YET/find user" />
+            <input
+              type="text"
+              onChange={inputChange}
+              placeholder="DOESNT WORK YET/find user"
+            />
           </div>
-          <span>{list.length<1 ? "No users found..." : null}</span>
+          <span>{list.length < 1 ? "No users found..." : null}</span>
           <div className="users-list">
             <ul>{userList}</ul>
           </div>
         </div>
       </div>
-      <Footer />
+      
     </div>
   );
 }
