@@ -28,7 +28,8 @@ const Login = () => {
       if (data.successLogin) {
         setIsLogged(true);
         setUserID(data.userID);
-        setAuthorID(data.userID)
+        setAuthorID(data.userID);
+        resetForm();
         history.replace("/users/" + data.userID);
       }
     });

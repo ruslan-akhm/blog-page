@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-import Navbar from "../navbar/navbar";
-import Footer from "../footer/footer";
+//import Navbar from "../navbar/navbar";
+//import Footer from "../footer/footer";
 import authService from "../../services/authService";
 import "./auth.css";
 
@@ -38,7 +38,6 @@ const Register = () => {
 
   return (
     <div>
-      
       <div className="auth-main">
         <h1>Register</h1>
         <form onSubmit={register}>
@@ -83,7 +82,6 @@ const Register = () => {
           Have an account? <Link to="/login">Login</Link>
         </p>
       </div>
-     
     </div>
   );
 };

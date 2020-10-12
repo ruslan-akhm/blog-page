@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Link, useHistory } from "react-router-dom";
+import {  useHistory } from "react-router-dom";
 import { PostContext } from "../../context/postContext";
-import Navbar from "../navbar/navbar";
-import Footer from "../footer/footer";
+//import Navbar from "../navbar/navbar";
+//import Footer from "../footer/footer";
 import authService from "../../services/authService";
-import postService from "../../services/postService";
+//import postService from "../../services/postService";
 import "./settings.css";
 
 const Settings = () => {

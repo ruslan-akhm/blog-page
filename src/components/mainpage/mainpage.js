@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
-import Navbar from "../navbar/navbar";
+//import Navbar from "../navbar/navbar";
 import Header from "../header/header";
 import Info from "../info/info";
 import Posts from "../posts/posts";
-import Default from "../default";
+//import Default from "../default";
 import AddPost from "../addPost/addPost";
 import postService from "../../services/postService";
-import Footer from "../footer/footer";
+//import Footer from "../footer/footer";
 import { PostContext } from "../../context/postContext";
 import "./mainpage.css";
 
@@ -20,9 +20,7 @@ function Mainpage() {
     avatar,
     setAvatar,
     bio,
-    setBio,
-    authorID,
-    setAuthorID
+    setBio
   } = useContext(PostContext);
   const [isAuthor, setIsAuthor] = useState(false);
   const { user } = useParams();
@@ -54,7 +52,6 @@ function Mainpage() {
           <Posts />
         </div>
       </div>
-     
     </div>
   );
 }

@@ -199,6 +199,7 @@ apiRouter.post("/bio", (req, res) => {
 
 //Add new posts
 apiRouter.post("/post", upload.array("attachments", 5), (req, res) => {
+  console.log(req.session);
   const files = req.files;
   const filenames = files.map(fileObject => {
     return (
@@ -206,25 +207,27 @@ apiRouter.post("/post", upload.array("attachments", 5), (req, res) => {
     );
   });
   const data = req.body.attachments;
-  let post = new Post({
-    title: data[0],
-    text: data[1],
-    postId: "post-id-" + shortid.generate(),
-    datePosted: Date.now(),
-    type: "post",
-    default: false,
-    files: filenames
-  });
-  post.save();
-  const response = {
-    _id: post._id,
-    title: post.title,
-    text: post.text,
-    datePosted: post.datePosted,
-    postId: post.postId,
-    files: filenames
-  };
-  return res.json(response);
+  console.log(data);
+  console.log(filenames)
+  // let post = new Post({
+  //   title: data[0],
+  //   text: data[1],
+  //   postId: "post-id-" + shortid.generate(),
+  //   datePosted: Date.now(),
+  //   type: "post",
+  //   default: false,
+  //   files: filenames
+  // });
+  // post.save();
+  // const response = {
+  //   _id: post._id,
+  //   title: post.title,
+  //   text: post.text,
+  //   datePosted: post.datePosted,
+  //   postId: post.postId,
+  //   files: filenames
+  // };
+  // return res.json(response);
 });
 
 //Find all files in collection
@@ -269,7 +272,7 @@ apiRouter.get("/image/:filename", (req, res) => {
   });
 });
 
-//Delete Post
+//Delete Post WORK ON THIS TOO
 apiRouter.delete("/delete", (req, res) => {
   const _id = req.body.id;
   Post.deleteOne({ _id: _id }, (err, data) => {
@@ -283,37 +286,5 @@ apiRouter.delete("/delete", (req, res) => {
   });
 });
 
-//Bring the default info back and make corrections on databases
-// apiRouter.get('/default',(req,res)=>{
-//   Post.deleteMany({ default: false }, (err,dat)=>{
-//     if(err) return console.log(err);
-//     gfs.files.deleteMany({"metadata.type":"upfile","metadata.date":{$gt:1587339231260}},(err,hdr)=>{
-//       if(err) return console.log(err);
-//       gfs.files.deleteMany({"metadata.type":"avatarfile","metadata.date":{$gt:1587339222880}},(err,ava)=>{
-//         if(err) return console.log(err);
-//         gfs.files.deleteMany({"metadata.type":"attachments","metadata.date":{$gt:1587339222880}},(err,att)=>{
-//           if(err) return console.log(err);
-//           defaultData.data.map(post=>{
-//             let defpost = new Post({
-//             _id:post._id,
-//             title:post.title,
-//             text:post.text,
-//             postId:post.postId,
-//             datePosted:post.datePosted,
-//             type:"post",
-//             default:true
-//             })
-//           defpost.save();
-//           })
-//           return res.json(
-//             {data:defaultData.data,
-//              avatar:defaultData.avatar,
-//              header:defaultData.header}
-//           )
-//         })
-//       })
-//     })
-//   });
-// })
 
 module.exports = apiRouter;
