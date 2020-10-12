@@ -17,14 +17,15 @@
   border:1px solid black;
   border-bottom:3px solid black;
   display:flex;
-  flex-direction:row;
-  flex-wrap:wrap;
+  flex-direction:column;
+/*   flex-wrap:wrap; */
   min-height:100px;
   margin-top:20px;
   padding:0px;
   background-color:white;
   box-sizing:border-box;
   border-radius:25px;
+  position:relative;
 }
 #list li h4{
   width:calc(100% - 65px);
@@ -39,18 +40,22 @@
   padding:10px;
   margin:0;
   word-break: break-word;
+  border:2px solid green;
 }
 #list li button{
   font-size:26px;
   color:red;
   background-color:transparent;
-  margin-top:5px;
-  margin-left:30px;
+  position:absolute;
+  top:5px;
+  right:5px;
+  line-height:26px;
   border:none;
   width:25px;
   height:25px;
   cursor:pointer;
   transition:0.1s;
+  border:2px solid blue;
 }
 #list li a{
   font-family: 'Noto Sans', sans-serif;
@@ -62,7 +67,7 @@
 #list li #container{
   margin:20px auto;
   width:95%;
-  min-height:1vh;
+  min-height:;
   display:flex;
   justify-content:flex-end;
   align-items:flex-start;
@@ -82,9 +87,11 @@
 
 #list li span{
   width:100%;
+  margin:0;
   padding:5px 20px 5px 0;
   text-align:end;
   font-family: 'Noto Sans', sans-serif;
   color:#9c9c9c;
   pointer-events:none;
+  border:2px solid yellow;
 }

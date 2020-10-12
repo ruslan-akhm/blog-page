@@ -10,10 +10,6 @@ function Header(props) {
   const { user } = useParams();
   const [userID, setUserID] = useState(user);
 
-  // useEffect(() => {
-  //   setUserID(user);
-  // }, []);
-
   useEffect(() => {
     setIsAuthor(props.isAuthor);
   }, [props]);

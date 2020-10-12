@@ -1,26 +1,40 @@
-import React, { useState, useEffect, useContext } from 'react'
-import { PostContext } from '../../context/postContext'
-import postService from '../../services/postService'
-import './posts.css'
+import React, { useState, useEffect, useContext } from "react";
+import { PostContext } from "../../context/postContext";
+import postService from "../../services/postService";
+import "./posts.css";
 
-function Posts(props){
-  
-  const {post,setPost,avatar,setAvatar} = useContext(PostContext);
+function Posts(props) {
+  const { post, setPost, avatar, setAvatar } = useContext(PostContext);
   const [list, setList] = useState();
   const [isAuthor, setIsAuthor] = useState();
-  
-  useEffect(()=>{
-    document.getElementById("list").innerHTML='';
+
+  useEffect(() => {
+    setIsAuthor(props.isAuthor);
+  }, [props]);
+
+  useEffect(() => {
+    console.log(isAuthor)
+    document.getElementById("list").innerHTML = "";
     let posts = [];
-    post.map(item=>{
-      const textId = 'textId-'+item._id;
-      const closeId = 'closeId-'+item._id;
-      const short = item.text.length>600 ? item.text.slice(0,510)+'<a id='+textId+'>...Expand text</a>' : item.text;
+    post.map(item => {
+      const textId = "textId-" + item._id;
+      const closeId = "closeId-" + item._id;
+      const short =
+        item.text.length > 600
+          ? item.text.slice(0, 510) + "<a id=" + textId + ">...Expand text</a>"
+          : item.text;
       const date = new Date(parseInt(item.datePosted)).toLocaleDateString();
-      let images = '';
-        if(item.files!==undefined){
-          item.files.map(file=>{return images+='<img id='+file+' src='+file+' onClick={that.showAttachment} />'})
-        }
+      let images = "";
+      if (item.files !== undefined) {
+        item.files.map(file => {
+          return (images +=
+            "<img id=" +
+            file +
+            " src=" +
+            file +
+            " />");
+        });
+      }
       //OBJECT FOR EVERY POST FOR FUTURE REFERENCE
       const newPost = {
         _id: item._id,
@@ -31,43 +45,55 @@ function Posts(props){
         images: images,
         textId: textId,
         closeId: closeId
-      }
+      };
       posts = posts.concat(newPost);
-      document.getElementById('list').innerHTML+='<li id='+item._id+'><h4>'+item.title+'</h4><button id='+closeId+'>&times;</button><p name='+textId+'>'+short+'</p><div id="container">'+images+'</div><span>posted '+date+'</span></li>'
-    })
+      let closeBtn =  isAuthor ? "</h4><button id=" + closeId + ">&times;</button>" : "<button>sdc</button>";
+      document.getElementById("list").innerHTML +=
+        "<li id=" + item._id + "><h4>" + item.title +
+           closeBtn//"</h4><button id=" + closeId + ">&times;</button>"
+           +
+            "<p name=" +
+            textId +
+            ">" +
+            short +
+            '</p><div id="container">' +
+            images +
+            "</div><span>posted " +
+            date +
+            "</span></li>";
+    });
     setList(posts);
-  },[post])
-  
-  const modifyText=(e)=>{
+  }, [post]);
+
+  const modifyText = e => {
     let newList;
     let newPosts;
-    list.map((p)=>{ 
-      if(e.target.id==p.textId){
+    list.map(p => {
+      if (e.target.id == p.textId) {
         //EXPAND TEXT
-        document.getElementById(e.target.id).style.display="none";
-        return document.getElementsByName(e.target.id)[0].innerText=p.text
-      } 
-      else if(e.target.id==p.closeId){
+        document.getElementById(e.target.id).style.display = "none";
+        return (document.getElementsByName(e.target.id)[0].innerText = p.text);
+      } else if (e.target.id == p.closeId) {
         //DELETE POST
-        postService.removePost(p._id).then(data=>{
-          newList = list.filter(item=>{return item._id!==p._id});
+        postService.removePost(p._id).then(data => {
+          newList = list.filter(item => {
+            return item._id !== p._id;
+          });
           setPost(data.posts);
-        })
+        });
         let li_nested = document.getElementById(e.target.id).parentNode;
         let posts = document.getElementById("list");
         posts.removeChild(li_nested);
-        
       }
       newList && setList(newList);
-    })
-  
-  }
-  
-  return(
-    <div className="posts" id="posts" onClick={e=>modifyText(e)}>
-      <ul id="list"></ul>  
+    });
+  };
+
+  return (
+    <div className="posts" id="posts" onClick={e => modifyText(e)}>
+      <ul id="list"></ul>
     </div>
-  )
+  );
 }
 
-export default Posts
+export default Posts;
