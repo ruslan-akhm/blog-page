@@ -224,6 +224,8 @@ apiRouter.post("/post", upload.array("attachments", 5), (req, res, next) => {
         default: false,
         files: filenames
       };
+      console.log("POST IS "+post)
+      console.log(typeof post)
       user.posts.push(post);
       user.save();
       const response = {
