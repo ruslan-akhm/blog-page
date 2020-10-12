@@ -106,8 +106,19 @@ authService.get("/logout", (req, res, next) => {
 });
 
 authService.get("/authenticated", (req, res, next) => {
+  console.log("AUTHENTIC")
   let isAuth = req.isAuthenticated();
-  res.json({ isAuth: isAuth });
+  if(isAuth){
+    const id = req.session.passport.user;
+    User.findOne({ _id: id }, (err, user) => {
+      if (err) return console.log(err);
+      if (!user) return res.json({ message: "Can not access user's settings" });
+      else{
+        res.json({ isAuth: isAuth, authorID: user.userID });
+      }
+    })
+  }
+  // res.json({ isAuth: isAuth });
 });
 
 authService.get("/settings", (req, res) => {

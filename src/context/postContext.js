@@ -15,7 +15,9 @@ export const PostProvider = ({ children }) => {
   useEffect(() => {
     AuthService.isAuthenticated().then(data => {
       //setUser(data.user);
+      console.log(data.authorID)
       setIsLogged(data.isAuth);
+      setAuthorID(data.authorID)
       //setIsLoaded(true);
     });
   }, []);

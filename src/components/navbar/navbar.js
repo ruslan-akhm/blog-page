@@ -5,7 +5,7 @@ import "./navbar.css";
 
 const Navbar = () => {
   
-  const { isLogged, setIsLogged } = useContext(PostContext);
+  const { isLogged, setIsLogged, authorID, setAuthorID } = useContext(PostContext);
 
   return (
     <div className="navbar">
@@ -28,7 +28,7 @@ const Navbar = () => {
         <Link className="nav-links" to="/register">
           Register
         </Link>
-      ) : <Link className="nav-links" to="/">
+      ) : <Link className="nav-links" to={"/users/"+authorID}>
           My Page
         </Link>}
     </div>
