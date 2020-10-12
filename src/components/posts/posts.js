@@ -47,10 +47,10 @@ function Posts(props) {
         closeId: closeId
       };
       posts = posts.concat(newPost);
-      let closeBtn =  isAuthor ? "</h4><button id=" + closeId + ">&times;</button>" : "<button>sdc</button>";
+      let closeBtn =  isAuthor ? "<button id=" + closeId + ">&times;</button>" : "";
       document.getElementById("list").innerHTML +=
-        "<li id=" + item._id + "><h4>" + item.title +
-           closeBtn//"</h4><button id=" + closeId + ">&times;</button>"
+        "<li id=" + item._id + "><h4>" + item.title + "</h4>" +
+           closeBtn
            +
             "<p name=" +
             textId +
