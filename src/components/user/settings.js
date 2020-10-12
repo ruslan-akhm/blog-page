@@ -24,6 +24,12 @@ const Settings = () => {
   const [message, setMessage] = useState();
   let history = useHistory();
   
+  useEffect(()=>{
+    authService.getSettings().then(data=>{
+      console.log(data);
+    })
+  },[])
+  
   
 
   const inputChange = e => {
@@ -70,7 +76,7 @@ const Settings = () => {
       setHeader("");
       setAvatar("");
       setBio({ name: "", highlights: [], info: "" });
-      setUserID("");
+      //setUserID("");
       setTimeout(() => {
         history.replace("/");
       }, 500);

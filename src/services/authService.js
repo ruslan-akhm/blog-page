@@ -1,34 +1,39 @@
 export default {
-  register: (user)=>{
+  register: user => {
     return fetch("/api/auth/register", {
-          method: "POST",
-          headers: {
-            'Content-Type' : 'application/json'
-          },
-          body:JSON.stringify(user),
-        })
-        .then(res =>res.json())
-        .then(data=>data)
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(user)
+    })
+      .then(res => res.json())
+      .then(data => data);
   },
-  login: (user)=>{
+  login: user => {
     return fetch("/api/auth/login", {
-          method: "POST",
-          headers: {
-            'Content-Type' : 'application/json'
-          },
-          body:JSON.stringify(user),
-        })
-        .then(res =>res.json())
-        .then(data=>data)
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(user)
+    })
+      .then(res => res.json())
+      .then(data => data);
   },
-  logout: ()=>{
+  logout: () => {
     return fetch("/api/auth/logout")
       .then(res => res.json())
       .then(data => data);
   },
-  isAuthenticated: ()=>{
+  isAuthenticated: () => {
     return fetch("/api/auth/authenticated")
       .then(res => res.json())
       .then(data => data);
+  },
+  getSettings: () => {
+    return fetch("/api/auth/settings")
+      .then(res => res.json())
+      .then(data => data);
   }
-}
+};

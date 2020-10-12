@@ -105,5 +105,12 @@ authService.get("/authenticated", (req, res, next) => {
   res.json({ isAuth: isAuth });
 });
 
+authService.get("/settings", (req,res,next)=>{
+  if(req.session.hasOwnProperty("passport")==false){
+    res.json({message:"You are not logged in", success:false})
+    return
+  }
+  console.log(req.session.passport)
+})
 
 module.exports = authService;
