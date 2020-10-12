@@ -145,6 +145,7 @@ authService.get("/settings", (req, res) => {
     });
     //res.json({message:"Received updated bio"})
   });
+  
   authService.get("/author", (req, res) => {
     console.log("getting AUTHOR")
     if (req.session.hasOwnProperty("passport") == false) {

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { BrowserRouter as Router, Switch, Link, Route } from "react-router-dom";
-import authService from "./services/authService";
+import AuthService from "./services/authService";
 import { PostContext } from "./context/postContext";
 import "./App.css";
 import Homepage from "./components/homepage/homepage";
@@ -13,11 +13,11 @@ const App = () => {
   const { authorID, setAuthorID } = useContext(PostContext);
   
   useEffect(()=>{
-    authService.getAuthor().then(data=>{
-      console.log("AUTHOR IS ")
+    console.log("AUTHOR IS ")
+    AuthService.getAuthor().then(data=>{
       console.log(data);
     })
-  })
+  },[])
 
   return (
     <Router>

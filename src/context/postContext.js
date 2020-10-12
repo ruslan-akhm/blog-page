@@ -9,7 +9,8 @@ export const PostProvider = ({ children }) => {
   const [avatar, setAvatar] = useState("");
   const [bio, setBio] = useState({ name: "", highlights: [], info: "" }); //["","",""]
   const [isLogged, setIsLogged] = useState();
-  const [userID, setUserID] = useState("");
+  const [userID, setUserID] = useState("");//userID is id of a user whose page is being visited
+  const [authorID, setAuthorID] = useState("");//authorID is authenticated user id
 
   useEffect(() => {
     AuthService.isAuthenticated().then(data => {
@@ -34,7 +35,9 @@ export const PostProvider = ({ children }) => {
           isLogged,
           setIsLogged,
           userID,
-          setUserID
+          setUserID,
+            authorID,
+            setAuthorID
         }}
       >
         {children}
