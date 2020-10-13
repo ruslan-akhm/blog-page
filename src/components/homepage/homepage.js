@@ -15,14 +15,33 @@ function Homepage() {
     getData();
   }, []);
   
+  //filtering by tags and name "rob otics"
   useEffect(()=>{
-    let filteredUsers = list.filter(user=>{
-      return user.tags.map(tag=>{
-        console.log(tag, typeof tag)
-        return tag.match(e.target.value)
+    const tagRegex = new RegExp(("^"+filter),"gi");
+    const toFilter=[...list];
+      let filteredByName = toFilter.filter(user=>{
+          return user.name.match(tagRegex)//item.firstName.match(nameRegex)||item.lastName.match(nameRegex)
       })
-    })
-  },[])
+      let filteredByTag = toFilter.filter(user=>{
+        let x = user.tags.map(tag=>{
+          //console.log(tag, tagRegex)
+          //console.log(tag.match(tagRegex))
+          return tag.match(tagRegex)!=null
+        })
+        console.log(x)
+        return
+      })
+      //console.log("By name: ", filteredByName);
+      //console.log("By tags: ", filteredByTag);
+    
+        
+    // let filteredUsers = list.filter(user=>{
+    //   return user.tags.map(tag=>{
+    //     console.log(tag, typeof tag)
+    //     return tag.match()
+    //   })
+    // })
+  },[filter])
 
   //get list of users (avatar, name, number of posts)
   const getData = () => {
@@ -42,9 +61,7 @@ function Homepage() {
 
   //handle filtering list of users!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   const inputChange = e => {
-    //setFilter(e.target.value);
-    
-    console.log(filteredUsers)
+    setFilter(e.target.value);
   };
 
   let userList =
