@@ -14,6 +14,15 @@ function Homepage() {
   useEffect(() => {
     getData();
   }, []);
+  
+  useEffect(()=>{
+    let filteredUsers = list.filter(user=>{
+      return user.tags.map(tag=>{
+        console.log(tag, typeof tag)
+        return tag.match(e.target.value)
+      })
+    })
+  },[])
 
   //get list of users (avatar, name, number of posts)
   const getData = () => {
@@ -29,15 +38,13 @@ function Homepage() {
       setList(data.usersInfo);
     });
   };
+  
 
   //handle filtering list of users!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   const inputChange = e => {
     //setFilter(e.target.value);
-    let filteredUsers = list.filter(user=>{
-      return user.tags.map(tag=>{
-        return tag.match(e.target.value)
-      })
-    })
+    
+    console.log(filteredUsers)
   };
 
   let userList =
