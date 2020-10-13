@@ -24,9 +24,12 @@ function Homepage() {
       })
       let filteredByTag = toFilter.filter(user=>{
         let x = user.tags.map(tag=>{
-          //console.log(tag, tagRegex)
-          //console.log(tag.match(tagRegex))
-          return tag.match(tagRegex)!=null
+          //try with if?????
+          //console.log(tag, typeof tag)
+          let z = tag.match(tagRegex);
+          console.log(z)
+          return
+          //return tag.match(tagRegex)
         })
         console.log(x)
         return
