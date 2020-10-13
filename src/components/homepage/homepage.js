@@ -21,6 +21,10 @@ function Homepage() {
       if (data.success == false) {
         return;
       }
+      //split name of a user and save into new Key fo filtering
+      data.usersInfo.map(user=>{
+        user.tags = user.name.split(" ");
+      })
       setUsers(data.usersInfo);
       setList(data.usersInfo);
     });
@@ -28,7 +32,12 @@ function Homepage() {
 
   //handle filtering list of users!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   const inputChange = e => {
-    setFilter(e.target.value);
+    //setFilter(e.target.value);
+    let filteredUsers = list.filter(user=>{
+      return user.tags.map(tag=>{
+        return tag.match(e.target.value)
+      })
+    })
   };
 
   let userList =
