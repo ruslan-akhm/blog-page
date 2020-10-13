@@ -288,6 +288,21 @@ apiRouter.get("/image/:filename", (req, res) => {
 //Delete Post WORK ON THIS TOO
 apiRouter.post("/delete", (req, res) => {
   console.log(req.body);
+  let postId = req.body.id;
+  let userId = req.session.passport.user;
+  User.findOne({_id:userId}, (err,user)=>{
+    if (err) return console.log(err);
+    if (!user) res.json({ message: "Error! Unable to access user page" });
+    else{
+      let postsFiltered = user.posts.filter(post=>{
+        return post._id!==postId
+      })
+      console.log(postsFiltered);
+      user.posts=postsFiltered;
+      user.save();
+      res.json({posts: user.posts});
+    }
+  })
   // const _id = req.body.id;
   // Post.deleteOne({ _id: _id }, (err, data) => {
   //   if (err) return console.log(err);
