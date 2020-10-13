@@ -295,7 +295,7 @@ apiRouter.post("/delete", (req, res) => {
     if (!user) res.json({ message: "Error! Unable to access user page" });
     else{
       let postsFiltered = user.posts.filter(post=>{
-        return post._id!==postId
+        return post._id.toString()!==postId
       })
       console.log(postsFiltered);
       user.posts=postsFiltered;
