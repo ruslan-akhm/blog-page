@@ -27,7 +27,7 @@ function Header(props) {
 
   return (
     <div id="header">
-      <img src={header} alt="user's header"/>
+      <img src={header} alt="user's header" />
       {isAuthor ? (
         <input
           name="upfile"

@@ -1,10 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
-import {  useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { PostContext } from "../../context/postContext";
-//import Navbar from "../navbar/navbar";
-//import Footer from "../footer/footer";
 import authService from "../../services/authService";
-//import postService from "../../services/postService";
 import "./settings.css";
 
 const Settings = () => {
@@ -86,7 +83,6 @@ const Settings = () => {
 
   return (
     <div>
-     
       <div className="settings-main">
         <h1>Settings</h1>
         <form>
@@ -137,7 +133,6 @@ const Settings = () => {
           Logout
         </button>
       </div>
-      
     </div>
   );
 };

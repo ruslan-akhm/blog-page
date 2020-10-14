@@ -11,8 +11,6 @@ import Footer from "./components/footer/footer";
 import PageNotFound from "./components/pageNotFound/pageNotFound";
 
 const App = () => {
-  //NEED TO MAKE 404 ROUTE FOR ALL OTHERS
-
   return (
     <Router>
       <Navbar />

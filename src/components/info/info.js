@@ -9,16 +9,16 @@ function Info(props) {
   const { user } = useParams();
   const [isAuthor, setIsAuthor] = useState();
   const [userID, setUserID] = useState();
-  
-  useEffect(()=>{
-    setUserID(user)
-  },[])
+
+  useEffect(() => {
+    setUserID(user);
+  }, []);
 
   useEffect(() => {
     setIsAuthor(props.isAuthor);
   }, [props]);
 
-  const updateAvatar = (e) => {
+  const updateAvatar = e => {
     e.preventDefault();
     let fd = new FormData();
     let avatarImage = document.getElementById("avatarfile").files[0];
@@ -51,9 +51,6 @@ function Info(props) {
         <ul id="bio-list">
           <h1>{bio.name}</h1>
           {highlights}
-          {/* <li>Cyber Engineer</li>
-          <li>R2D2 fan</li>
-          <li>Toronto, ON</li> */}
         </ul>
       </div>
       <p>{bio.info}</p>

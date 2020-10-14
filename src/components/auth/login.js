@@ -1,16 +1,21 @@
 import React, { useState, useContext } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { PostContext } from "../../context/postContext";
-//import Navbar from "../navbar/navbar";
-//import Footer from "../footer/footer";
 import authService from "../../services/authService";
 import "./auth.css";
 
 const Login = () => {
-  const { isLogged, setIsLogged, userID, setUserID, authorID, setAuthorID } = useContext(PostContext);
+  const {
+    isLogged,
+    setIsLogged,
+    userID,
+    setUserID,
+    authorID,
+    setAuthorID
+  } = useContext(PostContext);
+  
   const [user, setUser] = useState({ email: "", password: "" });
   const [message, setMessage] = useState("");
-
   let history = useHistory();
 
   const resetForm = () => {
@@ -37,7 +42,6 @@ const Login = () => {
 
   return (
     <div>
-      
       <div className="auth-main">
         <h1>Login</h1>
         <form onSubmit={login}>
@@ -70,7 +74,6 @@ const Login = () => {
           Don't have an account yet? <Link to="/register">Register</Link>
         </p>
       </div>
-     
     </div>
   );
 };

@@ -54,7 +54,7 @@ function Homepage() {
     });
   };
 
-  //handle filter input filed
+  //handle filter input field
   const inputChange = e => {
     setFilter(e.target.value);
   };

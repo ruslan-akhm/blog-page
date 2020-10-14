@@ -12,8 +12,8 @@ function Posts(props) {
     setIsAuthor(props.isAuthor);
   }, [props]);
 
+  //create instance of <li> for every post
   useEffect(() => {
-    
     document.getElementById("list").innerHTML = "";
     let posts = [];
     post.map(item => {
@@ -27,16 +27,10 @@ function Posts(props) {
       let images = "";
       if (item.files !== undefined) {
         item.files.map(file => {
-          return (images +=
-            "<img id=" +
-            file +
-            " src=" +
-            file +
-            " />");
+          return (images += "<img id=" + file + " src=" + file + " />");
         });
       }
       //OBJECT FOR EVERY POST FOR FUTURE REFERENCE
-     
       const newPost = {
         _id: item._id,
         text: item.text,
@@ -48,20 +42,25 @@ function Posts(props) {
         closeId: closeId
       };
       posts = posts.concat(newPost);
-      let closeBtn =  isAuthor ? "<button id=" + closeId + ">&times;</button>" : "";
+      let closeBtn = isAuthor
+        ? "<button id=" + closeId + ">&times;</button>"
+        : "";
       document.getElementById("list").innerHTML +=
-        "<li id=" + item._id + "><h4>" + item.title + "</h4>" +
-           closeBtn
-           +
-            "<p name=" +
-            textId +
-            ">" +
-            short +
-            '</p><div id="container">' +
-            images +
-            "</div><span>posted " +
-            date +
-            "</span></li>";
+        "<li id=" +
+        item._id +
+        "><h4>" +
+        item.title +
+        "</h4>" +
+        closeBtn +
+        "<p name=" +
+        textId +
+        ">" +
+        short +
+        '</p><div id="container">' +
+        images +
+        "</div><span>posted " +
+        date +
+        "</span></li>";
     });
     setList(posts);
   }, [post]);
@@ -76,7 +75,6 @@ function Posts(props) {
         document.getElementById(e.target.id).style.display = "none";
         return (document.getElementsByName(e.target.id)[0].innerText = p.text);
       } else if (e.target.id == p.closeId) {
-      
         //DELETE POST
         postService.removePost(p._id).then(data => {
           newList = list.filter(item => {

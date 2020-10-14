@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-//import Navbar from "../navbar/navbar";
-//import Footer from "../footer/footer";
 import authService from "../../services/authService";
 import "./auth.css";
 
@@ -12,6 +10,7 @@ const Register = () => {
     password: "",
     password2: ""
   });
+  
   const [message, setMessage] = useState("");
   let history = useHistory();
 
