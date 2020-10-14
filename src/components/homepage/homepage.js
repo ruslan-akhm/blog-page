@@ -14,37 +14,32 @@ function Homepage() {
   useEffect(() => {
     getData();
   }, []);
-  
+
   //filtering by tags and name "rob otics"
-  useEffect(()=>{
-    const tagRegex = new RegExp(("^"+filter),"gi");
-    const toFilter=[...list];
-      let filteredByName = toFilter.filter(user=>{
-          return user.name.match(tagRegex)//item.firstName.match(nameRegex)||item.lastName.match(nameRegex)
-      })
-      let filteredByTag = toFilter.filter(user=>{
-        let x = user.tags.map(tag=>{
-          //try with if?????
-          //console.log(tag, typeof tag)
-          let z = tag.match(tagRegex);
-          console.log(z)
-          return
-          //return tag.match(tagRegex)
-        })
-        console.log(x)
-        return
-      })
-      //console.log("By name: ", filteredByName);
-      //console.log("By tags: ", filteredByTag);
-    
-        
+  useEffect(() => {
+    const tagRegex = new RegExp("^" + filter, "gi");
+    const filteredList = [];
+    let filteredByName = list.filter(user => {
+      return user.name.match(tagRegex); //item.firstName.match(nameRegex)||item.lastName.match(nameRegex)
+    });
+    let filteredByTag = filteredByName.filter(user => {
+      return user.tags.map(tag => {
+        if (tag.match(tagRegex)) {
+          return filteredList.push(stud);
+        }
+      });
+      return;
+    });
+    //console.log("By name: ", filteredByName);
+    //console.log("By tags: ", filteredByTag);
+
     // let filteredUsers = list.filter(user=>{
     //   return user.tags.map(tag=>{
     //     console.log(tag, typeof tag)
     //     return tag.match()
     //   })
     // })
-  },[filter])
+  }, [filter]);
 
   //get list of users (avatar, name, number of posts)
   const getData = () => {
@@ -53,14 +48,13 @@ function Homepage() {
         return;
       }
       //split name of a user and save into new Key fo filtering
-      data.usersInfo.map(user=>{
+      data.usersInfo.map(user => {
         user.tags = user.name.split(" ");
-      })
+      });
       setUsers(data.usersInfo);
       setList(data.usersInfo);
     });
   };
-  
 
   //handle filtering list of users!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   const inputChange = e => {
@@ -113,7 +107,6 @@ function Homepage() {
           </div>
         </div>
       </div>
-      
     </div>
   );
 }
