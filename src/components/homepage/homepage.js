@@ -8,7 +8,7 @@ import "./homepage.css";
 function Homepage() {
   const { userID, setUserID, authorID, setAuthorID } = useContext(PostContext);
   const [filter, setFilter] = useState();
-  const [users, setUsers] = useState();
+  const [users, setUsers] = useState([]);
   const [list, setList] = useState([]);
 
   useEffect(() => {
@@ -19,22 +19,24 @@ function Homepage() {
   useEffect(() => {
     console.log("FILTERING")
     const tagRegex = new RegExp("^" + filter, "gi");
-    const filteredList = [];
-    const toFilter = [...list]
+    let filteredList = [];
+    const toFilter = [...users]
     let filteredByName = toFilter.filter(user => {
       return user.name.match(tagRegex); //item.firstName.match(nameRegex)||item.lastName.match(nameRegex)
     });
-    console.log(filteredByName)
+    //console.log(filteredByName)
     let filteredByTag = toFilter.filter(user => {
       return user.tags.map(tag => {
         console.log(tag.match(tagRegex))
         if (tag.match(tagRegex)!==null) {
+          console.log(filteredList);
           return filteredList.push(user);
         }
       });
       
       return;
     });
+    
     setList(()=>{
       if(!filteredList || filteredList.length==0) return filteredByName
       else return filteredList
