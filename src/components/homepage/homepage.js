@@ -17,32 +17,26 @@ function Homepage() {
 
   //filtering by tags and name "rob otics"
   useEffect(() => {
-    console.log("FILTERING")
     const tagRegex = new RegExp("^" + filter, "gi");
     let filteredList = [];
-    const toFilter = [...users]
+    const toFilter = [...users];
+    //filter by username
     let filteredByName = toFilter.filter(user => {
-      return user.name.match(tagRegex); //item.firstName.match(nameRegex)||item.lastName.match(nameRegex)
+      return user.name.match(tagRegex);
     });
-    //console.log(filteredByName)
+    //filter by tags which are username split by space
     let filteredByTag = toFilter.filter(user => {
       return user.tags.map(tag => {
-        console.log(tag.match(tagRegex))
-        if (tag.match(tagRegex)!==null) {
-          console.log(filteredList);
+        if (tag.match(tagRegex) !== null && !filteredList.includes(user)) {
           return filteredList.push(user);
         }
       });
-      
       return;
     });
-    
-    setList(()=>{
-      if(!filteredList || filteredList.length==0) return filteredByName
-      else return filteredList
-    })
-    //console.log(filteredList)
-    
+    setList(() => {
+      if (!filteredList || filteredList.length == 0) return filteredByName;
+      else return filteredList;
+    });
   }, [filter]);
 
   //get list of users (avatar, name, number of posts)
@@ -51,7 +45,7 @@ function Homepage() {
       if (data.success == false) {
         return;
       }
-      //split name of a user and save into new Key fo filtering
+      //split name of a user and save into new Key(tags) for filtering
       data.usersInfo.map(user => {
         user.tags = user.name.split(" ");
       });
@@ -60,7 +54,7 @@ function Homepage() {
     });
   };
 
-  //handle filtering list of users!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  //handle filter input filed
   const inputChange = e => {
     setFilter(e.target.value);
   };
@@ -102,7 +96,7 @@ function Homepage() {
             <input
               type="text"
               onChange={inputChange}
-              placeholder="DOESNT WORK YET/find user"
+              placeholder="find users"
             />
           </div>
           <span>{list.length < 1 ? "No users found..." : null}</span>
