@@ -86,7 +86,7 @@ apiRouter.get("/users/:user", (req, res, next) => {
       let header = user.header;
       let avatar = user.avatar;
       let bio = user.bio;
-      let posts = user.posts;
+      let posts = user.posts.reverse();
       res.json({
         header: header,
         avatar: avatar,
