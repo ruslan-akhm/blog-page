@@ -1,5 +1,4 @@
 const express = require("express");
-//const passport = require("passport");
 const shortid = require("shortid");
 const User = require("../models/User");
 const Post = require("../models/Post");
@@ -9,9 +8,8 @@ const multer = require("multer");
 const GridFSBucket = require("multer-gridfs-storage");
 const Grid = require("gridfs-stream");
 const path = require("path");
-//const isAuthenticated = require('./authMiddleware').isAuthenticated;
 const mongoose = require("mongoose");
-var mongoURI = process.env.SECRET; //"mongodb+srv://ruslan-akhm:zuaGc0VJ@cluster0-y5h11.mongodb.net/test?retryWrites=true&w=majority"
+var mongoURI = process.env.SECRET;
 mongoose.connect(mongoURI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -22,11 +20,13 @@ var conn = mongoose.connection;
 //set GridFS
 let gfs;
 
+//set MongoDB conection
 conn.once("open", () => {
   gfs = Grid(conn.db, mongoose.mongo);
   gfs.collection("uploads");
 });
 
+//set GridFS storage
 const storage = new GridFSBucket({
   url: mongoURI,
   file: (req, file) => {
@@ -48,10 +48,8 @@ const storage = new GridFSBucket({
 });
 const upload = multer({ storage });
 
-///HERE HAVE TO LOAD USER (OR HOMEPAGE IN FACT) and not links to images and stuff
+//homepage route
 apiRouter.get("/", (req, res) => {
-  //res.redirect("https://appnew-test-sample.glitch.me/login")
-  console.log("HERE WE ARE at homepage");
   User.find().exec((err, users) => {
     if (err) return console.log(err);
     if (!users)
@@ -65,44 +63,18 @@ apiRouter.get("/", (req, res) => {
           id: user.userID
         };
       });
-      //console.log(usersInfo)
-      //console.log("sending JSON")
       res.json({ usersInfo });
     }
   });
-
-  // Post.find({type:"post"}).sort({_id: -1}).exec((err,data)=>{
-  //   if(err) return console.log(err);
-  //   else{
-  //     gfs.files.find({'metadata.type':'avatarfile'}).sort({_id: -1}).limit(1).toArray((err,ava)=>{
-  //       if(err) return console.log(err);
-  //       else{
-  //          gfs.files.find({'metadata.type':'upfile'}).sort({_id: -1}).limit(1).toArray((err,hdr)=>{
-  //            if(err) return console.log(err);
-  //            else{
-  //             return res.json(
-  //               {data:data,
-  //                avatar:"https://appnew-test-sample.glitch.me/api/image/"+hdr[0].filename,
-  //                header:"https://appnew-test-sample.glitch.me/api/image/"+hdr[0].filename}
-  //             )
-  //           }
-  //         })
-  //       }
-  //     })
-  //   }
-  // })
 });
 
-//LOAD USER INFO HERE
+//route for user's personal page
 apiRouter.get("/users/:user", (req, res, next) => {
   const id = req.params.user;
-
-  //console.log(passport.session().passport.user)
   User.findOne({ userID: id }, (err, user) => {
     if (err) throw err;
-    if (!user) console.log("NO USER");
+    if (!user) res.json({ message: "No user with such username found" });
     else {
-      //console.log(req.session.hasOwnProperty("passport"));
       //checking if user is visiting their own page
       let isAuthor = false;
       if (
@@ -152,7 +124,7 @@ apiRouter.post("/upload", upload.single("upfile"), (req, res) => {
           fileObject.filename
       });
     }
-  })
+  });
 });
 
 //Upload Avatar
@@ -183,24 +155,8 @@ apiRouter.post("/avatar", upload.single("avatarfile"), (req, res) => {
   });
 });
 
-apiRouter.post("/bio", (req, res) => {
-  console.log(req.body);
-  User.findOne({ username: "test" }, (err, user) => {
-    if (err) return console.log(err);
-    if (!user) {
-      res.json({ message: "Can not update bio. User does not exist" });
-    } else {
-      user.bio = req.body.bio;
-      user.save();
-    }
-  });
-  res.send("testing...");
-});
-
 //Add new posts
 apiRouter.post("/post", upload.array("attachments", 5), (req, res, next) => {
-  // console.log("UPLOADING NEW POSSTS")
-  // console.log(req.session);
   const id = req.session.passport.user;
   const files = req.files;
   const filenames = files.map(fileObject => {
@@ -209,12 +165,10 @@ apiRouter.post("/post", upload.array("attachments", 5), (req, res, next) => {
     );
   });
   const data = req.body.attachments;
-  //console.log(data);
-  //console.log(filenames)
-  User.findOne({_id:id},(err,user)=>{
+  User.findOne({ _id: id }, (err, user) => {
     if (err) return console.log(err);
     if (!user) res.json({ message: "Error! Unable to access user page" });
-    else{
+    else {
       let newPost = {
         title: data[0],
         text: data[1],
@@ -226,21 +180,12 @@ apiRouter.post("/post", upload.array("attachments", 5), (req, res, next) => {
       };
       user.posts.push(newPost);
       user.save();
-      let latestPost = user.posts.filter(post=>{
+      let latestPost = user.posts.filter(post => {
         return post.postId == newPost.postId;
-      })
-      // const response = {
-      //   _id: post._id,
-      //   title: post.title,
-      //   text: post.text,
-      //   datePosted: post.datePosted,
-      //   postId: post.postId,
-      //   files: filenames
-      // };
-      console.log(latestPost);
+      });
       return res.json(latestPost && latestPost[0]);
     }
-  })
+  });
 });
 
 //Find all files in collection
@@ -267,7 +212,7 @@ apiRouter.get("/files/:filename", (req, res) => {
   });
 });
 
-//Load image
+//Load paricular image
 apiRouter.get("/image/:filename", (req, res) => {
   gfs.files.findOne({ filename: req.params.filename }, (err, file) => {
     if (!file || file.length === 0) {
@@ -285,35 +230,22 @@ apiRouter.get("/image/:filename", (req, res) => {
   });
 });
 
-//Delete Post WORK ON THIS TOO
+//Delete Post 
 apiRouter.post("/delete", (req, res) => {
-  console.log(req.body);
   let postId = req.body.id;
   let userId = req.session.passport.user;
-  User.findOne({_id:userId}, (err,user)=>{
+  User.findOne({ _id: userId }, (err, user) => {
     if (err) return console.log(err);
     if (!user) res.json({ message: "Error! Unable to access user page" });
-    else{
-      let postsFiltered = user.posts.filter(post=>{
-        return post._id.toString()!==postId
-      })
-      console.log(postsFiltered);
-      user.posts=postsFiltered;
+    else {
+      let postsFiltered = user.posts.filter(post => {
+        return post._id.toString() !== postId;
+      });
+      user.posts = postsFiltered;
       user.save();
-      res.json({posts: user.posts});
+      res.json({ posts: user.posts });
     }
-  })
-  // const _id = req.body.id;
-  // Post.deleteOne({ _id: _id }, (err, data) => {
-  //   if (err) return console.log(err);
-  //   Post.find({ type: "post" })
-  //     .sort({ _id: -1 })
-  //     .exec((err, post) => {
-  //       if (err) return console.log(err);
-  //       return res.json({ posts: post });
-  //     });
-  // });
+  });
 });
-
 
 module.exports = apiRouter;

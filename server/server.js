@@ -1,48 +1,48 @@
-const express = require('express');
-const path = require('path');
-const passport = require('passport');
-const apiRouter = require('./routes/apiRouter')
-const authService = require('./services/authService')
-const session = require('express-session')
-const cookieParser = require('cookie-parser') 
-const cors = require('cors');
-//add as a dependency
-
-
-//const flash = require('connect-flash')
+const express = require("express");
+const path = require("path");
+const passport = require("passport");
+const apiRouter = require("./routes/apiRouter");
+const authService = require("./services/authService");
+const session = require("express-session");
+const cookieParser = require("cookie-parser");
+const cors = require("cors");
 
 const app = express();
 
-app.set('trust proxy', true)
+app.set("trust proxy", true);
 
 //body-parser and static
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }))
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-//set cors 
-app.use(cors({
-  origin:"https://appnew-test-sample.glitch.me/",
-  credentials:true
-}))
+//set cors
+app.use(
+  cors({
+    origin: "https://appnew-test-sample.glitch.me/",
+    credentials: true
+  })
+);
 
 //set session
-app.use(session({
-  secret: process.env.SESSION_SECRET,
-  resave: true,
-  saveUninitialized: true,
-  cookie:{
-    maxAge: 1000 * 60 * 60 //cookie for 1 hr
-  }
-}));
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: true,
+    saveUninitialized: true,
+    cookie: {
+      maxAge: 1000 * 60 * 60 //cookie for 1 hr
+    }
+  })
+);
 
 //cookieParser
-app.use(cookieParser(process.env.SESSION_SECRET))
+app.use(cookieParser(process.env.SESSION_SECRET));
 
 //use passport
 app.use(passport.initialize());
 app.use(passport.session());
-require('./passportConfig')(passport);
+require("./passportConfig")(passport);
 
 //testing
 // app.use((req,res,next)=>{
@@ -57,9 +57,8 @@ app.get("/", (req, res) => {
 });
 
 //routes
-app.use('/api', apiRouter);
-app.use('/api/auth', authService);
-
+app.use("/api", apiRouter);
+app.use("/api/auth", authService);
 
 // Express port-switching logic for Glitch.com
 let port;
@@ -74,7 +73,7 @@ if (process.env.NODE_ENV === "production") {
   port = 3001;
 }
 
-// Start the listener!
+//listener
 const listener = app.listen(port, () => {
   console.log("Running on port", listener.address().port);
 });
