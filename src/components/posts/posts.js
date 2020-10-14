@@ -63,7 +63,7 @@ function Posts(props) {
             date +
             "</span></li>";
     });
-    setList(posts);
+    setList(posts.reverse());
   }, [post]);
 
   const modifyText = e => {
