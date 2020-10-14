@@ -10,7 +10,7 @@ function AddPost(props) {
   const [isAuthor, setIsAuthor] = useState();
 
   useEffect(() => {
-    setIsAuthor(props.isAuthor)
+    setIsAuthor(props.isAuthor);
   }, [props]);
 
   //open & close text field
@@ -54,7 +54,7 @@ function AddPost(props) {
 
   const addPost = e => {
     e.preventDefault();
-    document.getElementById("loading-anim").style.display = "block";//turn on loading animation
+    document.getElementById("loading-anim").style.display = "block"; //turn on loading animation
     const fd = new FormData();
     const attachments = imagePreview; //document.getElementById("attachments");
     if (attachments !== null) {
@@ -68,7 +68,7 @@ function AddPost(props) {
     fd.append("attachments", title);
     fd.append("attachments", text);
     postService.addPost(fd).then(data => {
-      console.log("ReSPONSE")
+      console.log("ReSPONSE");
       console.log(data);
       let prevState = post;
       prevState = [data, ...post];
@@ -91,37 +91,41 @@ function AddPost(props) {
 
   return (
     <div>
-      {isAuthor ? (<><button id="add-post" className="add" onClick={handleTextfield}>
-        {isTextfield ? "Close" : "+ New Post"}
-      </button>
-      <div id="post-input-box">
-        <input
-          type="text"
-          id="post-title"
-          maxLength="35"
-          required
-          placeholder="Title goes here..."
-        />
-        <textarea
-          rows="8"
-          id="post-text"
-          placeholder="Once upon a time..."
-        ></textarea>
-        <div id="attachment-preview-box">{filePreview}</div>
-        <div className="action-btn-box">
-          <button onClick={addPost}>Post</button>
-          <input
-            type="file"
-            onChange={e => previewAttachment(e)}
-            multiple
-            className="custom-input attach"
-          />
-        </div>
-      </div>
-      <div id="loading-anim">
-        <div className="spinner-1"></div>
-          </div></>) : null}
-      
+      {isAuthor ? (
+        <>
+          <button id="add-post" className="add" onClick={handleTextfield}>
+            {isTextfield ? "Close" : "+ New Post"}
+          </button>
+          <div id="post-input-box">
+            <input
+              type="text"
+              id="post-title"
+              maxLength="35"
+              required
+              placeholder="Title goes here..."
+            />
+            <textarea
+              rows="8"
+              id="post-text"
+              placeholder="Once upon a time..."
+            ></textarea>
+            <div id="attachment-preview-box">{filePreview}</div>
+            <div className="action-btn-box">
+              <button onClick={addPost}>Post</button>
+              <input
+                className="custom-input attach"
+                type="file"
+                accept="image/*"
+                onChange={e => previewAttachment(e)}
+                multiple
+              />
+            </div>
+          </div>
+          <div id="loading-anim">
+            <div className="spinner-1"></div>
+          </div>
+        </>
+      ) : null}
     </div>
   );
 }

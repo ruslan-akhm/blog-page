@@ -22,11 +22,6 @@ export default {
       .then(res => res.json())
       .then(data => data);
   },
-  // default: () => {
-  //   return fetch("/api/default")
-  //     .then(res => res.json())
-  //     .then(data => data);
-  // },
   updateHeader: fd => {
     return fetch("/api/upload", {
       method: "POST",
@@ -49,18 +44,6 @@ export default {
       .then(res => res.json())
       .then(data => data);
   },
-  // updateBio: bio => {
-  //   return fetch("/api/bio", {
-  //     method: "POST",
-  //     headers: {
-  //       Accept: "application/json",
-  //       "Content-Type": "application/json"
-  //     },
-  //     body: JSON.stringify({ bio })
-  //   })
-  //     .then(res => res.json())
-  //     .then(data => data);
-  // },
   addPost: fd => {
     console.log(fd)
     return fetch("/api/post", {

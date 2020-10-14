@@ -5,8 +5,8 @@ const User = require("./models/User");
 
 module.exports = function(passport) {
   passport.use(
-     new LocalStrategy({ usernameField: "email" },(email, password, done) => {
-       User.findOne({ email: email }, (err, user) => {
+    new LocalStrategy({ usernameField: "email" }, (email, password, done) => {
+      User.findOne({ email: email }, (err, user) => {
         if (err) return console.log(err);
         if (!user) {
           return done(null, false, { message: "No such username found" });
@@ -20,8 +20,8 @@ module.exports = function(passport) {
             return done(null, false, { message: "Password is incorrect" });
           }
         });
-      })
-     })
+      });
+    })
   );
   passport.serializeUser((user, done) => {
     done(null, user.id);
@@ -31,6 +31,4 @@ module.exports = function(passport) {
       done(err, user);
     });
   });
-  
-
 };

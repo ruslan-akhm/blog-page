@@ -13,12 +13,9 @@ mongoose.connect(mongoURI, {
 });
 var conn = mongoose.connection;
 
-//successRedirect to `/${username}`
+//
 authService.post("/login", (req, res, next) => {
-  console.log(req.body);
   passport.authenticate("local", (err, user, info) => {
-    console.log("logging in");
-    console.log(user);
     if (err) throw err;
     if (!user) {
       res.json({ message: info.message });
@@ -30,13 +27,10 @@ authService.post("/login", (req, res, next) => {
           successLogin: true,
           userID: user.userID
         });
-        //console.log(req.user)
       });
     }
   })(req, res, next);
 });
-
-//req.session.passport.user  =  id
 
 authService.post("/register", async (req, res) => {
   const { username, email, password, password2 } = req.body;
@@ -57,7 +51,6 @@ authService.post("/register", async (req, res) => {
     if (user)
       res.status(400).json({ message: "Email is already taken", error: true });
     else {
-      console.log("NO EMAIL");
       User.findOne({ username }, (err, user) => {
         if (err)
           res
@@ -100,27 +93,26 @@ authService.post("/register", async (req, res) => {
 });
 
 authService.get("/logout", (req, res, next) => {
-  console.log("LOGOUT");
   req.logout();
   res.json({ message: "You have logged out" });
 });
 
+//called everytime to check if user ai authenticated
 authService.get("/authenticated", (req, res, next) => {
-  console.log("AUTHENTIC")
   let isAuth = req.isAuthenticated();
-  if(isAuth){
+  if (isAuth) {
     const id = req.session.passport.user;
     User.findOne({ _id: id }, (err, user) => {
       if (err) return console.log(err);
       if (!user) return res.json({ message: "Can not access user's settings" });
-      else{
+      else {
         res.json({ isAuth: isAuth, authorID: user.userID });
       }
-    })
+    });
   }
-  // res.json({ isAuth: isAuth });
 });
 
+//get personal settings of user - GET
 authService.get("/settings", (req, res) => {
   if (req.session.hasOwnProperty("passport") == false) {
     res.json({ message: "You are not logged in", success: false });
@@ -135,8 +127,8 @@ authService.get("/settings", (req, res) => {
     }
   });
 
+  //update personal settings of user - POST
   authService.post("/settings", (req, res) => {
-    console.log(req.body);
     if (req.session.hasOwnProperty("passport") == false) {
       res.json({ message: "You are not logged in", success: false });
       return;
@@ -154,26 +146,24 @@ authService.get("/settings", (req, res) => {
         res.json({ settings: user.bio, userID: user.userID, success: true });
       }
     });
-    //res.json({message:"Received updated bio"})
   });
-  
-  authService.get("/author", (req, res) => {
-    console.log("getting AUTHOR")
-    if (req.session.hasOwnProperty("passport") == false) {
-      res.json({ message: "You are not logged in", success: false });
-      return;
-    } else {
-      const id = req.session.passport.user;
-      User.findOne({ _id: id }, (err, user) => {
-        if (err) return console.log(err);
-        if (!user)
-          return res.json({ message: "No user found with this credentials" });
-        else {
-          return res.json({authorID:user.userID})
-        }
-      });
-    }
-  });
+
+  //   authService.get("/author", (req, res) => {
+  //     if (req.session.hasOwnProperty("passport") == false) {
+  //       res.json({ message: "You are not logged in", success: false });
+  //       return;
+  //     } else {
+  //       const id = req.session.passport.user;
+  //       User.findOne({ _id: id }, (err, user) => {
+  //         if (err) return console.log(err);
+  //         if (!user)
+  //           return res.json({ message: "No user found with this credentials" });
+  //         else {
+  //           return res.json({ authorID: user.userID });
+  //         }
+  //       });
+  //     }
+  //   });
 });
 
 module.exports = authService;

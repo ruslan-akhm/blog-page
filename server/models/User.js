@@ -14,7 +14,7 @@ const UserSchema = new mongoose.Schema(
     },
     avatar: String,
     header: String,
-    
+
     posts: [
       {
         title: String,

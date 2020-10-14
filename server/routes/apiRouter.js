@@ -230,7 +230,7 @@ apiRouter.get("/image/:filename", (req, res) => {
   });
 });
 
-//Delete Post 
+//Delete Post
 apiRouter.post("/delete", (req, res) => {
   let postId = req.body.id;
   let userId = req.session.passport.user;
