@@ -8,6 +8,10 @@
   flex-direction: column;
   border-radius: 25px;
 }
+#homepage h1{
+  margin:10px;
+  text-align:center;
+}
 .introduction {
   width: 80%;
   height: fit-content;
