@@ -90,7 +90,6 @@ apiRouter.get("/users/:user", (req, res, next) => {
       posts.sort(function(a, b) {
         return b.datePosted - a.datePosted;
       });
-      console.log(posts);
       res.json({
         header: header,
         avatar: avatar,
