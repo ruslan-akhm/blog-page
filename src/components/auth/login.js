@@ -43,7 +43,7 @@ const Login = () => {
   return (
     <div>
       <div className="auth-main">
-        <h1>Login</h1>
+        <h1>Login to your account</h1>
         <form onSubmit={login}>
           <div className="form-box">
             <label for="email">Email:</label>
