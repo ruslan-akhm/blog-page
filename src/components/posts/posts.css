@@ -1,3 +1,4 @@
+
 .post {
   list-style-type: none;
   margin: 10px auto;
@@ -8,12 +9,12 @@
   background-color: gray;
 }
 #list {
-  margin: 0 0 30px 0;
+  margin: 30px 0 0 0;
   padding: 0;
 }
 #list li {
   list-style-type: none;
-  border: 1px solid black;
+  border: 1px solid rgba(0,0,);
   border-bottom: 3px solid black;
   display: flex;
   flex-direction: column;

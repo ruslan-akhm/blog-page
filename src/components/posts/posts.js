@@ -91,7 +91,7 @@ function Posts(props) {
   };
 
   return (
-    <div className="posts" id="posts" onClick={e => modifyText(e)}>
+    <div  id="posts" onClick={e => modifyText(e)}>
       <ul id="list"></ul>
     </div>
   );
