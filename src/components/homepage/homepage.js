@@ -78,19 +78,22 @@ function Homepage() {
   return (
     <div>
       <div id="homepage">
-        <h1>Welcome to Personal Blog page</h1>
         <div className="introduction">
-          <p>
-            Please login to create posts, modify your page and upload images
-          </p>
-          <p>You can view other people pages and posts without logging in</p>
-          <p>
-            I encourage you to try to create posts yourself. To do that you need
-            to register or (if you don't want to) just use guest account with
-            email: guest@guest.com and password: guest
-          </p>
+          <h1>Welcome to Personal Blog page</h1>
+          <div className="side-text">
+            <p>
+              Please login to create posts, modify your page and upload images.
+              You can view other people pages and posts without logging in.
+              <br />
+              I encourage you to try to create posts yourself. To do that you
+              need to register or (if you don't want to) just use guest account
+              with email: guest@guest.com and password: guest
+              <br />
+              Check out other users
+            </p>
+          </div>
         </div>
-        <p>Check out other users</p>
+
         <div className="users-box">
           <div className="users-filter">
             <input

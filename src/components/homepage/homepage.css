@@ -1,12 +1,12 @@
 #homepage {
   width: 100%;
   min-height: 80vh;
-  background-color: #f0f0f0;
+  background-color: #fff;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
-  border-radius: 25px;
+/*   border-radius: 25px; */
 }
 #homepage h1{
   margin:10px;
@@ -14,12 +14,20 @@
 }
 .introduction {
   width: 80%;
-  height: fit-content;
+  min-height: fit-content;
   background-color: white;
-  border-radius: 15px;
+  border-radius:2px;
+  margin:50px auto 50px;
+  border:1px solid rgba(0,0,0,0.2);
+  display:flex;
 }
-.introduction p {
-  margin: 10px;
+.side-text{
+  display:flex;
+  flex-direction:column;
+  border:1px solid red;
+}
+.side-text p {
+  margin: 5px;
   text-align: center;
 }
 .users-box {
