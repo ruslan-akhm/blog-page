@@ -79,15 +79,16 @@ function Homepage() {
     <div>
       <div id="homepage">
         <div className="introduction">
-          <h1>Welcome to Personal Blog page</h1>
-          <div className="side-text">
+          <div className="side-left">
+            <h1>Welcome to Personal Blog page</h1>
+          </div>
+          <div className="side-right">
             <p>
               Please login to create posts, modify your page and upload images.
               You can view other people pages and posts without logging in.
-              <br />
-              I encourage you to try to create posts yourself. To do that you
-              need to register or (if you don't want to) just use guest account
-              with email: guest@guest.com and password: guest
+              <br />I encourage you to try to create posts yourself. To do that
+              you need to register or (if you don't want to) just use guest
+              account with email: guest@guest.com and password: guest
             </p>
           </div>
         </div>
