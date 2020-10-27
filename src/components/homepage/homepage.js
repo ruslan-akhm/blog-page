@@ -81,13 +81,6 @@ function Homepage() {
     <div>
       <div id="homepage">
         <div className="introduction">
-          {/*<div className="side-left-wrap">
-            <div className="side-left">
-              <h1>
-                Simply <br /> Blogs
-              </h1>
-            </div>
-          </div>*/}
           <div className="intro-1">
             <h1>#PersonalBlog</h1>
           </div>
