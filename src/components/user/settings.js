@@ -124,10 +124,13 @@ const Settings = () => {
             onChange={inputChange}
             value={updatedBio.info || ""}
           ></textarea>
+          <button className="update" onClick={update}>
+            Update
+          </button>
         </form>
-        <button className="update" onClick={update}>
+        {/*<button className="update" onClick={update}>
           Update
-        </button>
+        </button>*/}
         <div>{message}</div>
         <button className="logout" onClick={logout}>
           Logout
