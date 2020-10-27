@@ -83,7 +83,9 @@ function Homepage() {
         <div className="introduction">
           <div className="side-left-wrap">
             <div className="side-left">
-              <h1>Welcome to Personal Blog page</h1>
+              <h1>
+                Simply <br /> Blogs
+              </h1>
             </div>
           </div>
           <div className="side-right">
