@@ -81,13 +81,13 @@ function Homepage() {
     <div>
       <div id="homepage">
         <div className="introduction">
-          <div className="side-left-wrap">
+          {/*<div className="side-left-wrap">
             <div className="side-left">
               <h1>
                 Simply <br /> Blogs
               </h1>
             </div>
-          </div>
+          </div>*/}
           <div className="side-right">
             <p>
               Please login to create posts, modify your page and upload images.
