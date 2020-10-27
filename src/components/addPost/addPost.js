@@ -90,7 +90,7 @@ function AddPost(props) {
     });
 
   return (
-    <div>
+    <div id="add-post-parent">
       {isAuthor ? (
         <>
           <button id="add-post" className="add" onClick={handleTextfield}>

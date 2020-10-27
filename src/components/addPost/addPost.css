@@ -2,7 +2,9 @@
   font-family: "Noto Sans", sans-serif;
 }
 #add-post-parent {
-  position: relative;
+/*   position: relative; */
+  border:2px solid red;
+  margin:0 10px 0 10px;
 }
 .add {
   width: 100%;
@@ -14,7 +16,7 @@
   outline: none;
   margin: 15px 0 15px 0;
   height: 25px;
-  border-radius: 5px;
+  border-radius: 2px;
 }
 .add:hover {
   background-color: rgba(0, 0, 0, 0.9);
