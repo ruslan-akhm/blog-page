@@ -88,8 +88,6 @@ function Homepage() {
               I encourage you to try to create posts yourself. To do that you
               need to register or (if you don't want to) just use guest account
               with email: guest@guest.com and password: guest
-              <br />
-              Check out other users
             </p>
           </div>
         </div>
