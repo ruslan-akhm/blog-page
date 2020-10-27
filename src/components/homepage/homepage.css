@@ -28,26 +28,29 @@
   min-width: 300px;
   height:100%;
   background: linear-gradient(to right, red, purple);
-  padding: 3px;
+  padding: 1rem 1rem 1rem 0;
+  display:flex;
+  justify-content:flex-start;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 .side-left {
-  backgrdound-color:white;
-  width:100px%;
+  background-color:white;
+  width:100%;
   height:100%;
-/*   border-top-right-radius: 15px;
-  border-bottom-right-radius: 15px;
-  border: 7px solid green;
-  border-left: none; */
+  margin:0;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+/*    */
 }
 .side-left h1{
-  font-size:56px;
-  word-break:break-word;
+  font-size:64px;
+/*   word-break:break-word; */
 }
+
 .side-right {
-  border-top-left-radius: 15px;
-  border-bottom-left-radius: 15px;
-  border: 7px solid green;
-  border-right: none;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
   width: 53%;
   margin-left: auto;
   min-width: 300px;
@@ -146,7 +149,7 @@
 
 
 @media only screen and (max-width: 600px) {
-  .side-left,
+  .side-left-wrap,
   .side-right {
     width: 95%;
   }
