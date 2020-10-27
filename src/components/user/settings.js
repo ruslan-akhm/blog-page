@@ -128,10 +128,7 @@ const Settings = () => {
             Update
           </button>
         </form>
-        {/*<button className="update" onClick={update}>
-          Update
-        </button>*/}
-        <div>{message}</div>
+        <div style={{margin:"10px 0 10px 0"}}>{message}</div>
         <button className="logout" onClick={logout}>
           Logout
         </button>

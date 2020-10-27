@@ -2,9 +2,7 @@
   font-family: "Noto Sans", sans-serif;
 }
 #add-post-parent {
-/*   position: relative; */
-  border:2px solid red;
-  margin:0 10px 0 10px;
+  margin: 0 10px 0 10px;
 }
 .add {
   width: 100%;
@@ -31,23 +29,24 @@
 }
 #post-input-box input {
   margin: 20px 0 20px 0;
+  outline: none;
 }
 #post-input-box textarea {
   resize: vertical;
+  outline: none;
+}
+#post-input-box input:focus,
+#post-input-box textarea:focus {
+  border: 2px solid rgba(76, 76, 207, 0.8);
 }
 #attachment-preview-box {
   display: none;
   min-height: 120px;
   width: 100%;
-  /*   display:flex; */
-  /*   border:1px solid red; */
   flex-direction: row;
   justify-content: flex-start;
   flex-wrap: wrap;
 }
-/* #attachment-preview-box img:nth-child(n){
-  margin-right:10px;
-} */
 .preview {
   width: 100px;
   height: 100px;
@@ -88,12 +87,17 @@
   font-size: 16px;
   cursor: pointer;
   border: 1px solid #23232e;
-  border-radius: 10px;
+  border-radius: 2px;
   background-color: white;
   color: #23232e;
 }
+.action-btn-box button:hover {
+  background-color: #23232e;
+  color: white;
+}
 .attach {
   width: 105px;
+  /*   margin-right:5px; */
 }
 .attach::before {
   content: "Attach";
@@ -103,14 +107,13 @@
   line-height: 16px;
   cursor: pointer;
   border: 1px solid #23232e;
-  border-radius: 10px;
+  border-radius: 2px;
   background-color: white;
   color: #23232e;
 }
 .attach:hover {
   background-color: transparent;
 }
-
 #loading-anim {
   display: none;
   position: relative;
