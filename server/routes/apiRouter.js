@@ -73,7 +73,7 @@ apiRouter.get("/users/:user", (req, res, next) => {
   const id = req.params.user;
   User.findOne({ userID: id }, (err, user) => {
     if (err) throw err;
-    if (!user) res.json({ message: "No user with such username found" });
+    if (!user) res.json({ message: "No user with such username found", error:true });
     else {
       //checking if user is visiting their own page
       let isAuthor = false;

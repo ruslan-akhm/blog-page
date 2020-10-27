@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import Header from "../header/header";
 import Info from "../info/info";
 import Posts from "../posts/posts";
@@ -21,6 +21,7 @@ function Mainpage() {
   } = useContext(PostContext);
   const [isAuthor, setIsAuthor] = useState(false);
   const { user } = useParams();
+  let history = useHistory();
 
   useEffect(() => {
     getData(user);
@@ -30,6 +31,10 @@ function Mainpage() {
   const getData = user => {
     let posts = [];
     postService.getData(user).then(data => {
+      if(data.error){
+        history.push("/*")
+        return
+      }
       setIsAuthor(data.isAuthor);
       setHeader(data.header);
       setAvatar(data.avatar);
