@@ -46,7 +46,7 @@ const Login = () => {
         
         <form onSubmit={login}>
           <div className="form-box">
-            <h1>Login to your account</h1>
+            <h3>Login to your account</h3>
             <label for="email">Email:</label>
             <input
               type="email"
