@@ -36,7 +36,7 @@
   text-align: center;
 }
 
-#default {
+/* #default {
   position: absolute;
   top: 0;
   right: 0;
@@ -44,7 +44,7 @@
   border: 2px solid red;
   font-weight: bold;
   cursor: pointer;
-}
+} */
 
 @media only screen and (max-width: 600px) {
   #personal-page {
