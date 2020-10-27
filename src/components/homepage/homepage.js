@@ -88,7 +88,10 @@ function Homepage() {
               </h1>
             </div>
           </div>*/}
-          <div className="side-right">
+          <div className="intro-1">
+            <h1>#PersonalBlog</h1>
+          </div>
+          <div className="intro-2">
             <p>
               Please login to create posts, modify your page and upload images.
               You can view other people pages and posts without logging in.
