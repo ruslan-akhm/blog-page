@@ -68,8 +68,10 @@ function Homepage() {
             <div className="user-card-img">
               <img src={user.avatar} alt="user's avatar" />
             </div>
-            <h4>{user.name}</h4>
-            <p>posts: {user.posts} </p>
+            <div className="user-card-info">
+              <h4>{user.name}</h4>
+              <p>posts: {user.posts} </p>
+            </div>
           </div>
         </a>
       );
@@ -79,8 +81,10 @@ function Homepage() {
     <div>
       <div id="homepage">
         <div className="introduction">
-          <div className="side-left">
-            <h1>Welcome to Personal Blog page</h1>
+          <div className="side-left-wrap">
+            <div className="side-left">
+              <h1>Welcome to Personal Blog page</h1>
+            </div>
           </div>
           <div className="side-right">
             <p>
