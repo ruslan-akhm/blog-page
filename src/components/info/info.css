@@ -1,12 +1,10 @@
 #info {
   margin: 20px 10px 0 10px;
-  /*   width: 100%; */
   min-height: 110px;
   display: grid;
   grid-template-columns: 150px 1fr;
   grid-template-rows: repeat(3, minmax(50px, auto));
   box-sizing: border-box;
-  border: 1px solid red;
 }
 #info p {
   grid-area: 2/1/3/3;
@@ -20,7 +18,7 @@
   width: 150px;
   height: 150px;
   grid-area: 1/1/3/2;
-    border:1px solid blue;
+  
 }
 #avatar img {
   box-sizing: border-box;
@@ -28,8 +26,8 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 2px;
   border: 1px solid gray;
+  border-radius: 2px;
 }
 #avatar:hover #avatarfile {
   display: block;
@@ -45,8 +43,6 @@
   float: none;
   width: 110px;
   height: 55px;
-/*   border-bottom-left-radius: 50px;
-  border-bottom-right-radius: 50px; */
   outline: none;
 }
 #avatarfile::before {
@@ -54,21 +50,22 @@
   height: 80px;
 }
 #bio {
-  border: 1px solid green;
-  min-height: 110px;
+  min-height: 50px;
+  grid-area: 2/2/3/3;
 }
 #bio-list {
   margin: 0;
   padding: 10px;
   text-align: start;
-  grid-area: 2/2/3/3;
+  display:flex;
+  flex-direction:row;
+  flex-wrap:wrap;
 }
 #info h1 {
   width:100%;
   margin: 10px;
   color: #23232e;
   word-break: break-word;
- 
 }
 #bio-list li {
   list-style-type: none;
@@ -79,14 +76,12 @@
   font-weight: bold;
   color: #23232e;
   word-break: break-word;
-/*   grid-area: 2/2/3/3; */
 }
 #info p {
   grid-area: 3/1/4/3;
 }
 .custom-input {
   color: transparent;
-  /*   width:40px; */
   height: 40px;
   float: right;
   margin: 15px;
@@ -112,13 +107,13 @@
 
 @media only screen and (max-width: 600px) {
   #bio h1{
-   font-size:20px; 
+     font-size:16px; 
+     grid-area: 1/1/2/2;
   }
   #avatar{
     grid-area: 1/1/2/2;
   }
-  #bio-list {
-    width:100%;
+  #bio {
      grid-area: 2/1/3/3; 
   }
 }
