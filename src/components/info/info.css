@@ -3,8 +3,8 @@
   /*   width: 100%; */
   min-height: 110px;
   display: grid;
-  grid-template-columns: 120px minmax(fit-content, 1fr);
-  grid-template-rows: repeat(3, fit-content);
+  grid-template-columns: 150px 1fr;
+  grid-template-rows: repeat(3, minmax(50px, auto));
   box-sizing: border-box;
   border: 1px solid red;
 }
@@ -17,10 +17,10 @@
 }
 #avatar {
   align-self: start;
-  width: auto;
-  height: 100%;
+  width: 150px;
+  height: 150px;
   grid-area: 1/1/3/2;
-  /*   border:1px solid blue; */
+    border:1px solid blue;
 }
 #avatar img {
   box-sizing: border-box;
@@ -61,12 +61,14 @@
   margin: 0;
   padding: 10px;
   text-align: start;
+  grid-area: 2/2/3/3;
 }
 #info h1 {
-  margin: 0 0 20px 0;
+  width:100%;
+  margin: 10px;
   color: #23232e;
   word-break: break-word;
-  grid-area: 1/2/2/3;
+ 
 }
 #bio-list li {
   list-style-type: none;
@@ -77,7 +79,7 @@
   font-weight: bold;
   color: #23232e;
   word-break: break-word;
-  grid-area: 2/2/3/3;
+/*   grid-area: 2/2/3/3; */
 }
 #info p {
   grid-area: 3/1/4/3;
@@ -109,28 +111,14 @@
 }
 
 @media only screen and (max-width: 600px) {
-  /*   #bio-list h1{
-    font-size:5vw;
-    word-break:break-word;
-  }
-  #bio-list li{
-    font-size:4vw;
-  } */
-  /*   #info{
-    grid-template-columns: 120px minmax(fit-content, 1fr);
-    grid-template-rows: repeat(2, fit-content);
-   } */
-  /*  #info p{
-    grid-area: 3/1/4/3;
+  #bio h1{
+   font-size:20px; 
   }
   #avatar{
-    grid-area: 1/1/2/3;
-    height:200px;
+    grid-area: 1/1/2/2;
   }
-  #avatar img{
-    object-fit: contain;
-  }
-  #bio{
+  #bio-list {
+    width:100%;
      grid-area: 2/1/3/3; 
-  } */
+  }
 }
