@@ -3,7 +3,7 @@
   min-height: 110px;
   display: grid;
   grid-template-columns: 150px 1fr;
-  grid-template-rows: repeat(3, minmax(50px, auto));
+  grid-template-rows: repeat(3, auto);
   box-sizing: border-box;
 }
 #info p {
@@ -14,11 +14,10 @@
   padding: 10px;
 }
 #avatar {
-  align-self: start;
+  align-self: center;
   width: 150px;
   height: 150px;
   grid-area: 1/1/3/2;
-  
 }
 #avatar img {
   box-sizing: border-box;
@@ -38,16 +37,16 @@
   top: 0;
   left: 0;
   z-index: 2;
-  margin: -60px auto;
-  margin-left: 5px;
+  margin: -55px auto;
+/*   margin-left: 5px; */
   float: none;
-  width: 110px;
+  width: 150px;
   height: 55px;
   outline: none;
 }
 #avatarfile::before {
-  width: 120px;
-  height: 80px;
+  width: 150px;
+  height: 55px;
 }
 #bio {
   min-height: 50px;
@@ -57,12 +56,12 @@
   margin: 0;
   padding: 10px;
   text-align: start;
-  display:flex;
-  flex-direction:row;
-  flex-wrap:wrap;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 #info h1 {
-  width:100%;
+  width: 100%;
   margin: 10px;
   color: #23232e;
   word-break: break-word;
@@ -106,14 +105,21 @@
 }
 
 @media only screen and (max-width: 600px) {
-  #bio h1{
-     font-size:16px; 
-     grid-area: 1/1/2/2;
+  #info{
+    grid-template-rows: repeat(4, auto);
   }
-  #avatar{
+  #info h1 {
+/*     font-size: 16px; */
+    margin:5px;
+    grid-area: 2/1/3/3;
+  }
+  #avatar {
     grid-area: 1/1/2/2;
   }
   #bio {
-     grid-area: 2/1/3/3; 
+    grid-area: 3/1/4/3;
+  }
+  #info p{
+    grid-area: 4/1/5/3;
   }
 }
