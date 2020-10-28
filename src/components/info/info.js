@@ -47,11 +47,9 @@ function Info(props) {
           />
         ) : null}
       </div>
+      <h1>{bio.name}</h1>
       <div id="bio">
-        <ul id="bio-list">
-          <h1>{bio.name}</h1>
-          {highlights}
-        </ul>
+        <ul id="bio-list">{highlights}</ul>
       </div>
       <p>{bio.info}</p>
     </div>
