@@ -37,5 +37,9 @@
   }
   .nav-links {
     width: 120px;
+    margin:auto;
+  }
+  .nav-links:nth-child(2){
+    margin:0 0 0 ;
   }
 }

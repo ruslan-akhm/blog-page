@@ -18,7 +18,7 @@ const Navbar = () => {
         </a>
       ) : (
         <a className="nav-links" href={`/users/${authorID}`}>
-          my page
+          My Page
         </a>
       )}
       {!isLogged ? (
@@ -27,7 +27,7 @@ const Navbar = () => {
         </a>
       ) : (
         <a className="nav-links" href="/settings">
-          settings
+          Settings
         </a>
       )}
     </div>
