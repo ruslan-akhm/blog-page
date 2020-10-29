@@ -10,7 +10,7 @@
 .form-box {
   margin-top: 40px;
   height: fit-content;
-  min-width: 300px;
+  min-width: 280px;
   width: 450px;
   display: flex;
   flex-direction: column;
@@ -55,4 +55,10 @@
 }
 .message {
   margin-top: 20px;
+}
+
+@media only screen and (max-width: 600px){
+  .form-box {
+    width:70vw;
+  }
 }
