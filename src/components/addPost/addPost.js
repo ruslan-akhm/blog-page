@@ -109,7 +109,7 @@ function AddPost(props) {
               cols="20"
               id="post-text"
               placeholder="Once upon a time..."
-              wrap="off"
+              
             ></textarea>
             <div id="attachment-preview-box">{filePreview}</div>
             <div className="action-btn-box">

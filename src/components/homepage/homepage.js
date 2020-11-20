@@ -46,7 +46,7 @@ function Homepage() {
         return;
       }
       //split name of a user and save into new Key(tags) for filtering
-      if (data.usersInfo > 0) {
+      if (data.usersInfo.length > 0) {
         data.usersInfo.map(user => {
           user.tags = user.name.split(" ");
         });

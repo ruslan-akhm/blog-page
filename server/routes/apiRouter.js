@@ -63,6 +63,7 @@ apiRouter.get("/", (req, res) => {
           id: user.userID
         };
       });
+      console.log(usersInfo)
       res.json({ usersInfo });
     }
   });
