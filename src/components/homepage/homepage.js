@@ -46,11 +46,13 @@ function Homepage() {
         return;
       }
       //split name of a user and save into new Key(tags) for filtering
-      data.usersInfo.map(user => {
-        user.tags = user.name.split(" ");
-      });
-      setUsers(data.usersInfo);
-      setList(data.usersInfo);
+      if (data.usersInfo > 0) {
+        data.usersInfo.map(user => {
+          user.tags = user.name.split(" ");
+        });
+        setUsers(data.usersInfo);
+        setList(data.usersInfo);
+      }
     });
   };
 
