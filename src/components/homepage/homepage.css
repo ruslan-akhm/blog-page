@@ -86,7 +86,7 @@
 }
 
 .user-card {
-  width: 100%;
+  max-width: 100%;
   height: 300px;
   border-radius: 2px;
   display: flex;
@@ -108,8 +108,15 @@
   object-fit: cover;
   border-radius: 2px;
 }
+.user-card-info{
+  max-height:25%;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
 .user-card h4,
 .user-card p {
+  overflow:hidden;
+  text-overflow:ellipsis;
   margin: 5px;
 }
 .user-card:hover {
