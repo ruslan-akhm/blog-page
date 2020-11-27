@@ -14,7 +14,7 @@
   padding: 10px;
 }
 #avatar {
-  align-self: center;
+  align-self: flex-start;
   width: 150px;
   height: 150px;
   grid-area: 1/1/3/2;
@@ -71,7 +71,7 @@
 }
 #bio-list li {
   list-style-type: none;
-  margin: 0 15% 0 0;
+  margin: 0 15% 10px 0;
   display: inline-block;
   font-family: "Noto Sans", sans-serif;
   font-size: 18px;
