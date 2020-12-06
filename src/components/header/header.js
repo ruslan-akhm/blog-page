@@ -34,7 +34,6 @@ function Header(props) {
             name="upfile"
             id="upfile"
             type="file"
-            className="header-upload"
             accept="image/*"
             onChange={e => updateHeader(e)}
           />

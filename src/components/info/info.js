@@ -37,14 +37,13 @@ function Info(props) {
       <div id="avatar">
         <img id="avatar-img" src={avatar} alt="avatar" />
         {isAuthor ? (
-          <input
+          <label className="avatar-label"><input
             name="avatarfile"
             id="avatarfile"
             type="file"
-            className="avatar-upload"
             accept="image/*"
             onChange={e => updateAvatar(e)}
-          />
+          /><span>Edit</span></label>
         ) : null}
       </div>
       <h1>{bio.name}</h1>
