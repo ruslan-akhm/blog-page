@@ -113,13 +113,16 @@ function AddPost(props) {
             <div id="attachment-preview-box">{filePreview}</div>
             <div className="action-btn-box">
               <button onClick={addPost}>Post</button>
-              <input
-                className="custom-input attach"
-                type="file"
-                accept="image/*"
-                onChange={e => previewAttachment(e)}
-                multiple
-              />
+              <label className="upload-label">
+                <input
+                  className="attach-upload"
+                  type="file"
+                  accept="image/*"
+                  onChange={e => previewAttachment(e)}
+                  multiple
+                />
+                <span>Attach</span>
+              </label>
             </div>
           </div>
           <div id="loading-anim">

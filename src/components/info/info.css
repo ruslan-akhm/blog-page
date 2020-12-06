@@ -82,7 +82,7 @@
 #info p {
   grid-area: 3/1/4/3;
 }
-.custom-input {
+/* .custom-input {
   color: transparent;
   height: 40px;
   float: right;
@@ -105,7 +105,7 @@
 }
 .custom-input:hover {
   background-color: rgba(0, 0, 0, 0.6);
-}
+} */
 
 @media only screen and (max-width: 600px) {
   #info{

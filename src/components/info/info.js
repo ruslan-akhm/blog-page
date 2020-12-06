@@ -41,7 +41,7 @@ function Info(props) {
             name="avatarfile"
             id="avatarfile"
             type="file"
-            className="custom-input"
+            className="avatar-upload"
             accept="image/*"
             onChange={e => updateAvatar(e)}
           />
