@@ -115,7 +115,6 @@ function AddPost(props) {
               <button onClick={addPost}>Post</button>
               <label className="upload-label">
                 <input
-                  className="attach-upload"
                   type="file"
                   accept="image/*"
                   onChange={e => previewAttachment(e)}

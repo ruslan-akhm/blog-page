@@ -29,14 +29,17 @@ function Header(props) {
     <div id="header">
       <img src={header} alt="user's header" />
       {isAuthor ? (
-        <input
-          name="upfile"
-          id="upfile"
-          type="file"
-          className="header-upload"
-          accept="image/*"
-          onChange={e => updateHeader(e)}
-        />
+        <label className="header-label">
+          <input
+            name="upfile"
+            id="upfile"
+            type="file"
+            className="header-upload"
+            accept="image/*"
+            onChange={e => updateHeader(e)}
+          />
+          <span>Edit</span>
+        </label>
       ) : null}
     </div>
   );

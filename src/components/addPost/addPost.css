@@ -80,6 +80,7 @@
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
+  align-items:center;
 }
 .action-btn-box button {
   margin: 20px;
@@ -94,6 +95,11 @@
 .action-btn-box button:hover {
   background-color: #23232e;
   color: white;
+}
+.upload-label {
+  display:flex;
+  justify-content:center;
+  align-items:center;
 }
 .upload-label input[type="file"] {
   position: absolute;
@@ -114,9 +120,10 @@
   background-color: #23232e;
   color: white;
 }
-.upload-label:active {
+
+/* .upload-label:active {
   background: #CCF;
-}
+} */
 /* .attach {
   width: 105px;
      margin-right:5px;
