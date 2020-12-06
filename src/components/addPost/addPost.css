@@ -28,11 +28,13 @@
   flex-direction: column;
 }
 #post-input-box input {
-  margin: 20px 0 20px 0;
+  margin: 20px 5px 20px 5px;
+  height:22px;
   outline: none;
 }
 #post-input-box textarea {
   resize: vertical;
+  margin:10px 5px 0 5px;
   outline: none;
 }
 #post-input-box input:focus,
@@ -81,6 +83,7 @@
   flex-direction: row;
   justify-content: flex-end;
   align-items:center;
+  padding:5px;
 }
 .action-btn-box button {
   margin: 20px;
