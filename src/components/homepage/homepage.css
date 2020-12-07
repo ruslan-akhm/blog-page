@@ -115,22 +115,22 @@
   text-overflow:ellipsis;
   display:flex;
   flex-direction:column;
-  justify-content:space-between;
+/*   justify-content:space-between; */
   padding:0;
 }
-.user-card h4,
-.user-card p {
+.user-card-info h4,
+.user-card-info p {
   word-break:break-word;
   overflow:hidden;
   text-overflow:ellipsis;
-  margin: 4px;
+  margin: 3px;
   padding:0;
 }
-.user-card h4{
-  max-height:55%;
+.user-card-info h4{
+  height:65%;
 }
-.user-card p{
-  height:25%;
+.user-card-info p{
+  height:30%;
   line-height:18px;
   font-size:14px;
   vertical-align: top;
@@ -140,11 +140,16 @@
   box-shadow: 0px 5px 7px #888888;
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 900px) {
   .introduction, .users-box{
     width:90%;
   }
   .users-list ul {
     grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media only screen and (max-width: 600px){
+  .users-list ul {
+    grid-template-columns: 1fr;
   }
 }
