@@ -1,4 +1,5 @@
 const express = require("express");
+require("dotenv").config();
 const path = require("path");
 const passport = require("passport");
 const apiRouter = require("./routes/apiRouter");
@@ -20,7 +21,7 @@ app.use(express.static("public"));
 app.use(
   cors({
     origin: "https://appnew-test-sample.glitch.me/",
-    credentials: true
+    credentials: true,
   })
 );
 
@@ -31,8 +32,8 @@ app.use(
     resave: true,
     saveUninitialized: true,
     cookie: {
-      maxAge: 1000 * 60 * 60 //cookie for 1 hr
-    }
+      maxAge: 1000 * 60 * 60, //cookie for 1 hr
+    },
   })
 );
 
@@ -43,14 +44,6 @@ app.use(cookieParser(process.env.SESSION_SECRET));
 app.use(passport.initialize());
 app.use(passport.session());
 require("./passportConfig")(passport);
-
-//testing
-// app.use((req,res,next)=>{
-//   console.log(req.session);
-//   console.log(req.isAuthenticated)
-//   //console.log(req.user);
-//   next();
-// })
 
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/public/index.html");

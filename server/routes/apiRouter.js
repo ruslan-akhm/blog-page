@@ -13,7 +13,7 @@ var mongoURI = process.env.SECRET;
 mongoose.connect(mongoURI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-  useFindAndModify: false
+  useFindAndModify: false,
 });
 var conn = mongoose.connection;
 
@@ -39,12 +39,12 @@ const storage = new GridFSBucket({
         const fileinfo = {
           filename: filename,
           bucketName: "uploads",
-          metadata: { type: type, date: Date.now() }
+          metadata: { type: type, date: Date.now() },
         };
         resolve(fileinfo);
       });
     });
-  }
+  },
 });
 const upload = multer({ storage });
 
@@ -60,10 +60,9 @@ apiRouter.get("/", (req, res) => {
           name: user.bio.name,
           posts: user.posts.length,
           avatar: user.avatar,
-          id: user.userID
+          id: user.userID,
         };
       });
-      console.log(usersInfo)
       res.json({ usersInfo });
     }
   });
@@ -74,7 +73,8 @@ apiRouter.get("/users/:user", (req, res, next) => {
   const id = req.params.user;
   User.findOne({ userID: id }, (err, user) => {
     if (err) throw err;
-    if (!user) res.json({ message: "No user with such username found", error:true });
+    if (!user)
+      res.json({ message: "No user with such username found", error: true });
     else {
       //checking if user is visiting their own page
       let isAuthor = false;
@@ -88,7 +88,7 @@ apiRouter.get("/users/:user", (req, res, next) => {
       let avatar = user.avatar;
       let bio = user.bio;
       let posts = user.posts;
-      posts.sort(function(a, b) {
+      posts.sort(function (a, b) {
         return b.datePosted - a.datePosted;
       });
       res.json({
@@ -97,7 +97,7 @@ apiRouter.get("/users/:user", (req, res, next) => {
         bio: bio,
         posts: posts,
         isAuthor: isAuthor,
-        id: id
+        id: id,
       });
     }
   });
@@ -125,7 +125,7 @@ apiRouter.post("/upload", upload.single("upfile"), (req, res) => {
       res.json({
         header:
           "https://appnew-test-sample.glitch.me/api/image/" +
-          fileObject.filename
+          fileObject.filename,
       });
     }
   });
@@ -153,7 +153,7 @@ apiRouter.post("/avatar", upload.single("avatarfile"), (req, res) => {
       res.json({
         avatar:
           "https://appnew-test-sample.glitch.me/api/image/" +
-          fileObject.filename
+          fileObject.filename,
       });
     }
   });
@@ -180,7 +180,7 @@ apiRouter.post("/post", upload.array("attachments", 5), (req, res, next) => {
         datePosted: Date.now(),
         type: "post",
         default: false,
-        files: filenames
+        files: filenames,
       };
       user.posts.push(newPost);
       user.save();
@@ -197,7 +197,7 @@ apiRouter.get("/files", (req, res) => {
   gfs.files.find().toArray((err, files) => {
     if (!files || files.length === 0) {
       return res.status(404).json({
-        err: "no files exist"
+        err: "no files exist",
       });
     }
     return res.json(files);
@@ -209,7 +209,7 @@ apiRouter.get("/files/:filename", (req, res) => {
   gfs.files.findOne({ filename: req.params.filename }, (err, file) => {
     if (!file || file.length === 0) {
       return res.status(404).json({
-        err: "no file exists"
+        err: "no file exists",
       });
     }
     return res.json(file);
@@ -221,7 +221,7 @@ apiRouter.get("/image/:filename", (req, res) => {
   gfs.files.findOne({ filename: req.params.filename }, (err, file) => {
     if (!file || file.length === 0) {
       return res.status(404).json({
-        err: "no file exists"
+        err: "no file exists",
       });
     }
     //Check if img
