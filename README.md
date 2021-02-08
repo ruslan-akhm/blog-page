@@ -26,7 +26,8 @@ $ cd blog-page
 $ npm install
 $ npm start
 ```
-Server will set up on port 3001 and app will start on port 3000
+Server will set up on port 3001 and app will start on port 3000.
+
 Make sure to provide .env file in **root folder** with following variables:
  - SECRET (MongoDB database in format mongodb+srv://<username>:<password>@cluster...)
  - FAST_REFRESH=false (to disable react-refresh)
