@@ -1,9 +1,37 @@
-A Blog Page project crafted on Glitch platform to make it accessible. 
-Some extra lines of code are a neccessity to make React App work together with Node/Express back-end.
+# Personal Blog Page
+---
+### About 
+App where registered users can create posts and attach images to them as well as modify their page, by uploading avatar and header images and adding personal information if they want to. Authentication is not required to view other users' pages as guest.
 
-User can register/login. 
-Other users' personal pages can be viewed without authentication.
-Authenticated user can create posts, upload images and change their bio that is reflected on their page.
-Homepage has a list of all users registered at this service and one can find users by search field (search performed by name).
-Routes are build with React Router on front end and Express on back end.
-Images and onformation stored in MongoDB database with sensitive information hashed for security purposes.
+The app was originally built and is available Live [on Glitch](https://appnew-test-sample.glitch.me/)
+
+---
+### Preview 
+
+![Mainpage](https://cdn.glitch.com/b263e770-440e-453b-8974-57d826cc0507%2FBlogPage.jpg?v=16127453043375)
+
+---
+### Tech Stack
+  - React.js
+  - Node/Express
+  - MongoDB
+  - Passport.js
+
+---
+
+### Run locally
+```sh
+$ git clone https://github.com/ruslan-akhm/blog-page.git
+$ cd blog-page
+$ npm install
+$ npm start
+```
+Server will set up on port 3001 and app will start on port 3000
+Make sure to provide .env file in **root folder** with following variables:
+ - SECRET (MongoDB database in format mongodb+srv://<username>:<password>@cluster...)
+ - FAST_REFRESH=false (to disable react-refresh)
+ - SESSION_SECRET (passport secret key for a cookie)
+
+---
+### Author
+Ruslan Akhmetshin
