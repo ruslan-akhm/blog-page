@@ -11,6 +11,12 @@ The app was originally built and is available Live [on Glitch](https://appnew-te
 ![Mainpage](https://cdn.glitch.com/b263e770-440e-453b-8974-57d826cc0507%2FBlogPage.jpg?v=16127453043375)
 
 ---
+### Highlights
+  - No signup required to view other users' pages
+  - User can edit their profile and avatar/header images
+  - Main page has a list of users which can be narrowed down by typing user's name in filter 
+  
+---
 ### Tech Stack
   - React.js
   - Node/Express
